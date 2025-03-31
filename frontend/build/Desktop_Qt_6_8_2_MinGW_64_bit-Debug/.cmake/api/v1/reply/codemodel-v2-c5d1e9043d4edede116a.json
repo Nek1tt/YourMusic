@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-a195bb0875aa24d995bc.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "musicproject",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "musicproject::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-musicproject-Debug-582b17d195870202901e.json",
+					"name" : "musicproject",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "musicproject_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-musicproject_autogen-Debug-1b9e0800561f8833138f.json",
+					"name" : "musicproject_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "musicproject_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-musicproject_autogen_timestamp_deps-Debug-a8cb4ed7e33722905d58.json",
+					"name" : "musicproject_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Lenovo/upprpo/musicproject/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug",
+		"source" : "C:/Users/Lenovo/upprpo/musicproject"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
