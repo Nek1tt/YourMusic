@@ -20,7 +20,7 @@
 
 #include "myplaylistswidget.h"
 
-PlaylistButton::PlaylistButton(const struct playlist &playlist, QWidget *parent = nullptr)
+PlaylistButton::PlaylistButton(const struct playlist &playlist, QWidget *parent)
     : QPushButton(parent), playlist(playlist) {
 
     // Настроим макет кнопки
@@ -59,10 +59,6 @@ QString PlaylistButton::getPlaylistName(){
 MyPlaylistsWidget::MyPlaylistsWidget(QWidget *parent) : QWidget(parent)
 {
 
-    QScreen *screen = QApplication::primaryScreen();// сохраняем экран
-    screenGeometry = screen->availableGeometry();//извлекаем параметры экрана
-
-
     MyPlaylistsLayout = new QVBoxLayout(this);
     QPushButton *myPlaylistButton = new QPushButton("My playlists");
     myPlaylistButton->setStyleSheet(
@@ -72,6 +68,7 @@ MyPlaylistsWidget::MyPlaylistsWidget(QWidget *parent) : QWidget(parent)
         "font-family: 'Tahoma';"
         "    background: none;"                  // Убираем фон
         "    border: none;"                      // Убираем рамку
+        //"    border: 2px solid blue;"  // рамка 2px
         "    text-decoration: none;"             // Убираем подчеркивание по умолчанию
         "}"
         "QPushButton:hover {"
@@ -90,27 +87,23 @@ MyPlaylistsWidget::MyPlaylistsWidget(QWidget *parent) : QWidget(parent)
 
     add_playlists();
 
-    // Устанавливаем layout для прокручиваемого виджета
-
-    // Устанавливаем scrollArea в главный layout (или родительский виджет)
-
 }
 
 
-// проблема - после добавления плейлиста - слой начинает сжиматься сильно не увиличивается слой. так же если в начале нет альбомов, то после добавления альбомов - они не отображаются
 void MyPlaylistsWidget::add_playlists() {
     clearLayout(playlistsLayout);
-
+    playlists_vector.clear();
     read_playlists(playlists_vector);
 
     // Добавляем элементы в layout
     for (auto& playlist : playlists_vector) {
+        qDebug()<<"added";
         // Создаем кнопки для каждого альбома
-        PlaylistButton *albumButton = new PlaylistButton(playlist);
-        playlistsLayout->addWidget(albumButton);
+        PlaylistButton *playlistButton = new PlaylistButton(playlist);
+        playlistsLayout->addWidget(playlistButton);
 
-        connect(albumButton, &QPushButton::clicked, [albumButton]() {
-            qDebug() << "Открыт альбом: " << albumButton->getPlaylistName();
+        connect(playlistButton, &QPushButton::clicked, [playlistButton]() {
+            qDebug() << "Открыт альбом: " << playlistButton->getPlaylistName();
         });
     }
 
@@ -121,7 +114,7 @@ void MyPlaylistsWidget::add_playlists() {
     playlists->setLayout(playlistsLayout);
     playlists->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     playlists->setMinimumWidth(playlists_vector.size() * 180);  // Примерная ширина всех плейлистов
-    playlists->setMinimumHeight(250);
+    playlists->setMinimumHeight(200);
 
     scrollAreaPLaylists->setWidget(playlists);
     scrollAreaPLaylists->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
@@ -180,6 +173,3 @@ void read_playlists(std::vector<playlist> &playlists){
     }
     playlistFile.close();
 }
-
-
-

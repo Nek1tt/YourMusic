@@ -16,7 +16,7 @@
 #include "myplaylistswidget.h"
 
 
-CreateWidget::CreateWidget(QWidget *parent, QWidget *createtab)
+CreateWidget::CreateWidget(QWidget *parent, QWidget *tab)
     : QWidget(parent)
 {
     // Initialize buttons
@@ -28,7 +28,7 @@ CreateWidget::CreateWidget(QWidget *parent, QWidget *createtab)
     button3->setFixedWidth(150);
 
     // Create a vertical layout for the buttons
-    createLayout = new QVBoxLayout(createtab);
+    createLayout = new QVBoxLayout(tab);
 
     // Add buttons to the layout
     createLayout->addWidget(button1);

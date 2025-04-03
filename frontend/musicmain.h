@@ -6,6 +6,7 @@
 // #include <QWebSocket>
 
 #include "./ui_musicmain.h"
+#include "profilewidget.h"
 #include "userProfileWidget.h"  // Подключаем header для UserProfileWidget
 #include "myplaylistswidget.h"
 #include "createwidget.h"
@@ -34,6 +35,8 @@ private slots:
     void on_profileTab_clicked();
 
     void resizeEvent(QResizeEvent *event);
+    void setInitialSize(int width);
+
 
 private:
     Ui::MusicMain *ui;
@@ -41,10 +44,11 @@ private:
     std::vector<QPushButton*> mainTabButtons;
     QPushButton* currentTab;
     //QWebSocket* webSocket;
+    ProfileWidget *profilewidget;
     CreateWidget *createwidget;
-    UserProfileWidget *userProfile;
-    MyPlaylistsWidget *playlistwidget;
-    QWidget *scrollWidget;
+    //UserProfileWidget *userProfile;
+    //MyPlaylistsWidget *playlistwidget;
+    //QWidget *scrollWidget;
 
 };
 

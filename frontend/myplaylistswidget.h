@@ -1,11 +1,12 @@
-#ifndef MYPLAYLISTSWIDGET_H
-#define MYPLAYLISTSWIDGET_H
-
 #include <QWidget>
 #include <QLabel>
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QScrollArea>
+
+
+#ifndef MYPLAYLISTSWIDGET_H
+#define MYPLAYLISTSWIDGET_H
 
 struct playlist
 {
@@ -17,7 +18,7 @@ struct playlist
 class PlaylistButton : public QPushButton {
     Q_OBJECT
 public:
-    explicit PlaylistButton(const playlist &playlist, QWidget *parent);
+    explicit PlaylistButton(const playlist &playlist, QWidget *parent = nullptr);
 
     QString getPlaylistName();
 

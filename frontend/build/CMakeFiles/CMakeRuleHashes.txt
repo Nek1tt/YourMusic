@@ -1,0 +1,3 @@
+# Hashes of file build rules.
+6bc520c8d9e906b85e9ef2a89881f3e8 CMakeFiles/musicproject_autogen
+4e2017a2bc800ee9bbe0a0ca81335b5c musicproject_autogen/timestamp
