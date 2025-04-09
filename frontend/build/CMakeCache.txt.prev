@@ -280,7 +280,7 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 PKG_CONFIG_ARGN:STRING=
 
 //pkg-config executable
-PKG_CONFIG_EXECUTABLE:FILEPATH=PKG_CONFIG_EXECUTABLE-NOTFOUND
+PKG_CONFIG_EXECUTABLE:FILEPATH=C:/msys64/mingw64/bin/pkg-config.exe
 
 //Additional directories where find(Qt6 ...) host Qt components
 // are searched
@@ -320,10 +320,10 @@ Qt6ZlibPrivate_DIR:PATH=C:/Qt/6.8.2/mingw_64/lib/cmake/Qt6ZlibPrivate
 Qt6_DIR:PATH=C:/Qt/6.8.2/mingw_64/lib/cmake/Qt6
 
 //Path to a program.
-Vulkan_GLSLANG_VALIDATOR_EXECUTABLE:FILEPATH=Vulkan_GLSLANG_VALIDATOR_EXECUTABLE-NOTFOUND
+Vulkan_GLSLANG_VALIDATOR_EXECUTABLE:FILEPATH=C:/msys64/mingw64/bin/glslangValidator.exe
 
 //Path to a program.
-Vulkan_GLSLC_EXECUTABLE:FILEPATH=Vulkan_GLSLC_EXECUTABLE-NOTFOUND
+Vulkan_GLSLC_EXECUTABLE:FILEPATH=C:/msys64/mingw64/bin/glslc.exe
 
 //Path to a file.
 Vulkan_INCLUDE_DIR:PATH=Vulkan_INCLUDE_DIR-NOTFOUND
@@ -342,6 +342,36 @@ musicproject_IS_TOP_LEVEL:STATIC=ON
 
 //Value Computed by CMake
 musicproject_SOURCE_DIR:STATIC=C:/Users/Lenovo/upprpo/YourMusic/frontend
+
+//Path to a library.
+pkgcfg_lib_FFMPEG_SDL2:FILEPATH=C:/msys64/mingw64/lib/libSDL2.dll.a
+
+//Path to a library.
+pkgcfg_lib_FFMPEG_SDL2main:FILEPATH=C:/msys64/mingw64/lib/libSDL2main.a
+
+//Path to a library.
+pkgcfg_lib_FFMPEG_avcodec:FILEPATH=C:/msys64/mingw64/lib/libavcodec.dll.a
+
+//Path to a library.
+pkgcfg_lib_FFMPEG_avformat:FILEPATH=C:/msys64/mingw64/lib/libavformat.dll.a
+
+//Path to a library.
+pkgcfg_lib_FFMPEG_avutil:FILEPATH=C:/msys64/mingw64/lib/libavutil.dll.a
+
+//Path to a library.
+pkgcfg_lib_FFMPEG_mingw32:FILEPATH=C:/msys64/mingw64/lib/libmingw32.a
+
+//Path to a library.
+pkgcfg_lib_FFMPEG_swresample:FILEPATH=C:/msys64/mingw64/lib/libswresample.dll.a
+
+//Path to a library.
+pkgcfg_lib_SDL2_SDL2:FILEPATH=C:/msys64/mingw64/lib/libSDL2.dll.a
+
+//Path to a library.
+pkgcfg_lib_SDL2_SDL2main:FILEPATH=C:/msys64/mingw64/lib/libSDL2main.a
+
+//Path to a library.
+pkgcfg_lib_SDL2_mingw32:FILEPATH=C:/msys64/mingw64/lib/libmingw32.a
 
 
 ########################
@@ -522,6 +552,64 @@ CMAKE_STRIP-ADVANCED:INTERNAL=1
 CMAKE_TAPI-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
+FFMPEG_CFLAGS:INTERNAL=-IC:/msys64/mingw64/bin/../include
+FFMPEG_CFLAGS_I:INTERNAL=
+FFMPEG_CFLAGS_OTHER:INTERNAL=
+FFMPEG_FOUND:INTERNAL=1
+FFMPEG_INCLUDEDIR:INTERNAL=
+FFMPEG_INCLUDE_DIRS:INTERNAL=C:/msys64/mingw64/bin/../include
+FFMPEG_LDFLAGS:INTERNAL=-LC:/msys64/mingw64/bin/../lib;-lavformat;-lavcodec;-lavutil;-lswresample
+FFMPEG_LDFLAGS_OTHER:INTERNAL=
+FFMPEG_LIBDIR:INTERNAL=
+FFMPEG_LIBRARIES:INTERNAL=avformat;avcodec;avutil;swresample
+FFMPEG_LIBRARY_DIRS:INTERNAL=C:/msys64/mingw64/bin/../lib
+FFMPEG_LIBS:INTERNAL=
+FFMPEG_LIBS_L:INTERNAL=
+FFMPEG_LIBS_OTHER:INTERNAL=
+FFMPEG_LIBS_PATHS:INTERNAL=
+FFMPEG_MODULE_NAME:INTERNAL=
+FFMPEG_PREFIX:INTERNAL=
+FFMPEG_STATIC_CFLAGS:INTERNAL=-IC:/msys64/mingw64/bin/../include
+FFMPEG_STATIC_CFLAGS_I:INTERNAL=
+FFMPEG_STATIC_CFLAGS_OTHER:INTERNAL=
+FFMPEG_STATIC_INCLUDE_DIRS:INTERNAL=C:/msys64/mingw64/bin/../include
+FFMPEG_STATIC_LDFLAGS:INTERNAL=-LC:/msys64/mingw64/bin/../lib;-lavformat;-lm;-latomic;-lxml2;-lbz2;-lgme;-lmodplug;-lbluray;-lz;-lgnutls;-lrtmp;-lz;-lgmp;-lgnutls;-lhogweed;-lnettle;-lsrt;-lws2_32;-lssh;-lavcodec;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lvpx;-lm;-lwebpmux;-liconv;-lm;-latomic;-llzma;-ldav1d;-lopencore-amrwb;-lrsvg-2;-lcairo-gobject;-lpng16;-lgdk_pixbuf-2.0;-lgio-2.0;-lxml2;-lpangocairo-1.0;-lcairo;-lpangoft2-1.0;-lpango-1.0;-lgobject-2.0;-lharfbuzz;-lfontconfig;-lfreetype;-lgmodule-2.0;-lglib-2.0;-lintl;-lzvbi;-lintl;-lpthread;-lm;-lws2_32;-liconv;-lpng;-lz;-laom;-lgsm;-ljxl;-ljxl_threads;-llc3;-lmp3lame;-lm;-lopencore-amrnb;-lopenjp2;-lopus;-lrav1e;-lspeex;-lSvtAv1Enc;-ltheoraenc;-ltheoradec;-logg;-lvorbis;-lvorbisenc;-lwebp;-lx264;-lx265;-lxvidcore;-lmfuuid;-lole32;-lstrmiids;-lole32;-luser32;-lz;-lva;-ldl;-lvpl;-lole32;-lgdi32;-luuid;-lstdc++;-lswresample;-lm;-lsoxr;-latomic;-lavutil;-lva_win32;-lva;-lm;-lvpl;-lole32;-lgdi32;-luuid;-lstdc++;-luser32;-lva;-lbcrypt;-latomic;-ldl
+FFMPEG_STATIC_LDFLAGS_OTHER:INTERNAL=
+FFMPEG_STATIC_LIBDIR:INTERNAL=
+FFMPEG_STATIC_LIBRARIES:INTERNAL=avformat;m;atomic;xml2;bz2;gme;modplug;bluray;z;gnutls;rtmp;z;gmp;gnutls;hogweed;nettle;srt;ws2_32;ssh;avcodec;vpx;m;vpx;m;vpx;m;vpx;m;webpmux;iconv;m;atomic;lzma;dav1d;opencore-amrwb;rsvg-2;cairo-gobject;png16;gdk_pixbuf-2.0;gio-2.0;xml2;pangocairo-1.0;cairo;pangoft2-1.0;pango-1.0;gobject-2.0;harfbuzz;fontconfig;freetype;gmodule-2.0;glib-2.0;intl;zvbi;intl;pthread;m;ws2_32;iconv;png;z;aom;gsm;jxl;jxl_threads;lc3;mp3lame;m;opencore-amrnb;openjp2;opus;rav1e;speex;SvtAv1Enc;theoraenc;theoradec;ogg;vorbis;vorbisenc;webp;x264;x265;xvidcore;mfuuid;ole32;strmiids;ole32;user32;z;va;dl;vpl;ole32;gdi32;uuid;stdc++;swresample;m;soxr;atomic;avutil;va_win32;va;m;vpl;ole32;gdi32;uuid;stdc++;user32;va;bcrypt;atomic;dl
+FFMPEG_STATIC_LIBRARY_DIRS:INTERNAL=C:/msys64/mingw64/bin/../lib
+FFMPEG_STATIC_LIBS:INTERNAL=
+FFMPEG_STATIC_LIBS_L:INTERNAL=
+FFMPEG_STATIC_LIBS_OTHER:INTERNAL=
+FFMPEG_STATIC_LIBS_PATHS:INTERNAL=
+FFMPEG_VERSION:INTERNAL=
+FFMPEG_libavcodec_INCLUDEDIR:INTERNAL=C:/msys64/mingw64/bin/../include
+FFMPEG_libavcodec_LIBDIR:INTERNAL=C:/msys64/mingw64/bin/../lib
+FFMPEG_libavcodec_MODULE_NAME:INTERNAL=libavcodec
+FFMPEG_libavcodec_PREFIX:INTERNAL=C:/msys64/mingw64/bin/..
+FFMPEG_libavcodec_VERSION:INTERNAL=61.19.101
+FFMPEG_libavformat_INCLUDEDIR:INTERNAL=C:/msys64/mingw64/bin/../include
+FFMPEG_libavformat_LIBDIR:INTERNAL=C:/msys64/mingw64/bin/../lib
+FFMPEG_libavformat_MODULE_NAME:INTERNAL=libavformat
+FFMPEG_libavformat_PREFIX:INTERNAL=C:/msys64/mingw64/bin/..
+FFMPEG_libavformat_VERSION:INTERNAL=61.7.100
+FFMPEG_libavutil_INCLUDEDIR:INTERNAL=C:/msys64/mingw64/bin/../include
+FFMPEG_libavutil_LIBDIR:INTERNAL=C:/msys64/mingw64/bin/../lib
+FFMPEG_libavutil_MODULE_NAME:INTERNAL=libavutil
+FFMPEG_libavutil_PREFIX:INTERNAL=C:/msys64/mingw64/bin/..
+FFMPEG_libavutil_VERSION:INTERNAL=59.39.100
+FFMPEG_libswresample_INCLUDEDIR:INTERNAL=C:/msys64/mingw64/bin/../include
+FFMPEG_libswresample_LIBDIR:INTERNAL=C:/msys64/mingw64/bin/../lib
+FFMPEG_libswresample_MODULE_NAME:INTERNAL=libswresample
+FFMPEG_libswresample_PREFIX:INTERNAL=C:/msys64/mingw64/bin/..
+FFMPEG_libswresample_VERSION:INTERNAL=5.3.100
+FFMPEG_sdl2_INCLUDEDIR:INTERNAL=C:/msys64/mingw64/bin/../include
+FFMPEG_sdl2_LIBDIR:INTERNAL=C:/msys64/mingw64/bin/../lib
+FFMPEG_sdl2_MODULE_NAME:INTERNAL=sdl2
+FFMPEG_sdl2_PREFIX:INTERNAL=C:/msys64/mingw64/bin/..
+FFMPEG_sdl2_VERSION:INTERNAL=2.32.4
+//Details about finding PkgConfig
+FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[C:/msys64/mingw64/bin/pkg-config][v2.3.0()]
 //Details about finding Threads
 FIND_PACKAGE_MESSAGE_DETAILS_Threads:INTERNAL=[TRUE][v()]
 //Details about finding WrapAtomic
@@ -1288,6 +1376,41 @@ QT_FEATURE_xmlstreamwriter:INTERNAL=ON
 QT_FEATURE_xrender:INTERNAL=OFF
 //Qt feature: zstd (from target Qt6::Core)
 QT_FEATURE_zstd:INTERNAL=OFF
+SDL2_CFLAGS:INTERNAL=-IC:/msys64/mingw64/bin/../include;-IC:/msys64/mingw64/bin/../include/SDL2;-Dmain=SDL_main
+SDL2_CFLAGS_I:INTERNAL=
+SDL2_CFLAGS_OTHER:INTERNAL=-Dmain=SDL_main
+SDL2_FOUND:INTERNAL=1
+SDL2_INCLUDEDIR:INTERNAL=C:/msys64/mingw64/bin/../include
+SDL2_INCLUDE_DIRS:INTERNAL=C:/msys64/mingw64/bin/../include;C:/msys64/mingw64/bin/../include/SDL2
+SDL2_LDFLAGS:INTERNAL=-LC:/msys64/mingw64/bin/../lib;-lmingw32;-mwindows;-lSDL2main;-lSDL2
+SDL2_LDFLAGS_OTHER:INTERNAL=-mwindows
+SDL2_LIBDIR:INTERNAL=C:/msys64/mingw64/bin/../lib
+SDL2_LIBRARIES:INTERNAL=mingw32;SDL2main;SDL2
+SDL2_LIBRARY_DIRS:INTERNAL=C:/msys64/mingw64/bin/../lib
+SDL2_LIBS:INTERNAL=
+SDL2_LIBS_L:INTERNAL=
+SDL2_LIBS_OTHER:INTERNAL=
+SDL2_LIBS_PATHS:INTERNAL=
+SDL2_MODULE_NAME:INTERNAL=sdl2
+SDL2_PREFIX:INTERNAL=C:/msys64/mingw64/bin/..
+SDL2_STATIC_CFLAGS:INTERNAL=-IC:/msys64/mingw64/bin/../include;-IC:/msys64/mingw64/bin/../include/SDL2;-Dmain=SDL_main
+SDL2_STATIC_CFLAGS_I:INTERNAL=
+SDL2_STATIC_CFLAGS_OTHER:INTERNAL=-Dmain=SDL_main
+SDL2_STATIC_INCLUDE_DIRS:INTERNAL=C:/msys64/mingw64/bin/../include;C:/msys64/mingw64/bin/../include/SDL2
+SDL2_STATIC_LDFLAGS:INTERNAL=-LC:/msys64/mingw64/bin/../lib;-lmingw32;-mwindows;-lSDL2main;-lSDL2;-lm;-lkernel32;-luser32;-lgdi32;-lwinmm;-limm32;-lole32;-loleaut32;-lversion;-luuid;-ladvapi32;-lsetupapi;-lshell32;-ldinput8
+SDL2_STATIC_LDFLAGS_OTHER:INTERNAL=-mwindows
+SDL2_STATIC_LIBDIR:INTERNAL=
+SDL2_STATIC_LIBRARIES:INTERNAL=mingw32;SDL2main;SDL2;m;kernel32;user32;gdi32;winmm;imm32;ole32;oleaut32;version;uuid;advapi32;setupapi;shell32;dinput8
+SDL2_STATIC_LIBRARY_DIRS:INTERNAL=C:/msys64/mingw64/bin/../lib
+SDL2_STATIC_LIBS:INTERNAL=
+SDL2_STATIC_LIBS_L:INTERNAL=
+SDL2_STATIC_LIBS_OTHER:INTERNAL=
+SDL2_STATIC_LIBS_PATHS:INTERNAL=
+SDL2_VERSION:INTERNAL=2.32.4
+SDL2_sdl2_INCLUDEDIR:INTERNAL=
+SDL2_sdl2_LIBDIR:INTERNAL=
+SDL2_sdl2_PREFIX:INTERNAL=
+SDL2_sdl2_VERSION:INTERNAL=
 //ADVANCED property for variable: Vulkan_GLSLANG_VALIDATOR_EXECUTABLE
 Vulkan_GLSLANG_VALIDATOR_EXECUTABLE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: Vulkan_GLSLC_EXECUTABLE
@@ -1300,4 +1423,29 @@ Vulkan_LIBRARY-ADVANCED:INTERNAL=1
 _CMAKE_LINKER_PUSHPOP_STATE_SUPPORTED:INTERNAL=TRUE
 //CMAKE_INSTALL_PREFIX during last run
 _GNUInstallDirs_LAST_CMAKE_INSTALL_PREFIX:INTERNAL=C:/Program Files (x86)/musicproject
+__pkg_config_arguments_FFMPEG:INTERNAL=REQUIRED;libavformat;libavcodec;libavutil;libswresample
+__pkg_config_arguments_SDL2:INTERNAL=REQUIRED;sdl2
+__pkg_config_checked_FFMPEG:INTERNAL=1
+__pkg_config_checked_SDL2:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_FFMPEG_SDL2
+pkgcfg_lib_FFMPEG_SDL2-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_FFMPEG_SDL2main
+pkgcfg_lib_FFMPEG_SDL2main-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_FFMPEG_avcodec
+pkgcfg_lib_FFMPEG_avcodec-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_FFMPEG_avformat
+pkgcfg_lib_FFMPEG_avformat-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_FFMPEG_avutil
+pkgcfg_lib_FFMPEG_avutil-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_FFMPEG_mingw32
+pkgcfg_lib_FFMPEG_mingw32-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_FFMPEG_swresample
+pkgcfg_lib_FFMPEG_swresample-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_SDL2_SDL2
+pkgcfg_lib_SDL2_SDL2-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_SDL2_SDL2main
+pkgcfg_lib_SDL2_SDL2main-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: pkgcfg_lib_SDL2_mingw32
+pkgcfg_lib_SDL2_mingw32-ADVANCED:INTERNAL=1
+prefix_result:INTERNAL=C:/msys64/mingw64/bin/../lib
 

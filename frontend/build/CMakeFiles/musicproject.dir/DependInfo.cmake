@@ -16,6 +16,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/myplaylistswidget.cpp" "CMakeFiles/musicproject.dir/myplaylistswidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/myplaylistswidget.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/mytrackswidget.cpp" "CMakeFiles/musicproject.dir/mytrackswidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/mytrackswidget.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/profilewidget.cpp" "CMakeFiles/musicproject.dir/profilewidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/profilewidget.cpp.obj.d"
+  "C:/Users/Lenovo/upprpo/YourMusic/frontend/rightbarwidget.cpp" "CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/userProfileWidget.cpp" "CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj.d"
   )
 

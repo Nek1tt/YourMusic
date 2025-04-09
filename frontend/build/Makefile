@@ -367,6 +367,30 @@ profilewidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/profilewidget.cpp.s
 .PHONY : profilewidget.cpp.s
 
+rightbarwidget.obj: rightbarwidget.cpp.obj
+.PHONY : rightbarwidget.obj
+
+# target to build an object file
+rightbarwidget.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj
+.PHONY : rightbarwidget.cpp.obj
+
+rightbarwidget.i: rightbarwidget.cpp.i
+.PHONY : rightbarwidget.i
+
+# target to preprocess a source file
+rightbarwidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/rightbarwidget.cpp.i
+.PHONY : rightbarwidget.cpp.i
+
+rightbarwidget.s: rightbarwidget.cpp.s
+.PHONY : rightbarwidget.s
+
+# target to generate assembly for a file
+rightbarwidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/rightbarwidget.cpp.s
+.PHONY : rightbarwidget.cpp.s
+
 userProfileWidget.obj: userProfileWidget.cpp.obj
 .PHONY : userProfileWidget.obj
 
@@ -427,6 +451,9 @@ help:
 	@echo ... profilewidget.obj
 	@echo ... profilewidget.i
 	@echo ... profilewidget.s
+	@echo ... rightbarwidget.obj
+	@echo ... rightbarwidget.i
+	@echo ... rightbarwidget.s
 	@echo ... userProfileWidget.obj
 	@echo ... userProfileWidget.i
 	@echo ... userProfileWidget.s

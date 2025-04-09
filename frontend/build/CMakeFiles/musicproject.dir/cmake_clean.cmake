@@ -16,6 +16,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/musicproject.dir/mytrackswidget.cpp.obj.d"
   "CMakeFiles/musicproject.dir/profilewidget.cpp.obj"
   "CMakeFiles/musicproject.dir/profilewidget.cpp.obj.d"
+  "CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj"
+  "CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj.d"
   "CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj"
   "CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj.d"
   "libmusicproject.dll.a"

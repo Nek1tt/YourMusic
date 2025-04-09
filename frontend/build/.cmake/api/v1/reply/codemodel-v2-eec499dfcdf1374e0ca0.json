@@ -7,7 +7,7 @@
 				{
 					"build" : ".",
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-08634dd16dc04774901e.json",
+					"jsonFile" : "directory-.-22023e6685ec793ebfbc.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.16"
@@ -44,7 +44,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "musicproject::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-musicproject-bcbb8d4ed07cc185183b.json",
+					"jsonFile" : "target-musicproject-0e05c5eb10526459219e.json",
 					"name" : "musicproject",
 					"projectIndex" : 0
 				},

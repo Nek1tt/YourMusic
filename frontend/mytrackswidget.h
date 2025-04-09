@@ -50,7 +50,7 @@ private:
 
 
 void write_track(track &track);
-void read_tracks(std::vector<track> &tracks);
+void read_tracks(std::vector<track> &tracks, std::string track_path);
 
 
 #endif // MYTRACKSWIDGET_H

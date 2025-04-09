@@ -4,4 +4,5 @@
 #include "EWIEGA46WW/moc_myplaylistswidget.cpp"
 #include "EWIEGA46WW/moc_mytrackswidget.cpp"
 #include "EWIEGA46WW/moc_profilewidget.cpp"
+#include "EWIEGA46WW/moc_rightbarwidget.cpp"
 #include "EWIEGA46WW/moc_userProfileWidget.cpp"

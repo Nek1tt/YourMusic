@@ -396,13 +396,6 @@ CMakeFiles/musicproject.dir/main.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qlocale.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qguiapplication_platform.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QMainWindow \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/QPushButton \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/qpushbutton.h \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractbutton.h \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/QStatusBar \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/qstatusbar.h \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTabWidget \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtabwidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QWidget \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qwidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\profilewidget.h \
@@ -479,9 +472,16 @@ CMakeFiles/musicproject.dir/main.cpp.obj: \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\userProfileWidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\myplaylistswidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QPushButton \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qpushbutton.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractbutton.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollArea \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\mytrackswidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\createwidget.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\rightbarwidget.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTabWidget \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtabwidget.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTabBar \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtabbar.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QApplication

@@ -102,7 +102,7 @@ MyTracksWidget::MyTracksWidget(QWidget *parent)  :QWidget(parent)
 void MyTracksWidget::add_tracks() {
     clearLayout(tracks_layout_of_verticals);
     tracks_vector.clear();
-    read_tracks(tracks_vector);
+    read_tracks(tracks_vector, "text/tracks.txt");
 
     QVBoxLayout *leftColumn = new QVBoxLayout();
     QVBoxLayout *rightColumn = new QVBoxLayout();
@@ -184,8 +184,8 @@ void write_track(track &track){
     tracksFile.close();
 }
 
-void read_tracks(std::vector<track> &tracks){
-    std::ifstream trackFile("text/tracks.txt");
+void read_tracks(std::vector<track> &tracks, std::string track_path){
+    std::ifstream trackFile(track_path);
     std::string line;
     while (std::getline(trackFile, line)){
         QString qline = QString::fromStdString(line);

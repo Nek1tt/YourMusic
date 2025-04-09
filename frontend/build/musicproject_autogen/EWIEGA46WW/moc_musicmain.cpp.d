@@ -187,6 +187,8 @@ C:/Users/Lenovo/upprpo/YourMusic/frontend/build/musicproject_autogen/EWIEGA46WW/
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QMessageBox \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QPushButton \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollArea \
+  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTabBar \
+  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTabWidget \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QVBoxLayout \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QWidget \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractbutton.h \
@@ -204,6 +206,7 @@ C:/Users/Lenovo/upprpo/YourMusic/frontend/build/musicproject_autogen/EWIEGA46WW/
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qpushbutton.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qsizepolicy.h \
+  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtabbar.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtabwidget.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtwidgets-config.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtwidgetsexports.h \
@@ -449,4 +452,5 @@ C:/Users/Lenovo/upprpo/YourMusic/frontend/build/musicproject_autogen/EWIEGA46WW/
   C:/Users/Lenovo/upprpo/YourMusic/frontend/myplaylistswidget.h \
   C:/Users/Lenovo/upprpo/YourMusic/frontend/mytrackswidget.h \
   C:/Users/Lenovo/upprpo/YourMusic/frontend/profilewidget.h \
+  C:/Users/Lenovo/upprpo/YourMusic/frontend/rightbarwidget.h \
   C:/Users/Lenovo/upprpo/YourMusic/frontend/userProfileWidget.h

@@ -7,9 +7,11 @@
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QScrollArea>
+#include <QTabBar>
 // #include <QWebSocket>
 #include <QMessageBox>
 #include <QDir>
+#include <QSplitter>
 
 
 #include "musicmain.h"
@@ -18,77 +20,93 @@
 
 
 MusicMain::MusicMain(QWidget *parent)//класс для окна
-    : QMainWindow(parent), ui(new Ui::MusicMain)
-    //profilewidget(new ProfileWidget(this, ui->Profile))
-    //userProfile(new UserProfileWidget(this)),
-    //playlistwidget(new MyPlaylistsWidget(this))
-    //createwidget(new CreateWidget(this,ui->Create))
+    : QMainWindow(parent)
 {
-    ui->setupUi(this);
-    // Создаем вкладку create
-    createwidget = new CreateWidget(this, ui->Create);
-    profilewidget = new ProfileWidget(this, ui->Profile);
+
+    mainWidget = new QWidget();
+    QSplitter *mainSplitter = new QSplitter(Qt::Horizontal, mainWidget);
+    mainLayout = new QHBoxLayout(mainWidget);
+
+    leftBarWidget = new QWidget();
+    //leftBarWidget->setFixedWidth(1);
+    leftLayout = new QVBoxLayout(leftBarWidget);
+
+    homeTab = new QPushButton("Home");
+    createTab = new QPushButton("Create");
+    profileTab = new QPushButton("Profile");
+
+    connect(homeTab, &QPushButton::clicked, this, &MusicMain::on_homeTab_clicked);
+    connect(createTab, &QPushButton::clicked, this, &MusicMain::on_createTab_clicked);
+    connect(profileTab, &QPushButton::clicked, this, &MusicMain::on_profileTab_clicked);
+
+
+    leftLayout->addWidget(homeTab);
+    leftLayout->addWidget(createTab);
+    leftLayout->addWidget(profileTab);
+
+    mainSplitter->addWidget(leftBarWidget);
+
+    tabwidget = new QTabWidget(this);
+    //tabwidget->setFixedWidth(1);
+    tabwidget->setStyleSheet("QTabWidget::pane { margin: 0px; padding: 0px; }");
+    Create = new QWidget();
+    Home = new QWidget();
+    Profile = new QWidget();
+
+    tabwidget->tabBar()->hide();
+    tabwidget->addTab(Home, "Home");
+    tabwidget->addTab(Create, "Create");
+    tabwidget->addTab(Profile, "Profile");
+    mainSplitter->addWidget(tabwidget);
+
+    this->setCentralWidget(mainWidget);
+
+
+
+    // // Создаем вкладку create
+    createwidget = new CreateWidget(this, Create);
+    profilewidget = new ProfileWidget(this, Profile);
+    profilewidget->setContentsMargins(0, 0, 0, 0);
+
+    rightbarwidget = new RightBarWidget(this, currentTrack);
+    rightbarwidget->resize(400, this->height());
+    mainSplitter->addWidget(rightbarwidget);
+    mainLayout->addWidget(mainSplitter);
+    mainWidget->setLayout(mainLayout);
+
     QScreen *screen = QApplication::primaryScreen();// сохраняем экран
     QRect screenGeometry = screen->availableGeometry();//извлекаем параметры экрана
-    // Получаем размер окна
+    // // Получаем размер окна
     int windowWidth = this->width();
-    //int windowHeight = this->height();
+    int windowHeight = this->height();
 
-    // Вычисляем позицию для окна, чтобы правый верхний угол сопоставлялся с правым верхним углом экрана
+    // // Вычисляем позицию для окна, чтобы правый верхний угол сопоставлялся с правым верхним углом экрана
     int xPos = screenGeometry.right() - windowWidth;
     int yPos = screenGeometry.top();
 
-    // Перемещаем окно в вычисленную позицию
-    this->move(xPos, yPos);
-    //создаем профиль пользователя с помощью соответствующего класса
-    //UserInfo usernurshat{"imgs/ava.png", "User Name", "@usertag", 100, 100, 100, 100};
-    //userProfile->setUserProfile(usernurshat);//заполняем профиль
-    //QVBoxLayout *profileLayout = new QVBoxLayout(ui->Profile); //создаем слой для вкладки профиль. в нем будет храниться профильинфо, плейлисты, треки все
-    //profileLayout->setContentsMargins(50, 50, 50, 50); //ставим отступы внутри слоя
-    //profileLayout->addWidget(userProfile, 0, Qt::AlignTop); //добавляем в этот слой профиля userProfile - "шапка профиля с инфой"
-    //userProfile->setStyleSheet("QWidget { border: 1px solid red; }");
-    //profileLayout->addWidget(playlistwidget);
+    // // Перемещаем окно в вычисленную позицию
+    //this->move(xPos, yPos);
+    // this->setStyleSheet("QWidget {border: 1px solid black}");
 
-    // Создаем виджет для прокрутки
-    // scrollWidget = new QWidget();  // Виджет для прокручиваемого содержимого
-    /*scrollWidget->setLayout(profileLayout);*/ // Устанавливаем layout в scrollWidget
-
-    // Создаем QScrollArea
-    //QScrollArea *scrollArea = new QScrollArea(this);  // Прокручиваемая область
-    // scrollArea->setWidget(scrollWidget);  // Устанавливаем scrollWidget в scrollArea
-
-    // Настроим прокрутку
-    /*scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);*/  // Отключаем горизонтальную прокрутку
-    /*scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);*/ // Прокрутка будет по вертикали только если нужно
-
-    // Устанавливаем scrollArea в основной layout профиля
-    /*ui->Profile->setLayout(new QVBoxLayout());*/  // Очистить текущий layout
-    // ui->Profile->layout()->addWidget(scrollArea);
-
-
-    // ui->Profile->setStyleSheet("QWidget { border: 1px solid blue; }");
-    // playlistwidget->setStyleSheet("QWidget { border: 1px solid red; }");
-
-
-
-
-    //создаем профиль пользователя с помощью соответствующего клас
-    tabwidget = ui->tabWidget; // это у нас объект с главными вкладками
+    // QHBoxLayout *mainLayout = new QHBoxLayout(this);
+    // mainLayout->addWidget(tabwidget);
+    // mainLayout->addWidget(rightbarwidget);
+    // //создаем профиль пользователя с помощью соответствующего клас
+    // tabwidget = ui->tabWidget; // это у нас объект с главными вкладками
     tabwidget->setTabVisible(0,0);// делаем видимым вкладку
     tabwidget->setCurrentIndex(0);// ставим текущим вкладку 0
-    ui->homeTab->setStyleSheet("color : black");
-    ui->createTab->setStyleSheet("color : white");
-    ui->profileTab->setStyleSheet("color : white");
-    currentTab = ui->homeTab;
+    homeTab->setStyleSheet("color : black");
+    createTab->setStyleSheet("color : white");
+    profileTab->setStyleSheet("color : white");
+    currentTab = homeTab;
     currentTab->setEnabled(false);
 
 
-    mainTabButtons = { ui->homeTab, ui->createTab, ui->profileTab}; //main tub buttons on screen
+    mainTabButtons = { homeTab, createTab, profileTab}; //main tub buttons on screen
 
 
-    tabwidget->resize(screenGeometry.width(), screenGeometry.height()); //seting the window size
-
-
+    this->resize(screenGeometry.width()/2, screenGeometry.height()/2); //seting the window size
+    tabwidget->resize(this->width()-400,this->height());
     setInitialSize(this->width());
 
     // webSocket = new QWebSocket();
@@ -102,7 +120,7 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
 
 MusicMain::~MusicMain()
 {
-    delete ui;
+    // delete ui;
 }
 
 void MusicMain::toggle_buttons(QPushButton* pushedButton){ // changes the button from which we switched to a new tab to white. and
@@ -124,14 +142,14 @@ void MusicMain::toggle_buttons(QPushButton* pushedButton){ // changes the button
 void MusicMain::on_homeTab_clicked()
 {
     qDebug()<<this->width();
-    toggle_buttons(ui->homeTab);
+    toggle_buttons(homeTab);
 }
 
 
 void MusicMain::on_createTab_clicked()
 {
     qDebug()<<"click";
-    toggle_buttons(ui->createTab);
+    toggle_buttons(createTab);
 }
 
 void MusicMain::on_profileTab_clicked()
@@ -139,12 +157,13 @@ void MusicMain::on_profileTab_clicked()
     //playlistwidget->add_playlists();
     profilewidget->button_profile_clicked();
     qDebug()<<"click";
-    toggle_buttons(ui->profileTab);
+    toggle_buttons(profileTab);
 }
 
 
 void MusicMain::resizeEvent(QResizeEvent *event) {
     QMainWindow::resizeEvent(event); // Вызов базового метода
+    tabwidget->resize(this->width()-400,this->height());
     profilewidget->resizeProfile(this->width());
     qDebug()<<this->width();
 }

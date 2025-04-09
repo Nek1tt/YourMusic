@@ -10,6 +10,7 @@
 #include "userProfileWidget.h"  // Подключаем header для UserProfileWidget
 #include "myplaylistswidget.h"
 #include "createwidget.h"
+#include "rightbarwidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -39,13 +40,33 @@ private slots:
 
 
 private:
-    Ui::MusicMain *ui;
+private:
+    QWidget *mainWidget;
+    QLayout *mainLayout;
     QTabWidget *tabwidget;
+    QWidget *leftBarWidget;
+    QWidget *rifghtBarWidget;
+    QLayout *leftLayout;
+    QLayout *rightLayout;
+
+    QWidget *Home;
+    QWidget *Create;
+    QWidget *Profile;
+
+    QPushButton *homeTab;
+    QPushButton *createTab;
+    QPushButton *profileTab;
+
+    track *currentTrack;
+
     std::vector<QPushButton*> mainTabButtons;
     QPushButton* currentTab;
     //QWebSocket* webSocket;
     ProfileWidget *profilewidget;
     CreateWidget *createwidget;
+    RightBarWidget *rightbarwidget;
+
+
     //UserProfileWidget *userProfile;
     //MyPlaylistsWidget *playlistwidget;
     //QWidget *scrollWidget;

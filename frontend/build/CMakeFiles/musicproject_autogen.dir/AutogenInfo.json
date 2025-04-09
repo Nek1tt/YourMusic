@@ -329,6 +329,12 @@
 			null
 		],
 		[
+			"C:/Users/Lenovo/upprpo/YourMusic/frontend/rightbarwidget.h",
+			"MU",
+			"EWIEGA46WW/moc_rightbarwidget.cpp",
+			null
+		],
+		[
 			"C:/Users/Lenovo/upprpo/YourMusic/frontend/userProfileWidget.h",
 			"MU",
 			"EWIEGA46WW/moc_userProfileWidget.cpp",
@@ -426,6 +432,11 @@
 		],
 		[
 			"C:/Users/Lenovo/upprpo/YourMusic/frontend/profilewidget.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/Lenovo/upprpo/YourMusic/frontend/rightbarwidget.cpp",
 			"MU",
 			null
 		],
