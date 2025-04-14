@@ -33,20 +33,20 @@ TrackButton::TrackButton(const struct track &track, QWidget *parent)
     coverLabel->setPixmap(coverPixmap.scaled(70, 70, Qt::KeepAspectRatio));
     layout->addWidget(coverLabel);  // Добавляем обложку в макет
 
-    QVBoxLayout *name_and_artist = new QVBoxLayout();
+    QVBoxLayout *name_and_author = new QVBoxLayout();
     QLabel *nameLabel = new QLabel(track.name);
     nameLabel->setFixedHeight(16);
     nameLabel->setStyleSheet("font-weight: bold; font-size: 14px; font-family: 'Tahoma';");
     nameLabel->setAlignment(Qt::AlignLeft);
 
-    QLabel *authorLabel = new QLabel(track.artist);
+    QLabel *authorLabel = new QLabel(track.author);
     authorLabel->setFixedHeight(14);
     authorLabel->setStyleSheet("color: #828282; font-weight: bold; font-size: 12px; font-family: 'Tahoma';");
     authorLabel->setAlignment(Qt::AlignLeft);
 
-    name_and_artist->addWidget(nameLabel);
-    name_and_artist->addWidget(authorLabel);
-    layout->addLayout(name_and_artist);
+    name_and_author->addWidget(nameLabel);
+    name_and_author->addWidget(authorLabel);
+    layout->addLayout(name_and_author);
 
     QString duration = QString::number(track.min) + ":" + QString::number(track.sec);
     QLabel *durationLabel = new QLabel(duration);
@@ -177,7 +177,7 @@ void MyTracksWidget::resize_tracks(int width) {
 void write_track(track &track){
     std::ofstream tracksFile("text/tracks.txt", std::ios::app);
     tracksFile << track.name.toStdString() << ' '
-               << track.artist.toStdString() << ' '
+               << track.author.toStdString() << ' '
                << track.coverpath.toStdString() << ' '
                << track.min << ' ' << track.sec << std::endl;
 
@@ -191,8 +191,8 @@ void read_tracks(std::vector<track> &tracks, std::string track_path){
         QString qline = QString::fromStdString(line);
         QStringList words = qline.split(' ');
         qDebug()<<words;
-        track playlist = {words[0], words[1], words[2], words[3].toInt(), words[4].toInt()};
-        tracks.push_back(playlist);
+        track track = {words[0], words[1], words[2], words[3].toInt(), words[4].toInt()};
+        tracks.push_back(track);
     }
     trackFile.close();
 }

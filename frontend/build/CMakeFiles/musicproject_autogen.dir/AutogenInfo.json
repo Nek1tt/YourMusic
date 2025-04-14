@@ -299,6 +299,12 @@
 	"HEADERS" : 
 	[
 		[
+			"C:/Users/Lenovo/upprpo/YourMusic/frontend/albumwidget.h",
+			"MU",
+			"EWIEGA46WW/moc_albumwidget.cpp",
+			null
+		],
+		[
 			"C:/Users/Lenovo/upprpo/YourMusic/frontend/createwidget.h",
 			"MU",
 			"EWIEGA46WW/moc_createwidget.cpp",
@@ -311,9 +317,9 @@
 			null
 		],
 		[
-			"C:/Users/Lenovo/upprpo/YourMusic/frontend/myplaylistswidget.h",
+			"C:/Users/Lenovo/upprpo/YourMusic/frontend/myalbumswidget.h",
 			"MU",
-			"EWIEGA46WW/moc_myplaylistswidget.cpp",
+			"EWIEGA46WW/moc_myalbumswidget.cpp",
 			null
 		],
 		[
@@ -414,6 +420,11 @@
 	"SOURCES" : 
 	[
 		[
+			"C:/Users/Lenovo/upprpo/YourMusic/frontend/albumwidget.cpp",
+			"MU",
+			null
+		],
+		[
 			"C:/Users/Lenovo/upprpo/YourMusic/frontend/createwidget.cpp",
 			"MU",
 			null
@@ -421,7 +432,7 @@
 		[ "C:/Users/Lenovo/upprpo/YourMusic/frontend/main.cpp", "MU", null ],
 		[ "C:/Users/Lenovo/upprpo/YourMusic/frontend/musicmain.cpp", "MU", null ],
 		[
-			"C:/Users/Lenovo/upprpo/YourMusic/frontend/myplaylistswidget.cpp",
+			"C:/Users/Lenovo/upprpo/YourMusic/frontend/myalbumswidget.cpp",
 			"MU",
 			null
 		],

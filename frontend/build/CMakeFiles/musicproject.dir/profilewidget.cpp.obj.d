@@ -460,10 +460,13 @@ CMakeFiles/musicproject.dir/profilewidget.cpp.obj: \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fs_ops.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qfileinfo.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qtimezone.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QStackedWidget \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qstackedwidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\profilewidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\userProfileWidget.h \
- C:\Users\Lenovo\upprpo\YourMusic\frontend\myplaylistswidget.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\myalbumswidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollArea \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
- C:\Users\Lenovo\upprpo\YourMusic\frontend\mytrackswidget.h
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\mytrackswidget.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\albumwidget.h

@@ -12,7 +12,7 @@
 struct track
 {
     QString name;
-    QString artist;
+    QString author;
     QString coverpath;
     int min;
     int sec;

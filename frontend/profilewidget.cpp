@@ -10,26 +10,36 @@
 // #include <QWebSocket>
 #include <QMessageBox>
 #include <QDir>
-
+#include <QStackedWidget>
 
 #include "profilewidget.h"
 #include "userProfileWidget.h"
-#include "myplaylistswidget.h"
-
+#include "myalbumswidget.h"
+#include "albumwidget.h"
+#include "mytrackswidget.h"
 
 ProfileWidget::ProfileWidget(QWidget *parent, QWidget *tab)
     :QWidget(parent),
     userProfile(new UserProfileWidget(this)),
-    playlistwidget(new MyPlaylistsWidget(this)),
+    albumwidget(new MyAlbumsWidget(this)),
     trackwidget(new MyTracksWidget(this))
 {
+    QVBoxLayout *profileLayout = new QVBoxLayout(tab);
+    innerStacked = new QStackedWidget();
+    mainWidget = new QWidget();
+    QVBoxLayout *mainWidgetLayout = new QVBoxLayout(mainWidget);
+    innerStacked->addWidget(mainWidget); // main stacked widget
+    profileLayout->addWidget(innerStacked);
+
     UserInfo usernurshat{"imgs/ava.png", "User Name", "@usertag", 100, 100, 100, 100};
     userProfile->setUserProfile(usernurshat);//заполняем профиль
-    QVBoxLayout *profileLayout = new QVBoxLayout(tab);
-    profileLayout->setContentsMargins(50, 50, 50, 50);
-    profileLayout->addWidget(userProfile, 0, Qt::AlignTop);
-    profileLayout->addWidget(playlistwidget);
-    profileLayout->addWidget(trackwidget);
+    mainWidgetLayout->setContentsMargins(50, 50, 50, 50);
+    mainWidgetLayout->addWidget(userProfile, 0, Qt::AlignTop);
+
+    connect(albumwidget, &MyAlbumsWidget::albumButtonClicked, this, &ProfileWidget::onAlbumClicked);
+
+    mainWidgetLayout->addWidget(albumwidget);
+    mainWidgetLayout->addWidget(trackwidget);
     //trackwidget->setStyleSheet("QWidget { border: 1px solid red; }");
     scrollWidget = new QWidget();
     scrollWidget->setLayout(profileLayout);
@@ -44,7 +54,7 @@ ProfileWidget::ProfileWidget(QWidget *parent, QWidget *tab)
 }
 
 void ProfileWidget::resizeProfile(int width){
-    playlistwidget->resizePlaylists(width);
+    albumwidget->resizeAlbums(width);
     scrollWidget->setFixedWidth(width * 0.8);
     trackwidget->resize_tracks(width);
     //Обновляем размеры виджета при изменении размеров окна
@@ -60,7 +70,50 @@ void ProfileWidget::resizeProfile(int width){
 
 
 void ProfileWidget::button_profile_clicked(){
-    playlistwidget->add_playlists();
+    albumwidget->add_albums();
 }
+
+void ProfileWidget::onAlbumClicked(QString albumName){
+    qDebug() << "albumButton clicked: " << albumName;
+
+    int currentWidgetIndex = getCurrentIndex();
+    int totalIndex = getTotalIndex();
+
+    // Удаляем все виджеты после текущего
+    for (int i = totalIndex - 1; i > currentWidgetIndex; --i) {
+        QWidget* widgetToRemove = innerStacked->widget(i);
+        if (widgetToRemove) {
+            innerStacked->removeWidget(widgetToRemove);
+            delete widgetToRemove;
+        }
+    }
+
+    // Добавляем новый виджет
+    track currentTrack;
+    AlbumWidget *alwidget = new AlbumWidget(currentTrack);
+    innerStacked->addWidget(alwidget);
+    innerStacked->setCurrentWidget(alwidget);
+
+    emit onAlbomClickedSignal(albumName);
+}
+
+
+
+int ProfileWidget::getCurrentIndex(){
+    return innerStacked->currentIndex();
+}
+
+int ProfileWidget::getTotalIndex(){
+    return innerStacked->count();
+}
+
+void ProfileWidget::setCurrentIndex(int currentIndex){
+    qDebug()<<"setCurrent";
+    qDebug()<<currentIndex;
+    qDebug()<<"total "<<getTotalIndex();
+    innerStacked->setCurrentIndex(currentIndex);
+}
+
+
 
 

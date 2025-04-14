@@ -26,13 +26,14 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         ${PROJECT_SOURCES}
         userProfileWidget.h
         userProfileWidget.cpp
-        myplaylistswidget.h myplaylistswidget.cpp
+        myalbumswidget.h myalbumswidget.cpp
         build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/text/playlists.txt
         createwidget.h createwidget.cpp
         profilewidget.h profilewidget.cpp
         mytrackswidget.h mytrackswidget.cpp
         rightbarwidget.h rightbarwidget.cpp
         build/text/current_track.txt
+        albumwidget.h albumwidget.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET musicproject APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

@@ -18,28 +18,28 @@
 #include <vector>
 #include <qDebug>
 
-#include "myplaylistswidget.h"
+#include "myalbumswidget.h"
 
-PlaylistButton::PlaylistButton(const struct playlist &playlist, QWidget *parent)
-    : QPushButton(parent), playlist(playlist) {
+AlbumButton::AlbumButton(const struct album &album, QWidget *parent)
+    : QPushButton(parent), album(album) {
 
     // Настроим макет кнопки
     QVBoxLayout *layout = new QVBoxLayout(this);
 
     // Создаем метку для обложки
     QLabel *coverLabel = new QLabel(this);
-    QPixmap coverPixmap(playlist.coverpath);
+    QPixmap coverPixmap(album.coverpath);
     coverLabel->setPixmap(coverPixmap.scaled(150, 150, Qt::KeepAspectRatio));
     layout->addWidget(coverLabel);  // Добавляем обложку в макет
 
     // Создаем метки для названия и автора
-    QLabel *nameLabel = new QLabel(playlist.name, this);
+    QLabel *nameLabel = new QLabel(album.name, this);
     nameLabel->setFixedHeight(13);
     nameLabel->setStyleSheet("font-weight: bold; font-size: 11px; font-family: 'Tahoma';");
     nameLabel->setAlignment(Qt::AlignLeft);
     layout->addWidget(nameLabel);
 
-    QLabel *authorLabel = new QLabel(playlist.artist, this);
+    QLabel *authorLabel = new QLabel(album.author, this);
     authorLabel->setFixedHeight(12);
     authorLabel->setStyleSheet("color: #828282; font-weight: bold; font-size: 10px; font-family: 'Tahoma';");
     authorLabel->setAlignment(Qt::AlignLeft);
@@ -49,19 +49,19 @@ PlaylistButton::PlaylistButton(const struct playlist &playlist, QWidget *parent)
     setFixedSize(170, 200);
     // Устанавливаем размер кнопки
 }
-QString PlaylistButton::getPlaylistName(){
-    return playlist.name;
+QString AlbumButton::getAlbumName(){
+    return album.name;
 }
 
 
 
 
-MyPlaylistsWidget::MyPlaylistsWidget(QWidget *parent) : QWidget(parent)
+MyAlbumsWidget::MyAlbumsWidget(QWidget *parent) : QWidget(parent)
 {
 
-    MyPlaylistsLayout = new QVBoxLayout(this);
-    QPushButton *myPlaylistButton = new QPushButton("My playlists");
-    myPlaylistButton->setStyleSheet(
+    MyAlbumsLayout = new QVBoxLayout(this);
+    QPushButton *myAlbumButton = new QPushButton("My playlists");
+    myAlbumButton->setStyleSheet(
         "QPushButton {"
         "font-weight: bold;"
         "font-size: 32px;"
@@ -75,61 +75,67 @@ MyPlaylistsWidget::MyPlaylistsWidget(QWidget *parent) : QWidget(parent)
         "    text-decoration: underline;"        // Подчеркиваем текст при наведении
         "}"
         );
-    myPlaylistButton->setFixedSize(200, 40);
-    MyPlaylistsLayout->addWidget(myPlaylistButton);
+    myAlbumButton->setFixedSize(200, 40);
+    MyAlbumsLayout->addWidget(myAlbumButton);
 
 
-    playlists = new QWidget();  // виджет для прокрутки
-    scrollAreaPLaylists = new QScrollArea(this);  // прокручиваемая область
+    albums = new QWidget();  // виджет для прокрутки
+    scrollAreaAlbums = new QScrollArea(this);  // прокручиваемая область
 
     // Создаем горизонтальный layout
-    playlistsLayout = new QHBoxLayout(playlists);
+    albumsLayout = new QHBoxLayout(albums);
 
-    add_playlists();
+    add_albums();
 
 }
 
 
-void MyPlaylistsWidget::add_playlists() {
-    clearLayout(playlistsLayout);
-    playlists_vector.clear();
-    read_playlists(playlists_vector);
+void MyAlbumsWidget::add_albums() {
+    clearLayout(albumsLayout);
+    albums_vector.clear();
+    read_albums(albums_vector);
+
+    // connect(albumButton, &QPushButton::clicked, this, [this, albumButton]() {
+    //     emit albumClicked(albumButton->getAlbumName());
+    // });
+
 
     // Добавляем элементы в layout
-    for (auto& playlist : playlists_vector) {
+    for (auto& album : albums_vector) {
         qDebug()<<"added";
         // Создаем кнопки для каждого альбома
-        PlaylistButton *playlistButton = new PlaylistButton(playlist);
-        playlistsLayout->addWidget(playlistButton);
+        AlbumButton *albumButton = new AlbumButton(album);
+        albumsLayout->addWidget(albumButton);
 
-        connect(playlistButton, &QPushButton::clicked, [playlistButton]() {
-            qDebug() << "Открыт альбом: " << playlistButton->getPlaylistName();
+        connect(albumButton, &QPushButton::clicked, [this, albumButton]() {
+            //qDebug() << "Открыт альбом: " << albumButton->getAlbumName();
+            emit albumButtonClicked(albumButton->getAlbumName());
         });
     }
 
     // Добавляем отступ в конец, чтобы при нехватке элементов они не сжимались
-    playlistsLayout->addStretch();
+    albumsLayout->addStretch();
 
     // Обновляем размер родительского виджета
-    playlists->setLayout(playlistsLayout);
-    playlists->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    playlists->setMinimumWidth(playlists_vector.size() * 180);  // Примерная ширина всех плейлистов
-    playlists->setMinimumHeight(200);
+    albums->setLayout(albumsLayout);
+    albums->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    albums->setMinimumWidth(albums_vector.size() * 180);  // Примерная ширина всех плейлистов
+    albums->setMinimumHeight(200);
 
-    scrollAreaPLaylists->setWidget(playlists);
-    scrollAreaPLaylists->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-    scrollAreaPLaylists->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    scrollAreaAlbums->setWidget(albums);
+    scrollAreaAlbums->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
+    scrollAreaAlbums->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
     // Удостоверимся, что `scrollAreaPLaylists` добавлен в layout только один раз
-    if (MyPlaylistsLayout->count() == 1) {
-        MyPlaylistsLayout->addWidget(scrollAreaPLaylists);
+    if (MyAlbumsLayout->count() == 1) {
+        MyAlbumsLayout->addWidget(scrollAreaAlbums);
     }
 
-    scrollAreaPLaylists->update();  // Принудительное обновление прокрутки
+    scrollAreaAlbums->update();  // Принудительное обновление прокрутки
 }
 
 
-void MyPlaylistsWidget::clearLayout(QLayout *layout) {
+void MyAlbumsWidget::clearLayout(QLayout *layout) {
     if (layout == nullptr) return;
 
     QLayoutItem *item;
@@ -141,35 +147,35 @@ void MyPlaylistsWidget::clearLayout(QLayout *layout) {
     }
 }
 
-void MyPlaylistsWidget::resizePlaylists(int width) {
+void MyAlbumsWidget::resizeAlbums(int width) {
     this->setFixedWidth(width * 0.7);
 }
 
 
-void write_playlist(playlist &playlist){
-    std::ofstream playlistFile("text/playlists.txt", std::ios::app);
-    playlistFile<<playlist.name.toStdString()<<' '<<playlist.artist.toStdString()<<' '<<playlist.coverpath.toStdString()<<std::endl;
+void write_album(album &album){
+    std::ofstream albumFile("text/playlists.txt", std::ios::app);
+    albumFile<<album.name.toStdString()<<' '<<album.author.toStdString()<<' '<<album.coverpath.toStdString()<<std::endl;
 
-    playlistFile.close();
+    albumFile.close();
 }
 
-void write_playlists(std::vector<playlist> &playlists){
-    std::ofstream playlistFile("text/playlists.txt");
-    for (auto& playlist :playlists){
-        playlistFile<<playlist.name.toStdString()<<' '<<playlist.artist.toStdString()<<' '
-                     <<playlist.coverpath.toStdString()<<std::endl;
+void write_albums(std::vector<album> &albums){
+    std::ofstream albumFile("text/playlists.txt");
+    for (auto& album :albums){
+        albumFile<<album.name.toStdString()<<' '<<album.author.toStdString()<<' '
+                     <<album.coverpath.toStdString()<<std::endl;
     }
-    playlistFile.close();
+    albumFile.close();
 }
-void read_playlists(std::vector<playlist> &playlists){
-    std::ifstream playlistFile("text/playlists.txt");
+void read_albums(std::vector<album> &albums){
+    std::ifstream albumFile("text/playlists.txt");
     std::string line;
-    while (std::getline(playlistFile, line)){
+    while (std::getline(albumFile, line)){
         QString qline = QString::fromStdString(line);
         QStringList words = qline.split(' ');
         qDebug()<<words;
-        playlist playlist = {words[0], words[1], words[2]};
-        playlists.push_back(playlist);
+        album album = {words[0], words[1], words[2]};
+        albums.push_back(album);
     }
-    playlistFile.close();
+    albumFile.close();
 }

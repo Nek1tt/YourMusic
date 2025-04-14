@@ -9,11 +9,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "" "musicproject_autogen/timestamp" "custom" "musicproject_autogen/deps"
+  "C:/Users/Lenovo/upprpo/YourMusic/frontend/albumwidget.cpp" "CMakeFiles/musicproject.dir/albumwidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/albumwidget.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/createwidget.cpp" "CMakeFiles/musicproject.dir/createwidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/createwidget.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/main.cpp" "CMakeFiles/musicproject.dir/main.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/main.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/musicmain.cpp" "CMakeFiles/musicproject.dir/musicmain.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/musicmain.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/build/musicproject_autogen/mocs_compilation.cpp" "CMakeFiles/musicproject.dir/musicproject_autogen/mocs_compilation.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/musicproject_autogen/mocs_compilation.cpp.obj.d"
-  "C:/Users/Lenovo/upprpo/YourMusic/frontend/myplaylistswidget.cpp" "CMakeFiles/musicproject.dir/myplaylistswidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/myplaylistswidget.cpp.obj.d"
+  "C:/Users/Lenovo/upprpo/YourMusic/frontend/myalbumswidget.cpp" "CMakeFiles/musicproject.dir/myalbumswidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/myalbumswidget.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/mytrackswidget.cpp" "CMakeFiles/musicproject.dir/mytrackswidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/mytrackswidget.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/profilewidget.cpp" "CMakeFiles/musicproject.dir/profilewidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/profilewidget.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/rightbarwidget.cpp" "CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj.d"

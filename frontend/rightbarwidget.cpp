@@ -77,7 +77,7 @@ RightBarWidget::RightBarWidget(QWidget *parent, track *currentTrack)
 
 
 
-    QPushButton *currentTrackAuthorButton = new QPushButton(currentTrack->artist);
+    QPushButton *currentTrackAuthorButton = new QPushButton(currentTrack->author);
     currentTrackAuthorButton->setCursor(Qt::PointingHandCursor);
     currentTrackAuthorButton->setStyleSheet(
         "QPushButton {"

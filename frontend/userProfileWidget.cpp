@@ -23,11 +23,11 @@ UserProfileWidget::UserProfileWidget(QWidget *parent) // класс для ин�
     QVBoxLayout *ProfileInfoLayout = new QVBoxLayout(); // все то же самое что и с авой но с блоком информации
     usertagLabel = new QLabel(this);
     usertagLabel->setFixedHeight(50);
-    usertagLabel->setStyleSheet("padding-left: 10px; padding-top: 30px; color: #615D5D; font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
+    usertagLabel->setStyleSheet("padding-top: 30px; color: #615D5D; font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
     ProfileInfoLayout->addWidget(usertagLabel);
     usernameLabel = new QLabel(this);
     usernameLabel->setFixedHeight(40);
-    usernameLabel->setStyleSheet("padding-left: 10px; font-size: 32px; font-family: 'Tahoma'; font-weight: bold;");
+    usernameLabel->setStyleSheet("font-size: 32px; font-family: 'Tahoma'; font-weight: bold;");
     ProfileInfoLayout->addWidget(usernameLabel);
 
     // QLabel* test = new QLabel(this);

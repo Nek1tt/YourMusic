@@ -13,7 +13,7 @@
 
 
 #include "createwidget.h"
-#include "myplaylistswidget.h"
+#include "myalbumswidget.h"
 
 
 CreateWidget::CreateWidget(QWidget *parent, QWidget *tab)
@@ -46,21 +46,21 @@ CreateWidget::CreateWidget(QWidget *parent, QWidget *tab)
 
 void CreateWidget::onAddNoizeClicked()
 {
-    playlist noizeplaylist = {"the_entrance_in_city", "noizeee" " imgs/covers/cover1.png"};
-    write_playlist(noizeplaylist);
+    album noizealbum = {"the_entrance_in_city", "noizeee" " imgs/covers/cover1.png"};
+    write_album(noizealbum);
     // Action when "Add Noize" button is clicked
 }
 
 void CreateWidget::onAddAnacondazClicked()
 {
-    playlist anacondazplaylist = {"call_me", "anacondaz" " imgs/covers/cover0.png"};
-    write_playlist(anacondazplaylist);
+    album anacondazalbum = {"call_me", "anacondaz" " imgs/covers/cover0.png"};
+    write_album(anacondazalbum);
     // Action when "Add Anacondaz" button is clicked
 }
 
 void CreateWidget::onAddOxxyClicked()
 {
-    playlist oxxyplaylist = {"the_beauty_and_uglyness", "oxxy" " imgs/covers/cover2.png"};
-    write_playlist(oxxyplaylist);
+    album oxxyalbum = {"the_beauty_and_uglyness", "oxxy" " imgs/covers/cover2.png"};
+    write_album(oxxyalbum);
     // Action when "Add Oxxy" button is clicked
 }

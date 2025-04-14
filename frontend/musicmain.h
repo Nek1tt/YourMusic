@@ -8,7 +8,7 @@
 #include "./ui_musicmain.h"
 #include "profilewidget.h"
 #include "userProfileWidget.h"  // Подключаем header для UserProfileWidget
-#include "myplaylistswidget.h"
+#include "myalbumswidget.h"
 #include "createwidget.h"
 #include "rightbarwidget.h"
 
@@ -30,29 +30,35 @@ private slots:
     void toggle_buttons(QPushButton*);
 
     void on_homeTab_clicked();
-
     void on_createTab_clicked();
-
     void on_profileTab_clicked();
 
     void resizeEvent(QResizeEvent *event);
     void setInitialSize(int width);
 
+    void on_backButton_clicked();
+    void on_forwardButton_clicked();
+    void on_albumButton_clicked();
+
 
 private:
-private:
     QWidget *mainWidget;
-    QLayout *mainLayout;
+    QHBoxLayout *mainLayout;
     QTabWidget *tabwidget;
     QWidget *leftBarWidget;
     QWidget *rifghtBarWidget;
-    QLayout *leftLayout;
-    QLayout *rightLayout;
+    QVBoxLayout *leftLayout;
+    QVBoxLayout *rightLayout;
+
+    QString inactiveStyle;
+    QString activeStyle;
 
     QWidget *Home;
     QWidget *Create;
     QWidget *Profile;
 
+    QPushButton *backButton;
+    QPushButton *forwardButton;
     QPushButton *homeTab;
     QPushButton *createTab;
     QPushButton *profileTab;

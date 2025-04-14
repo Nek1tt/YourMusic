@@ -199,6 +199,30 @@ musicproject_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject_autogen.dir\build.make CMakeFiles/musicproject_autogen.dir/build
 .PHONY : musicproject_autogen/fast
 
+albumwidget.obj: albumwidget.cpp.obj
+.PHONY : albumwidget.obj
+
+# target to build an object file
+albumwidget.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/albumwidget.cpp.obj
+.PHONY : albumwidget.cpp.obj
+
+albumwidget.i: albumwidget.cpp.i
+.PHONY : albumwidget.i
+
+# target to preprocess a source file
+albumwidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/albumwidget.cpp.i
+.PHONY : albumwidget.cpp.i
+
+albumwidget.s: albumwidget.cpp.s
+.PHONY : albumwidget.s
+
+# target to generate assembly for a file
+albumwidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/albumwidget.cpp.s
+.PHONY : albumwidget.cpp.s
+
 createwidget.obj: createwidget.cpp.obj
 .PHONY : createwidget.obj
 
@@ -295,29 +319,29 @@ musicproject_autogen/mocs_compilation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/musicproject_autogen/mocs_compilation.cpp.s
 .PHONY : musicproject_autogen/mocs_compilation.cpp.s
 
-myplaylistswidget.obj: myplaylistswidget.cpp.obj
-.PHONY : myplaylistswidget.obj
+myalbumswidget.obj: myalbumswidget.cpp.obj
+.PHONY : myalbumswidget.obj
 
 # target to build an object file
-myplaylistswidget.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/myplaylistswidget.cpp.obj
-.PHONY : myplaylistswidget.cpp.obj
+myalbumswidget.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/myalbumswidget.cpp.obj
+.PHONY : myalbumswidget.cpp.obj
 
-myplaylistswidget.i: myplaylistswidget.cpp.i
-.PHONY : myplaylistswidget.i
+myalbumswidget.i: myalbumswidget.cpp.i
+.PHONY : myalbumswidget.i
 
 # target to preprocess a source file
-myplaylistswidget.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/myplaylistswidget.cpp.i
-.PHONY : myplaylistswidget.cpp.i
+myalbumswidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/myalbumswidget.cpp.i
+.PHONY : myalbumswidget.cpp.i
 
-myplaylistswidget.s: myplaylistswidget.cpp.s
-.PHONY : myplaylistswidget.s
+myalbumswidget.s: myalbumswidget.cpp.s
+.PHONY : myalbumswidget.s
 
 # target to generate assembly for a file
-myplaylistswidget.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/myplaylistswidget.cpp.s
-.PHONY : myplaylistswidget.cpp.s
+myalbumswidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/myalbumswidget.cpp.s
+.PHONY : myalbumswidget.cpp.s
 
 mytrackswidget.obj: mytrackswidget.cpp.obj
 .PHONY : mytrackswidget.obj
@@ -430,6 +454,9 @@ help:
 	@echo ... musicproject_autogen
 	@echo ... musicproject_autogen_timestamp_deps
 	@echo ... musicproject
+	@echo ... albumwidget.obj
+	@echo ... albumwidget.i
+	@echo ... albumwidget.s
 	@echo ... createwidget.obj
 	@echo ... createwidget.i
 	@echo ... createwidget.s
@@ -442,9 +469,9 @@ help:
 	@echo ... musicproject_autogen/mocs_compilation.obj
 	@echo ... musicproject_autogen/mocs_compilation.i
 	@echo ... musicproject_autogen/mocs_compilation.s
-	@echo ... myplaylistswidget.obj
-	@echo ... myplaylistswidget.i
-	@echo ... myplaylistswidget.s
+	@echo ... myalbumswidget.obj
+	@echo ... myalbumswidget.i
+	@echo ... myalbumswidget.s
 	@echo ... mytrackswidget.obj
 	@echo ... mytrackswidget.i
 	@echo ... mytrackswidget.s

@@ -469,8 +469,10 @@ CMakeFiles/musicproject.dir/main.cpp.obj: \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fs_ops.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qfileinfo.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qtimezone.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QStackedWidget \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qstackedwidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\userProfileWidget.h \
- C:\Users\Lenovo\upprpo\YourMusic\frontend\myplaylistswidget.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\myalbumswidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QPushButton \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qpushbutton.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractbutton.h \

@@ -18,7 +18,6 @@
 #include "./ui_musicmain.h"
 
 
-
 MusicMain::MusicMain(QWidget *parent)//класс для окна
     : QMainWindow(parent)
 {
@@ -31,15 +30,56 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
     //leftBarWidget->setFixedWidth(1);
     leftLayout = new QVBoxLayout(leftBarWidget);
 
+    QWidget *navButtons = new QWidget();
+    navButtons->setFixedHeight(100);
+    QHBoxLayout *navLayout = new QHBoxLayout(navButtons);
+    backButton = new QPushButton("<");
+    forwardButton = new QPushButton(">");
+
+    connect(backButton, &QPushButton::clicked, this, &MusicMain::on_backButton_clicked);
+    connect(forwardButton, &QPushButton::clicked, this, &MusicMain::on_forwardButton_clicked);
+
+    activeStyle = R"(
+    QPushButton {
+        background-color: #A0A0A0;
+        border: none;
+        border-radius: 15px;
+        min-width: 30px;
+        min-height: 30px;
+        font-weight: bold;
+        color: white;
+    }
+    QPushButton:hover {
+        border: 1px solid white;
+    }
+)";
+
+    inactiveStyle = R"(
+    QPushButton {
+        background-color: #555555; /* Более тёмный серый для неактивной */
+        border: none;
+        border-radius: 15px;
+        min-width: 30px;
+        min-height: 30px;
+        font-weight: bold;
+        color: #AAAAAA;
+    }
+)";
+    backButton->setStyleSheet(inactiveStyle);
+    forwardButton->setStyleSheet(inactiveStyle);
+    navLayout->addWidget(backButton);
+    navLayout->addWidget(forwardButton);
+
     homeTab = new QPushButton("Home");
     createTab = new QPushButton("Create");
     profileTab = new QPushButton("Profile");
+
 
     connect(homeTab, &QPushButton::clicked, this, &MusicMain::on_homeTab_clicked);
     connect(createTab, &QPushButton::clicked, this, &MusicMain::on_createTab_clicked);
     connect(profileTab, &QPushButton::clicked, this, &MusicMain::on_profileTab_clicked);
 
-
+    leftLayout->addWidget(navButtons, 0, Qt::AlignTop);
     leftLayout->addWidget(homeTab);
     leftLayout->addWidget(createTab);
     leftLayout->addWidget(profileTab);
@@ -66,6 +106,8 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
     // // Создаем вкладку create
     createwidget = new CreateWidget(this, Create);
     profilewidget = new ProfileWidget(this, Profile);
+    connect(profilewidget, &ProfileWidget::onAlbomClickedSignal, this, &MusicMain::on_albumButton_clicked);
+
     profilewidget->setContentsMargins(0, 0, 0, 0);
 
     rightbarwidget = new RightBarWidget(this, currentTrack);
@@ -171,6 +213,53 @@ void MusicMain::resizeEvent(QResizeEvent *event) {
 void MusicMain::setInitialSize(int width){
     profilewidget->resizeProfile(width);
 }
+
+void MusicMain::on_backButton_clicked(){
+    int current = profilewidget->getCurrentIndex();
+    if (current - 1 >= 0) {
+        profilewidget->setCurrentIndex(current - 1);
+        backButton->setStyleSheet(activeStyle);
+    }
+    qDebug()<<"back";
+    current = profilewidget->getCurrentIndex();
+    if (current == 0) {
+        backButton->setStyleSheet(inactiveStyle);
+    }
+    int total = profilewidget->getTotalIndex();
+    if (current != total-1) {
+        forwardButton->setStyleSheet(activeStyle);
+    }
+}
+
+void MusicMain::on_forwardButton_clicked(){
+    int current = profilewidget->getCurrentIndex();
+    int total = profilewidget->getTotalIndex();
+
+    if (current + 1 < total) {
+        profilewidget->setCurrentIndex(current + 1);
+    }
+    qDebug()<<"forward";
+
+    current = profilewidget->getCurrentIndex();
+    total = profilewidget->getTotalIndex();
+    if (current == total-1) {
+        forwardButton->setStyleSheet(inactiveStyle);
+    }
+
+    if (current != 0) {
+        backButton->setStyleSheet(activeStyle);
+    }
+}
+
+void MusicMain::on_albumButton_clicked(){
+    backButton->setStyleSheet(activeStyle);
+    int current = profilewidget->getCurrentIndex();
+    int total = profilewidget->getTotalIndex();
+    if (current == total-1) {
+        forwardButton->setStyleSheet(inactiveStyle);
+    }
+}
+
 
 
 
