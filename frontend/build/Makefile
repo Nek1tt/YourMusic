@@ -173,32 +173,6 @@ musicproject/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/build
 .PHONY : musicproject/fast
 
-#=============================================================================
-# Target rules for targets named musicproject_autogen_timestamp_deps
-
-# Build rule for target.
-musicproject_autogen_timestamp_deps: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 musicproject_autogen_timestamp_deps
-.PHONY : musicproject_autogen_timestamp_deps
-
-# fast build rule for target.
-musicproject_autogen_timestamp_deps/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject_autogen_timestamp_deps.dir\build.make CMakeFiles/musicproject_autogen_timestamp_deps.dir/build
-.PHONY : musicproject_autogen_timestamp_deps/fast
-
-#=============================================================================
-# Target rules for targets named musicproject_autogen
-
-# Build rule for target.
-musicproject_autogen: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 musicproject_autogen
-.PHONY : musicproject_autogen
-
-# fast build rule for target.
-musicproject_autogen/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject_autogen.dir\build.make CMakeFiles/musicproject_autogen.dir/build
-.PHONY : musicproject_autogen/fast
-
 albumwidget.obj: albumwidget.cpp.obj
 .PHONY : albumwidget.obj
 
@@ -271,6 +245,198 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+moc_albumwidget.obj: moc_albumwidget.cpp.obj
+.PHONY : moc_albumwidget.obj
+
+# target to build an object file
+moc_albumwidget.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_albumwidget.cpp.obj
+.PHONY : moc_albumwidget.cpp.obj
+
+moc_albumwidget.i: moc_albumwidget.cpp.i
+.PHONY : moc_albumwidget.i
+
+# target to preprocess a source file
+moc_albumwidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_albumwidget.cpp.i
+.PHONY : moc_albumwidget.cpp.i
+
+moc_albumwidget.s: moc_albumwidget.cpp.s
+.PHONY : moc_albumwidget.s
+
+# target to generate assembly for a file
+moc_albumwidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_albumwidget.cpp.s
+.PHONY : moc_albumwidget.cpp.s
+
+moc_createwidget.obj: moc_createwidget.cpp.obj
+.PHONY : moc_createwidget.obj
+
+# target to build an object file
+moc_createwidget.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_createwidget.cpp.obj
+.PHONY : moc_createwidget.cpp.obj
+
+moc_createwidget.i: moc_createwidget.cpp.i
+.PHONY : moc_createwidget.i
+
+# target to preprocess a source file
+moc_createwidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_createwidget.cpp.i
+.PHONY : moc_createwidget.cpp.i
+
+moc_createwidget.s: moc_createwidget.cpp.s
+.PHONY : moc_createwidget.s
+
+# target to generate assembly for a file
+moc_createwidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_createwidget.cpp.s
+.PHONY : moc_createwidget.cpp.s
+
+moc_musicmain.obj: moc_musicmain.cpp.obj
+.PHONY : moc_musicmain.obj
+
+# target to build an object file
+moc_musicmain.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_musicmain.cpp.obj
+.PHONY : moc_musicmain.cpp.obj
+
+moc_musicmain.i: moc_musicmain.cpp.i
+.PHONY : moc_musicmain.i
+
+# target to preprocess a source file
+moc_musicmain.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_musicmain.cpp.i
+.PHONY : moc_musicmain.cpp.i
+
+moc_musicmain.s: moc_musicmain.cpp.s
+.PHONY : moc_musicmain.s
+
+# target to generate assembly for a file
+moc_musicmain.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_musicmain.cpp.s
+.PHONY : moc_musicmain.cpp.s
+
+moc_myalbumswidget.obj: moc_myalbumswidget.cpp.obj
+.PHONY : moc_myalbumswidget.obj
+
+# target to build an object file
+moc_myalbumswidget.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_myalbumswidget.cpp.obj
+.PHONY : moc_myalbumswidget.cpp.obj
+
+moc_myalbumswidget.i: moc_myalbumswidget.cpp.i
+.PHONY : moc_myalbumswidget.i
+
+# target to preprocess a source file
+moc_myalbumswidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_myalbumswidget.cpp.i
+.PHONY : moc_myalbumswidget.cpp.i
+
+moc_myalbumswidget.s: moc_myalbumswidget.cpp.s
+.PHONY : moc_myalbumswidget.s
+
+# target to generate assembly for a file
+moc_myalbumswidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_myalbumswidget.cpp.s
+.PHONY : moc_myalbumswidget.cpp.s
+
+moc_mytrackswidget.obj: moc_mytrackswidget.cpp.obj
+.PHONY : moc_mytrackswidget.obj
+
+# target to build an object file
+moc_mytrackswidget.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_mytrackswidget.cpp.obj
+.PHONY : moc_mytrackswidget.cpp.obj
+
+moc_mytrackswidget.i: moc_mytrackswidget.cpp.i
+.PHONY : moc_mytrackswidget.i
+
+# target to preprocess a source file
+moc_mytrackswidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_mytrackswidget.cpp.i
+.PHONY : moc_mytrackswidget.cpp.i
+
+moc_mytrackswidget.s: moc_mytrackswidget.cpp.s
+.PHONY : moc_mytrackswidget.s
+
+# target to generate assembly for a file
+moc_mytrackswidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_mytrackswidget.cpp.s
+.PHONY : moc_mytrackswidget.cpp.s
+
+moc_profilewidget.obj: moc_profilewidget.cpp.obj
+.PHONY : moc_profilewidget.obj
+
+# target to build an object file
+moc_profilewidget.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_profilewidget.cpp.obj
+.PHONY : moc_profilewidget.cpp.obj
+
+moc_profilewidget.i: moc_profilewidget.cpp.i
+.PHONY : moc_profilewidget.i
+
+# target to preprocess a source file
+moc_profilewidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_profilewidget.cpp.i
+.PHONY : moc_profilewidget.cpp.i
+
+moc_profilewidget.s: moc_profilewidget.cpp.s
+.PHONY : moc_profilewidget.s
+
+# target to generate assembly for a file
+moc_profilewidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_profilewidget.cpp.s
+.PHONY : moc_profilewidget.cpp.s
+
+moc_rightbarwidget.obj: moc_rightbarwidget.cpp.obj
+.PHONY : moc_rightbarwidget.obj
+
+# target to build an object file
+moc_rightbarwidget.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_rightbarwidget.cpp.obj
+.PHONY : moc_rightbarwidget.cpp.obj
+
+moc_rightbarwidget.i: moc_rightbarwidget.cpp.i
+.PHONY : moc_rightbarwidget.i
+
+# target to preprocess a source file
+moc_rightbarwidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_rightbarwidget.cpp.i
+.PHONY : moc_rightbarwidget.cpp.i
+
+moc_rightbarwidget.s: moc_rightbarwidget.cpp.s
+.PHONY : moc_rightbarwidget.s
+
+# target to generate assembly for a file
+moc_rightbarwidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_rightbarwidget.cpp.s
+.PHONY : moc_rightbarwidget.cpp.s
+
+moc_userProfileWidget.obj: moc_userProfileWidget.cpp.obj
+.PHONY : moc_userProfileWidget.obj
+
+# target to build an object file
+moc_userProfileWidget.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_userProfileWidget.cpp.obj
+.PHONY : moc_userProfileWidget.cpp.obj
+
+moc_userProfileWidget.i: moc_userProfileWidget.cpp.i
+.PHONY : moc_userProfileWidget.i
+
+# target to preprocess a source file
+moc_userProfileWidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_userProfileWidget.cpp.i
+.PHONY : moc_userProfileWidget.cpp.i
+
+moc_userProfileWidget.s: moc_userProfileWidget.cpp.s
+.PHONY : moc_userProfileWidget.s
+
+# target to generate assembly for a file
+moc_userProfileWidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_userProfileWidget.cpp.s
+.PHONY : moc_userProfileWidget.cpp.s
+
 musicmain.obj: musicmain.cpp.obj
 .PHONY : musicmain.obj
 
@@ -294,30 +460,6 @@ musicmain.s: musicmain.cpp.s
 musicmain.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/musicmain.cpp.s
 .PHONY : musicmain.cpp.s
-
-musicproject_autogen/mocs_compilation.obj: musicproject_autogen/mocs_compilation.cpp.obj
-.PHONY : musicproject_autogen/mocs_compilation.obj
-
-# target to build an object file
-musicproject_autogen/mocs_compilation.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/musicproject_autogen/mocs_compilation.cpp.obj
-.PHONY : musicproject_autogen/mocs_compilation.cpp.obj
-
-musicproject_autogen/mocs_compilation.i: musicproject_autogen/mocs_compilation.cpp.i
-.PHONY : musicproject_autogen/mocs_compilation.i
-
-# target to preprocess a source file
-musicproject_autogen/mocs_compilation.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/musicproject_autogen/mocs_compilation.cpp.i
-.PHONY : musicproject_autogen/mocs_compilation.cpp.i
-
-musicproject_autogen/mocs_compilation.s: musicproject_autogen/mocs_compilation.cpp.s
-.PHONY : musicproject_autogen/mocs_compilation.s
-
-# target to generate assembly for a file
-musicproject_autogen/mocs_compilation.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/musicproject_autogen/mocs_compilation.cpp.s
-.PHONY : musicproject_autogen/mocs_compilation.cpp.s
 
 myalbumswidget.obj: myalbumswidget.cpp.obj
 .PHONY : myalbumswidget.obj
@@ -451,8 +593,6 @@ help:
 	@echo ... install/strip
 	@echo ... list_install_components
 	@echo ... rebuild_cache
-	@echo ... musicproject_autogen
-	@echo ... musicproject_autogen_timestamp_deps
 	@echo ... musicproject
 	@echo ... albumwidget.obj
 	@echo ... albumwidget.i
@@ -463,12 +603,33 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... moc_albumwidget.obj
+	@echo ... moc_albumwidget.i
+	@echo ... moc_albumwidget.s
+	@echo ... moc_createwidget.obj
+	@echo ... moc_createwidget.i
+	@echo ... moc_createwidget.s
+	@echo ... moc_musicmain.obj
+	@echo ... moc_musicmain.i
+	@echo ... moc_musicmain.s
+	@echo ... moc_myalbumswidget.obj
+	@echo ... moc_myalbumswidget.i
+	@echo ... moc_myalbumswidget.s
+	@echo ... moc_mytrackswidget.obj
+	@echo ... moc_mytrackswidget.i
+	@echo ... moc_mytrackswidget.s
+	@echo ... moc_profilewidget.obj
+	@echo ... moc_profilewidget.i
+	@echo ... moc_profilewidget.s
+	@echo ... moc_rightbarwidget.obj
+	@echo ... moc_rightbarwidget.i
+	@echo ... moc_rightbarwidget.s
+	@echo ... moc_userProfileWidget.obj
+	@echo ... moc_userProfileWidget.i
+	@echo ... moc_userProfileWidget.s
 	@echo ... musicmain.obj
 	@echo ... musicmain.i
 	@echo ... musicmain.s
-	@echo ... musicproject_autogen/mocs_compilation.obj
-	@echo ... musicproject_autogen/mocs_compilation.i
-	@echo ... musicproject_autogen/mocs_compilation.s
 	@echo ... myalbumswidget.obj
 	@echo ... myalbumswidget.i
 	@echo ... myalbumswidget.s

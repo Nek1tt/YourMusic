@@ -379,25 +379,8 @@ CMakeFiles/musicproject.dir/main.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qiodevice.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qtextdocument.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qurl.h \
- C:/Users/Lenovo/upprpo/YourMusic/frontend/build/musicproject_autogen/include/ui_musicmain.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/QVariant \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qvariant.h \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/QApplication \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/qapplication.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreevent.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qdeadlinetimer.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qelapsedtimer.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qeventloop.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qnativeinterface.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication_platform.h \
- C:/Qt/6.8.2/mingw_64/include/QtGui/qguiapplication.h \
- C:/Qt/6.8.2/mingw_64/include/QtGui/qinputmethod.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qlocale.h \
- C:/Qt/6.8.2/mingw_64/include/QtGui/qguiapplication_platform.h \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/QMainWindow \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/QWidget \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/qwidget.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QSplitter \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qsplitter.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\profilewidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/QScreen \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qscreen.h \
@@ -412,8 +395,20 @@ CMakeFiles/musicproject.dir/main.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QSizeF \
  C:/Qt/6.8.2/mingw_64/include/QtGui/QTransform \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qtransform.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qnativeinterface.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qscreen_platform.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qguiapplication.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreevent.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qdeadlinetimer.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qelapsedtimer.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qeventloop.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication_platform.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qinputmethod.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qlocale.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qguiapplication_platform.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QWidget \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qwidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/QPixmap \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qpixmap.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGridLayout \
@@ -486,4 +481,5 @@ CMakeFiles/musicproject.dir/main.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtabwidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTabBar \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtabbar.h \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/QApplication
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QApplication \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qapplication.h

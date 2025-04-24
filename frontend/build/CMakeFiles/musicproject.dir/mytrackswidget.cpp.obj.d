@@ -474,6 +474,4 @@ CMakeFiles/musicproject.dir/mytrackswidget.cpp.obj: \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/basic_file.h \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/c++io.h \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fstream.tcc \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qDebug \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qdebug.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\mytrackswidget.h

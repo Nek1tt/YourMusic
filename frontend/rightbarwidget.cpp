@@ -3,21 +3,37 @@
 #include <QVBoxLayout>
 #include <QScrollArea>
 #include <QTabWidget>
+#include <QTextStream>
+#include <QPainter>
+#include <QPainterPath>
 
-RightBarWidget::RightBarWidget(QWidget *parent, track *currentTrack)
-    : QWidget(parent), currentTrack(currentTrack)
+
+RightBarWidget::RightBarWidget(int initialScreenWidth, int initialScreenHeight, QWidget *parent, track *currentTrack)
+    : QWidget(parent), currentTrack(currentTrack), initialScreenWidth(initialScreenWidth), initialScreenHeight(initialScreenHeight)
 {
+
+    //sizes initalization
+    barSize = 320;
+    qDebug()<<"barsize:"<<barSize;
+    coverSize = barSize/1.2;
+
+
     // Создаем прокручиваемую область
     QScrollArea *scrollArea = new QScrollArea(this);
     scrollArea->setWidgetResizable(true); // растягивает содержимое по размеру
+    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
     // Внутренний виджет, который будет прокручиваться
-    QWidget *scrollWidget = new QWidget();
+    scrollWidget = new QWidget();
+    scrollWidget->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Preferred);
+    scrollWidget->setFixedWidth(barSize);
+
     QVBoxLayout *scrollLayout = new QVBoxLayout(scrollWidget);
 
     // Пример загрузки треков
     std::vector<track> tracks;
-    read_tracks(tracks, "text/current_track.txt");
+    read_tracks(tracks, "../resources/text/current_track.txt");
 
     if (!tracks.empty()) {
         currentTrack = &tracks[0];
@@ -28,10 +44,10 @@ RightBarWidget::RightBarWidget(QWidget *parent, track *currentTrack)
     currentAlbumNameButton->setCursor(Qt::PointingHandCursor);
     currentAlbumNameButton->setStyleSheet(
         "QPushButton {"
-        "text-align: left; padding-left: 10px;"
+        "text-align: center;"
         "padding-bottom: 10px;"
         "font-weight: bold;"
-        "font-size: 20px;"
+        "font-size: 25px;"
         "font-family: 'Tahoma';"
         "    background: none;"                  // Убираем фон
         "    border: none;"                      // Убираем рамку
@@ -45,23 +61,44 @@ RightBarWidget::RightBarWidget(QWidget *parent, track *currentTrack)
 
     scrollLayout->addWidget(currentAlbumNameButton);
 
-    QPushButton *currentAlbumCoverButton = new QPushButton();
+    currentAlbumCoverButton = new QPushButton();
     currentAlbumCoverButton->setCursor(Qt::PointingHandCursor);
-    currentAlbumCoverButton->setFixedSize(350, 350);
-    QLabel *currentAlbumCobverLabel = new QLabel(currentAlbumCoverButton);
-    QPixmap albumCoverPath(currentTrack->coverpath);
-    currentAlbumCobverLabel->setPixmap(albumCoverPath.scaled(350,350, Qt::KeepAspectRatio));
-    scrollLayout->addWidget(currentAlbumCoverButton);
+    currentAlbumCoverButton->setFixedSize(coverSize, coverSize);
+
+    currentAlbumCoverLabel = new QLabel(currentAlbumCoverButton);
+
+    // Загружаем и масштабируем изображение
+    //QPixmap albumCoverPath(currentTrack->coverpath);
+    originalCover.load(currentTrack->coverpath);
+    QPixmap scaled = originalCover.scaled(coverSize, coverSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    currentAlbumCoverLabel->setPixmap(scaled);
+
+    QPixmap scaledPixmap = originalCover.scaled(coverSize, coverSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+    // Создаём изображение с закруглениями
+    QPixmap roundedPixmap(scaledPixmap.size());
+    roundedPixmap.fill(Qt::transparent);
+
+    QPainter painter(&roundedPixmap);
+    painter.setRenderHint(QPainter::Antialiasing);
+    QPainterPath path;
+    path.addRoundedRect(scaledPixmap.rect(), 15, 15);  // Радиус 15px
+    painter.setClipPath(path);
+    painter.drawPixmap(0, 0, scaledPixmap);
+
+    currentAlbumCoverLabel->setPixmap(roundedPixmap);
+    scrollLayout->addWidget(currentAlbumCoverButton, 0, Qt::AlignHCenter);
+
 
 
     QPushButton *currentTrackNameButton = new QPushButton(currentTrack->name);
     currentTrackNameButton->setCursor(Qt::PointingHandCursor);
     currentTrackNameButton->setStyleSheet(
         "QPushButton {"
-        "text-align: left; padding-left: 10px;"
+        "text-align: center;"
         "padding-top: 5px;"
         "font-weight: bold;"
-        "font-size: 24px;"
+        "font-size: 20px;"
         "font-family: 'Tahoma';"
         "    background: none;"                  // Убираем фон
         "    border: none;"                      // Убираем рамку
@@ -81,7 +118,7 @@ RightBarWidget::RightBarWidget(QWidget *parent, track *currentTrack)
     currentTrackAuthorButton->setCursor(Qt::PointingHandCursor);
     currentTrackAuthorButton->setStyleSheet(
         "QPushButton {"
-        "text-align: left; padding-left: 10px;"
+        "text-align: center;"
         "padding-bottom: 10px;"
         "font-weight: bold; color: #828282;"
         "font-size: 15px;"
@@ -125,17 +162,17 @@ RightBarWidget::RightBarWidget(QWidget *parent, track *currentTrack)
     QVBoxLayout *authorInfoLayout = new QVBoxLayout();
     QWidget *infoWidget = new QWidget();
     QVBoxLayout *infoLayout = new QVBoxLayout(infoWidget);
-    infoLayout->setAlignment(Qt::AlignTop);  // Устанавливаем выравнивание по верхнему краю
+    infoLayout->setAlignment(Qt::AlignTop & Qt::AlignCenter);  // Устанавливаем выравнивание по верхнему краю
     infoLayout->setContentsMargins(0, 0, 0, 0);
     authorInfoLayout->addWidget(infoWidget);
 
-    QPixmap authorAva("imgs/ava.png");
+    QPixmap authorAva("../resources/imgs/ava.png");
     QLabel *avaLabel = new QLabel();
     avaLabel->setPixmap(authorAva.scaled(200, 200, Qt::KeepAspectRatio));
     avaLabel->setFixedHeight(200);
-    avaLabel->setAlignment(Qt::AlignTop | Qt::AlignHCenter);  // Сохранение верхней части картинки
-    avaLabel->setStyleSheet("padding-bottom: 0px");
-    infoLayout->addWidget(avaLabel);
+    avaLabel->setAlignment(Qt::AlignHCenter);  // Сохранение верхней части картинки
+    //avaLabel->setStyleSheet("padding-bottom: 0px");
+    infoLayout->addWidget(avaLabel,0, Qt::AlignHCenter);
     QPushButton *authorNameButton = new QPushButton("noize");
     authorNameButton->setStyleSheet(
         "QPushButton {"
@@ -153,7 +190,7 @@ RightBarWidget::RightBarWidget(QWidget *parent, track *currentTrack)
         "    text-decoration: underline;"        // Подчеркиваем текст при наведении
         "}"
         );
-    infoLayout->addWidget(authorNameButton);
+    infoLayout->addWidget(authorNameButton, 0, Qt::AlignHCenter);
     followButton = new QPushButton();
     if (isFollowed){
         followButton->setText("Unfollow");
@@ -177,7 +214,7 @@ RightBarWidget::RightBarWidget(QWidget *parent, track *currentTrack)
         "    border: 2px solid white;"      // Увеличенная рамка до 2px при наведении
         "}"
         );
-    infoLayout->addWidget(followButton);
+    infoLayout->addWidget(followButton, 0, Qt::AlignHCenter);
 
 
     // QLabel *authorInfoLabel = new QLabel(currentTrack->artist);
@@ -197,7 +234,7 @@ RightBarWidget::RightBarWidget(QWidget *parent, track *currentTrack)
     lyricsLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
 
     // Загружаем текст
-    QFile file("text/song_texts/noize.txt");
+    QFile file("../resources/text/song_texts/noize.txt");
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
         QString lyrics = in.readAll();
@@ -230,6 +267,10 @@ RightBarWidget::RightBarWidget(QWidget *parent, track *currentTrack)
     QVBoxLayout *mainLayout = new QVBoxLayout(this);
     mainLayout->addWidget(scrollArea);
     mainLayout->setContentsMargins(0, 0, 0, 0); // убираем отступы
+    this->setMaximumWidth(barSize);
+    this->setMinimumWidth(235);
+    //this->resize(barSize, initialScreenHeight);
+    //this->setFixedWidth(barSize);
 }
 
 
@@ -300,4 +341,31 @@ void RightBarWidget::on_followButton_clicked(){
     }
 }
 
+void RightBarWidget::resizeBarWidget(int width){
+    barSize = width;
+    scrollWidget->setFixedWidth(barSize);
 
+    coverSize = barSize/1.2;
+    currentAlbumCoverButton->setFixedSize(coverSize, coverSize);
+    QPixmap newPixmap = originalCover.scaled(coverSize, coverSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    currentAlbumCoverLabel->setPixmap(newPixmap);
+    currentAlbumCoverLabel->setFixedSize(newPixmap.size());
+
+    QPixmap roundedPixmap(newPixmap.size());
+    roundedPixmap.fill(Qt::transparent);
+
+    QPainter painter(&roundedPixmap);
+    painter.setRenderHint(QPainter::Antialiasing);
+    QPainterPath path;
+    path.addRoundedRect(newPixmap.rect(), 15, 15);  // Радиус 15px
+    painter.setClipPath(path);
+    painter.drawPixmap(0, 0, newPixmap);
+
+    currentAlbumCoverLabel->setPixmap(roundedPixmap);
+    //scrollLayout->addWidget(currentAlbumCoverButton, 0, Qt::AlignHCenter);
+    //this->resize(barSize, initialScreenHeight);
+}
+
+int RightBarWidget::get_barWidth(){
+    return barSize;
+}

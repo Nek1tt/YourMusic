@@ -1,3 +1,6 @@
+#include <QMainWindow>
+#include <QPushButton>
+#include <QDebug>  // <--- добавь это
 #include <QScreen> //for Qscreen *screen = QApplication::primaryScreen();
 #include <QWidget>
 #include <QLabel>
@@ -11,19 +14,29 @@
 // #include <QWebSocket>
 #include <QMessageBox>
 #include <QDir>
-#include <QSplitter>
+#include <QApplication>
 
 
 #include "musicmain.h"
-#include "./ui_musicmain.h"
+//#include "./ui_musicmain.h"
 
 
 MusicMain::MusicMain(QWidget *parent)//класс для окна
     : QMainWindow(parent)
 {
 
+    QScreen *screen = QApplication::primaryScreen();// сохраняем экран
+    QRect screenGeometry = screen->availableGeometry();//извлекаем параметры экрана
+    // // Получаем размер окна
+    int windowWidth = this->width();
+    int windowHeight = this->height();
+
+    qDebug()<<"width"<<windowWidth<<"heght"<<windowHeight;
+
     mainWidget = new QWidget();
-    QSplitter *mainSplitter = new QSplitter(Qt::Horizontal, mainWidget);
+    mainSplitter = new QSplitter(Qt::Horizontal, mainWidget);
+    connect(mainSplitter, &QSplitter::splitterMoved, this, &MusicMain::onSplitterMoved);
+
     mainLayout = new QHBoxLayout(mainWidget);
 
     leftBarWidget = new QWidget();
@@ -33,8 +46,8 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
     QWidget *navButtons = new QWidget();
     navButtons->setFixedHeight(100);
     QHBoxLayout *navLayout = new QHBoxLayout(navButtons);
-    backButton = new QPushButton("<");
-    forwardButton = new QPushButton(">");
+    backButton = new QPushButton(" < ");
+    forwardButton = new QPushButton(" > ");
 
     connect(backButton, &QPushButton::clicked, this, &MusicMain::on_backButton_clicked);
     connect(forwardButton, &QPushButton::clicked, this, &MusicMain::on_forwardButton_clicked);
@@ -86,6 +99,7 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
 
     mainSplitter->addWidget(leftBarWidget);
 
+
     tabwidget = new QTabWidget(this);
     //tabwidget->setFixedWidth(1);
     tabwidget->setStyleSheet("QTabWidget::pane { margin: 0px; padding: 0px; }");
@@ -110,17 +124,13 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
 
     profilewidget->setContentsMargins(0, 0, 0, 0);
 
-    rightbarwidget = new RightBarWidget(this, currentTrack);
-    rightbarwidget->resize(400, this->height());
+    rightbarwidget = new RightBarWidget(windowWidth, windowHeight, this, currentTrack);
+    rightbarwidget->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
+
+    //rightbarwidget->resize(400, this->height());
     mainSplitter->addWidget(rightbarwidget);
     mainLayout->addWidget(mainSplitter);
     mainWidget->setLayout(mainLayout);
-
-    QScreen *screen = QApplication::primaryScreen();// сохраняем экран
-    QRect screenGeometry = screen->availableGeometry();//извлекаем параметры экрана
-    // // Получаем размер окна
-    int windowWidth = this->width();
-    int windowHeight = this->height();
 
     // // Вычисляем позицию для окна, чтобы правый верхний угол сопоставлялся с правым верхним углом экрана
     int xPos = screenGeometry.right() - windowWidth;
@@ -147,9 +157,10 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
     mainTabButtons = { homeTab, createTab, profileTab}; //main tub buttons on screen
 
 
-    this->resize(screenGeometry.width()/2, screenGeometry.height()/2); //seting the window size
-    tabwidget->resize(this->width()-400,this->height());
+//this->resize(screenGeometry.width(), screenGeometry.height()); //seting the window size
+    tabwidget->resize(50,this->height());
     setInitialSize(this->width());
+    mainSplitter->setSizes({200, this->width()-200-360, 360});
 
     // webSocket = new QWebSocket();
     // connect(webSocket, &QWebSocket::connected, this, &MusicMain::onConnected);
@@ -175,7 +186,8 @@ void MusicMain::toggle_buttons(QPushButton* pushedButton){ // changes the button
     pushedButton->setEnabled(false);
     pushedButton->setStyleSheet("color : black");
     pushedButton->setFlat(true);
-    qDebug()<<pushedButton->isFlat();
+    //
+    //qDebug()<<pushedButton->isFlat();
     currentTab->setEnabled(true);
     currentTab = pushedButton;
 }
@@ -183,14 +195,14 @@ void MusicMain::toggle_buttons(QPushButton* pushedButton){ // changes the button
 
 void MusicMain::on_homeTab_clicked()
 {
-    qDebug()<<this->width();
+    //qDebug()<<this->width();
     toggle_buttons(homeTab);
 }
 
 
 void MusicMain::on_createTab_clicked()
 {
-    qDebug()<<"click";
+    //qDebug()<<"click";
     toggle_buttons(createTab);
 }
 
@@ -198,17 +210,32 @@ void MusicMain::on_profileTab_clicked()
 {
     //playlistwidget->add_playlists();
     profilewidget->button_profile_clicked();
-    qDebug()<<"click";
+    //qDebug()<<"click";
     toggle_buttons(profileTab);
 }
 
 
 void MusicMain::resizeEvent(QResizeEvent *event) {
     QMainWindow::resizeEvent(event); // Вызов базового метода
-    tabwidget->resize(this->width()-400,this->height());
-    profilewidget->resizeProfile(this->width());
-    qDebug()<<this->width();
+    qDebug()<<"width"<<this->width()<<"heght"<<this->height();
+    int rightBarWidgetWidth = rightbarwidget->get_barWidth() + 10;
+    QList<int> sizes = mainSplitter->sizes();
+    //tabwidget->resize(20,this->height());
+    mainSplitter->setSizes({100, this->width()-100-rightBarWidgetWidth, rightBarWidgetWidth}); //mainsplitter может изменяться только так - никаких resize для виджетов mainsplitter
+    profilewidget->resizeProfile(sizes[1]);
+
+    //rightbarwidget->resizeBarWidget(this->width());
+    //qDebug()<<this->width();
 }
+
+void MusicMain::onSplitterMoved(int pos, int index) {
+    qDebug() << "Разделитель сдвинут. Index:" << index << " Position:" << pos;
+    QList<int> sizes = mainSplitter->sizes();
+    rightbarwidget->resizeBarWidget(sizes[2]);
+    profilewidget->resizeProfile(sizes[1]);
+    qDebug() << "Актуальные размеры: " << sizes;
+}
+
 
 void MusicMain::setInitialSize(int width){
     profilewidget->resizeProfile(width);
@@ -220,7 +247,7 @@ void MusicMain::on_backButton_clicked(){
         profilewidget->setCurrentIndex(current - 1);
         backButton->setStyleSheet(activeStyle);
     }
-    qDebug()<<"back";
+    //qDebug()<<"back";
     current = profilewidget->getCurrentIndex();
     if (current == 0) {
         backButton->setStyleSheet(inactiveStyle);
@@ -238,7 +265,7 @@ void MusicMain::on_forwardButton_clicked(){
     if (current + 1 < total) {
         profilewidget->setCurrentIndex(current + 1);
     }
-    qDebug()<<"forward";
+    //qDebug()<<"forward";
 
     current = profilewidget->getCurrentIndex();
     total = profilewidget->getTotalIndex();

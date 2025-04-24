@@ -25,11 +25,12 @@ public:
     explicit ProfileWidget(QWidget  *parent = nullptr, QWidget *tab = nullptr);
     void resizeProfile(int width);
     void button_profile_clicked();
-    void onAlbumClicked(QString albumName);
+    void onAlbumClicked(album albumData);
 
     int getCurrentIndex();
     int getTotalIndex();
     void setCurrentIndex(int index);
+    int get_widgetWidth();
 
 private:
     UserProfileWidget *userProfile;
@@ -38,9 +39,11 @@ private:
     QStackedWidget *innerStacked;
     QWidget *scrollWidget;
     QWidget *mainWidget;
+    int widgetWidth;
+
 
 signals:
-    void onAlbomClickedSignal(QString albumName);
+    void onAlbomClickedSignal(album albumData);
 };
 
 #endif // PROFILEWIDGET_H

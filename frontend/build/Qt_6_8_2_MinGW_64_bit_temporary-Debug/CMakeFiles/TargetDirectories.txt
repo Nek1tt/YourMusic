@@ -1,0 +1,7 @@
+C:/Users/Lenovo/upprpo/YourMusic/frontend/build/Qt_6_8_2_MinGW_64_bit_temporary-Debug/CMakeFiles/musicproject.dir
+C:/Users/Lenovo/upprpo/YourMusic/frontend/build/Qt_6_8_2_MinGW_64_bit_temporary-Debug/CMakeFiles/edit_cache.dir
+C:/Users/Lenovo/upprpo/YourMusic/frontend/build/Qt_6_8_2_MinGW_64_bit_temporary-Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/Lenovo/upprpo/YourMusic/frontend/build/Qt_6_8_2_MinGW_64_bit_temporary-Debug/CMakeFiles/list_install_components.dir
+C:/Users/Lenovo/upprpo/YourMusic/frontend/build/Qt_6_8_2_MinGW_64_bit_temporary-Debug/CMakeFiles/install.dir
+C:/Users/Lenovo/upprpo/YourMusic/frontend/build/Qt_6_8_2_MinGW_64_bit_temporary-Debug/CMakeFiles/install/local.dir
+C:/Users/Lenovo/upprpo/YourMusic/frontend/build/Qt_6_8_2_MinGW_64_bit_temporary-Debug/CMakeFiles/install/strip.dir

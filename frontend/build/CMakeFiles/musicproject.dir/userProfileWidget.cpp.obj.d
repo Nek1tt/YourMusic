@@ -457,4 +457,10 @@ CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj: \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fs_ops.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qfileinfo.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qtimezone.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/QPainter \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qpainter.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qtextoption.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qpen.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/QPainterPath \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qpainterpath.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\userProfileWidget.h

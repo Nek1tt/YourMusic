@@ -5,5 +5,3 @@ C:/Users/Lenovo/upprpo/YourMusic/frontend/build/CMakeFiles/list_install_componen
 C:/Users/Lenovo/upprpo/YourMusic/frontend/build/CMakeFiles/install.dir
 C:/Users/Lenovo/upprpo/YourMusic/frontend/build/CMakeFiles/install/local.dir
 C:/Users/Lenovo/upprpo/YourMusic/frontend/build/CMakeFiles/install/strip.dir
-C:/Users/Lenovo/upprpo/YourMusic/frontend/build/CMakeFiles/musicproject_autogen_timestamp_deps.dir
-C:/Users/Lenovo/upprpo/YourMusic/frontend/build/CMakeFiles/musicproject_autogen.dir

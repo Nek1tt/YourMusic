@@ -3,9 +3,10 @@
 
 #include <QMainWindow>
 #include <QLabel>
+#include <QSplitter>
 // #include <QWebSocket>
 
-#include "./ui_musicmain.h"
+//#include "./ui_musicmain.h"
 #include "profilewidget.h"
 #include "userProfileWidget.h"  // Подключаем header для UserProfileWidget
 #include "myalbumswidget.h"
@@ -39,9 +40,12 @@ private slots:
     void on_backButton_clicked();
     void on_forwardButton_clicked();
     void on_albumButton_clicked();
+    void onSplitterMoved(int pos, int index);
+
 
 
 private:
+    QSplitter *mainSplitter;
     QWidget *mainWidget;
     QHBoxLayout *mainLayout;
     QTabWidget *tabwidget;

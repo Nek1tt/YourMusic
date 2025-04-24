@@ -24,14 +24,24 @@ class RightBarWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit RightBarWidget(QWidget *parent = nullptr, track *currentTrack = nullptr);
+    explicit RightBarWidget(int initialScreenWidth, int initialScreenHeight, QWidget *parent = nullptr, track *currentTrack = nullptr);
     void toggle_buttons();
     void on_toAuthor_clicked();
     void on_toLyrics_clicked();
     void on_followButton_clicked();
+    void resizeBarWidget(int width);
+    int get_barWidth();
     //void set_author_text_tab();
 
 private:
+    int initialScreenWidth;
+    int initialScreenHeight;
+    int barSize;
+    int coverSize;
+    QWidget *scrollWidget;
+    QPixmap originalCover;
+    QPushButton *currentAlbumCoverButton;
+    QLabel *currentAlbumCoverLabel;
     track *currentTrack;
     QPushButton *toLyrics;
     QPushButton *toAuthor;

@@ -68,10 +68,9 @@ include CMakeFiles/musicproject_autogen.dir/progress.make
 CMakeFiles/musicproject_autogen: musicproject_autogen/timestamp
 
 musicproject_autogen/timestamp: C:/Qt/6.8.2/mingw_64/bin/moc.exe
-musicproject_autogen/timestamp: C:/Qt/6.8.2/mingw_64/bin/uic.exe
 musicproject_autogen/timestamp: CMakeFiles/musicproject_autogen.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target musicproject"
-	"C:\Program Files\CMake\bin\cmake.exe" -E cmake_autogen C:/Users/Lenovo/upprpo/YourMusic/frontend/build/CMakeFiles/musicproject_autogen.dir/AutogenInfo.json ""
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC for target musicproject"
+	"C:\Program Files\CMake\bin\cmake.exe" -E cmake_autogen C:/Users/Lenovo/upprpo/YourMusic/frontend/build/CMakeFiles/musicproject_autogen.dir/AutogenInfo.json Debug
 	"C:\Program Files\CMake\bin\cmake.exe" -E touch C:/Users/Lenovo/upprpo/YourMusic/frontend/build/musicproject_autogen/timestamp
 
 musicproject_autogen: CMakeFiles/musicproject_autogen

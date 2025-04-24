@@ -17,29 +17,29 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include <qDebug>
+//#include <QDebug>  // <--- добавь это
 
 
 
 #include "mytrackswidget.h"
 
-TrackButton::TrackButton(const struct track &track, QWidget *parent)
-    :QPushButton(parent), track(track)
+TrackButton::TrackButton(const struct track &trackData, QWidget *parent)
+    :QPushButton(parent), trackData(trackData)
 {
     QHBoxLayout *layout = new QHBoxLayout(this);
     QLabel *coverLabel = new QLabel(this);
     coverLabel->setFixedWidth(80);
-    QPixmap coverPixmap(track.coverpath);
+    QPixmap coverPixmap(trackData.coverpath);
     coverLabel->setPixmap(coverPixmap.scaled(70, 70, Qt::KeepAspectRatio));
     layout->addWidget(coverLabel);  // Добавляем обложку в макет
 
     QVBoxLayout *name_and_author = new QVBoxLayout();
-    QLabel *nameLabel = new QLabel(track.name);
+    QLabel *nameLabel = new QLabel(trackData.name);
     nameLabel->setFixedHeight(16);
     nameLabel->setStyleSheet("font-weight: bold; font-size: 14px; font-family: 'Tahoma';");
     nameLabel->setAlignment(Qt::AlignLeft);
 
-    QLabel *authorLabel = new QLabel(track.author);
+    QLabel *authorLabel = new QLabel(trackData.author);
     authorLabel->setFixedHeight(14);
     authorLabel->setStyleSheet("color: #828282; font-weight: bold; font-size: 12px; font-family: 'Tahoma';");
     authorLabel->setAlignment(Qt::AlignLeft);
@@ -48,7 +48,7 @@ TrackButton::TrackButton(const struct track &track, QWidget *parent)
     name_and_author->addWidget(authorLabel);
     layout->addLayout(name_and_author);
 
-    QString duration = QString::number(track.min) + ":" + QString::number(track.sec);
+    QString duration = QString::number(trackData.min) + ":" + QString::number(trackData.sec);
     QLabel *durationLabel = new QLabel(duration);
     durationLabel->setFixedHeight(14);
     durationLabel->setStyleSheet("color: #828282; font-weight: bold; font-size: 12px; font-family: 'Tahoma';");
@@ -61,7 +61,7 @@ TrackButton::TrackButton(const struct track &track, QWidget *parent)
 }
 
 QString TrackButton::getTrackName(){
-    return track.name;
+    return trackData.name;
 }
 
 void TrackButton::resize_trackbutton(int width){
@@ -102,7 +102,7 @@ MyTracksWidget::MyTracksWidget(QWidget *parent)  :QWidget(parent)
 void MyTracksWidget::add_tracks() {
     clearLayout(tracks_layout_of_verticals);
     tracks_vector.clear();
-    read_tracks(tracks_vector, "text/tracks.txt");
+    read_tracks(tracks_vector, "../resources/text/tracks.txt");
 
     QVBoxLayout *leftColumn = new QVBoxLayout();
     QVBoxLayout *rightColumn = new QVBoxLayout();
@@ -117,7 +117,7 @@ void MyTracksWidget::add_tracks() {
         leftColumn->addWidget(trackButton);
 
         connect(trackButton, &QPushButton::clicked, [trackButton]() {
-            qDebug() << "Открыт трек: " << trackButton->getTrackName();
+            //qDebug() << "Открыт трек: " << trackButton->getTrackName();
         });
 
     }
@@ -132,7 +132,7 @@ void MyTracksWidget::add_tracks() {
         rightColumn->addWidget(trackButton);
 
         connect(trackButton, &QPushButton::clicked, [trackButton]() {
-            qDebug() << "Открыт трек: " << trackButton->getTrackName();
+            //qDebug() << "Открыт трек: " << trackButton->getTrackName();
         });
 
     }
@@ -162,20 +162,20 @@ void MyTracksWidget::clearLayout(QLayout *layout) {
 
 //добавить отступ между рядами в tracks и соответсвенно выровнять все красиво
 void MyTracksWidget::resize_tracks(int width) {
-    tracks->setFixedWidth(width * 0.6);
-    qDebug() << "track width changing";
+    tracks->setFixedWidth(width * 0.8);
+    //qDebug() << "track width changing";
 
     // Проходим по всем TrackButton в векторе и изменяем их размер
     for (TrackButton* trackButton : trackButtons) {
         if (trackButton) {
-            trackButton->resize_trackbutton(width * 0.6);  // Изменяем размер
+            trackButton->resize_trackbutton(width * 0.8);  // Изменяем размер
         }
     }
 }
 
 
 void write_track(track &track){
-    std::ofstream tracksFile("text/tracks.txt", std::ios::app);
+    std::ofstream tracksFile("../resources/text/tracks.txt", std::ios::app);
     tracksFile << track.name.toStdString() << ' '
                << track.author.toStdString() << ' '
                << track.coverpath.toStdString() << ' '
@@ -190,7 +190,7 @@ void read_tracks(std::vector<track> &tracks, std::string track_path){
     while (std::getline(trackFile, line)){
         QString qline = QString::fromStdString(line);
         QStringList words = qline.split(' ');
-        qDebug()<<words;
+        //qDebug()<<words;
         track track = {words[0], words[1], words[2], words[3].toInt(), words[4].toInt()};
         tracks.push_back(track);
     }

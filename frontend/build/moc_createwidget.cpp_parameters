@@ -1,0 +1,4 @@
+-DWIN32
+-o
+C:/Users/Lenovo/upprpo/YourMusic/frontend/build/moc_createwidget.cpp
+C:/Users/Lenovo/upprpo/YourMusic/frontend/createwidget.h

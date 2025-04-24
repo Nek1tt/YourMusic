@@ -375,4 +375,5 @@ C:/Users/Lenovo/upprpo/YourMusic/frontend/build/musicproject_autogen/EWIEGA46WW/
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/time.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/vadefs.h \
   C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h \
+  C:/Users/Lenovo/upprpo/YourMusic/frontend/myalbumswidget.h \
   C:/Users/Lenovo/upprpo/YourMusic/frontend/mytrackswidget.h

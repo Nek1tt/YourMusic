@@ -9,7 +9,8 @@
 // #include <QWebSocket>
 #include <QMessageBox>
 #include <QDir>
-
+#include <QPainter>
+#include <QPainterPath>
 #include "userProfileWidget.h"
 
 UserProfileWidget::UserProfileWidget(QWidget *parent) // класс для информации о профиле
@@ -22,8 +23,8 @@ UserProfileWidget::UserProfileWidget(QWidget *parent) // класс для ин�
 
     QVBoxLayout *ProfileInfoLayout = new QVBoxLayout(); // все то же самое что и с авой но с блоком информации
     usertagLabel = new QLabel(this);
-    usertagLabel->setFixedHeight(50);
-    usertagLabel->setStyleSheet("padding-top: 30px; color: #615D5D; font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
+    usertagLabel->setFixedHeight(30);
+    usertagLabel->setStyleSheet("padding-top: 5px; color: #615D5D; font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
     ProfileInfoLayout->addWidget(usertagLabel);
     usernameLabel = new QLabel(this);
     usernameLabel->setFixedHeight(40);
@@ -40,55 +41,73 @@ UserProfileWidget::UserProfileWidget(QWidget *parent) // класс для ин�
     tracksLoadedNumLabel = new QLabel(this);
     tracksAddedNumLabel = new QLabel(this);
     QHBoxLayout *miniInfoLayout = new QHBoxLayout();
-    QVBoxLayout *followersLayout = new QVBoxLayout();
+    QWidget *followersWidget = new QWidget();
+    QVBoxLayout *followersLayout = new QVBoxLayout(followersWidget);
     followersLayout->setAlignment(Qt::AlignHCenter);
     followersLabel->setText("Followers");
-    followersLabel->setStyleSheet("font-size: 10px; font-family: 'Tahoma'; font-weight: bold;");
+    followersLabel->setStyleSheet("font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
     followersLayout->addWidget(followersLabel);
     followersNumLabel->setAlignment(Qt::AlignHCenter);
-    followersNumLabel->setStyleSheet("font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
+    followersNumLabel->setStyleSheet("font-size: 20px; font-family: 'Tahoma'; font-weight: bold;");
     followersLayout->addWidget(followersNumLabel);
-    miniInfoLayout->addLayout(followersLayout);
-    QVBoxLayout *followingLayout = new QVBoxLayout();
+    miniInfoLayout->addWidget(followersWidget);
+    QWidget *followingWidget = new QWidget();
+    QVBoxLayout *followingLayout = new QVBoxLayout(followingWidget);
     followingLayout->setAlignment(Qt::AlignHCenter);
     followingLabel->setText("Following");
-    followingLabel->setStyleSheet("font-size: 10px; font-family: 'Tahoma'; font-weight: bold;");
+    followingLabel->setStyleSheet("font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
     followingLayout->addWidget(followingLabel);
     followingNumLabel->setAlignment(Qt::AlignHCenter);
-    followingNumLabel->setStyleSheet("font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
+    followingNumLabel->setStyleSheet("font-size: 20px; font-family: 'Tahoma'; font-weight: bold;");
     followingLayout->addWidget(followingNumLabel);
-    miniInfoLayout->addLayout(followingLayout);
-    QVBoxLayout *tracksLoadedLayout = new QVBoxLayout();
+    miniInfoLayout->addWidget(followingWidget);
+    QWidget *tracksLoadedWidget = new QWidget();
+    QVBoxLayout *tracksLoadedLayout = new QVBoxLayout(tracksLoadedWidget);
     tracksLoadedLayout->setAlignment(Qt::AlignHCenter);
     tracksLoadedLabel->setText("Tracks loaded");
-    tracksLoadedLabel->setStyleSheet("font-size: 10px; font-family: 'Tahoma'; font-weight: bold;");
+    tracksLoadedLabel->setStyleSheet("font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
     tracksLoadedLayout->addWidget(tracksLoadedLabel);
     tracksLoadedNumLabel->setAlignment(Qt::AlignHCenter);
-    tracksLoadedNumLabel->setStyleSheet("font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
+    tracksLoadedNumLabel->setStyleSheet("font-size: 20px; font-family: 'Tahoma'; font-weight: bold;");
     tracksLoadedLayout->addWidget(tracksLoadedNumLabel);
-    miniInfoLayout->addLayout(tracksLoadedLayout);
-    QVBoxLayout *tracksAddedLayout = new QVBoxLayout();
+    miniInfoLayout->addWidget(tracksLoadedWidget);
+    QWidget *tracksAddedWidget = new QWidget();
+    QVBoxLayout *tracksAddedLayout = new QVBoxLayout(tracksAddedWidget);
     tracksAddedLayout->setAlignment(Qt::AlignHCenter);
     tracksAddedLabel->setText("Tracks added");
-    tracksAddedLabel->setStyleSheet("font-size: 10px; font-family: 'Tahoma'; font-weight: bold;");
+    tracksAddedLabel->setStyleSheet("font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
     tracksAddedLayout->addWidget(tracksAddedLabel);
     tracksAddedNumLabel->setAlignment(Qt::AlignHCenter);
-    tracksAddedNumLabel->setStyleSheet("font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
+    tracksAddedNumLabel->setStyleSheet("font-size: 20px; font-family: 'Tahoma'; font-weight: bold;");
     tracksAddedLayout->addWidget(tracksAddedNumLabel);
-    miniInfoLayout->addLayout(tracksAddedLayout);
+    miniInfoLayout->addWidget(tracksAddedWidget);
 
     ProfileInfoLayout->addLayout(miniInfoLayout);
 
     ProfileLayout->addLayout(ProfileInfoLayout);
-
+    this->setMinimumWidth(670);
+    this->setMaximumWidth(1000);
 
     // followersLabel = new QLabel(this);
     // layout->addWidget(followersLabel);
 }
 
 void UserProfileWidget::setUserProfile(const UserInfo &user) {
-    QPixmap avatarPixmap(user.avatarPath);// создаем pixmap с авой. передаем путь где хранится ава.
-    avatarLabel->setPixmap(avatarPixmap.scaled(200, 200, Qt::KeepAspectRatio)); //добавляем в слой авы саму аву
+    QPixmap avatarPixmap(user.avatarPath);
+    QPixmap scaledPixmap = avatarPixmap.scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+    // Создаем круглую маску
+    QPixmap roundedPixmap(scaledPixmap.size());
+    roundedPixmap.fill(Qt::transparent); // Прозрачный фон
+
+    QPainter painter(&roundedPixmap);
+    painter.setRenderHint(QPainter::Antialiasing);
+    QPainterPath path;
+    path.addRoundedRect(roundedPixmap.rect(), 20, 20); // Закругление по радиусу (100 – круг)
+    painter.setClipPath(path);
+    painter.drawPixmap(0, 0, scaledPixmap);
+
+    avatarLabel->setPixmap(roundedPixmap); //добавляем в слой авы саму аву
     usernameLabel->setText(user.username);
     usertagLabel->setText(user.usertag);
     followersNumLabel->setText(QString::number(user.followersnum));

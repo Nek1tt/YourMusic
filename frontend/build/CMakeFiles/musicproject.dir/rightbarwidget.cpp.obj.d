@@ -468,4 +468,12 @@ CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj: \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\mytrackswidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollArea \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QTextStream \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qtextstream.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/QPainter \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qpainter.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qtextoption.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qpen.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/QPainterPath \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qpainterpath.h

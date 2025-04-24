@@ -2,67 +2,85 @@ cmake_minimum_required(VERSION 3.16)
 
 project(musicproject VERSION 0.1 LANGUAGES CXX)
 
-set(CMAKE_AUTOUIC ON)
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
+# Qt options
+set(CMAKE_AUTOMOC OFF)
+set(CMAKE_AUTOUIC OFF)
+set(CMAKE_AUTORCC OFF)
 
+
+# C++ Standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(PKG_CONFIG_EXECUTABLE "C:/msys64/mingw64/bin/pkg-config")
 
+# Указываем путь к pkg-config если нужно (Windows/MinGW)
+# set(PKG_CONFIG_EXECUTABLE "C:/msys64/mingw64/bin/pkg-config")
+
+# Найти Qt
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
+# Список всех исходников
 set(PROJECT_SOURCES
-        main.cpp
-        musicmain.cpp
-        musicmain.h
-        musicmain.ui
+    main.cpp
+    musicmain.cpp
+    musicmain.h
+    musicmain.ui
+
+    albumwidget.cpp
+    albumwidget.h
+
+    createwidget.cpp
+    createwidget.h
+
+    profilewidget.cpp
+    profilewidget.h
+
+    rightbarwidget.cpp
+    rightbarwidget.h
+
+    myalbumswidget.cpp
+    myalbumswidget.h
+
+    mytrackswidget.cpp
+    mytrackswidget.h
+
+    userProfileWidget.cpp
+    userProfileWidget.h
 )
 
+qt6_wrap_cpp(MOC_SOURCES
+    musicmain.h
+    albumwidget.h
+    createwidget.h
+    profilewidget.h
+    rightbarwidget.h
+    myalbumswidget.h
+    mytrackswidget.h
+    userProfileWidget.h
+)
+
+# Создание исполняемого файла
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(musicproject
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        userProfileWidget.h
-        userProfileWidget.cpp
-        myalbumswidget.h myalbumswidget.cpp
-        build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug/text/playlists.txt
-        createwidget.h createwidget.cpp
-        profilewidget.h profilewidget.cpp
-        mytrackswidget.h mytrackswidget.cpp
-        rightbarwidget.h rightbarwidget.cpp
-        build/text/current_track.txt
-        albumwidget.h albumwidget.cpp
+        ${MOC_SOURCES}
     )
-# Define target properties for Android with Qt 6 as:
-#    set_property(TARGET musicproject APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
-# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
 else()
-    if(ANDROID)
-        add_library(musicproject SHARED
-            ${PROJECT_SOURCES}
-        )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-    else()
-        add_executable(musicproject
-            ${PROJECT_SOURCES}
-        )
-    endif()
+    add_executable(musicproject
+        ${PROJECT_SOURCES}
+        ${MOC_SOURCES}
+    )
 endif()
 
+# Линковка с Qt
 target_link_libraries(musicproject PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
 
-
-
-# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
-# If you are developing for iOS or macOS you should consider setting an
-# explicit, fixed bundle identifier manually though.
+# Установка свойств (для macOS/iOS и Windows)
 if(${QT_VERSION} VERSION_LESS 6.1.0)
-  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.musicproject)
+    set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.musicproject)
 endif()
+
 set_target_properties(musicproject PROPERTIES
     ${BUNDLE_ID_OPTION}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
@@ -71,6 +89,7 @@ set_target_properties(musicproject PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
+# Установка
 include(GNUInstallDirs)
 install(TARGETS musicproject
     BUNDLE DESTINATION .
@@ -78,6 +97,7 @@ install(TARGETS musicproject
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
+# Только для Qt6 — финализируем
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(musicproject)
 endif()

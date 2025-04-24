@@ -16,30 +16,31 @@
 #include <QDir>
 #include <fstream>
 #include <vector>
-#include <qDebug>
+//#include <QDebug>  // <--- добавь это
+
 
 #include "myalbumswidget.h"
 
-AlbumButton::AlbumButton(const struct album &album, QWidget *parent)
-    : QPushButton(parent), album(album) {
+AlbumButton::AlbumButton(const struct album &albumData, QWidget *parent)
+    : QPushButton(parent), albumData(albumData) {
 
     // Настроим макет кнопки
     QVBoxLayout *layout = new QVBoxLayout(this);
 
     // Создаем метку для обложки
     QLabel *coverLabel = new QLabel(this);
-    QPixmap coverPixmap(album.coverpath);
+    QPixmap coverPixmap(albumData.coverpath);
     coverLabel->setPixmap(coverPixmap.scaled(150, 150, Qt::KeepAspectRatio));
     layout->addWidget(coverLabel);  // Добавляем обложку в макет
 
     // Создаем метки для названия и автора
-    QLabel *nameLabel = new QLabel(album.name, this);
+    QLabel *nameLabel = new QLabel(albumData.name, this);
     nameLabel->setFixedHeight(13);
     nameLabel->setStyleSheet("font-weight: bold; font-size: 11px; font-family: 'Tahoma';");
     nameLabel->setAlignment(Qt::AlignLeft);
     layout->addWidget(nameLabel);
 
-    QLabel *authorLabel = new QLabel(album.author, this);
+    QLabel *authorLabel = new QLabel(albumData.author, this);
     authorLabel->setFixedHeight(12);
     authorLabel->setStyleSheet("color: #828282; font-weight: bold; font-size: 10px; font-family: 'Tahoma';");
     authorLabel->setAlignment(Qt::AlignLeft);
@@ -50,10 +51,12 @@ AlbumButton::AlbumButton(const struct album &album, QWidget *parent)
     // Устанавливаем размер кнопки
 }
 QString AlbumButton::getAlbumName(){
-    return album.name;
+    return albumData.name;
 }
 
-
+album AlbumButton::getAlbum(){
+    return albumData;
+}
 
 
 MyAlbumsWidget::MyAlbumsWidget(QWidget *parent) : QWidget(parent)
@@ -102,14 +105,14 @@ void MyAlbumsWidget::add_albums() {
 
     // Добавляем элементы в layout
     for (auto& album : albums_vector) {
-        qDebug()<<"added";
+        //qDebug()<<"added";
         // Создаем кнопки для каждого альбома
         AlbumButton *albumButton = new AlbumButton(album);
         albumsLayout->addWidget(albumButton);
 
         connect(albumButton, &QPushButton::clicked, [this, albumButton]() {
             //qDebug() << "Открыт альбом: " << albumButton->getAlbumName();
-            emit albumButtonClicked(albumButton->getAlbumName());
+            emit albumButtonClicked(albumButton->getAlbum());
         });
     }
 
@@ -148,19 +151,19 @@ void MyAlbumsWidget::clearLayout(QLayout *layout) {
 }
 
 void MyAlbumsWidget::resizeAlbums(int width) {
-    this->setFixedWidth(width * 0.7);
+    this->setFixedWidth(width*0.9);
 }
 
 
 void write_album(album &album){
-    std::ofstream albumFile("text/playlists.txt", std::ios::app);
+    std::ofstream albumFile("../resources/text/playlists.txt", std::ios::app);
     albumFile<<album.name.toStdString()<<' '<<album.author.toStdString()<<' '<<album.coverpath.toStdString()<<std::endl;
 
     albumFile.close();
 }
 
 void write_albums(std::vector<album> &albums){
-    std::ofstream albumFile("text/playlists.txt");
+    std::ofstream albumFile("../resources/text/playlists.txt");
     for (auto& album :albums){
         albumFile<<album.name.toStdString()<<' '<<album.author.toStdString()<<' '
                      <<album.coverpath.toStdString()<<std::endl;
@@ -168,12 +171,12 @@ void write_albums(std::vector<album> &albums){
     albumFile.close();
 }
 void read_albums(std::vector<album> &albums){
-    std::ifstream albumFile("text/playlists.txt");
+    std::ifstream albumFile("../resources/text/playlists.txt");
     std::string line;
     while (std::getline(albumFile, line)){
         QString qline = QString::fromStdString(line);
         QStringList words = qline.split(' ');
-        qDebug()<<words;
+        //qDebug()<<words;
         album album = {words[0], words[1], words[2]};
         albums.push_back(album);
     }

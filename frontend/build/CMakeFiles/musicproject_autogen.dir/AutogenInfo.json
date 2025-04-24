@@ -296,57 +296,7 @@
 	"CROSS_CONFIG" : false,
 	"DEP_FILE" : "C:/Users/Lenovo/upprpo/YourMusic/frontend/build/musicproject_autogen/deps",
 	"DEP_FILE_RULE_NAME" : "musicproject_autogen/timestamp",
-	"HEADERS" : 
-	[
-		[
-			"C:/Users/Lenovo/upprpo/YourMusic/frontend/albumwidget.h",
-			"MU",
-			"EWIEGA46WW/moc_albumwidget.cpp",
-			null
-		],
-		[
-			"C:/Users/Lenovo/upprpo/YourMusic/frontend/createwidget.h",
-			"MU",
-			"EWIEGA46WW/moc_createwidget.cpp",
-			null
-		],
-		[
-			"C:/Users/Lenovo/upprpo/YourMusic/frontend/musicmain.h",
-			"MU",
-			"EWIEGA46WW/moc_musicmain.cpp",
-			null
-		],
-		[
-			"C:/Users/Lenovo/upprpo/YourMusic/frontend/myalbumswidget.h",
-			"MU",
-			"EWIEGA46WW/moc_myalbumswidget.cpp",
-			null
-		],
-		[
-			"C:/Users/Lenovo/upprpo/YourMusic/frontend/mytrackswidget.h",
-			"MU",
-			"EWIEGA46WW/moc_mytrackswidget.cpp",
-			null
-		],
-		[
-			"C:/Users/Lenovo/upprpo/YourMusic/frontend/profilewidget.h",
-			"MU",
-			"EWIEGA46WW/moc_profilewidget.cpp",
-			null
-		],
-		[
-			"C:/Users/Lenovo/upprpo/YourMusic/frontend/rightbarwidget.h",
-			"MU",
-			"EWIEGA46WW/moc_rightbarwidget.cpp",
-			null
-		],
-		[
-			"C:/Users/Lenovo/upprpo/YourMusic/frontend/userProfileWidget.h",
-			"MU",
-			"EWIEGA46WW/moc_userProfileWidget.cpp",
-			null
-		]
-	],
+	"HEADERS" : [],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
 	"INCLUDE_DIR" : "C:/Users/Lenovo/upprpo/YourMusic/frontend/build/musicproject_autogen/include",
 	"MOC_COMPILATION_FILE" : "C:/Users/Lenovo/upprpo/YourMusic/frontend/build/musicproject_autogen/mocs_compilation.cpp",
@@ -356,7 +306,6 @@
 		"QT_CORE_LIB",
 		"QT_GUI_LIB",
 		"QT_NEEDS_QMAIN",
-		"QT_NO_DEBUG",
 		"QT_WIDGETS_LIB",
 		"UNICODE",
 		"WIN32",
@@ -408,12 +357,30 @@
 	],
 	"MOC_PREDEFS_FILE" : "C:/Users/Lenovo/upprpo/YourMusic/frontend/build/musicproject_autogen/moc_predefs.h",
 	"MOC_RELAXED_MODE" : false,
-	"MOC_SKIP" : [],
+	"MOC_SKIP" : 
+	[
+		"C:/Users/Lenovo/upprpo/YourMusic/frontend/albumwidget.h",
+		"C:/Users/Lenovo/upprpo/YourMusic/frontend/build/moc_albumwidget.cpp",
+		"C:/Users/Lenovo/upprpo/YourMusic/frontend/build/moc_createwidget.cpp",
+		"C:/Users/Lenovo/upprpo/YourMusic/frontend/build/moc_musicmain.cpp",
+		"C:/Users/Lenovo/upprpo/YourMusic/frontend/build/moc_myalbumswidget.cpp",
+		"C:/Users/Lenovo/upprpo/YourMusic/frontend/build/moc_mytrackswidget.cpp",
+		"C:/Users/Lenovo/upprpo/YourMusic/frontend/build/moc_profilewidget.cpp",
+		"C:/Users/Lenovo/upprpo/YourMusic/frontend/build/moc_rightbarwidget.cpp",
+		"C:/Users/Lenovo/upprpo/YourMusic/frontend/build/moc_userProfileWidget.cpp",
+		"C:/Users/Lenovo/upprpo/YourMusic/frontend/createwidget.h",
+		"C:/Users/Lenovo/upprpo/YourMusic/frontend/musicmain.h",
+		"C:/Users/Lenovo/upprpo/YourMusic/frontend/myalbumswidget.h",
+		"C:/Users/Lenovo/upprpo/YourMusic/frontend/mytrackswidget.h",
+		"C:/Users/Lenovo/upprpo/YourMusic/frontend/profilewidget.h",
+		"C:/Users/Lenovo/upprpo/YourMusic/frontend/rightbarwidget.h",
+		"C:/Users/Lenovo/upprpo/YourMusic/frontend/userProfileWidget.h"
+	],
 	"MULTI_CONFIG" : false,
 	"PARALLEL" : 4,
 	"PARSE_CACHE_FILE" : "C:/Users/Lenovo/upprpo/YourMusic/frontend/build/CMakeFiles/musicproject_autogen.dir/ParseCache.txt",
 	"QT_MOC_EXECUTABLE" : "C:/Qt/6.8.2/mingw_64/bin/moc.exe",
-	"QT_UIC_EXECUTABLE" : "C:/Qt/6.8.2/mingw_64/bin/uic.exe",
+	"QT_UIC_EXECUTABLE" : "",
 	"QT_VERSION_MAJOR" : 6,
 	"QT_VERSION_MINOR" : 8,
 	"SETTINGS_FILE" : "C:/Users/Lenovo/upprpo/YourMusic/frontend/build/CMakeFiles/musicproject_autogen.dir/AutogenUsed.txt",
@@ -421,46 +388,42 @@
 	[
 		[
 			"C:/Users/Lenovo/upprpo/YourMusic/frontend/albumwidget.cpp",
-			"MU",
+			"Mu",
 			null
 		],
 		[
 			"C:/Users/Lenovo/upprpo/YourMusic/frontend/createwidget.cpp",
-			"MU",
+			"Mu",
 			null
 		],
-		[ "C:/Users/Lenovo/upprpo/YourMusic/frontend/main.cpp", "MU", null ],
-		[ "C:/Users/Lenovo/upprpo/YourMusic/frontend/musicmain.cpp", "MU", null ],
+		[ "C:/Users/Lenovo/upprpo/YourMusic/frontend/main.cpp", "Mu", null ],
+		[ "C:/Users/Lenovo/upprpo/YourMusic/frontend/musicmain.cpp", "Mu", null ],
 		[
 			"C:/Users/Lenovo/upprpo/YourMusic/frontend/myalbumswidget.cpp",
-			"MU",
+			"Mu",
 			null
 		],
 		[
 			"C:/Users/Lenovo/upprpo/YourMusic/frontend/mytrackswidget.cpp",
-			"MU",
+			"Mu",
 			null
 		],
 		[
 			"C:/Users/Lenovo/upprpo/YourMusic/frontend/profilewidget.cpp",
-			"MU",
+			"Mu",
 			null
 		],
 		[
 			"C:/Users/Lenovo/upprpo/YourMusic/frontend/rightbarwidget.cpp",
-			"MU",
+			"Mu",
 			null
 		],
 		[
 			"C:/Users/Lenovo/upprpo/YourMusic/frontend/userProfileWidget.cpp",
-			"MU",
+			"Mu",
 			null
 		]
 	],
-	"UIC_OPTIONS" : [],
-	"UIC_SEARCH_PATHS" : [],
-	"UIC_SKIP" : [],
-	"UIC_UI_FILES" : [],
 	"USE_BETTER_GRAPH" : true,
 	"VERBOSITY" : 0
 }

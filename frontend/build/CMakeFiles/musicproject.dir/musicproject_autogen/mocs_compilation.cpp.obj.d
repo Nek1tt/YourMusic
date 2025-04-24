@@ -392,6 +392,7 @@ CMakeFiles/musicproject.dir/musicproject_autogen/mocs_compilation.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
  C:/Users/Lenovo/upprpo/YourMusic/frontend/mytrackswidget.h \
+ C:/Users/Lenovo/upprpo/YourMusic/frontend/myalbumswidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qtextcursor.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qtextformat.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qpen.h \
@@ -489,7 +490,6 @@ CMakeFiles/musicproject.dir/musicproject_autogen/mocs_compilation.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QStackedWidget \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qstackedwidget.h \
  C:/Users/Lenovo/upprpo/YourMusic/frontend/userProfileWidget.h \
- C:/Users/Lenovo/upprpo/YourMusic/frontend/myalbumswidget.h \
  C:/Users/Lenovo/upprpo/YourMusic/frontend/createwidget.h \
  C:/Users/Lenovo/upprpo/YourMusic/frontend/rightbarwidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTabWidget \
