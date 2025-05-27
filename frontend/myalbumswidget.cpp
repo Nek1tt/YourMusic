@@ -11,6 +11,10 @@
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QScrollArea>
+#include <QJsonParseError>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
 // #include <QWebSocket>
 #include <QMessageBox>
 #include <QDir>
@@ -20,6 +24,8 @@
 
 
 #include "myalbumswidget.h"
+#include "setstyle.h"
+
 
 AlbumButton::AlbumButton(const struct album &albumData, QWidget *parent)
     : QPushButton(parent), albumData(albumData) {
@@ -29,25 +35,38 @@ AlbumButton::AlbumButton(const struct album &albumData, QWidget *parent)
 
     // Создаем метку для обложки
     QLabel *coverLabel = new QLabel(this);
-    QPixmap coverPixmap(albumData.coverpath);
-    coverLabel->setPixmap(coverPixmap.scaled(150, 150, Qt::KeepAspectRatio));
+    setRoundedImage(coverLabel, albumData.coverpath, 150, 15);
     layout->addWidget(coverLabel);  // Добавляем обложку в макет
 
     // Создаем метки для названия и автора
-    QLabel *nameLabel = new QLabel(albumData.name, this);
-    nameLabel->setFixedHeight(13);
-    nameLabel->setStyleSheet("font-weight: bold; font-size: 11px; font-family: 'Tahoma';");
-    nameLabel->setAlignment(Qt::AlignLeft);
-    layout->addWidget(nameLabel);
+    QPushButton *nameButton = new QPushButton(albumData.name, this);
+    nameButton->setFixedHeight(13);
+    set_button_style(nameButton, 11);
+    //nameLabel->setStyleSheet("font-weight: bold; font-size: 11px; font-family: 'Tahoma';");
+    //nameLabel->setAlignment(Qt::AlignLeft);
+    layout->addWidget(nameButton);
 
-    QLabel *authorLabel = new QLabel(albumData.author, this);
-    authorLabel->setFixedHeight(12);
-    authorLabel->setStyleSheet("color: #828282; font-weight: bold; font-size: 10px; font-family: 'Tahoma';");
-    authorLabel->setAlignment(Qt::AlignLeft);
-    layout->addWidget(authorLabel);
+    QPushButton *authorButton = new QPushButton(albumData.author, this);
+    authorButton->setFixedHeight(12);
+    set_button_style(authorButton, 10, "#828282");
+    //authorLabel->setStyleSheet("color: #828282; font-weight: bold; font-size: 10px; font-family: 'Tahoma';");
+    //authorLabel->setAlignment(Qt::AlignLeft);
+    layout->addWidget(authorButton);
 
     setLayout(layout);
     setFixedSize(170, 200);
+    this->setStyleSheet(
+        "QPushButton {"
+        "    background: none;"
+        "    border: none;"
+        "}"
+        "QPushButton:hover {"
+        "    background-color: rgba(255, 255, 255, 30);"
+        "    border: none;"
+        "    outline: none;"
+        "}"
+        );
+
     // Устанавливаем размер кнопки
 }
 QString AlbumButton::getAlbumName(){
@@ -63,7 +82,7 @@ MyAlbumsWidget::MyAlbumsWidget(QWidget *parent) : QWidget(parent)
 {
 
     MyAlbumsLayout = new QVBoxLayout(this);
-    QPushButton *myAlbumButton = new QPushButton("My playlists");
+    QPushButton *myAlbumButton = new QPushButton("My albums");
     myAlbumButton->setStyleSheet(
         "QPushButton {"
         "font-weight: bold;"
@@ -96,7 +115,8 @@ MyAlbumsWidget::MyAlbumsWidget(QWidget *parent) : QWidget(parent)
 void MyAlbumsWidget::add_albums() {
     clearLayout(albumsLayout);
     albums_vector.clear();
-    read_albums(albums_vector);
+    //read_albums(albums_vector);
+    albums_vector = loadAlbumsFromJson("../resources/jsons/myalbums.json");
 
     // connect(albumButton, &QPushButton::clicked, this, [this, albumButton]() {
     //     emit albumClicked(albumButton->getAlbumName());
@@ -155,30 +175,78 @@ void MyAlbumsWidget::resizeAlbums(int width) {
 }
 
 
-void write_album(album &album){
-    std::ofstream albumFile("../resources/text/playlists.txt", std::ios::app);
-    albumFile<<album.name.toStdString()<<' '<<album.author.toStdString()<<' '<<album.coverpath.toStdString()<<std::endl;
+// void write_album(album &album){
+//     std::ofstream albumFile("../resources/text/playlists.txt", std::ios::app);
+//     albumFile<<album.name.toStdString()<<' '<<album.author.toStdString()<<' '<<album.coverpath.toStdString()<<std::endl;
 
-    albumFile.close();
-}
+//     albumFile.close();
+// }
 
-void write_albums(std::vector<album> &albums){
-    std::ofstream albumFile("../resources/text/playlists.txt");
-    for (auto& album :albums){
-        albumFile<<album.name.toStdString()<<' '<<album.author.toStdString()<<' '
-                     <<album.coverpath.toStdString()<<std::endl;
+// void write_albums(std::vector<album> &albums){
+//     std::ofstream albumFile("../resources/text/playlists.txt");
+//     for (auto& album :albums){
+//         albumFile<<album.name.toStdString()<<' '<<album.author.toStdString()<<' '
+//                      <<album.coverpath.toStdString()<<std::endl;
+//     }
+//     albumFile.close();
+// }
+// void read_albums(std::vector<album> &albums){
+//     std::ifstream albumFile("../resources/text/playlists.txt");
+//     std::string line;
+//     while (std::getline(albumFile, line)){
+//         QString qline = QString::fromStdString(line);
+//         QStringList words = qline.split(' ');
+//         //qDebug()<<words;
+//         album album = {words[0], words[1], words[2]};
+//         albums.push_back(album);
+//     }
+//     albumFile.close();
+// }
+
+QVector<album> loadAlbumsFromJson(const QString &filePath) {
+    QFile file(filePath);
+    QVector<album> albums;
+
+    if (!file.open(QIODevice::ReadOnly)) {
+        qWarning() << "Cannot open file:" << filePath;
+        return albums;
     }
-    albumFile.close();
-}
-void read_albums(std::vector<album> &albums){
-    std::ifstream albumFile("../resources/text/playlists.txt");
-    std::string line;
-    while (std::getline(albumFile, line)){
-        QString qline = QString::fromStdString(line);
-        QStringList words = qline.split(' ');
-        //qDebug()<<words;
-        album album = {words[0], words[1], words[2]};
-        albums.push_back(album);
+
+    QByteArray data = file.readAll();
+    file.close();
+    QJsonParseError parseError;
+    QJsonDocument doc = QJsonDocument::fromJson(data, &parseError);
+    if (parseError.error != QJsonParseError::NoError) {
+        qWarning() << "JSON parse error:" << parseError.errorString();
+        return albums;
     }
-    albumFile.close();
+
+    QJsonArray albumArray = doc.array();
+    for (const QJsonValue &albumValue : albumArray) {
+        QJsonObject root = albumValue.toObject();
+        album albumdata;
+
+        albumdata.id = root["id"].toInt();
+        albumdata.name = root["title"].toString();
+        albumdata.coverpath = root["cover_path"].toString();
+        albumdata.author = root["author"].toString();
+        albumdata.track_count = root["track_count"].toInt();
+
+        QJsonArray trackArray = root["tracks"].toArray();
+        for (const QJsonValue &trackValue : trackArray) {
+            QJsonObject trackObj = trackValue.toObject();
+            track trackdata;
+            trackdata.id = trackObj["id"].toInt();
+            trackdata.album_id = trackObj["album_id"].toInt();
+            trackdata.name = trackObj["title"].toString();
+            trackdata.duration_ms = trackObj["duration_ms"].toInt();
+            trackdata.coverpath = trackObj["cover_path"].toString();
+            trackdata.author = trackObj["author"].toString();
+            albumdata.tracks.append(trackdata);
+        }
+
+        albums.append(albumdata);
+    }
+
+    return albums;
 }

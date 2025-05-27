@@ -31,6 +31,7 @@ public:
     void on_followButton_clicked();
     void resizeBarWidget(int width);
     int get_barWidth();
+    void setNewCurrentTrack(const track &trackData);
     //void set_author_text_tab();
 
 private:
@@ -41,7 +42,13 @@ private:
     QWidget *scrollWidget;
     QPixmap originalCover;
     QPushButton *currentAlbumCoverButton;
+    QPushButton *currentAlbumNameButton;
+    QPushButton *currentTrackNameButton;
+    QPushButton *currentTrackAuthorButton;
+    QLabel *avaLabel;
+    QPushButton *authorNameButton;
     QLabel *currentAlbumCoverLabel;
+    QLabel *lyricsLabel;
     track *currentTrack;
     QPushButton *toLyrics;
     QPushButton *toAuthor;

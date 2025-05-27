@@ -40,6 +40,7 @@ private slots:
     void on_backButton_clicked();
     void on_forwardButton_clicked();
     void on_albumButton_clicked();
+    void on_TrackButton_clicked(track *trackData);
     void onSplitterMoved(int pos, int index);
 
 

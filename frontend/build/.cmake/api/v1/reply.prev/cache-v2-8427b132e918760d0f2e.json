@@ -979,7 +979,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "C:/Qt/6.8.2/mingw_64/lib/cmake/Qt6"
+			"value" : "C:/Qt/6.8.2/mingw_64;C:/Qt/6.8.2/mingw_64/lib/cmake/Qt6"
 		},
 		{
 			"name" : "CMAKE_PROJECT_DESCRIPTION",

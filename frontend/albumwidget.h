@@ -13,6 +13,7 @@ class AlbumTrackButton : public QPushButton {
     Q_OBJECT
 public:
     explicit AlbumTrackButton(const track &trackData, QString number, QWidget *parent = nullptr);
+    explicit AlbumTrackButton(QWidget *parent = nullptr);
     //QString getTrackName();
     //void resize_trackbutton(int width);
 

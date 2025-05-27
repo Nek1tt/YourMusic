@@ -10,9 +10,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/albumwidget.cpp" "CMakeFiles/musicproject.dir/albumwidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/albumwidget.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/createwidget.cpp" "CMakeFiles/musicproject.dir/createwidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/createwidget.cpp.obj.d"
+  "C:/Users/Lenovo/upprpo/YourMusic/frontend/loginwindow.cpp" "CMakeFiles/musicproject.dir/loginwindow.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/loginwindow.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/main.cpp" "CMakeFiles/musicproject.dir/main.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/main.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/build/moc_albumwidget.cpp" "CMakeFiles/musicproject.dir/moc_albumwidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/moc_albumwidget.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/build/moc_createwidget.cpp" "CMakeFiles/musicproject.dir/moc_createwidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/moc_createwidget.cpp.obj.d"
+  "C:/Users/Lenovo/upprpo/YourMusic/frontend/build/moc_loginwindow.cpp" "CMakeFiles/musicproject.dir/moc_loginwindow.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/moc_loginwindow.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/build/moc_musicmain.cpp" "CMakeFiles/musicproject.dir/moc_musicmain.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/moc_musicmain.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/build/moc_myalbumswidget.cpp" "CMakeFiles/musicproject.dir/moc_myalbumswidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/moc_myalbumswidget.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/build/moc_mytrackswidget.cpp" "CMakeFiles/musicproject.dir/moc_mytrackswidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/moc_mytrackswidget.cpp.obj.d"
@@ -24,6 +26,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/mytrackswidget.cpp" "CMakeFiles/musicproject.dir/mytrackswidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/mytrackswidget.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/profilewidget.cpp" "CMakeFiles/musicproject.dir/profilewidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/profilewidget.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/rightbarwidget.cpp" "CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj.d"
+  "C:/Users/Lenovo/upprpo/YourMusic/frontend/setstyle.cpp" "CMakeFiles/musicproject.dir/setstyle.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/setstyle.cpp.obj.d"
   "C:/Users/Lenovo/upprpo/YourMusic/frontend/userProfileWidget.cpp" "CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj" "gcc" "CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj.d"
   )
 

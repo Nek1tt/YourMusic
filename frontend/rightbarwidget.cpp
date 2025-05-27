@@ -7,6 +7,8 @@
 #include <QPainter>
 #include <QPainterPath>
 
+#include "setstyle.h"
+
 
 RightBarWidget::RightBarWidget(int initialScreenWidth, int initialScreenHeight, QWidget *parent, track *currentTrack)
     : QWidget(parent), currentTrack(currentTrack), initialScreenWidth(initialScreenWidth), initialScreenHeight(initialScreenHeight)
@@ -31,37 +33,31 @@ RightBarWidget::RightBarWidget(int initialScreenWidth, int initialScreenHeight, 
 
     QVBoxLayout *scrollLayout = new QVBoxLayout(scrollWidget);
 
-    // Пример загрузки треков
-    std::vector<track> tracks;
-    read_tracks(tracks, "../resources/text/current_track.txt");
-
-    if (!tracks.empty()) {
-        currentTrack = &tracks[0];
-    }
-
     // кнопка с названием альбома трека
-    QPushButton *currentAlbumNameButton = new QPushButton(currentTrack->name);
+    currentAlbumNameButton = new QPushButton();
     currentAlbumNameButton->setCursor(Qt::PointingHandCursor);
-    currentAlbumNameButton->setStyleSheet(
-        "QPushButton {"
-        "text-align: center;"
-        "padding-bottom: 10px;"
-        "font-weight: bold;"
-        "font-size: 25px;"
-        "font-family: 'Tahoma';"
-        "    background: none;"                  // Убираем фон
-        "    border: none;"                      // Убираем рамку
-        //"    border: 2px solid blue;"  // рамка 2px
-        "    text-decoration: none;"             // Убираем подчеркивание по умолчанию
-        "}"
-        "QPushButton:hover {"
-        "    text-decoration: underline;"        // Подчеркиваем текст при наведении
-        "}"
-        );
+    set_button_style(currentAlbumNameButton, 25, "white", "center", "10px");
+    // currentAlbumNameButton->setStyleSheet(
+    //     "QPushButton {"
+    //     "text-align: center;"
+    //     "padding-bottom: 10px;"
+    //     "font-weight: bold;"
+    //     "font-size: 25px;"
+    //     "font-family: 'Tahoma';"
+    //     "    background: none;"                  // Убираем фон
+    //     "    border: none;"                      // Убираем рамку
+    //     //"    border: 2px solid blue;"  // рамка 2px
+    //     "    text-decoration: none;"             // Убираем подчеркивание по умолчанию
+    //     "}"
+    //     "QPushButton:hover {"
+    //     "    text-decoration: underline;"        // Подчеркиваем текст при наведении
+    //     "}"
+    //     );
 
     scrollLayout->addWidget(currentAlbumNameButton);
 
     currentAlbumCoverButton = new QPushButton();
+
     currentAlbumCoverButton->setCursor(Qt::PointingHandCursor);
     currentAlbumCoverButton->setFixedSize(coverSize, coverSize);
 
@@ -69,69 +65,55 @@ RightBarWidget::RightBarWidget(int initialScreenWidth, int initialScreenHeight, 
 
     // Загружаем и масштабируем изображение
     //QPixmap albumCoverPath(currentTrack->coverpath);
-    originalCover.load(currentTrack->coverpath);
-    QPixmap scaled = originalCover.scaled(coverSize, coverSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    currentAlbumCoverLabel->setPixmap(scaled);
-
-    QPixmap scaledPixmap = originalCover.scaled(coverSize, coverSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
-    // Создаём изображение с закруглениями
-    QPixmap roundedPixmap(scaledPixmap.size());
-    roundedPixmap.fill(Qt::transparent);
-
-    QPainter painter(&roundedPixmap);
-    painter.setRenderHint(QPainter::Antialiasing);
-    QPainterPath path;
-    path.addRoundedRect(scaledPixmap.rect(), 15, 15);  // Радиус 15px
-    painter.setClipPath(path);
-    painter.drawPixmap(0, 0, scaledPixmap);
-
-    currentAlbumCoverLabel->setPixmap(roundedPixmap);
+    setRoundedImage(currentAlbumCoverLabel, currentTrack->coverpath, coverSize, 15);
     scrollLayout->addWidget(currentAlbumCoverButton, 0, Qt::AlignHCenter);
 
 
 
-    QPushButton *currentTrackNameButton = new QPushButton(currentTrack->name);
+    currentTrackNameButton = new QPushButton();
     currentTrackNameButton->setCursor(Qt::PointingHandCursor);
-    currentTrackNameButton->setStyleSheet(
-        "QPushButton {"
-        "text-align: center;"
-        "padding-top: 5px;"
-        "font-weight: bold;"
-        "font-size: 20px;"
-        "font-family: 'Tahoma';"
-        "    background: none;"                  // Убираем фон
-        "    border: none;"                      // Убираем рамку
-        //"    border: 2px solid blue;"  // рамка 2px
-        "    text-decoration: none;"             // Убираем подчеркивание по умолчанию
-        "}"
-        "QPushButton:hover {"
-        "    text-decoration: underline;"        // Подчеркиваем текст при наведении
-        "}"
-        );
+    set_button_style(currentTrackNameButton, 20, "white", "center", "5px");
+    // currentTrackNameButton->setStyleSheet(
+    //     "QPushButton {"
+    //     "text-align: center;"
+    //     "padding-top: 5px;"
+    //     "font-weight: bold;"
+    //     "font-size: 20px;"
+    //     "font-family: 'Tahoma';"
+    //     "    background: none;"                  // Убираем фон
+    //     "    border: none;"                      // Убираем рамку
+    //     //"    border: 2px solid blue;"  // рамка 2px
+    //     "    text-decoration: none;"             // Убираем подчеркивание по умолчанию
+    //     "}"
+    //     "QPushButton:hover {"
+    //     "    text-decoration: underline;"        // Подчеркиваем текст при наведении
+    //     "}"
+    //     );
 
     scrollLayout->addWidget(currentTrackNameButton);
 
 
 
-    QPushButton *currentTrackAuthorButton = new QPushButton(currentTrack->author);
+    currentTrackAuthorButton = new QPushButton();
     currentTrackAuthorButton->setCursor(Qt::PointingHandCursor);
-    currentTrackAuthorButton->setStyleSheet(
-        "QPushButton {"
-        "text-align: center;"
-        "padding-bottom: 10px;"
-        "font-weight: bold; color: #828282;"
-        "font-size: 15px;"
-        "font-family: 'Tahoma';"
-        "    background: none;"                  // Убираем фон
-        "    border: none;"                      // Убираем рамку
-        //"    border: 2px solid blue;"  // рамка 2px
-        "    text-decoration: none;"             // Убираем подчеркивание по умолчанию
-        "}"
-        "QPushButton:hover {"
-        "    text-decoration: underline;"        // Подчеркиваем текст при наведении
-        "}"
-        );
+    set_button_style(currentTrackAuthorButton, 15, "white", "center", "10px");
+
+    // currentTrackAuthorButton->setStyleSheet(
+    //     "QPushButton {"
+    //     "text-align: center;"
+    //     "padding-bottom: 10px;"
+    //     "font-weight: bold; color: #828282;"
+    //     "font-size: 15px;"
+    //     "font-family: 'Tahoma';"
+    //     "    background: none;"                  // Убираем фон
+    //     "    border: none;"                      // Убираем рамку
+    //     //"    border: 2px solid blue;"  // рамка 2px
+    //     "    text-decoration: none;"             // Убираем подчеркивание по умолчанию
+    //     "}"
+    //     "QPushButton:hover {"
+    //     "    text-decoration: underline;"        // Подчеркиваем текст при наведении
+    //     "}"
+    //     );
 
     scrollLayout->addWidget(currentTrackAuthorButton);
 
@@ -166,54 +148,53 @@ RightBarWidget::RightBarWidget(int initialScreenWidth, int initialScreenHeight, 
     infoLayout->setContentsMargins(0, 0, 0, 0);
     authorInfoLayout->addWidget(infoWidget);
 
-    QPixmap authorAva("../resources/imgs/ava.png");
-    QLabel *avaLabel = new QLabel();
-    avaLabel->setPixmap(authorAva.scaled(200, 200, Qt::KeepAspectRatio));
-    avaLabel->setFixedHeight(200);
-    avaLabel->setAlignment(Qt::AlignHCenter);  // Сохранение верхней части картинки
-    //avaLabel->setStyleSheet("padding-bottom: 0px");
+    // QPixmap authorAva("../resources/imgs/ava.png");
+    avaLabel = new QLabel();
+    // avaLabel->setFixedHeight(200);
+    // avaLabel->setAlignment(Qt::AlignHCenter);  // Сохранение верхней части картинки
+    // //avaLabel->setStyleSheet("padding-bottom: 0px");
     infoLayout->addWidget(avaLabel,0, Qt::AlignHCenter);
-    QPushButton *authorNameButton = new QPushButton("noize");
-    authorNameButton->setStyleSheet(
-        "QPushButton {"
-        "text-align: left; padding-left: 10px;"
-        "padding-bottom: 10px;"
-        "font-weight: bold;"
-        "font-size: 18px;"
-        "font-family: 'Tahoma';"
-        "    background: none;"                  // Убираем фон
-        "    border: none;"                      // Убираем рамку
-        //"    border: 2px solid blue;"  // рамка 2px
-        "    text-decoration: none;"             // Убираем подчеркивание по умолчанию
-        "}"
-        "QPushButton:hover {"
-        "    text-decoration: underline;"        // Подчеркиваем текст при наведении
-        "}"
-        );
+
+
+    authorNameButton = new QPushButton();
+    set_button_style(authorNameButton, 18, "white", "left", "10px");
+    // authorNameButton->setStyleSheet(
+    //     "QPushButton {"
+    //     "text-align: left; padding-left: 10px;
+    //     "padding-bottom: 10px;"
+    //     "font-weight: bold;"
+    //     "font-size: 18px;"
+    //     "font-family: 'Tahoma';"
+    //     "    background: none;"                  // Убираем фон
+    //     "    border: none;"                      // Убираем рамку
+    //     //"    border: 2px solid blue;"  // рамка 2px
+    //     "    text-decoration: none;"             // Убираем подчеркивание по умолчанию
+    //     "}"
+    //     "QPushButton:hover {"
+    //     "    text-decoration: underline;"        // Подчеркиваем текст при наведении
+    //     "}"
+    //     );
     infoLayout->addWidget(authorNameButton, 0, Qt::AlignHCenter);
     followButton = new QPushButton();
-    if (isFollowed){
-        followButton->setText("Unfollow");
-    }else{
-        followButton->setText("Follow");
-    }
+
     connect(followButton, &QPushButton::clicked, this, &RightBarWidget::on_followButton_clicked);
     followButton->setFixedWidth(100);
-    followButton->setStyleSheet(
-        "QPushButton {"
-        "    text-align: center;"  // Центрируем текст
-        "    font-weight: bold;"
-        "    font-size: 16px;"
-        "    font-family: 'Tahoma';"
-        "    background-color: #333333;"  // Темно-серый фон
-        "    border: 1px solid white;"     // Белая рамка 1px
-        "    border-radius: 4px;"          // Скругленные углы радиусом 4px
-        "    text-decoration: none;"       // Убираем подчеркивание по умолчанию
-        "}"
-        "QPushButton:hover {"
-        "    border: 2px solid white;"      // Увеличенная рамка до 2px при наведении
-        "}"
-        );
+    set_border_button_style(followButton, 16, "white");
+    // followButton->setStyleSheet(
+    //     "QPushButton {"
+    //     "    text-align: center;"  // Центрируем текст
+    //     "    font-weight: bold;"
+    //     "    font-size: 16px;"
+    //     "    font-family: 'Tahoma';"
+    //     "    background-color: #333333;"  // Темно-серый фон
+    //     "    border: 1px solid white;"     // Белая рамка 1px
+    //     "    border-radius: 4px;"          // Скругленные углы радиусом 4px
+    //     "    text-decoration: none;"       // Убираем подчеркивание по умолчанию
+    //     "}"
+    //     "QPushButton:hover {"
+    //     "    border: 2px solid white;"      // Увеличенная рамка до 2px при наведении
+    //     "}"
+    //     );
     infoLayout->addWidget(followButton, 0, Qt::AlignHCenter);
 
 
@@ -222,7 +203,7 @@ RightBarWidget::RightBarWidget(int initialScreenWidth, int initialScreenHeight, 
     authorWidget->setLayout(authorInfoLayout); // ← добавлено
 
 
-    QLabel *lyricsLabel = new QLabel();
+    lyricsLabel = new QLabel();
     lyricsLabel->setWordWrap(true);
     lyricsLabel->setTextInteractionFlags(Qt::TextSelectableByMouse);
     lyricsLabel->setStyleSheet(
@@ -232,14 +213,6 @@ RightBarWidget::RightBarWidget(int initialScreenWidth, int initialScreenHeight, 
         );
     lyricsLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
     lyricsLabel->setAlignment(Qt::AlignTop | Qt::AlignLeft);
-
-    // Загружаем текст
-    QFile file("../resources/text/song_texts/noize.txt");
-    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QTextStream in(&file);
-        QString lyrics = in.readAll();
-        lyricsLabel->setText(lyrics);
-    }
 
     // Контейнер с layout
     QWidget *lyricsContainer = new QWidget();
@@ -271,9 +244,45 @@ RightBarWidget::RightBarWidget(int initialScreenWidth, int initialScreenHeight, 
     this->setMinimumWidth(235);
     //this->resize(barSize, initialScreenHeight);
     //this->setFixedWidth(barSize);
+    if (!currentTrack) {
+        qDebug() << "currentTrack == nullptr";
+    } else {
+        qDebug() << "currentTrack address:" << currentTrack;
+        qDebug() << "path is valid?" << currentTrack->coverpath;
+    }
+
 }
 
+void RightBarWidget::setNewCurrentTrack(const track &trackData) {
+    currentTrack = new track(trackData);
+    qDebug()<<currentTrack->name;
+    qDebug()<<currentTrack->coverpath;
 
+    currentAlbumNameButton->setText(currentTrack->name);
+
+    setRoundedImage(currentAlbumCoverLabel, currentTrack->coverpath, coverSize, 15);
+
+    currentTrackNameButton->setText(currentTrack->name);
+
+    currentTrackAuthorButton->setText(currentTrack->author);
+
+    setRoundedImage(avaLabel, "../resources/imgs/ava.png", 200, 15);
+
+    authorNameButton->setText(currentTrack->author);
+
+    if (isFollowed){
+        followButton->setText("Unfollow");
+    }else{
+        followButton->setText("Follow");
+    }
+
+    QFile file("../resources/text/song_texts/noize.txt");
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QTextStream in(&file);
+        QString lyrics = in.readAll();
+        lyricsLabel->setText(lyrics);
+    }
+}
 
 void RightBarWidget::toggle_buttons(){
     QString activeStyle =
@@ -343,25 +352,19 @@ void RightBarWidget::on_followButton_clicked(){
 
 void RightBarWidget::resizeBarWidget(int width){
     barSize = width;
+    if (!currentTrack) {
+        qDebug() << "currentTrack == nullptr";
+    } else {
+        qDebug() << "currentTrack address:" << currentTrack;
+        qDebug() << "path is valid?" << currentTrack->coverpath;
+    }
+
+    //qDebug()<<currentTrack;
     scrollWidget->setFixedWidth(barSize);
 
     coverSize = barSize/1.2;
     currentAlbumCoverButton->setFixedSize(coverSize, coverSize);
-    QPixmap newPixmap = originalCover.scaled(coverSize, coverSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    currentAlbumCoverLabel->setPixmap(newPixmap);
-    currentAlbumCoverLabel->setFixedSize(newPixmap.size());
-
-    QPixmap roundedPixmap(newPixmap.size());
-    roundedPixmap.fill(Qt::transparent);
-
-    QPainter painter(&roundedPixmap);
-    painter.setRenderHint(QPainter::Antialiasing);
-    QPainterPath path;
-    path.addRoundedRect(newPixmap.rect(), 15, 15);  // Радиус 15px
-    painter.setClipPath(path);
-    painter.drawPixmap(0, 0, newPixmap);
-
-    currentAlbumCoverLabel->setPixmap(roundedPixmap);
+    setRoundedImage(currentAlbumCoverLabel, currentTrack->coverpath, coverSize, 15);
     //scrollLayout->addWidget(currentAlbumCoverButton, 0, Qt::AlignHCenter);
     //this->resize(barSize, initialScreenHeight);
 }

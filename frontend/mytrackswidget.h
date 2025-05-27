@@ -9,13 +9,13 @@
 #define MYTRACKSWIDGET_H
 
 
-struct track
-{
+struct track {
+    int id;
+    int album_id;
     QString name;
-    QString author;
+    int duration_ms;
     QString coverpath;
-    int min;
-    int sec;
+    QString author;
 };
 
 class TrackButton : public QPushButton {
@@ -23,10 +23,16 @@ class TrackButton : public QPushButton {
 public:
     explicit TrackButton(const track &trackData,QWidget *parent = nullptr);
     QString getTrackName();
+    track* getTrack();
     void resize_trackbutton(int width);
 
+protected:
+    void mouseDoubleClickEvent(QMouseEvent *event) override;
 private:
     track trackData;
+
+signals:
+    void trackButtonClicked(track *trackData);
 };
 
 
@@ -37,20 +43,26 @@ public:
     explicit MyTracksWidget(QWidget *parent = nullptr);
     void resize_tracks(int width);
     void clearLayout(QLayout *layout);
-    void add_tracks();
+    void add_liked_tracks();
+    void add_loaded_tracks();
+
+    void onTrackdoubleClicked(track *trackData);
 
 private:
     QVBoxLayout *MyTracksLayout;
+    QPushButton *myTracksButton;
     QWidget *tracks;
     QHBoxLayout *tracks_layout_of_verticals;
-    std::vector<track> tracks_vector;
+    QVector<track> tracks_vector;
     std::vector<TrackButton*> trackButtons;
 
+signals:
+    void trackButtonClicked(track *trackData);
 };
 
 
-void write_track(track &track);
-void read_tracks(std::vector<track> &tracks, std::string track_path);
-
+// void write_track(track &track);
+// void read_tracks(std::vector<track> &tracks, std::string track_path);
+QVector<track> readFromJson(const QString &filepath);
 
 #endif // MYTRACKSWIDGET_H

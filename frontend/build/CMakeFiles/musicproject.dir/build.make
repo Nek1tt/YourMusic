@@ -100,11 +100,15 @@ moc_userProfileWidget.cpp: C:/Users/Lenovo/upprpo/YourMusic/frontend/userProfile
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Generating moc_userProfileWidget.cpp"
 	C:\Qt\6.8.2\mingw_64\bin\moc.exe @C:/Users/Lenovo/upprpo/YourMusic/frontend/build/moc_userProfileWidget.cpp_parameters
 
+moc_loginwindow.cpp: C:/Users/Lenovo/upprpo/YourMusic/frontend/loginwindow.h
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Generating moc_loginwindow.cpp"
+	C:\Qt\6.8.2\mingw_64\bin\moc.exe @C:/Users/Lenovo/upprpo/YourMusic/frontend/build/moc_loginwindow.cpp_parameters
+
 CMakeFiles/musicproject.dir/main.cpp.obj: CMakeFiles/musicproject.dir/flags.make
 CMakeFiles/musicproject.dir/main.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
 CMakeFiles/musicproject.dir/main.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/frontend/main.cpp
 CMakeFiles/musicproject.dir/main.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/musicproject.dir/main.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/musicproject.dir/main.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/main.cpp.obj -MF CMakeFiles\musicproject.dir\main.cpp.obj.d -o CMakeFiles\musicproject.dir\main.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\main.cpp
 
 CMakeFiles/musicproject.dir/main.cpp.i: cmake_force
@@ -119,7 +123,7 @@ CMakeFiles/musicproject.dir/musicmain.cpp.obj: CMakeFiles/musicproject.dir/flags
 CMakeFiles/musicproject.dir/musicmain.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
 CMakeFiles/musicproject.dir/musicmain.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/frontend/musicmain.cpp
 CMakeFiles/musicproject.dir/musicmain.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/musicproject.dir/musicmain.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/musicproject.dir/musicmain.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/musicmain.cpp.obj -MF CMakeFiles\musicproject.dir\musicmain.cpp.obj.d -o CMakeFiles\musicproject.dir\musicmain.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\musicmain.cpp
 
 CMakeFiles/musicproject.dir/musicmain.cpp.i: cmake_force
@@ -134,7 +138,7 @@ CMakeFiles/musicproject.dir/albumwidget.cpp.obj: CMakeFiles/musicproject.dir/fla
 CMakeFiles/musicproject.dir/albumwidget.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
 CMakeFiles/musicproject.dir/albumwidget.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/frontend/albumwidget.cpp
 CMakeFiles/musicproject.dir/albumwidget.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/musicproject.dir/albumwidget.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/musicproject.dir/albumwidget.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/albumwidget.cpp.obj -MF CMakeFiles\musicproject.dir\albumwidget.cpp.obj.d -o CMakeFiles\musicproject.dir\albumwidget.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\albumwidget.cpp
 
 CMakeFiles/musicproject.dir/albumwidget.cpp.i: cmake_force
@@ -149,7 +153,7 @@ CMakeFiles/musicproject.dir/createwidget.cpp.obj: CMakeFiles/musicproject.dir/fl
 CMakeFiles/musicproject.dir/createwidget.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
 CMakeFiles/musicproject.dir/createwidget.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/frontend/createwidget.cpp
 CMakeFiles/musicproject.dir/createwidget.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/musicproject.dir/createwidget.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/musicproject.dir/createwidget.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/createwidget.cpp.obj -MF CMakeFiles\musicproject.dir\createwidget.cpp.obj.d -o CMakeFiles\musicproject.dir\createwidget.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\createwidget.cpp
 
 CMakeFiles/musicproject.dir/createwidget.cpp.i: cmake_force
@@ -164,7 +168,7 @@ CMakeFiles/musicproject.dir/profilewidget.cpp.obj: CMakeFiles/musicproject.dir/f
 CMakeFiles/musicproject.dir/profilewidget.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
 CMakeFiles/musicproject.dir/profilewidget.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/frontend/profilewidget.cpp
 CMakeFiles/musicproject.dir/profilewidget.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/musicproject.dir/profilewidget.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/musicproject.dir/profilewidget.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/profilewidget.cpp.obj -MF CMakeFiles\musicproject.dir\profilewidget.cpp.obj.d -o CMakeFiles\musicproject.dir\profilewidget.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\profilewidget.cpp
 
 CMakeFiles/musicproject.dir/profilewidget.cpp.i: cmake_force
@@ -179,7 +183,7 @@ CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj: CMakeFiles/musicproject.dir/
 CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
 CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/frontend/rightbarwidget.cpp
 CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj -MF CMakeFiles\musicproject.dir\rightbarwidget.cpp.obj.d -o CMakeFiles\musicproject.dir\rightbarwidget.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\rightbarwidget.cpp
 
 CMakeFiles/musicproject.dir/rightbarwidget.cpp.i: cmake_force
@@ -194,7 +198,7 @@ CMakeFiles/musicproject.dir/myalbumswidget.cpp.obj: CMakeFiles/musicproject.dir/
 CMakeFiles/musicproject.dir/myalbumswidget.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
 CMakeFiles/musicproject.dir/myalbumswidget.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/frontend/myalbumswidget.cpp
 CMakeFiles/musicproject.dir/myalbumswidget.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/musicproject.dir/myalbumswidget.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/musicproject.dir/myalbumswidget.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/myalbumswidget.cpp.obj -MF CMakeFiles\musicproject.dir\myalbumswidget.cpp.obj.d -o CMakeFiles\musicproject.dir\myalbumswidget.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\myalbumswidget.cpp
 
 CMakeFiles/musicproject.dir/myalbumswidget.cpp.i: cmake_force
@@ -209,7 +213,7 @@ CMakeFiles/musicproject.dir/mytrackswidget.cpp.obj: CMakeFiles/musicproject.dir/
 CMakeFiles/musicproject.dir/mytrackswidget.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
 CMakeFiles/musicproject.dir/mytrackswidget.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/frontend/mytrackswidget.cpp
 CMakeFiles/musicproject.dir/mytrackswidget.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/musicproject.dir/mytrackswidget.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/musicproject.dir/mytrackswidget.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/mytrackswidget.cpp.obj -MF CMakeFiles\musicproject.dir\mytrackswidget.cpp.obj.d -o CMakeFiles\musicproject.dir\mytrackswidget.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\mytrackswidget.cpp
 
 CMakeFiles/musicproject.dir/mytrackswidget.cpp.i: cmake_force
@@ -224,7 +228,7 @@ CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj: CMakeFiles/musicproject.d
 CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
 CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/frontend/userProfileWidget.cpp
 CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj -MF CMakeFiles\musicproject.dir\userProfileWidget.cpp.obj.d -o CMakeFiles\musicproject.dir\userProfileWidget.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\userProfileWidget.cpp
 
 CMakeFiles/musicproject.dir/userProfileWidget.cpp.i: cmake_force
@@ -235,11 +239,26 @@ CMakeFiles/musicproject.dir/userProfileWidget.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/musicproject.dir/userProfileWidget.cpp.s"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Lenovo\upprpo\YourMusic\frontend\userProfileWidget.cpp -o CMakeFiles\musicproject.dir\userProfileWidget.cpp.s
 
+CMakeFiles/musicproject.dir/loginwindow.cpp.obj: CMakeFiles/musicproject.dir/flags.make
+CMakeFiles/musicproject.dir/loginwindow.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
+CMakeFiles/musicproject.dir/loginwindow.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/frontend/loginwindow.cpp
+CMakeFiles/musicproject.dir/loginwindow.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/musicproject.dir/loginwindow.cpp.obj"
+	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/loginwindow.cpp.obj -MF CMakeFiles\musicproject.dir\loginwindow.cpp.obj.d -o CMakeFiles\musicproject.dir\loginwindow.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\loginwindow.cpp
+
+CMakeFiles/musicproject.dir/loginwindow.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/musicproject.dir/loginwindow.cpp.i"
+	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Lenovo\upprpo\YourMusic\frontend\loginwindow.cpp > CMakeFiles\musicproject.dir\loginwindow.cpp.i
+
+CMakeFiles/musicproject.dir/loginwindow.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/musicproject.dir/loginwindow.cpp.s"
+	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Lenovo\upprpo\YourMusic\frontend\loginwindow.cpp -o CMakeFiles\musicproject.dir\loginwindow.cpp.s
+
 CMakeFiles/musicproject.dir/moc_musicmain.cpp.obj: CMakeFiles/musicproject.dir/flags.make
 CMakeFiles/musicproject.dir/moc_musicmain.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
 CMakeFiles/musicproject.dir/moc_musicmain.cpp.obj: moc_musicmain.cpp
 CMakeFiles/musicproject.dir/moc_musicmain.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/musicproject.dir/moc_musicmain.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/musicproject.dir/moc_musicmain.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/moc_musicmain.cpp.obj -MF CMakeFiles\musicproject.dir\moc_musicmain.cpp.obj.d -o CMakeFiles\musicproject.dir\moc_musicmain.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\build\moc_musicmain.cpp
 
 CMakeFiles/musicproject.dir/moc_musicmain.cpp.i: cmake_force
@@ -254,7 +273,7 @@ CMakeFiles/musicproject.dir/moc_albumwidget.cpp.obj: CMakeFiles/musicproject.dir
 CMakeFiles/musicproject.dir/moc_albumwidget.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
 CMakeFiles/musicproject.dir/moc_albumwidget.cpp.obj: moc_albumwidget.cpp
 CMakeFiles/musicproject.dir/moc_albumwidget.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/musicproject.dir/moc_albumwidget.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/musicproject.dir/moc_albumwidget.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/moc_albumwidget.cpp.obj -MF CMakeFiles\musicproject.dir\moc_albumwidget.cpp.obj.d -o CMakeFiles\musicproject.dir\moc_albumwidget.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\build\moc_albumwidget.cpp
 
 CMakeFiles/musicproject.dir/moc_albumwidget.cpp.i: cmake_force
@@ -269,7 +288,7 @@ CMakeFiles/musicproject.dir/moc_createwidget.cpp.obj: CMakeFiles/musicproject.di
 CMakeFiles/musicproject.dir/moc_createwidget.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
 CMakeFiles/musicproject.dir/moc_createwidget.cpp.obj: moc_createwidget.cpp
 CMakeFiles/musicproject.dir/moc_createwidget.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/musicproject.dir/moc_createwidget.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/musicproject.dir/moc_createwidget.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/moc_createwidget.cpp.obj -MF CMakeFiles\musicproject.dir\moc_createwidget.cpp.obj.d -o CMakeFiles\musicproject.dir\moc_createwidget.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\build\moc_createwidget.cpp
 
 CMakeFiles/musicproject.dir/moc_createwidget.cpp.i: cmake_force
@@ -284,7 +303,7 @@ CMakeFiles/musicproject.dir/moc_profilewidget.cpp.obj: CMakeFiles/musicproject.d
 CMakeFiles/musicproject.dir/moc_profilewidget.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
 CMakeFiles/musicproject.dir/moc_profilewidget.cpp.obj: moc_profilewidget.cpp
 CMakeFiles/musicproject.dir/moc_profilewidget.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/musicproject.dir/moc_profilewidget.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/musicproject.dir/moc_profilewidget.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/moc_profilewidget.cpp.obj -MF CMakeFiles\musicproject.dir\moc_profilewidget.cpp.obj.d -o CMakeFiles\musicproject.dir\moc_profilewidget.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\build\moc_profilewidget.cpp
 
 CMakeFiles/musicproject.dir/moc_profilewidget.cpp.i: cmake_force
@@ -299,7 +318,7 @@ CMakeFiles/musicproject.dir/moc_rightbarwidget.cpp.obj: CMakeFiles/musicproject.
 CMakeFiles/musicproject.dir/moc_rightbarwidget.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
 CMakeFiles/musicproject.dir/moc_rightbarwidget.cpp.obj: moc_rightbarwidget.cpp
 CMakeFiles/musicproject.dir/moc_rightbarwidget.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/musicproject.dir/moc_rightbarwidget.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/musicproject.dir/moc_rightbarwidget.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/moc_rightbarwidget.cpp.obj -MF CMakeFiles\musicproject.dir\moc_rightbarwidget.cpp.obj.d -o CMakeFiles\musicproject.dir\moc_rightbarwidget.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\build\moc_rightbarwidget.cpp
 
 CMakeFiles/musicproject.dir/moc_rightbarwidget.cpp.i: cmake_force
@@ -314,7 +333,7 @@ CMakeFiles/musicproject.dir/moc_myalbumswidget.cpp.obj: CMakeFiles/musicproject.
 CMakeFiles/musicproject.dir/moc_myalbumswidget.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
 CMakeFiles/musicproject.dir/moc_myalbumswidget.cpp.obj: moc_myalbumswidget.cpp
 CMakeFiles/musicproject.dir/moc_myalbumswidget.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/musicproject.dir/moc_myalbumswidget.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/musicproject.dir/moc_myalbumswidget.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/moc_myalbumswidget.cpp.obj -MF CMakeFiles\musicproject.dir\moc_myalbumswidget.cpp.obj.d -o CMakeFiles\musicproject.dir\moc_myalbumswidget.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\build\moc_myalbumswidget.cpp
 
 CMakeFiles/musicproject.dir/moc_myalbumswidget.cpp.i: cmake_force
@@ -329,7 +348,7 @@ CMakeFiles/musicproject.dir/moc_mytrackswidget.cpp.obj: CMakeFiles/musicproject.
 CMakeFiles/musicproject.dir/moc_mytrackswidget.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
 CMakeFiles/musicproject.dir/moc_mytrackswidget.cpp.obj: moc_mytrackswidget.cpp
 CMakeFiles/musicproject.dir/moc_mytrackswidget.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/musicproject.dir/moc_mytrackswidget.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Building CXX object CMakeFiles/musicproject.dir/moc_mytrackswidget.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/moc_mytrackswidget.cpp.obj -MF CMakeFiles\musicproject.dir\moc_mytrackswidget.cpp.obj.d -o CMakeFiles\musicproject.dir\moc_mytrackswidget.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\build\moc_mytrackswidget.cpp
 
 CMakeFiles/musicproject.dir/moc_mytrackswidget.cpp.i: cmake_force
@@ -344,7 +363,7 @@ CMakeFiles/musicproject.dir/moc_userProfileWidget.cpp.obj: CMakeFiles/musicproje
 CMakeFiles/musicproject.dir/moc_userProfileWidget.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
 CMakeFiles/musicproject.dir/moc_userProfileWidget.cpp.obj: moc_userProfileWidget.cpp
 CMakeFiles/musicproject.dir/moc_userProfileWidget.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Building CXX object CMakeFiles/musicproject.dir/moc_userProfileWidget.cpp.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_27) "Building CXX object CMakeFiles/musicproject.dir/moc_userProfileWidget.cpp.obj"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/moc_userProfileWidget.cpp.obj -MF CMakeFiles\musicproject.dir\moc_userProfileWidget.cpp.obj.d -o CMakeFiles\musicproject.dir\moc_userProfileWidget.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\build\moc_userProfileWidget.cpp
 
 CMakeFiles/musicproject.dir/moc_userProfileWidget.cpp.i: cmake_force
@@ -354,6 +373,36 @@ CMakeFiles/musicproject.dir/moc_userProfileWidget.cpp.i: cmake_force
 CMakeFiles/musicproject.dir/moc_userProfileWidget.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/musicproject.dir/moc_userProfileWidget.cpp.s"
 	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Lenovo\upprpo\YourMusic\frontend\build\moc_userProfileWidget.cpp -o CMakeFiles\musicproject.dir\moc_userProfileWidget.cpp.s
+
+CMakeFiles/musicproject.dir/moc_loginwindow.cpp.obj: CMakeFiles/musicproject.dir/flags.make
+CMakeFiles/musicproject.dir/moc_loginwindow.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
+CMakeFiles/musicproject.dir/moc_loginwindow.cpp.obj: moc_loginwindow.cpp
+CMakeFiles/musicproject.dir/moc_loginwindow.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_28) "Building CXX object CMakeFiles/musicproject.dir/moc_loginwindow.cpp.obj"
+	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/moc_loginwindow.cpp.obj -MF CMakeFiles\musicproject.dir\moc_loginwindow.cpp.obj.d -o CMakeFiles\musicproject.dir\moc_loginwindow.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\build\moc_loginwindow.cpp
+
+CMakeFiles/musicproject.dir/moc_loginwindow.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/musicproject.dir/moc_loginwindow.cpp.i"
+	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Lenovo\upprpo\YourMusic\frontend\build\moc_loginwindow.cpp > CMakeFiles\musicproject.dir\moc_loginwindow.cpp.i
+
+CMakeFiles/musicproject.dir/moc_loginwindow.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/musicproject.dir/moc_loginwindow.cpp.s"
+	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Lenovo\upprpo\YourMusic\frontend\build\moc_loginwindow.cpp -o CMakeFiles\musicproject.dir\moc_loginwindow.cpp.s
+
+CMakeFiles/musicproject.dir/setstyle.cpp.obj: CMakeFiles/musicproject.dir/flags.make
+CMakeFiles/musicproject.dir/setstyle.cpp.obj: CMakeFiles/musicproject.dir/includes_CXX.rsp
+CMakeFiles/musicproject.dir/setstyle.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/frontend/setstyle.cpp
+CMakeFiles/musicproject.dir/setstyle.cpp.obj: CMakeFiles/musicproject.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_29) "Building CXX object CMakeFiles/musicproject.dir/setstyle.cpp.obj"
+	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/musicproject.dir/setstyle.cpp.obj -MF CMakeFiles\musicproject.dir\setstyle.cpp.obj.d -o CMakeFiles\musicproject.dir\setstyle.cpp.obj -c C:\Users\Lenovo\upprpo\YourMusic\frontend\setstyle.cpp
+
+CMakeFiles/musicproject.dir/setstyle.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/musicproject.dir/setstyle.cpp.i"
+	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Lenovo\upprpo\YourMusic\frontend\setstyle.cpp > CMakeFiles\musicproject.dir\setstyle.cpp.i
+
+CMakeFiles/musicproject.dir/setstyle.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/musicproject.dir/setstyle.cpp.s"
+	C:\Qt\Tools\mingw1310_64\bin\c++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Lenovo\upprpo\YourMusic\frontend\setstyle.cpp -o CMakeFiles\musicproject.dir\setstyle.cpp.s
 
 # Object files for target musicproject
 musicproject_OBJECTS = \
@@ -366,6 +415,7 @@ musicproject_OBJECTS = \
 "CMakeFiles/musicproject.dir/myalbumswidget.cpp.obj" \
 "CMakeFiles/musicproject.dir/mytrackswidget.cpp.obj" \
 "CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj" \
+"CMakeFiles/musicproject.dir/loginwindow.cpp.obj" \
 "CMakeFiles/musicproject.dir/moc_musicmain.cpp.obj" \
 "CMakeFiles/musicproject.dir/moc_albumwidget.cpp.obj" \
 "CMakeFiles/musicproject.dir/moc_createwidget.cpp.obj" \
@@ -373,7 +423,9 @@ musicproject_OBJECTS = \
 "CMakeFiles/musicproject.dir/moc_rightbarwidget.cpp.obj" \
 "CMakeFiles/musicproject.dir/moc_myalbumswidget.cpp.obj" \
 "CMakeFiles/musicproject.dir/moc_mytrackswidget.cpp.obj" \
-"CMakeFiles/musicproject.dir/moc_userProfileWidget.cpp.obj"
+"CMakeFiles/musicproject.dir/moc_userProfileWidget.cpp.obj" \
+"CMakeFiles/musicproject.dir/moc_loginwindow.cpp.obj" \
+"CMakeFiles/musicproject.dir/setstyle.cpp.obj"
 
 # External object files for target musicproject
 musicproject_EXTERNAL_OBJECTS =
@@ -387,6 +439,7 @@ musicproject.exe: CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj
 musicproject.exe: CMakeFiles/musicproject.dir/myalbumswidget.cpp.obj
 musicproject.exe: CMakeFiles/musicproject.dir/mytrackswidget.cpp.obj
 musicproject.exe: CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj
+musicproject.exe: CMakeFiles/musicproject.dir/loginwindow.cpp.obj
 musicproject.exe: CMakeFiles/musicproject.dir/moc_musicmain.cpp.obj
 musicproject.exe: CMakeFiles/musicproject.dir/moc_albumwidget.cpp.obj
 musicproject.exe: CMakeFiles/musicproject.dir/moc_createwidget.cpp.obj
@@ -395,6 +448,8 @@ musicproject.exe: CMakeFiles/musicproject.dir/moc_rightbarwidget.cpp.obj
 musicproject.exe: CMakeFiles/musicproject.dir/moc_myalbumswidget.cpp.obj
 musicproject.exe: CMakeFiles/musicproject.dir/moc_mytrackswidget.cpp.obj
 musicproject.exe: CMakeFiles/musicproject.dir/moc_userProfileWidget.cpp.obj
+musicproject.exe: CMakeFiles/musicproject.dir/moc_loginwindow.cpp.obj
+musicproject.exe: CMakeFiles/musicproject.dir/setstyle.cpp.obj
 musicproject.exe: CMakeFiles/musicproject.dir/build.make
 musicproject.exe: C:/Qt/6.8.2/mingw_64/lib/libQt6Widgets.a
 musicproject.exe: C:/Qt/6.8.2/mingw_64/lib/libQt6Gui.a
@@ -403,7 +458,7 @@ musicproject.exe: C:/Qt/6.8.2/mingw_64/lib/libQt6EntryPoint.a
 musicproject.exe: CMakeFiles/musicproject.dir/linkLibs.rsp
 musicproject.exe: CMakeFiles/musicproject.dir/objects1.rsp
 musicproject.exe: CMakeFiles/musicproject.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_26) "Linking CXX executable musicproject.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\Lenovo\upprpo\YourMusic\frontend\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_30) "Linking CXX executable musicproject.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\musicproject.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -416,6 +471,7 @@ CMakeFiles/musicproject.dir/clean:
 
 CMakeFiles/musicproject.dir/depend: moc_albumwidget.cpp
 CMakeFiles/musicproject.dir/depend: moc_createwidget.cpp
+CMakeFiles/musicproject.dir/depend: moc_loginwindow.cpp
 CMakeFiles/musicproject.dir/depend: moc_musicmain.cpp
 CMakeFiles/musicproject.dir/depend: moc_myalbumswidget.cpp
 CMakeFiles/musicproject.dir/depend: moc_mytrackswidget.cpp

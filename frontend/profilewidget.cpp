@@ -22,7 +22,8 @@ ProfileWidget::ProfileWidget(QWidget *parent, QWidget *tab)
     :QWidget(parent),
     userProfile(new UserProfileWidget(this)),
     albumwidget(new MyAlbumsWidget(this)),
-    trackwidget(new MyTracksWidget(this))
+    likedtrackwidget(new MyTracksWidget(this)),
+    loadedtrackwidget(new MyTracksWidget(this))
 {
     QVBoxLayout *profileLayout = new QVBoxLayout(tab);
     innerStacked = new QStackedWidget();
@@ -38,10 +39,16 @@ ProfileWidget::ProfileWidget(QWidget *parent, QWidget *tab)
     mainWidgetLayout->addWidget(userProfile, 0, Qt::AlignTop);
 
     connect(albumwidget, &MyAlbumsWidget::albumButtonClicked, this, &ProfileWidget::onAlbumClicked);
+    connect(likedtrackwidget, &MyTracksWidget::trackButtonClicked, this, &ProfileWidget::onTrackdoubleClicked);
+    connect(loadedtrackwidget, &MyTracksWidget::trackButtonClicked, this, &ProfileWidget::onTrackdoubleClicked);
+
+    likedtrackwidget->add_liked_tracks();
+    loadedtrackwidget->add_loaded_tracks();
 
     mainWidgetLayout->addWidget(albumwidget);
-    mainWidgetLayout->addWidget(trackwidget);
-    //trackwidget->setStyleSheet("QWidget { border: 1px solid red; }");
+    mainWidgetLayout->addWidget(likedtrackwidget);
+    mainWidgetLayout->addWidget(loadedtrackwidget);
+    //likedtrackwidget->setStyleSheet("QWidget { border: 1px solid red; }");
     scrollWidget = new QWidget();
     scrollWidget->setLayout(profileLayout);
 
@@ -56,8 +63,9 @@ ProfileWidget::ProfileWidget(QWidget *parent, QWidget *tab)
 
 void ProfileWidget::resizeProfile(int width){
     albumwidget->resizeAlbums(width);
-    scrollWidget->setFixedWidth(width);
-    trackwidget->resize_tracks(width);
+    scrollWidget->setFixedWidth(width-25);
+    likedtrackwidget->resize_tracks(width);
+    loadedtrackwidget->resize_tracks(width);
     //userProfile->resize(width * 0.6, 220);
     //Обновляем размеры виджета при изменении размеров окна
     // if (userProfile && width>1340 && width<1500) {
@@ -93,10 +101,14 @@ void ProfileWidget::onAlbumClicked(album albumData){
     AlbumWidget *albumwidget = new AlbumWidget(albumData);
     innerStacked->addWidget(albumwidget);
     innerStacked->setCurrentWidget(albumwidget);
+    //albumwidget->setStyleSheet("border: 1px solid red");
 
     emit onAlbomClickedSignal(albumData);
 }
 
+void ProfileWidget::onTrackdoubleClicked(track *trackData){
+    emit onTrackDoubleClickedignal(trackData);
+}
 
 
 int ProfileWidget::getCurrentIndex(){

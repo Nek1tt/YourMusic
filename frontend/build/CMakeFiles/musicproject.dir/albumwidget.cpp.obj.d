@@ -478,4 +478,5 @@ CMakeFiles/musicproject.dir/albumwidget.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qdebug.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\albumwidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\mytrackswidget.h \
- C:\Users\Lenovo\upprpo\YourMusic\frontend\myalbumswidget.h
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\myalbumswidget.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\setstyle.h

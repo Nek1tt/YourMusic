@@ -1,6 +1,7 @@
 # Hashes of file build rules.
 8cfb96b34159c9681da57aac6459b67f moc_albumwidget.cpp
 0bba51561bc3c85e88444f4e2ea5a54e moc_createwidget.cpp
+6646eeff1334f1c43766a58271d7ed4f moc_loginwindow.cpp
 6e984313a9d0a03687436fc7cf140bb4 moc_musicmain.cpp
 13e842f8da336fd32a7add2bd05aa6a8 moc_myalbumswidget.cpp
 707976503844c4580f59d24e1234dd06 moc_mytrackswidget.cpp

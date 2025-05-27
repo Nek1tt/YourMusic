@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QLabel>
+#include <QPushButton>
 
 struct UserInfo
 {
@@ -26,10 +27,10 @@ private:
     QLabel *avatarLabel;
     QLabel *usernameLabel;
     QLabel *usertagLabel;
-    QLabel *followersLabel;
-    QLabel *followingLabel;
-    QLabel *tracksLoadedLabel;
-    QLabel *tracksAddedLabel;
+    QPushButton *followersLabel;
+    QPushButton *followingLabel;
+    QPushButton *tracksLoadedLabel;
+    QPushButton *tracksAddedLabel;
     QLabel *followersNumLabel;
     QLabel *followingNumLabel;
     QLabel *tracksLoadedNumLabel;

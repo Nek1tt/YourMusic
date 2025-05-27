@@ -12,6 +12,8 @@
 #include <QPainter>
 #include <QPainterPath>
 #include "userProfileWidget.h"
+#include "setstyle.h"
+
 
 UserProfileWidget::UserProfileWidget(QWidget *parent) // класс для информации о профиле
     : QWidget(parent)      //пользователя. хранится ава, имя, тег, информация о подписчиках и тдд
@@ -27,15 +29,19 @@ UserProfileWidget::UserProfileWidget(QWidget *parent) // класс для ин�
     usertagLabel->setStyleSheet("padding-top: 5px; color: #615D5D; font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
     ProfileInfoLayout->addWidget(usertagLabel);
     usernameLabel = new QLabel(this);
-    usernameLabel->setFixedHeight(40);
-    usernameLabel->setStyleSheet("font-size: 32px; font-family: 'Tahoma'; font-weight: bold;");
+    usernameLabel->setFixedHeight(60);
+    usernameLabel->setStyleSheet("font-size: 32px; font-family: 'Tahoma'; font-weight: bold; padding-bottom: 30px");
     ProfileInfoLayout->addWidget(usernameLabel);
 
     // QLabel* test = new QLabel(this);
-    followersLabel= new QLabel(this);
-    followingLabel = new QLabel(this);
-    tracksLoadedLabel =new QLabel(this);
-    tracksAddedLabel = new QLabel(this);
+    followersLabel= new QPushButton(this);
+    followingLabel = new QPushButton(this);
+    tracksLoadedLabel =new QPushButton(this);
+    tracksAddedLabel = new QPushButton(this);
+    set_button_style(followersLabel, 15);
+    set_button_style(followingLabel, 15);
+    set_button_style(tracksLoadedLabel, 15);
+    set_button_style(tracksAddedLabel, 15);
     followersNumLabel = new QLabel(this);
     followingNumLabel = new QLabel(this);
     tracksLoadedNumLabel = new QLabel(this);
@@ -45,7 +51,7 @@ UserProfileWidget::UserProfileWidget(QWidget *parent) // класс для ин�
     QVBoxLayout *followersLayout = new QVBoxLayout(followersWidget);
     followersLayout->setAlignment(Qt::AlignHCenter);
     followersLabel->setText("Followers");
-    followersLabel->setStyleSheet("font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
+    //followersLabel->setStyleSheet("font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
     followersLayout->addWidget(followersLabel);
     followersNumLabel->setAlignment(Qt::AlignHCenter);
     followersNumLabel->setStyleSheet("font-size: 20px; font-family: 'Tahoma'; font-weight: bold;");
@@ -55,7 +61,7 @@ UserProfileWidget::UserProfileWidget(QWidget *parent) // класс для ин�
     QVBoxLayout *followingLayout = new QVBoxLayout(followingWidget);
     followingLayout->setAlignment(Qt::AlignHCenter);
     followingLabel->setText("Following");
-    followingLabel->setStyleSheet("font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
+    //followingLabel->setStyleSheet("font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
     followingLayout->addWidget(followingLabel);
     followingNumLabel->setAlignment(Qt::AlignHCenter);
     followingNumLabel->setStyleSheet("font-size: 20px; font-family: 'Tahoma'; font-weight: bold;");
@@ -65,7 +71,7 @@ UserProfileWidget::UserProfileWidget(QWidget *parent) // класс для ин�
     QVBoxLayout *tracksLoadedLayout = new QVBoxLayout(tracksLoadedWidget);
     tracksLoadedLayout->setAlignment(Qt::AlignHCenter);
     tracksLoadedLabel->setText("Tracks loaded");
-    tracksLoadedLabel->setStyleSheet("font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
+    //tracksLoadedLabel->setStyleSheet("font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
     tracksLoadedLayout->addWidget(tracksLoadedLabel);
     tracksLoadedNumLabel->setAlignment(Qt::AlignHCenter);
     tracksLoadedNumLabel->setStyleSheet("font-size: 20px; font-family: 'Tahoma'; font-weight: bold;");
@@ -75,7 +81,7 @@ UserProfileWidget::UserProfileWidget(QWidget *parent) // класс для ин�
     QVBoxLayout *tracksAddedLayout = new QVBoxLayout(tracksAddedWidget);
     tracksAddedLayout->setAlignment(Qt::AlignHCenter);
     tracksAddedLabel->setText("Tracks added");
-    tracksAddedLabel->setStyleSheet("font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
+    //tracksAddedLabel->setStyleSheet("font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
     tracksAddedLayout->addWidget(tracksAddedLabel);
     tracksAddedNumLabel->setAlignment(Qt::AlignHCenter);
     tracksAddedNumLabel->setStyleSheet("font-size: 20px; font-family: 'Tahoma'; font-weight: bold;");

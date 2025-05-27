@@ -25,6 +25,7 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
     : QMainWindow(parent)
 {
 
+    qDebug()<<"dssfd";
     QScreen *screen = QApplication::primaryScreen();// сохраняем экран
     QRect screenGeometry = screen->availableGeometry();//извлекаем параметры экрана
     // // Получаем размер окна
@@ -49,6 +50,7 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
     backButton = new QPushButton(" < ");
     forwardButton = new QPushButton(" > ");
 
+    qDebug()<<"1";
     connect(backButton, &QPushButton::clicked, this, &MusicMain::on_backButton_clicked);
     connect(forwardButton, &QPushButton::clicked, this, &MusicMain::on_forwardButton_clicked);
 
@@ -87,7 +89,7 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
     createTab = new QPushButton("Create");
     profileTab = new QPushButton("Profile");
 
-
+    qDebug()<<"2";
     connect(homeTab, &QPushButton::clicked, this, &MusicMain::on_homeTab_clicked);
     connect(createTab, &QPushButton::clicked, this, &MusicMain::on_createTab_clicked);
     connect(profileTab, &QPushButton::clicked, this, &MusicMain::on_profileTab_clicked);
@@ -121,10 +123,22 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
     createwidget = new CreateWidget(this, Create);
     profilewidget = new ProfileWidget(this, Profile);
     connect(profilewidget, &ProfileWidget::onAlbomClickedSignal, this, &MusicMain::on_albumButton_clicked);
+    connect(profilewidget, &ProfileWidget::onTrackDoubleClickedignal, this, &MusicMain::on_TrackButton_clicked);
 
     profilewidget->setContentsMargins(0, 0, 0, 0);
+    qDebug()<<"3";
+
+    // Пример загрузки треков
+    QVector<track> tracks;
+    track *currentTrack;
+    tracks = readFromJson("../resources/jsons/mytracks.json");
+    if (!tracks.empty()) {
+        currentTrack = &tracks[0];
+    }
+
 
     rightbarwidget = new RightBarWidget(windowWidth, windowHeight, this, currentTrack);
+    rightbarwidget->setNewCurrentTrack(*currentTrack);
     rightbarwidget->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
 
     //rightbarwidget->resize(400, this->height());
@@ -288,6 +302,9 @@ void MusicMain::on_albumButton_clicked(){
 }
 
 
+void MusicMain::on_TrackButton_clicked(track *trackData){
+    rightbarwidget->setNewCurrentTrack(*trackData);
+}
 
 
 // void MusicMain::on_toserver_clicked()

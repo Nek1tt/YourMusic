@@ -46,21 +46,21 @@ CreateWidget::CreateWidget(QWidget *parent, QWidget *tab)
 
 void CreateWidget::onAddNoizeClicked()
 {
-    album noizealbum = {"the_entrance_in_city", "noizeee" " ../resources/imgs/covers/cover1.png"};
-    write_album(noizealbum);
+    // album noizealbum = {"the_entrance_in_city", "noizeee" " ../resources/imgs/covers/cover1.png"};
+    // write_album(noizealbum);
     // Action when "Add Noize" button is clicked
 }
 
 void CreateWidget::onAddAnacondazClicked()
 {
-    album anacondazalbum = {"call_me", "anacondaz" " ../resources/imgs/covers/cover0.png"};
-    write_album(anacondazalbum);
+    // album anacondazalbum = {"call_me", "anacondaz" " ../resources/imgs/covers/cover0.png"};
+    // write_album(anacondazalbum);
     // Action when "Add Anacondaz" button is clicked
 }
 
 void CreateWidget::onAddOxxyClicked()
 {
-    album oxxyalbum = {"the_beauty_and_uglyness", "oxxy" " ../resources/imgs/covers/cover2.png"};
-    write_album(oxxyalbum);
+    // album oxxyalbum = {"the_beauty_and_uglyness", "oxxy" " ../resources/imgs/covers/cover2.png"};
+    // write_album(oxxyalbum);
     // Action when "Add Oxxy" button is clicked
 }

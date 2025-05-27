@@ -3,16 +3,18 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QScrollArea>
-
+#include "mytrackswidget.h"
 
 #ifndef MYPLAYLISTSWIDGET_H
 #define MYPLAYLISTSWIDGET_H
 
-struct album
-{
+struct album {
+    int id;
     QString name;
-    QString author = "";
     QString coverpath;
+    QString author;
+    int track_count;
+    QVector<track> tracks;
 };
 
 class AlbumButton : public QPushButton {
@@ -37,7 +39,7 @@ public:
     void resizeAlbums(int width);
 
 private:
-    std::vector<album> albums_vector = {};
+    QVector<album> albums_vector = {};
     QRect screenGeometry;
     QVBoxLayout *MyAlbumsLayout;
     QWidget *albums;
@@ -46,12 +48,12 @@ private:
 
 signals:
     void albumButtonClicked(const album albumData);
-
 };
 
 
-void write_albums(std::vector<album> &albums);
-void write_album(album &album);
-void read_albums(std::vector<album> &albums);
+// void write_albums(std::vector<album> &albums);
+// void write_album(album &album);
+// void read_albums(std::vector<album> &albums);
+QVector<album> loadAlbumsFromJson(const QString &filePath);
 
 #endif // MYPLAYLISTSWIDGET_H

@@ -221,6 +221,30 @@ createwidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/createwidget.cpp.s
 .PHONY : createwidget.cpp.s
 
+loginwindow.obj: loginwindow.cpp.obj
+.PHONY : loginwindow.obj
+
+# target to build an object file
+loginwindow.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/loginwindow.cpp.obj
+.PHONY : loginwindow.cpp.obj
+
+loginwindow.i: loginwindow.cpp.i
+.PHONY : loginwindow.i
+
+# target to preprocess a source file
+loginwindow.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/loginwindow.cpp.i
+.PHONY : loginwindow.cpp.i
+
+loginwindow.s: loginwindow.cpp.s
+.PHONY : loginwindow.s
+
+# target to generate assembly for a file
+loginwindow.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/loginwindow.cpp.s
+.PHONY : loginwindow.cpp.s
+
 main.obj: main.cpp.obj
 .PHONY : main.obj
 
@@ -292,6 +316,30 @@ moc_createwidget.s: moc_createwidget.cpp.s
 moc_createwidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_createwidget.cpp.s
 .PHONY : moc_createwidget.cpp.s
+
+moc_loginwindow.obj: moc_loginwindow.cpp.obj
+.PHONY : moc_loginwindow.obj
+
+# target to build an object file
+moc_loginwindow.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_loginwindow.cpp.obj
+.PHONY : moc_loginwindow.cpp.obj
+
+moc_loginwindow.i: moc_loginwindow.cpp.i
+.PHONY : moc_loginwindow.i
+
+# target to preprocess a source file
+moc_loginwindow.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_loginwindow.cpp.i
+.PHONY : moc_loginwindow.cpp.i
+
+moc_loginwindow.s: moc_loginwindow.cpp.s
+.PHONY : moc_loginwindow.s
+
+# target to generate assembly for a file
+moc_loginwindow.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_loginwindow.cpp.s
+.PHONY : moc_loginwindow.cpp.s
 
 moc_musicmain.obj: moc_musicmain.cpp.obj
 .PHONY : moc_musicmain.obj
@@ -557,6 +605,30 @@ rightbarwidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/rightbarwidget.cpp.s
 .PHONY : rightbarwidget.cpp.s
 
+setstyle.obj: setstyle.cpp.obj
+.PHONY : setstyle.obj
+
+# target to build an object file
+setstyle.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/setstyle.cpp.obj
+.PHONY : setstyle.cpp.obj
+
+setstyle.i: setstyle.cpp.i
+.PHONY : setstyle.i
+
+# target to preprocess a source file
+setstyle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/setstyle.cpp.i
+.PHONY : setstyle.cpp.i
+
+setstyle.s: setstyle.cpp.s
+.PHONY : setstyle.s
+
+# target to generate assembly for a file
+setstyle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/setstyle.cpp.s
+.PHONY : setstyle.cpp.s
+
 userProfileWidget.obj: userProfileWidget.cpp.obj
 .PHONY : userProfileWidget.obj
 
@@ -600,6 +672,9 @@ help:
 	@echo ... createwidget.obj
 	@echo ... createwidget.i
 	@echo ... createwidget.s
+	@echo ... loginwindow.obj
+	@echo ... loginwindow.i
+	@echo ... loginwindow.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
@@ -609,6 +684,9 @@ help:
 	@echo ... moc_createwidget.obj
 	@echo ... moc_createwidget.i
 	@echo ... moc_createwidget.s
+	@echo ... moc_loginwindow.obj
+	@echo ... moc_loginwindow.i
+	@echo ... moc_loginwindow.s
 	@echo ... moc_musicmain.obj
 	@echo ... moc_musicmain.i
 	@echo ... moc_musicmain.s
@@ -642,6 +720,9 @@ help:
 	@echo ... rightbarwidget.obj
 	@echo ... rightbarwidget.i
 	@echo ... rightbarwidget.s
+	@echo ... setstyle.obj
+	@echo ... setstyle.i
+	@echo ... setstyle.s
 	@echo ... userProfileWidget.obj
 	@echo ... userProfileWidget.i
 	@echo ... userProfileWidget.s

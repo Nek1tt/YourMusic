@@ -476,4 +476,5 @@ CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qtextoption.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qpen.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/QPainterPath \
- C:/Qt/6.8.2/mingw_64/include/QtGui/qpainterpath.h
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qpainterpath.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\setstyle.h

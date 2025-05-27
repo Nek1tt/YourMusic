@@ -463,4 +463,8 @@ CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qpen.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/QPainterPath \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qpainterpath.h \
- C:\Users\Lenovo\upprpo\YourMusic\frontend\userProfileWidget.h
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\userProfileWidget.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QPushButton \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qpushbutton.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractbutton.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\setstyle.h

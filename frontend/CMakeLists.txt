@@ -46,6 +46,9 @@ set(PROJECT_SOURCES
 
     userProfileWidget.cpp
     userProfileWidget.h
+
+    loginwindow.h
+    loginwindow.cpp
 )
 
 qt6_wrap_cpp(MOC_SOURCES
@@ -57,6 +60,7 @@ qt6_wrap_cpp(MOC_SOURCES
     myalbumswidget.h
     mytrackswidget.h
     userProfileWidget.h
+    loginwindow.h
 )
 
 # Создание исполняемого файла
@@ -65,6 +69,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         ${MOC_SOURCES}
+        resources/jsons/myloadedtracks.json
+        setstyle.h setstyle.cpp
+        loginwindow.h loginwindow.cpp
+
+        # resources/jsons/album.json
+        # resources/jsons/mytracks.json
     )
 else()
     add_executable(musicproject

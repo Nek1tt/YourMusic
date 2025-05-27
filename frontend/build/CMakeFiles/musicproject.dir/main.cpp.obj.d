@@ -467,10 +467,10 @@ CMakeFiles/musicproject.dir/main.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QStackedWidget \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qstackedwidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\userProfileWidget.h \
- C:\Users\Lenovo\upprpo\YourMusic\frontend\myalbumswidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QPushButton \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qpushbutton.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractbutton.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\myalbumswidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollArea \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
@@ -481,5 +481,8 @@ CMakeFiles/musicproject.dir/main.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtabwidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTabBar \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtabbar.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\loginwindow.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QDialog \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qdialog.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QApplication \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qapplication.h

@@ -31,19 +31,21 @@ public:
     int getTotalIndex();
     void setCurrentIndex(int index);
     int get_widgetWidth();
+    void onTrackdoubleClicked(track *trackData);
 
 private:
     UserProfileWidget *userProfile;
     MyAlbumsWidget *albumwidget;
-    MyTracksWidget *trackwidget;
+    MyTracksWidget *likedtrackwidget;
+    MyTracksWidget *loadedtrackwidget;
     QStackedWidget *innerStacked;
     QWidget *scrollWidget;
     QWidget *mainWidget;
     int widgetWidth;
 
-
 signals:
     void onAlbomClickedSignal(album albumData);
+    void onTrackDoubleClickedignal(track *trackData);
 };
 
 #endif // PROFILEWIDGET_H
