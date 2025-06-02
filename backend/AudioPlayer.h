@@ -19,6 +19,8 @@ public:
     void playAudio();
     void pauseAudio();
     void stopAudio();
+    bool seekTo(double position); 
+
 
 private:
     static void audioCallback(void* userdata, Uint8* stream, int len);
