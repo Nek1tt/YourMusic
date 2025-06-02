@@ -10,7 +10,7 @@ pkg_check_modules(FFMPEG REQUIRED libavformat libavcodec libavutil libswresample
 
 include_directories(
     ${FFMPEG_INCLUDE_DIRS}
-    include   # <-- добавляем эту строку, чтобы искать httplib.h здесь
+    include 
 )
 
 link_directories(${FFMPEG_LIBRARY_DIRS})
