@@ -20,7 +20,7 @@ public:
     void pauseAudio();
     void stopAudio();
     bool seekTo(double position); 
-
+    void setVolume(float vol);
 
 private:
     static void audioCallback(void* userdata, Uint8* stream, int len);
@@ -41,6 +41,7 @@ private:
     SDL_AudioSpec spec{};
     bool isPlaying = false;
 
+     float volume = 1.0f;
     struct AudioData {
         AVCodecContext* codecCtx;
         AVFormatContext* formatCtx;
@@ -51,6 +52,7 @@ private:
         uint8_t* audioBuffer;
         int bufferSize;
         int bufferIndex;
+        float volume;
     };
 
     AudioData* audioData = nullptr;
