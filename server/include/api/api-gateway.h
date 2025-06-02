@@ -12,8 +12,12 @@
 #include <string>
 #include <iostream>
 #include <locale>
+#include <boost/beast/http.hpp>
+#include <boost/beast/core.hpp>
+#include <boost/asio/connect.hpp>
 
 namespace beast = boost::beast;
+namespace http = beast::http;
 namespace websocket = beast::websocket;
 namespace net = boost::asio;
 using tcp = net::ip::tcp;
@@ -26,6 +30,7 @@ public:
     explicit ApiSession(tcp::socket&& socket);
 
     void run();
+    void sendMessage(const std::string& message);
 
 private:
     websocket::stream<tcp::socket> ws_;
