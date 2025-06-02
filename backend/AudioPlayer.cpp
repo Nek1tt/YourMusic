@@ -90,28 +90,6 @@ bool AudioPlayer::init() {
     return true;
 }
 
-void AudioPlayer::playAudio() {
-    if (!isPlaying) {
-        SDL_PauseAudio(0);
-        isPlaying = true;
-    }
-}
-
-void AudioPlayer::pauseAudio() {
-    if (isPlaying) {
-        SDL_PauseAudio(1);
-        isPlaying = false;
-    }
-}
-
-void AudioPlayer::stopAudio() {
-    if (isPlaying) {
-        SDL_PauseAudio(1);
-        isPlaying = false;
-    }
-    // Можно добавить очистку буфера, сброс позиций, если нужно
-}
-
 void AudioPlayer::cleanup() {
     SDL_CloseAudio();
 
@@ -179,3 +157,54 @@ void AudioPlayer::audioCallback(void* userdata, Uint8* stream, int len) {
         audio->bufferIndex += copySize;
     }
 }
+
+
+
+
+void AudioPlayer::playAudio() {
+    if (!isPlaying) {
+        SDL_PauseAudio(0);
+        isPlaying = true;
+    }
+}
+
+void AudioPlayer::pauseAudio() {
+    if (isPlaying) {
+        SDL_PauseAudio(1);
+        isPlaying = false;
+    }
+}
+
+void AudioPlayer::stopAudio() {
+    if (isPlaying) {
+        SDL_PauseAudio(1);
+        isPlaying = false;
+    }
+    // Можно добавить очистку буфера, сброс позиций, если нужно
+}
+
+bool AudioPlayer::seekTo(double position) {
+    if (!formatCtx || streamIndex < 0 || position < 0.01 || position > 1.0)
+        return false;
+
+    // Общая длительность в AV_TIME_BASE (микросекунды)
+    int64_t duration = formatCtx->duration;
+
+    // Переводим в микросекунды позицию
+    int64_t target_ts = static_cast<int64_t>(duration * position);
+
+    if (av_seek_frame(formatCtx, -1, target_ts, AVSEEK_FLAG_BACKWARD) < 0) {
+        std::cerr << "Не удалось перемотать на позицию " << position << std::endl;
+        return false;
+    }
+
+    // Очистка декодера
+    avcodec_flush_buffers(codecCtx);
+
+    // Сброс состояния буфера
+    audioData->bufferIndex = 0;
+    audioData->bufferSize = 0;
+
+    return true;
+}
+
