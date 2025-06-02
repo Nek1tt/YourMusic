@@ -9,11 +9,110 @@ public:
     }
 
     void handle(const nlohmann::json& req) {
-        //отправлять http запрос на auth service и принимать ответ здесь
+        // Проверяем, есть ли поле action в запросе
+        if (!req.contains("action")) {
+            sendErrorResponse("Missing 'action' field");
+            return;
+        }
+        
+        std::string action = req["action"];
+        
+        // Определяем endpoint на основе action
+        std::string endpoint;
+        if (action == "register") {
+            endpoint = "/register";
+        } else if (action == "login") {
+            endpoint = "/login";
+        } else {
+            sendErrorResponse("Unknown action: " + action);
+            return;
+        }
+        
+        // Отправляем HTTP запрос на auth service
+        sendHttpRequest(endpoint, req);
     }
 
 private:
-    ApiSession& session_; // Ссылка на сессию API.
+    ApiSession& session_;
+    
+    void sendHttpRequest(const std::string& endpoint, const nlohmann::json& requestData) {
+        try {
+            // Создаем io_context для HTTP клиента
+            net::io_context ioc;
+            
+            // Резолвим адрес auth service (localhost:8082)
+            tcp::resolver resolver(ioc);
+            auto const results = resolver.resolve("127.0.0.1", "8082");
+            
+            // Создаем сокет и подключаемся
+            beast::tcp_stream stream(ioc);
+            stream.connect(results);
+            
+            // Подготавливаем тело запроса (только данные без endpoint и action)
+            nlohmann::json requestBody;
+            
+            // Копируем все поля кроме endpoint и action
+            for (auto& [key, value] : requestData.items()) {
+                if (key != "endpoint" && key != "action") {
+                    requestBody[key] = value;
+                }
+            }
+            
+            std::string body = requestBody.dump();
+            
+            // Создаем HTTP POST запрос
+            http::request<http::string_body> req{http::verb::post, endpoint, 11};
+            req.set(http::field::host, "127.0.0.1:8082");
+            req.set(http::field::user_agent, "API-Gateway/1.0");
+            req.set(http::field::content_type, "application/json");
+            req.body() = body;
+            req.prepare_payload();
+            
+            // Отправляем запрос
+            std::cout << "[ApiGateway→Auth] OUTGOING HTTP:\n" << req << "\n";
+            
+            http::write(stream, req);
+            
+            // Читаем ответ
+            beast::flat_buffer buffer;
+            http::response<http::string_body> res;
+            http::read(stream, buffer, res);
+            
+            // Закрываем соединение
+            beast::error_code ec;
+            stream.socket().shutdown(tcp::socket::shutdown_both, ec);
+            
+            // Отправляем ответ клиенту
+            sendResponse(res.body());
+            
+        } catch (const std::exception& e) {
+            std::cerr << "HTTP request error: " << e.what() << "\n";
+            sendErrorResponse("Auth service unavailable");
+        }
+    }
+    
+    void sendResponse(const std::string& response) {
+        try {
+            // Создаем JSON ответ с данными от auth service
+            nlohmann::json responseJson;
+            responseJson["type"] = "auth_response";
+            responseJson["data"] = nlohmann::json::parse(response);
+            
+            session_.sendMessage(responseJson.dump());
+        } catch (const std::exception& e) {
+            std::cerr << "Response parsing error: " << e.what() << "\n";
+            sendErrorResponse("Invalid response from auth service");
+        }
+    }
+    
+    void sendErrorResponse(const std::string& error) {
+        nlohmann::json errorResponse;
+        errorResponse["type"] = "auth_response";
+        errorResponse["data"]["status"] = "error";
+        errorResponse["data"]["message"] = error;
+        
+        session_.sendMessage(errorResponse.dump());
+    }
 };
     
 // ===================== CatalogHandler =====================
@@ -118,6 +217,21 @@ void ApiSession::routeToHandler(const std::string& path, const nlohmann::json& r
     }
 }
 
+void ApiSession::sendMessage(const std::string& message) {
+    // Кладём копию строки в shared_ptr, чтобы она жила до завершения async_write
+    auto msg = std::make_shared<std::string>(message);
+
+    ws_.async_write(
+        net::buffer(*msg),
+        [self = shared_from_this(), msg](beast::error_code ec, std::size_t bytes_transferred) {
+            boost::ignore_unused(bytes_transferred);
+            if (ec) {
+                self->logError(ec, "write");
+            }
+        }
+    );
+}
+
 void ApiSession::logError(beast::error_code ec, const std::string& where) {
     // Логирование ошибок с указанием контекста (where) и сообщения об ошибке.
     std::cerr << where << ": " << ec.message() << "\n";
@@ -146,5 +260,6 @@ int main() {
     std::setlocale(LC_ALL, "C"); 
     net::io_context ioc; // Создаем контекст асинхронных операций.
     ApiGatewayServer server(ioc, 8080); // Инициализируем сервер на порту 8080.
+    std::cout << "[ApiGateway] Server is running on port 8080...\n";
     ioc.run(); // Запускаем цикл обработки событий.
 }
