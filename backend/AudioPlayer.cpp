@@ -78,7 +78,7 @@ bool AudioPlayer::init() {
 
     audioBuffer = (uint8_t*)av_malloc(192000);
     audioData = new AudioData{codecCtx, formatCtx, streamIndex, swrCtx, av_packet_alloc(), av_frame_alloc(),
-                              audioBuffer, 0, 0};
+                              audioBuffer, 0, 0, volume};
 
     spec.userdata = audioData;
 
@@ -124,6 +124,7 @@ void AudioPlayer::audioCallback(void* userdata, Uint8* stream, int len) {
 
     while (bytesToCopy > 0) {
         if (audio->bufferIndex >= audio->bufferSize) {
+            // Попытка прочитать новый фрейм
             if (av_read_frame(audio->formatCtx, audio->packet) >= 0) {
                 if (audio->packet->stream_index == audio->streamIndex) {
                     int ret = avcodec_send_packet(audio->codecCtx, audio->packet);
@@ -140,16 +141,30 @@ void AudioPlayer::audioCallback(void* userdata, Uint8* stream, int len) {
                                                           audio->frame->nb_samples);
                             audio->bufferSize = out_samples * 2 * sizeof(uint16_t);
                             audio->bufferIndex = 0;
+
+                            // 🔊 Применяем громкость к аудиобуферу
+                            int16_t* samples = (int16_t*)audio->audioBuffer;
+                            int sampleCount = audio->bufferSize / sizeof(int16_t);
+                            float volume = audio->volume;
+
+                            for (int i = 0; i < sampleCount; ++i) {
+                                int sample = static_cast<int>(samples[i] * volume);
+                                if (sample > INT16_MAX) sample = INT16_MAX;
+                                else if (sample < INT16_MIN) sample = INT16_MIN;
+                                samples[i] = static_cast<int16_t>(sample);
+                            }
                         }
                     }
                 }
                 av_packet_unref(audio->packet);
             } else {
+                // Конец файла — заполняем тишиной
                 memset(outBuffer, 0, bytesToCopy);
                 return;
             }
         }
 
+        // Копируем порцию из буфера
         int copySize = std::min(bytesToCopy, audio->bufferSize - audio->bufferIndex);
         memcpy(outBuffer, audio->audioBuffer + audio->bufferIndex, copySize);
         bytesToCopy -= copySize;
@@ -208,3 +223,12 @@ bool AudioPlayer::seekTo(double position) {
     return true;
 }
 
+void AudioPlayer::setVolume(float vol) {
+    if (vol < 0.01f) vol = 0.01f;
+    if (vol > 1.0f) vol = 1.0f;
+    volume = vol;
+
+    if (audioData) {
+        audioData->volume = vol;
+    }
+}
