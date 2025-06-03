@@ -179,12 +179,44 @@ LoginWindow::LoginWindow(QWidget *parent)
 
 }
 
+// void MusicMain::on_toserver_clicked()
+// {
+//     if (webSocket->state() == QAbstractSocket::ConnectedState) {
+//         // Отправляем сообщение на сервер
+//         webSocket->sendTextMessage(R"({"command": "play_track", "track_id": 1})");
+//     } else {
+//         QMessageBox::warning(this, "Ошибка", "Нет подключения к серверу");
+//     }
+// }
+
+// void LoginWindow::onConnected() {
+//     QMessageBox::information(this, "Успех", "Подключение к серверу установлено");
+// }
+
+// void LoginWindow::onDisconnected() {
+//     QMessageBox::warning(this, "Ошибка", "Соединение с сервером разорвано");
+// }
+
+// void LoginWindow::onTextMessageReceived(const QString &message) {
+//     qDebug()<<message;
+//     QMessageBox::information(this, "Ответ от сервера", message);
+
+// }
+
+
+
 void LoginWindow::tryRegister()
 {
     // Простой пример: разрешаем вход при любом логине
     // Здесь ты можешь добавить свою проверку логина/пароля
+    // if (webSocket->state() == QAbstractSocket::ConnectedState) {
+    //     // Отправляем сообщение на сервер
+    //     webSocket->sendTextMessage(R"({"command": "play_track", "track_id": 1})");
+    // } else {
+    //     QMessageBox::warning(this, "Ошибка", "Нет подключения к серверу");
+    // }
     if (!regUsernameEdit->text().isEmpty()) {
-        accept(); // закрыть окно и вернуть QDialog::Accepted
+        //accept(); // закрыть окно и вернуть QDialog::Accepted
     } else {
         // можно показать ошибку
     }

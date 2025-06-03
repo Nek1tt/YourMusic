@@ -16,7 +16,6 @@ RightBarWidget::RightBarWidget(int initialScreenWidth, int initialScreenHeight, 
 
     //sizes initalization
     barSize = 320;
-    qDebug()<<"barsize:"<<barSize;
     coverSize = barSize/1.2;
 
 
@@ -244,19 +243,11 @@ RightBarWidget::RightBarWidget(int initialScreenWidth, int initialScreenHeight, 
     this->setMinimumWidth(235);
     //this->resize(barSize, initialScreenHeight);
     //this->setFixedWidth(barSize);
-    if (!currentTrack) {
-        qDebug() << "currentTrack == nullptr";
-    } else {
-        qDebug() << "currentTrack address:" << currentTrack;
-        qDebug() << "path is valid?" << currentTrack->coverpath;
-    }
 
 }
 
 void RightBarWidget::setNewCurrentTrack(const track &trackData) {
     currentTrack = new track(trackData);
-    qDebug()<<currentTrack->name;
-    qDebug()<<currentTrack->coverpath;
 
     currentAlbumNameButton->setText(currentTrack->name);
 
@@ -352,14 +343,8 @@ void RightBarWidget::on_followButton_clicked(){
 
 void RightBarWidget::resizeBarWidget(int width){
     barSize = width;
-    if (!currentTrack) {
-        qDebug() << "currentTrack == nullptr";
-    } else {
-        qDebug() << "currentTrack address:" << currentTrack;
-        qDebug() << "path is valid?" << currentTrack->coverpath;
-    }
 
-    //qDebug()<<currentTrack;
+
     scrollWidget->setFixedWidth(barSize);
 
     coverSize = barSize/1.2;

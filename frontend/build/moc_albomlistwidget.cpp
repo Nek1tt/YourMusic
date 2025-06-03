@@ -41,7 +41,9 @@ static constexpr auto qt_meta_stringdata_ZN15AlbomListWidgetE = QtMocHelpers::st
     "albumButtonClicked",
     "",
     "album",
-    "albumData"
+    "albumData",
+    "authorButtonClicked",
+    "authorId"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -53,18 +55,20 @@ Q_CONSTINIT static const uint qt_meta_data_ZN15AlbomListWidgetE[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       1,   14, // methods
+       2,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       1,       // signalCount
+       2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   20,    2, 0x06,    1 /* Public */,
+       1,    1,   26,    2, 0x06,    1 /* Public */,
+       5,    1,   29,    2, 0x06,    3 /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
+    QMetaType::Void, QMetaType::Int,    6,
 
        0        // eod
 };
@@ -80,7 +84,10 @@ Q_CONSTINIT const QMetaObject AlbomListWidget::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<AlbomListWidget, std::true_type>,
         // method 'albumButtonClicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const album, std::false_type>
+        QtPrivate::TypeAndForceComplete<const album, std::false_type>,
+        // method 'authorButtonClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>
     >,
     nullptr
 } };
@@ -91,6 +98,7 @@ void AlbomListWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->albumButtonClicked((*reinterpret_cast< std::add_pointer_t<album>>(_a[1]))); break;
+        case 1: _t->authorButtonClicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         default: ;
         }
     }
@@ -100,6 +108,13 @@ void AlbomListWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
             using _q_method_type = void (AlbomListWidget::*)(const album );
             if (_q_method_type _q_method = &AlbomListWidget::albumButtonClicked; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
                 *result = 0;
+                return;
+            }
+        }
+        {
+            using _q_method_type = void (AlbomListWidget::*)(int );
+            if (_q_method_type _q_method = &AlbomListWidget::authorButtonClicked; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
+                *result = 1;
                 return;
             }
         }
@@ -125,14 +140,14 @@ int AlbomListWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 2;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
+        if (_id < 2)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 1;
+        _id -= 2;
     }
     return _id;
 }
@@ -142,5 +157,12 @@ void AlbomListWidget::albumButtonClicked(const album _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);
+}
+
+// SIGNAL 1
+void AlbomListWidget::authorButtonClicked(int _t1)
+{
+    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
+    QMetaObject::activate(this, &staticMetaObject, 1, _a);
 }
 QT_WARNING_POP

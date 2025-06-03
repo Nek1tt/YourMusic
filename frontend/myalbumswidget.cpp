@@ -40,6 +40,10 @@ AlbumButton::AlbumButton(const struct album &albumData, QWidget *parent)
 
     // Создаем метки для названия и автора
     QPushButton *nameButton = new QPushButton(albumData.name, this);
+    connect(nameButton, &QPushButton::clicked, [this]() {
+        emit albumNameButtonClicked();
+    });
+
     nameButton->setFixedHeight(13);
     set_button_style(nameButton, 11);
     //nameLabel->setStyleSheet("font-weight: bold; font-size: 11px; font-family: 'Tahoma';");
@@ -47,6 +51,9 @@ AlbumButton::AlbumButton(const struct album &albumData, QWidget *parent)
     layout->addWidget(nameButton);
 
     QPushButton *authorButton = new QPushButton(albumData.author, this);
+    connect(authorButton, &QPushButton::clicked, [this]() {
+        emit authorButtonClicked();
+    });
     authorButton->setFixedHeight(12);
     set_button_style(authorButton, 10, "#828282");
     //authorLabel->setStyleSheet("color: #828282; font-weight: bold; font-size: 10px; font-family: 'Tahoma';");
@@ -77,6 +84,10 @@ album AlbumButton::getAlbum(){
     return albumData;
 }
 
+int AlbumButton::getAuthorId(){
+    return albumData.author_id;
+}
+
 
 MyAlbumsWidget::MyAlbumsWidget(QWidget *parent) : QWidget(parent)
 {
@@ -98,7 +109,6 @@ MyAlbumsWidget::MyAlbumsWidget(QWidget *parent) : QWidget(parent)
         "}"
         );
     connect(myAlbumButton, &QPushButton::clicked, [this]() {
-        //qDebug() << "Открыт альбом: " << albumButton->getAlbumName();
         emit myAlbumsButtonClicked(getAlbum());
     });
     myAlbumButton->setFixedSize(200, 40);
@@ -127,14 +137,18 @@ void MyAlbumsWidget::add_albums(QVector<album> newAlbumList) {
 
     // Добавляем элементы в layout
     for (auto& album : albums_vector) {
-        //qDebug()<<"added";
         // Создаем кнопки для каждого альбома
         AlbumButton *albumButton = new AlbumButton(album);
         albumsLayout->addWidget(albumButton);
 
         connect(albumButton, &QPushButton::clicked, [this, albumButton]() {
-            //qDebug() << "Открыт альбом: " << albumButton->getAlbumName();
             emit albumButtonClicked(albumButton->getAlbum());
+        });
+        connect(albumButton, &AlbumButton::albumNameButtonClicked, [this, albumButton]() {
+            emit albumButtonClicked(albumButton->getAlbum());
+        });
+        connect(albumButton, &AlbumButton::authorButtonClicked, [this, albumButton]() {
+            emit authorButtonClicked(albumButton->getAuthorId());
         });
     }
 
@@ -198,7 +212,6 @@ void MyAlbumsWidget::resizeAlbums(int width) {
 //     while (std::getline(albumFile, line)){
 //         QString qline = QString::fromStdString(line);
 //         QStringList words = qline.split(' ');
-//         //qDebug()<<words;
 //         album album = {words[0], words[1], words[2]};
 //         albums.push_back(album);
 //     }
@@ -232,6 +245,7 @@ QVector<album> loadAlbumsFromJson(const QString &filePath) {
         albumdata.name = root["title"].toString();
         albumdata.coverpath = root["cover_path"].toString();
         albumdata.author = root["author"].toString();
+        albumdata.author_id = root["author_id"].toInt();
         albumdata.track_count = root["track_count"].toInt();
 
         QJsonArray trackArray = root["tracks"].toArray();
@@ -280,6 +294,7 @@ album loadSingleAlbumFromJson(const QString &filePath) {
     albumdata.name = "Mixed Tracks Album";
     albumdata.coverpath = "../resources/imgs/ava.png";
     albumdata.author = "nurshat";
+    albumdata.author_id = 1;
     albumdata.track_count = trackArray.size();
 
     for (const QJsonValue &trackValue : trackArray) {

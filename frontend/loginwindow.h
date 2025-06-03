@@ -20,6 +20,9 @@ private slots:
     void toggle_buttons();
     void on_Login_clicked();
     void on_Register_clicked();
+    // void onConnected();
+    // void onDisconnected();
+    // void onTextMessageReceived(const QString &message);
 
 private:
     bool isLogin = true;

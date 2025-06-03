@@ -42,6 +42,9 @@ TrackButton::TrackButton(const struct track &trackData, QWidget *parent)
 
     QVBoxLayout *name_and_author = new QVBoxLayout();
     QPushButton *nameButton = new QPushButton(trackData.name);
+    connect(nameButton, &QPushButton::clicked, [this]() {
+        emit trackNameButtonClicked();
+    });
     //nameButton->setFixedHeight(16);
     QFontMetrics fm(nameButton->font());
     int textWidth = fm.horizontalAdvance(trackData.name);
@@ -51,6 +54,9 @@ TrackButton::TrackButton(const struct track &trackData, QWidget *parent)
     //nameButton->setAlignment(Qt::AlignLeft);
 
     QPushButton *authorButton = new QPushButton(trackData.author);
+    connect(authorButton, &QPushButton::clicked, [this]() {
+        emit trackAuthorButtonClicked();
+    });
     authorButton->setFixedHeight(14);
     //int widthOfAuthor = trackData.author.size()*7;
     QFontMetrics fm_au(authorButton->font());
@@ -95,17 +101,20 @@ TrackButton::TrackButton(const struct track &trackData, QWidget *parent)
 QString TrackButton::getTrackName(){
     return trackData.name;
 }
+int TrackButton::getTrackId(){
+    return trackData.id;
+}
 
 track * TrackButton::getTrack(){
     return &trackData;
 }
+
 
 void TrackButton::resize_trackbutton(int width){
     this->setFixedWidth(width*0.48);
 }
 
 void TrackButton::mouseDoubleClickEvent(QMouseEvent *event){
-    qDebug()<<getTrackName();
     emit trackButtonClicked(getTrack());
 }
 
@@ -116,7 +125,6 @@ MyTracksWidget::MyTracksWidget(QWidget *parent)  :QWidget(parent)
     MyTracksLayout = new QVBoxLayout(this);
     myTracksButton = new QPushButton();
     connect(myTracksButton, &QPushButton::clicked, [this]() {
-        //qDebug() << "Открыт альбом: " << albumButton->getAlbumName();
         emit mytracksButtonClicked(getAlbum());
     });
     set_button_style(myTracksButton, 32, "white", "left");
@@ -138,7 +146,6 @@ void MyTracksWidget::add_liked_tracks(album newTracks, const QString &buttonText
         myTracksButton->setFixedWidth(300);
     }
     likedTracks = newTracks;
-    qDebug() << newTracks.author;
 
     clearLayout(tracks_layout_of_verticals);
     QVector<track> tracks_vector = newTracks.tracks;
@@ -159,10 +166,13 @@ void MyTracksWidget::add_liked_tracks(album newTracks, const QString &buttonText
             rightColumn->addWidget(trackButton);
         }
 
-        connect(trackButton, &QPushButton::clicked, [trackButton]() {
-            // qDebug() << "Открыт трек: " << trackButton->getTrackName();
-        });
         connect(trackButton, &TrackButton::trackButtonClicked, this, &MyTracksWidget::onTrackdoubleClicked);
+        connect(trackButton, &TrackButton::trackNameButtonClicked, [this, trackButton]() {
+            emit trackNameButtonClicked(trackButton->getTrackId());
+        });
+        connect(trackButton, &TrackButton::trackAuthorButtonClicked, [this, trackButton]() {
+            emit authorButtonClicked(trackButton->getTrackId());
+        });
     }
 
     tracks_layout_of_verticals->addLayout(leftColumn);
@@ -192,7 +202,6 @@ void MyTracksWidget::clearLayout(QLayout *layout) {
 //добавить отступ между рядами в tracks и соответсвенно выровнять все красиво
 void MyTracksWidget::resize_tracks(int width) {
     tracks->setFixedWidth(width * 0.8);
-    //qDebug() << "track width changing";
 
     // Проходим по всем TrackButton в векторе и изменяем их размер
     for (TrackButton* trackButton : trackButtons) {
@@ -223,7 +232,6 @@ void MyTracksWidget::onTrackdoubleClicked(track *trackData){
 //     while (std::getline(trackFile, line)){
 //         QString qline = QString::fromStdString(line);
 //         QStringList words = qline.split(' ');
-//         //qDebug()<<words;
 //         track track = {words[0], words[1], words[2], words[3].toInt(), words[4].toInt()};
 //         tracks.push_back(track);
 //     }

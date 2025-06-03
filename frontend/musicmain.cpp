@@ -11,7 +11,7 @@
 #include <QHBoxLayout>
 #include <QScrollArea>
 #include <QTabBar>
-// #include <QWebSocket>
+//#include <QWebSocket>
 #include <QMessageBox>
 #include <QDir>
 #include <QApplication>
@@ -26,8 +26,6 @@
 MusicMain::MusicMain(QWidget *parent)//класс для окна
     : QMainWindow(parent)
 {
-
-    qDebug()<<"dssfd";
     QScreen *screen = QApplication::primaryScreen();// сохраняем экран
     QRect screenGeometry = screen->availableGeometry();//извлекаем параметры экрана
     // // Получаем размер окна
@@ -52,7 +50,6 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
     backButton = new QPushButton(" < ");
     forwardButton = new QPushButton(" > ");
 
-    qDebug()<<"1";
     connect(backButton, &QPushButton::clicked, this, &MusicMain::on_backButton_clicked);
     connect(forwardButton, &QPushButton::clicked, this, &MusicMain::on_forwardButton_clicked);
 
@@ -91,7 +88,6 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
     createTab = new QPushButton("Create");
     profileTab = new QPushButton("Profile");
 
-    qDebug()<<"2";
     connect(homeTab, &QPushButton::clicked, this, &MusicMain::on_homeTab_clicked);
     connect(createTab, &QPushButton::clicked, this, &MusicMain::on_createTab_clicked);
     connect(profileTab, &QPushButton::clicked, this, &MusicMain::on_profileTab_clicked);
@@ -126,13 +122,14 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
 
 
     QVector <album> albums_vector = loadAlbumsFromJson("../resources/jsons/myalbums.json");
-    qDebug()<<albums_vector[2].author;
     album loadedTracks = loadSingleAlbumFromJson("../resources/jsons/myloadedtracks.json");
 
     album likedTracks = loadSingleAlbumFromJson("../resources/jsons/mytracks.json");
-    profilewidget = new ProfileWidget(albums_vector, likedTracks, loadedTracks, this, Profile);
-    connect(profilewidget, &ProfileWidget::onAlbomClickedSignal, this, &MusicMain::on_albumButton_clicked);
-    connect(profilewidget, &ProfileWidget::onTrackDoubleClickedignal, this, &MusicMain::on_TrackButton_clicked);
+    QVector<UserInfo> users = loadUsersFromJson("../resources/jsons/users.json");
+
+    profilewidget = new ProfileTab(users[0], albums_vector, likedTracks, loadedTracks, this, Profile);
+    connect(profilewidget, &ProfileTab::onAlbomClickedSignal, this, &MusicMain::on_albumButton_clicked);
+    connect(profilewidget, &ProfileTab::onTrackDoubleClickedignal, this, &MusicMain::on_TrackButton_clicked);
 
     profilewidget->setContentsMargins(0, 0, 0, 0);
 
@@ -209,7 +206,6 @@ void MusicMain::toggle_buttons(QPushButton* pushedButton){ // changes the button
     pushedButton->setStyleSheet("color : black");
     pushedButton->setFlat(true);
     //
-    //qDebug()<<pushedButton->isFlat();
     currentTab->setEnabled(true);
     currentTab = pushedButton;
 }
@@ -217,14 +213,12 @@ void MusicMain::toggle_buttons(QPushButton* pushedButton){ // changes the button
 
 void MusicMain::on_homeTab_clicked()
 {
-    //qDebug()<<this->width();
     toggle_buttons(homeTab);
 }
 
 
 void MusicMain::on_createTab_clicked()
 {
-    //qDebug()<<"click";
     toggle_buttons(createTab);
 }
 
@@ -236,14 +230,12 @@ void MusicMain::on_profileTab_clicked()
 
 
     profilewidget->button_profile_clicked(albums_vector);
-    //qDebug()<<"click";
     toggle_buttons(profileTab);
 }
 
 
 void MusicMain::resizeEvent(QResizeEvent *event) {
     QMainWindow::resizeEvent(event); // Вызов базового метода
-    qDebug()<<"width"<<this->width()<<"heght"<<this->height();
     int rightBarWidgetWidth = rightbarwidget->get_barWidth() + 10;
     QList<int> sizes = mainSplitter->sizes();
     //tabwidget->resize(20,this->height());
@@ -251,15 +243,12 @@ void MusicMain::resizeEvent(QResizeEvent *event) {
     profilewidget->resizeProfile(sizes[1]);
 
     //rightbarwidget->resizeBarWidget(this->width());
-    //qDebug()<<this->width();
 }
 
 void MusicMain::onSplitterMoved(int pos, int index) {
-    qDebug() << "Разделитель сдвинут. Index:" << index << " Position:" << pos;
     QList<int> sizes = mainSplitter->sizes();
     rightbarwidget->resizeBarWidget(sizes[2]);
     profilewidget->resizeProfile(sizes[1]);
-    qDebug() << "Актуальные размеры: " << sizes;
 }
 
 
@@ -273,7 +262,6 @@ void MusicMain::on_backButton_clicked(){
         profilewidget->setCurrentIndex(current - 1);
         backButton->setStyleSheet(activeStyle);
     }
-    //qDebug()<<"back";
     current = profilewidget->getCurrentIndex();
     if (current == 0) {
         backButton->setStyleSheet(inactiveStyle);
@@ -294,7 +282,6 @@ void MusicMain::on_forwardButton_clicked(){
     if (current + 1 < total) {
         profilewidget->setCurrentIndex(current + 1);
     }
-    //qDebug()<<"forward";
 
     current = profilewidget->getCurrentIndex();
     total = profilewidget->getTotalIndex();

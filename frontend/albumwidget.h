@@ -18,6 +18,7 @@ public:
     //void resize_trackbutton(int width);
     QString getTrackName();
     track* getTrack();
+    int getTrackId();
 
 private:
     track trackData;
@@ -26,6 +27,8 @@ protected:
     void mouseDoubleClickEvent(QMouseEvent *event) override;
 signals:
     void trackButtonClicked(track *trackData);
+    void trackNameButtonClicked();
+    void trackAuthorButtonClicked();
 };
 
 class AlbumWidget : public QWidget
@@ -40,6 +43,9 @@ private:
 
 signals:
     void trackButtonClicked(track *trackData);
+    void trackNameButtonClicked(int trackId);
+    void authorButtonClickedByTrackId(int trackid);
+    void authorButtonClicked(int authorId);
 };
 
 #endif // ALBUMWIDGET_H

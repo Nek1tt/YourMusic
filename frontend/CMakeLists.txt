@@ -19,6 +19,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
+
 # Список всех исходников
 set(PROJECT_SOURCES
     main.cpp
@@ -32,8 +33,8 @@ set(PROJECT_SOURCES
     createwidget.cpp
     createwidget.h
 
-    profilewidget.cpp
-    profilewidget.h
+    profiletab.cpp
+    profiletab.h
 
     rightbarwidget.cpp
     rightbarwidget.h
@@ -55,13 +56,16 @@ set(PROJECT_SOURCES
 
     userslistwidget.h
     userslistwidget.cpp
+
+    profilewidget.cpp
+    profilewidget.h
 )
 
 qt6_wrap_cpp(MOC_SOURCES
     musicmain.h
     albumwidget.h
     createwidget.h
-    profilewidget.h
+    profiletab.h
     rightbarwidget.h
     myalbumswidget.h
     mytrackswidget.h
@@ -69,6 +73,7 @@ qt6_wrap_cpp(MOC_SOURCES
     loginwindow.h
     albomlistwidget.h
     userslistwidget.h
+    profilewidget.h
 )
 
 # Создание исполняемого файла
@@ -83,6 +88,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         albomlistwidget.h albomlistwidget.cpp
         userslistwidget.h userslistwidget.cpp
         resources/jsons/users.json
+        profilewidget.h profilewidget.cpp
+        profiletab.h profiletab.cpp
 
         # resources/jsons/album.json
         # resources/jsons/mytracks.json
@@ -96,6 +103,7 @@ endif()
 
 # Линковка с Qt
 target_link_libraries(musicproject PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+
 
 # Установка свойств (для macOS/iOS и Windows)
 if(${QT_VERSION} VERSION_LESS 6.1.0)

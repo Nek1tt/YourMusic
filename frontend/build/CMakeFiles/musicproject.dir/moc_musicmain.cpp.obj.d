@@ -381,7 +381,7 @@ CMakeFiles/musicproject.dir/moc_musicmain.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qurl.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QSplitter \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qsplitter.h \
- C:/Users/Lenovo/upprpo/YourMusic/frontend/profilewidget.h \
+ C:/Users/Lenovo/upprpo/YourMusic/frontend/profiletab.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/QScreen \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qscreen.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QList \
@@ -475,6 +475,7 @@ CMakeFiles/musicproject.dir/moc_musicmain.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
  C:/Users/Lenovo/upprpo/YourMusic/frontend/mytrackswidget.h \
+ C:/Users/Lenovo/upprpo/YourMusic/frontend/profilewidget.h \
  C:/Users/Lenovo/upprpo/YourMusic/frontend/createwidget.h \
  C:/Users/Lenovo/upprpo/YourMusic/frontend/rightbarwidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTabWidget \

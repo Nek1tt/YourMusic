@@ -461,6 +461,30 @@ moc_mytrackswidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_mytrackswidget.cpp.s
 .PHONY : moc_mytrackswidget.cpp.s
 
+moc_profiletab.obj: moc_profiletab.cpp.obj
+.PHONY : moc_profiletab.obj
+
+# target to build an object file
+moc_profiletab.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_profiletab.cpp.obj
+.PHONY : moc_profiletab.cpp.obj
+
+moc_profiletab.i: moc_profiletab.cpp.i
+.PHONY : moc_profiletab.i
+
+# target to preprocess a source file
+moc_profiletab.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_profiletab.cpp.i
+.PHONY : moc_profiletab.cpp.i
+
+moc_profiletab.s: moc_profiletab.cpp.s
+.PHONY : moc_profiletab.s
+
+# target to generate assembly for a file
+moc_profiletab.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_profiletab.cpp.s
+.PHONY : moc_profiletab.cpp.s
+
 moc_profilewidget.obj: moc_profilewidget.cpp.obj
 .PHONY : moc_profilewidget.obj
 
@@ -628,6 +652,30 @@ mytrackswidget.s: mytrackswidget.cpp.s
 mytrackswidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/mytrackswidget.cpp.s
 .PHONY : mytrackswidget.cpp.s
+
+profiletab.obj: profiletab.cpp.obj
+.PHONY : profiletab.obj
+
+# target to build an object file
+profiletab.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/profiletab.cpp.obj
+.PHONY : profiletab.cpp.obj
+
+profiletab.i: profiletab.cpp.i
+.PHONY : profiletab.i
+
+# target to preprocess a source file
+profiletab.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/profiletab.cpp.i
+.PHONY : profiletab.cpp.i
+
+profiletab.s: profiletab.cpp.s
+.PHONY : profiletab.s
+
+# target to generate assembly for a file
+profiletab.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/profiletab.cpp.s
+.PHONY : profiletab.cpp.s
 
 profilewidget.obj: profilewidget.cpp.obj
 .PHONY : profilewidget.obj
@@ -798,6 +846,9 @@ help:
 	@echo ... moc_mytrackswidget.obj
 	@echo ... moc_mytrackswidget.i
 	@echo ... moc_mytrackswidget.s
+	@echo ... moc_profiletab.obj
+	@echo ... moc_profiletab.i
+	@echo ... moc_profiletab.s
 	@echo ... moc_profilewidget.obj
 	@echo ... moc_profilewidget.i
 	@echo ... moc_profilewidget.s
@@ -819,6 +870,9 @@ help:
 	@echo ... mytrackswidget.obj
 	@echo ... mytrackswidget.i
 	@echo ... mytrackswidget.s
+	@echo ... profiletab.obj
+	@echo ... profiletab.i
+	@echo ... profiletab.s
 	@echo ... profilewidget.obj
 	@echo ... profilewidget.i
 	@echo ... profilewidget.s

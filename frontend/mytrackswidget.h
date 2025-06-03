@@ -16,6 +16,7 @@ public:
     explicit TrackButton(const track &trackData,QWidget *parent = nullptr);
     QString getTrackName();
     track* getTrack();
+    int getTrackId();
     void resize_trackbutton(int width);
 
 protected:
@@ -25,6 +26,8 @@ private:
 
 signals:
     void trackButtonClicked(track *trackData);
+    void trackNameButtonClicked();
+    void trackAuthorButtonClicked();
 };
 
 
@@ -54,6 +57,8 @@ private:
 
 signals:
     void trackButtonClicked(track *trackData);
+    void trackNameButtonClicked(int trackId);
+    void authorButtonClicked(int authorId);
     void mytracksButtonClicked(const album albumData);
 };
 

@@ -33,7 +33,7 @@ UserProfileWidget::UserProfileWidget(QWidget *parent) // класс для ин�
     usertagLabel->setStyleSheet("padding-top: 5px; color: #615D5D; font-size: 15px; font-family: 'Tahoma'; font-weight: bold;");
     ProfileInfoLayout->addWidget(usertagLabel);
     usernameLabel = new QLabel(this);
-    usernameLabel->setFixedHeight(60);
+    usernameLabel->setFixedHeight(80);
     usernameLabel->setStyleSheet("font-size: 32px; font-family: 'Tahoma'; font-weight: bold; padding-bottom: 30px");
     ProfileInfoLayout->addWidget(usernameLabel);
 
@@ -169,6 +169,7 @@ QVector<UserInfo> loadUsersFromJson(const QString &filePath) {
         user.avatarPath = root["avatarPath"].toString();
         user.username = root["username"].toString();
         user.usertag = root["usertag"].toString();
+        user.authorId = root["authorId"].toInt();
         user.followersnum = root["followersnum"].toInt();
         user.followingnum = root["followingnum"].toInt();
         user.tracksLoadednum = root["tracksLoadednum"].toInt();

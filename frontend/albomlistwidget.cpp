@@ -7,7 +7,7 @@ AlbomListWidget::AlbomListWidget(QVector<album> albumList, QWidget *parent)
 {
     scrollArea = new QScrollArea(this);
     scrollArea->setWidgetResizable(true);
-    setStyleSheet("border: 1px solid red");
+    //setStyleSheet("border: 1px solid red");
     centerWrapper = new QWidget();
     QVBoxLayout *centerLayout = new QVBoxLayout(centerWrapper);
     centerLayout->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
@@ -54,8 +54,14 @@ void AlbomListWidget::buildGrid(QVector<album> albumList)
     for (int i = 0; i < albumList.size(); ++i) {
         auto *albumButton = new AlbumButton(albumList[i]);
         connect(albumButton, &QPushButton::clicked, [this, albumButton]() {
-            //qDebug() << "Открыт альбом: " << albumButton->getAlbumName();
             emit albumButtonClicked(albumButton->getAlbum());
+        });
+
+        connect(albumButton, &AlbumButton::albumNameButtonClicked, [this, albumButton]() {
+            emit albumButtonClicked(albumButton->getAlbum());
+        });
+        connect(albumButton, &AlbumButton::authorButtonClicked, [this, albumButton]() {
+            emit authorButtonClicked(albumButton->getAuthorId());
         });
         //button->setMinimumSize(100, 100);
         //buttons.push_back(button);

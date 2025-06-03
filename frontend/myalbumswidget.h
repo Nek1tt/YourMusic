@@ -22,6 +22,7 @@ struct album {
     QString name;
     QString coverpath;
     QString author;
+    int author_id;
     int track_count;
     QVector<track> tracks;
 };
@@ -33,7 +34,10 @@ public:
 
     QString getAlbumName();
     album getAlbum();
-
+    int getAuthorId();
+signals:
+    void albumNameButtonClicked();
+    void authorButtonClicked();
 private:
     album albumData;
 };
@@ -58,6 +62,7 @@ private:
 
 signals:
     void albumButtonClicked(const album albumData);
+    void authorButtonClicked(int authorId);
     void myAlbumsButtonClicked(const QVector<album> albumList);
 };
 

@@ -7,7 +7,7 @@
 // #include <QWebSocket>
 
 //#include "./ui_musicmain.h"
-#include "profilewidget.h"
+#include "profiletab.h"
 #include "userProfileWidget.h"  // Подключаем header для UserProfileWidget
 #include "myalbumswidget.h"
 #include "createwidget.h"
@@ -74,7 +74,7 @@ private:
     std::vector<QPushButton*> mainTabButtons;
     QPushButton* currentTab;
     //QWebSocket* webSocket;
-    ProfileWidget *profilewidget;
+    ProfileTab *profilewidget;
     CreateWidget *createwidget;
     RightBarWidget *rightbarwidget;
 

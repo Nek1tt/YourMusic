@@ -477,10 +477,11 @@ CMakeFiles/musicproject.dir/musicmain.cpp.obj: \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\musicmain.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QSplitter \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qsplitter.h \
- C:\Users\Lenovo\upprpo\YourMusic\frontend\profilewidget.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\profiletab.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\userProfileWidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\myalbumswidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\mytrackswidget.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\profilewidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\createwidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\rightbarwidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTabWidget \

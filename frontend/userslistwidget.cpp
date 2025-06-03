@@ -61,6 +61,10 @@ UserButton::UserButton(UserInfo userData)
 
 }
 
+UserInfo UserButton::getUserData(){
+    return userData;
+};
+
 
 
 UsersListWidget::UsersListWidget(QVector<UserInfo> users)
@@ -117,10 +121,9 @@ void UsersListWidget::buildGrid()
 
     for (int i = 0; i < users.size(); ++i) {
         auto *albumButton = new UserButton(users[i]);
-        // connect(albumButton, &QPushButton::clicked, [this, albumButton]() {
-        //     //qDebug() << "Открыт альбом: " << albumButton->getAlbumName();
-        //     emit albumButtonClicked(albumButton->getAlbum());
-        // });
+        connect(albumButton, &QPushButton::clicked, [this, albumButton]() {
+            emit userButtonClicked(albumButton->getUserData());
+        });
         //button->setMinimumSize(100, 100);
         //buttons.push_back(button);
 

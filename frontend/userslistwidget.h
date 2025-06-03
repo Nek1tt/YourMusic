@@ -15,6 +15,7 @@ class UserButton : public QPushButton {
 
 public:
     explicit UserButton(UserInfo userData);
+    UserInfo getUserData();
 private:
     UserInfo userData;
 };
@@ -34,6 +35,8 @@ private:
     //QVector<AlbumButton> buttons;
 
     void buildGrid();
+signals:
+    void userButtonClicked(UserInfo userData);
 };
 
 #endif // USERSLISTWIDGET_H

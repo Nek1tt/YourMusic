@@ -5,6 +5,7 @@
       "cover_path": "../resources/imgs/covers/cover0.png",
       "author": "DK",
       "track_count": 42,
+      "author_id" : 1,
       "tracks": [
         {
           "id": 101,
@@ -62,6 +63,7 @@
       "cover_path": "../resources/imgs/covers/cover1.png",
       "author": "herronwater",
       "track_count": 42,
+      "author_id" : 2,
       "tracks": [
         {
           "id": 201,
@@ -119,6 +121,7 @@
       "cover_path": "../resources/imgs/covers/cover2.png",
       "author": "Soda Luv",
       "track_count": 42,
+      "author_id" : 3,
       "tracks": [
         {
           "id": 101,
@@ -176,6 +179,7 @@
       "cover_path": "../resources/imgs/covers/cover3.png",
       "author": "КУОК",
       "track_count": 42,
+      "author_id" : 4,
       "tracks": [
         {
           "id": 101,
@@ -233,6 +237,7 @@
       "cover_path": "../resources/imgs/covers/cover4.png",
       "author": "The Classics",
       "track_count": 42,
+      "author_id" : 5,
       "tracks": [
         {
           "id": 101,

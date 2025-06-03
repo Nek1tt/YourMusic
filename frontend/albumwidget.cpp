@@ -37,18 +37,29 @@ AlbumTrackButton::AlbumTrackButton(const track &trackData, QString number, QWidg
     trackLayout->addWidget(numberOfTrackLabel);
 
     QVBoxLayout *name_and_author = new QVBoxLayout();
-    QLabel *nameLabel = new QLabel(trackData.name);
-    nameLabel->setFixedHeight(16);
-    nameLabel->setStyleSheet("font-weight: bold; font-size: 14px; font-family: 'Tahoma';");
-    nameLabel->setAlignment(Qt::AlignLeft);
+    QPushButton *nameButton = new QPushButton(trackData.name);
+    connect(nameButton, &QPushButton::clicked, [this]() {
+        emit trackNameButtonClicked();
+    });
+    QFontMetrics fm(nameButton->font());
+    int textWidth = fm.horizontalAdvance(trackData.name);
+    nameButton->setFixedWidth(textWidth + 25); // +10 — небольшой отступ по краям
+    set_button_style(nameButton, 14, "white");
 
-    QLabel *authorLabel = new QLabel(trackData.author);
-    authorLabel->setFixedHeight(14);
-    authorLabel->setStyleSheet("color: #828282; font-weight: bold; font-size: 12px; font-family: 'Tahoma';");
-    authorLabel->setAlignment(Qt::AlignLeft);
+    QPushButton *authorButton = new QPushButton(trackData.author);
+    connect(authorButton, &QPushButton::clicked, [this]() {
+        emit trackAuthorButtonClicked();
+    });
+    authorButton->setFixedHeight(14);
+    //int widthOfAuthor = trackData.author.size()*7;
+    QFontMetrics fm_au(authorButton->font());
+    int textWidth_au = fm_au.horizontalAdvance(trackData.author);
+    authorButton->setFixedWidth(textWidth_au + 20); // +10 — небольшой отступ по краям
+    set_button_style(authorButton, 12, "#828282");
 
-    name_and_author->addWidget(nameLabel);
-    name_and_author->addWidget(authorLabel);
+
+    name_and_author->addWidget(nameButton);
+    name_and_author->addWidget(authorButton);
     trackLayout->addLayout(name_and_author);
 
     int minutes = trackData.duration_ms / 1000 / 60;
@@ -88,8 +99,11 @@ track * AlbumTrackButton::getTrack(){
     return &trackData;
 }
 
+int AlbumTrackButton::getTrackId(){
+    return trackData.id;
+}
+
 void AlbumTrackButton::mouseDoubleClickEvent(QMouseEvent *event){
-    qDebug()<<getTrackName();
     emit trackButtonClicked(getTrack());
 }
 
@@ -189,6 +203,11 @@ AlbumWidget::AlbumWidget(const struct album &albumData, QWidget *parent)
 
 
     QPushButton *albumAuthorButton= new QPushButton(albumData.author);
+    connect(albumAuthorButton, &QPushButton::clicked, [this, albumData]() {
+        emit authorButtonClicked(albumData.author_id);
+    });
+
+
     QFontMetrics fm(albumData.author);
     int textWidth = fm.horizontalAdvance(albumData.author);
     albumAuthorButton->setFixedWidth(textWidth + 35); // +10 — небольшой отступ по краям
@@ -235,10 +254,16 @@ AlbumWidget::AlbumWidget(const struct album &albumData, QWidget *parent)
     for (int i = 0; i < albumData.tracks.size() ; ++i) {
         track sometrack = albumData.tracks[i];
         QString trackNumber = QString::number(i + 1); // превращаем число в строку
-        AlbumTrackButton *button = new AlbumTrackButton(sometrack, trackNumber, this);
-        connect(button, &AlbumTrackButton::trackButtonClicked, this, &AlbumWidget::onTrackdoubleClicked);
+        AlbumTrackButton *trackButton = new AlbumTrackButton(sometrack, trackNumber, this);
+        connect(trackButton, &AlbumTrackButton::trackButtonClicked, this, &AlbumWidget::onTrackdoubleClicked);
+        connect(trackButton, &AlbumTrackButton::trackNameButtonClicked, [this, trackButton]() {
+            emit trackNameButtonClicked(trackButton->getTrackId());
+        });
+        connect(trackButton, &AlbumTrackButton::trackAuthorButtonClicked, [this, trackButton]() {
+            emit authorButtonClickedByTrackId(trackButton->getTrackId());
+        });
 
-        trackListLayout->addWidget(button);
+        trackListLayout->addWidget(trackButton);
     }
 
     //this->setStyleSheet("border: 1px solid red");

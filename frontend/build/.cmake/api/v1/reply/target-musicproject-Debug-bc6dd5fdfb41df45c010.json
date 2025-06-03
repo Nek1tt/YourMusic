@@ -51,7 +51,7 @@
 			{
 				"command" : 3,
 				"file" : 1,
-				"line" : 76,
+				"line" : 81,
 				"parent" : 0
 			},
 			{
@@ -75,13 +75,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 114,
+				"line" : 123,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 97,
+				"line" : 105,
 				"parent" : 0
 			},
 			{
@@ -371,7 +371,6 @@
 				20,
 				23,
 				24,
-				25,
 				26,
 				27,
 				28,
@@ -381,7 +380,10 @@
 				32,
 				33,
 				34,
-				37
+				35,
+				36,
+				37,
+				40
 			]
 		}
 	],
@@ -505,7 +507,6 @@
 				20,
 				23,
 				24,
-				25,
 				26,
 				27,
 				28,
@@ -515,7 +516,10 @@
 				32,
 				33,
 				34,
-				37
+				35,
+				36,
+				37,
+				40
 			]
 		},
 		{
@@ -533,7 +537,8 @@
 				18,
 				21,
 				22,
-				36
+				25,
+				39
 			]
 		},
 		{
@@ -541,24 +546,26 @@
 			"sourceIndexes" : 
 			[
 				3,
-				35
+				38,
+				41
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				38,
-				39,
-				40,
-				41,
 				42,
 				43,
 				44,
 				45,
 				46,
 				47,
-				48
+				48,
+				49,
+				50,
+				51,
+				52,
+				53
 			]
 		}
 	],
@@ -611,12 +618,12 @@
 		{
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
-			"path" : "profilewidget.cpp",
+			"path" : "profiletab.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
 			"backtrace" : 4,
-			"path" : "profilewidget.h",
+			"path" : "profiletab.h",
 			"sourceGroupIndex" : 1
 		},
 		{
@@ -699,6 +706,17 @@
 		{
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
+			"path" : "profilewidget.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "profilewidget.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
 			"isGenerated" : true,
 			"path" : "build/moc_musicmain.cpp",
 			"sourceGroupIndex" : 0
@@ -721,7 +739,7 @@
 			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "build/moc_profilewidget.cpp",
+			"path" : "build/moc_profiletab.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
@@ -775,6 +793,13 @@
 		},
 		{
 			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/moc_profilewidget.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
 			"path" : "resources/jsons/myloadedtracks.json",
 			"sourceGroupIndex" : 2
 		},
@@ -788,6 +813,11 @@
 			"compileGroupIndex" : 0,
 			"path" : "setstyle.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "resources/jsons/users.json",
+			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 0,
@@ -810,7 +840,7 @@
 		{
 			"backtrace" : 0,
 			"isGenerated" : true,
-			"path" : "build/moc_profilewidget.cpp.rule",
+			"path" : "build/moc_profiletab.cpp.rule",
 			"sourceGroupIndex" : 3
 		},
 		{
@@ -853,6 +883,12 @@
 			"backtrace" : 0,
 			"isGenerated" : true,
 			"path" : "build/moc_userslistwidget.cpp.rule",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/moc_profilewidget.cpp.rule",
 			"sourceGroupIndex" : 3
 		}
 	],
