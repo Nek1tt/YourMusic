@@ -12,6 +12,7 @@
 #include "myalbumswidget.h"
 #include "createwidget.h"
 #include "rightbarwidget.h"
+#include "mytrackswidget.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

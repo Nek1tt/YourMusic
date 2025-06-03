@@ -40,8 +40,6 @@ static constexpr auto qt_meta_stringdata_ZN13ProfileWidgetE = QtMocHelpers::stri
     "ProfileWidget",
     "onAlbomClickedSignal",
     "",
-    "album",
-    "albumData",
     "onTrackDoubleClickedignal",
     "track*",
     "trackData"
@@ -64,12 +62,12 @@ Q_CONSTINIT static const uint qt_meta_data_ZN13ProfileWidgetE[] = {
        2,       // signalCount
 
  // signals: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   26,    2, 0x06,    1 /* Public */,
-       5,    1,   29,    2, 0x06,    3 /* Public */,
+       1,    0,   26,    2, 0x06,    1 /* Public */,
+       3,    1,   27,    2, 0x06,    2 /* Public */,
 
  // signals: parameters
-    QMetaType::Void, 0x80000000 | 3,    4,
-    QMetaType::Void, 0x80000000 | 6,    7,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 4,    5,
 
        0        // eod
 };
@@ -85,7 +83,6 @@ Q_CONSTINIT const QMetaObject ProfileWidget::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<ProfileWidget, std::true_type>,
         // method 'onAlbomClickedSignal'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<album, std::false_type>,
         // method 'onTrackDoubleClickedignal'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<track *, std::false_type>
@@ -98,7 +95,7 @@ void ProfileWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
     auto *_t = static_cast<ProfileWidget *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->onAlbomClickedSignal((*reinterpret_cast< std::add_pointer_t<album>>(_a[1]))); break;
+        case 0: _t->onAlbomClickedSignal(); break;
         case 1: _t->onTrackDoubleClickedignal((*reinterpret_cast< std::add_pointer_t<track*>>(_a[1]))); break;
         default: ;
         }
@@ -106,7 +103,7 @@ void ProfileWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
     if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _q_method_type = void (ProfileWidget::*)(album );
+            using _q_method_type = void (ProfileWidget::*)();
             if (_q_method_type _q_method = &ProfileWidget::onAlbomClickedSignal; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
@@ -154,10 +151,9 @@ int ProfileWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void ProfileWidget::onAlbomClickedSignal(album _t1)
+void ProfileWidget::onAlbomClickedSignal()
 {
-    void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
-    QMetaObject::activate(this, &staticMetaObject, 0, _a);
+    QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
 }
 
 // SIGNAL 1

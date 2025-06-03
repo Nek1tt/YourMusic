@@ -462,6 +462,9 @@ CMakeFiles/musicproject.dir/profilewidget.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qtimezone.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QStackedWidget \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qstackedwidget.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollBar \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollbar.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractslider.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\profilewidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\userProfileWidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\myalbumswidget.h \
@@ -469,4 +472,16 @@ CMakeFiles/musicproject.dir/profilewidget.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\mytrackswidget.h \
- C:\Users\Lenovo\upprpo\YourMusic\frontend\albumwidget.h
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\albumwidget.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\albomlistwidget.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/QResizeEvent \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qevent.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qeventpoint.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qvector2d.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qvectornd.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qpointingdevice.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qinputdevice.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qscreen.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QVector \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qvector.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\userslistwidget.h

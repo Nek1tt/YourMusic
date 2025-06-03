@@ -390,5 +390,6 @@ CMakeFiles/musicproject.dir/moc_myalbumswidget.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollArea \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
- C:/Users/Lenovo/upprpo/YourMusic/frontend/mytrackswidget.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QList \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qlist.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qtmochelpers.h

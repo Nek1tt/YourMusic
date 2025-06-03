@@ -35,5 +35,15 @@ private:
     QLabel *followingNumLabel;
     QLabel *tracksLoadedNumLabel;
     QLabel *tracksAddedNumLabel;
+
+signals:
+    void tracksAddedButtonClicked();
+    void tracksLoadedButtonClicked();
+    void followersButtonClicked();
+    void followingButtonClicked();
 };
+
+
+QVector<UserInfo> loadUsersFromJson(const QString &filePath);
+
 #endif // USERPROFILEWIDGET_H

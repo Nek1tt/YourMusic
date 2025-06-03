@@ -51,7 +51,7 @@
 			{
 				"command" : 3,
 				"file" : 1,
-				"line" : 64,
+				"line" : 76,
 				"parent" : 0
 			},
 			{
@@ -75,13 +75,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 99,
+				"line" : 115,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 82,
+				"line" : 98,
 				"parent" : 0
 			},
 			{
@@ -367,15 +367,21 @@
 				12,
 				14,
 				16,
-				18,
 				19,
 				20,
-				21,
-				22,
 				23,
 				24,
 				25,
-				28
+				26,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				37
 			]
 		}
 	],
@@ -495,15 +501,21 @@
 				12,
 				14,
 				16,
-				18,
 				19,
 				20,
-				21,
-				22,
 				23,
 				24,
 				25,
-				28
+				26,
+				27,
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				37
 			]
 		},
 		{
@@ -518,7 +530,10 @@
 				13,
 				15,
 				17,
-				27
+				18,
+				21,
+				22,
+				36
 			]
 		},
 		{
@@ -526,21 +541,25 @@
 			"sourceIndexes" : 
 			[
 				3,
-				26
+				35,
+				38
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				29,
-				30,
-				31,
-				32,
-				33,
-				34,
-				35,
-				36
+				39,
+				40,
+				41,
+				42,
+				43,
+				44,
+				45,
+				46,
+				47,
+				48,
+				49
 			]
 		}
 	],
@@ -647,6 +666,39 @@
 		},
 		{
 			"backtrace" : 4,
+			"path" : "loginwindow.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "loginwindow.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "albomlistwidget.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "albomlistwidget.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"path" : "userslistwidget.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"path" : "userslistwidget.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
 			"path" : "build/moc_musicmain.cpp",
@@ -703,6 +755,27 @@
 		},
 		{
 			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/moc_loginwindow.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/moc_albomlistwidget.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/moc_userslistwidget.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
 			"path" : "resources/jsons/myloadedtracks.json",
 			"sourceGroupIndex" : 2
 		},
@@ -716,6 +789,11 @@
 			"compileGroupIndex" : 0,
 			"path" : "setstyle.cpp",
 			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 4,
+			"path" : "resources/jsons/users.json",
+			"sourceGroupIndex" : 2
 		},
 		{
 			"backtrace" : 0,
@@ -763,6 +841,24 @@
 			"backtrace" : 0,
 			"isGenerated" : true,
 			"path" : "build/moc_userProfileWidget.cpp.rule",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/moc_loginwindow.cpp.rule",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/moc_albomlistwidget.cpp.rule",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/moc_userslistwidget.cpp.rule",
 			"sourceGroupIndex" : 3
 		}
 	],

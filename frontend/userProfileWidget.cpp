@@ -6,6 +6,10 @@
 #include <QBoxLayout>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
+#include <QJsonParseError>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
 // #include <QWebSocket>
 #include <QMessageBox>
 #include <QDir>
@@ -38,6 +42,20 @@ UserProfileWidget::UserProfileWidget(QWidget *parent) // класс для ин�
     followingLabel = new QPushButton(this);
     tracksLoadedLabel =new QPushButton(this);
     tracksAddedLabel = new QPushButton(this);
+    connect(followersLabel, &QPushButton::clicked, [this]() {
+        emit followersButtonClicked();
+    });
+    connect(followingLabel, &QPushButton::clicked, [this]() {
+        emit followingButtonClicked();
+    });
+    connect(tracksLoadedLabel, &QPushButton::clicked, [this]() {
+        emit tracksLoadedButtonClicked();
+    });
+    connect(tracksAddedLabel, &QPushButton::clicked, [this]() {
+        emit tracksAddedButtonClicked();
+    });
+
+
     set_button_style(followersLabel, 15);
     set_button_style(followingLabel, 15);
     set_button_style(tracksLoadedLabel, 15);
@@ -122,4 +140,43 @@ void UserProfileWidget::setUserProfile(const UserInfo &user) {
     tracksAddedNumLabel->setText(QString::number(user.tracksAddednum));
 }// функция, что заполняет информацией и авой профиль.
 
+
+
+QVector<UserInfo> loadUsersFromJson(const QString &filePath) {
+    QFile file(filePath);
+    QVector<UserInfo> users;
+
+    if (!file.open(QIODevice::ReadOnly)) {
+        qWarning() << "Cannot open file:" << filePath;
+        return users;
+    }
+
+    QByteArray data = file.readAll();
+    file.close();
+
+    QJsonParseError parseError;
+    QJsonDocument doc = QJsonDocument::fromJson(data, &parseError);
+    if (parseError.error != QJsonParseError::NoError) {
+        qWarning() << "JSON parse error:" << parseError.errorString();
+        return users;
+    }
+
+    QJsonArray userArray = doc.array();
+    for (const QJsonValue &userValue : userArray) {
+        QJsonObject root = userValue.toObject();
+        UserInfo user;
+
+        user.avatarPath = root["avatarPath"].toString();
+        user.username = root["username"].toString();
+        user.usertag = root["usertag"].toString();
+        user.followersnum = root["followersnum"].toInt();
+        user.followingnum = root["followingnum"].toInt();
+        user.tracksLoadednum = root["tracksLoadednum"].toInt();
+        user.tracksAddednum = root["tracksAddednum"].toInt();
+
+        users.append(user);
+    }
+
+    return users;
+}
 

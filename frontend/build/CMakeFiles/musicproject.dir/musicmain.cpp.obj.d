@@ -472,12 +472,12 @@ CMakeFiles/musicproject.dir/musicmain.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qtimezone.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QApplication \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qapplication.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QStackedWidget \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qstackedwidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\musicmain.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QSplitter \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qsplitter.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\profilewidget.h \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/QStackedWidget \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/qstackedwidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\userProfileWidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\myalbumswidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\mytrackswidget.h \

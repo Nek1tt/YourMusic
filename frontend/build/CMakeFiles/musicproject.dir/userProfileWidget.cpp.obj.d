@@ -414,6 +414,20 @@ CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qboxlayout.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QVBoxLayout \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QHBoxLayout \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonParseError \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsondocument.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonvalue.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcborvalue.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcborcommon.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qdatetime.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcalendar.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qregularexpression.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/quuid.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonDocument \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonArray \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonarray.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonObject \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonobject.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QMessageBox \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qmessagebox.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qdialog.h \
@@ -422,8 +436,6 @@ CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qdir.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qdirlisting.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qfiledevice.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qdatetime.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qcalendar.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qfile.h \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/filesystem \
  C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fs_fwd.h \

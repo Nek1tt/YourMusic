@@ -115,23 +115,12 @@ MyTracksWidget::MyTracksWidget(QWidget *parent)  :QWidget(parent)
 {
     MyTracksLayout = new QVBoxLayout(this);
     myTracksButton = new QPushButton();
+    connect(myTracksButton, &QPushButton::clicked, [this]() {
+        //qDebug() << "Открыт альбом: " << albumButton->getAlbumName();
+        emit mytracksButtonClicked(getAlbum());
+    });
     set_button_style(myTracksButton, 32, "white", "left");
-    // myTracksButton->setStyleSheet(
-    //     "QPushButton {"
-    //     "text-align: left;"
-    //     "font-weight: bold;"
-    //     "font-size: 32px;"
-    //     "font-family: 'Tahoma';"
-    //     "    background: none;"                  // Убираем фон
-    //     "    border: none;"                      // Убираем рамку
-    //     //"    border: 2px solid blue;"  // рамка 2px
-    //     "    text-decoration: none;"             // Убираем подчеркивание по умолчанию
-    //     "}"
-    //     "QPushButton:hover {"
-    //     "    text-decoration: underline;"        // Подчеркиваем текст при наведении
-    //     "}"
-    //     );
-    myTracksButton->setFixedSize(300, 40);
+    //myTracksButton->setFixedSize(300, 40);
     MyTracksLayout->addWidget(myTracksButton);
 
     tracks = new QWidget();
@@ -141,48 +130,39 @@ MyTracksWidget::MyTracksWidget(QWidget *parent)  :QWidget(parent)
 
 }
 
-void MyTracksWidget::add_liked_tracks() {
-    myTracksButton->setText("My tracks");
-    myTracksButton->setFixedWidth(200);
+void MyTracksWidget::add_liked_tracks(album newTracks, const QString &buttonText, bool isLiked) {
+    myTracksButton->setText(buttonText);
+    if (isLiked) {
+        myTracksButton->setFixedWidth(200);
+    } else {
+        myTracksButton->setFixedWidth(300);
+    }
+    likedTracks = newTracks;
+    qDebug() << newTracks.author;
 
     clearLayout(tracks_layout_of_verticals);
-    tracks_vector.clear();
-    //read_tracks(tracks_vector, "../resources/text/tracks.txt");
-    tracks_vector = readFromJson("../resources/jsons/mytracks.json");
+    QVector<track> tracks_vector = newTracks.tracks;
+
     QVBoxLayout *leftColumn = new QVBoxLayout();
     QVBoxLayout *rightColumn = new QVBoxLayout();
 
-    for (int i=0;i<tracks_vector.size(); i++){
-        if (i==3){
-            break;
-        }
-        track track = tracks_vector[i];
-        TrackButton *trackButton = new TrackButton(track);
+    for (int i = 0; i < tracks_vector.size(); ++i) {
+        if (i >= 6) break;
+
+        track tr = tracks_vector[i];
+        TrackButton *trackButton = new TrackButton(tr);
         trackButtons.push_back(trackButton);
-        leftColumn->addWidget(trackButton);
 
-        connect(trackButton, &QPushButton::clicked, [this, trackButton]() {
-            //qDebug() << "Открыт трек: " << trackButton->getTrackName();
-        });
-        connect(trackButton, &TrackButton::trackButtonClicked, this, &MyTracksWidget::onTrackdoubleClicked);
-
-
-    }
-
-    for (int i=3;i<tracks_vector.size(); i++){
-        if (i==6){
-            break;
+        if (i < 3) {
+            leftColumn->addWidget(trackButton);
+        } else {
+            rightColumn->addWidget(trackButton);
         }
-        track track = tracks_vector[i];
-        TrackButton *trackButton = new TrackButton(track);
-        trackButtons.push_back(trackButton);
-        rightColumn->addWidget(trackButton);
 
         connect(trackButton, &QPushButton::clicked, [trackButton]() {
-            //qDebug() << "Открыт трек: " << trackButton->getTrackName();
+            // qDebug() << "Открыт трек: " << trackButton->getTrackName();
         });
         connect(trackButton, &TrackButton::trackButtonClicked, this, &MyTracksWidget::onTrackdoubleClicked);
-
     }
 
     tracks_layout_of_verticals->addLayout(leftColumn);
@@ -196,60 +176,6 @@ void MyTracksWidget::add_liked_tracks() {
     }
 }
 
-void MyTracksWidget::add_loaded_tracks() {
-    myTracksButton->setText("My loaded tracks");
-
-    clearLayout(tracks_layout_of_verticals);
-    tracks_vector.clear();
-    //read_tracks(tracks_vector, "../resources/text/tracks.txt");
-    tracks_vector = readFromJson("../resources/jsons/myloadedtracks.json");
-    QVBoxLayout *leftColumn = new QVBoxLayout();
-    QVBoxLayout *rightColumn = new QVBoxLayout();
-
-    for (int i=0;i<tracks_vector.size(); i++){
-        if (i==3){
-            break;
-        }
-        track track = tracks_vector[i];
-        TrackButton *trackButton = new TrackButton(track);
-        trackButtons.push_back(trackButton);
-        leftColumn->addWidget(trackButton);
-
-        connect(trackButton, &QPushButton::clicked, [trackButton]() {
-            //qDebug() << "Открыт трек: " << trackButton->getTrackName();
-        });
-        connect(trackButton, &TrackButton::trackButtonClicked, this, &MyTracksWidget::onTrackdoubleClicked);
-
-
-    }
-
-    for (int i=3;i<tracks_vector.size(); i++){
-        if (i==6){
-            break;
-        }
-        track track = tracks_vector[i];
-        TrackButton *trackButton = new TrackButton(track);
-        trackButtons.push_back(trackButton);
-        rightColumn->addWidget(trackButton);
-
-        connect(trackButton, &QPushButton::clicked, [trackButton]() {
-            //qDebug() << "Открыт трек: " << trackButton->getTrackName();
-        });
-        connect(trackButton, &TrackButton::trackButtonClicked, this, &MyTracksWidget::onTrackdoubleClicked);
-
-
-    }
-
-    tracks_layout_of_verticals->addLayout(leftColumn);
-    tracks_layout_of_verticals->addSpacing(20); // Отступ в 20 пикселей
-    tracks_layout_of_verticals->addLayout(rightColumn);
-
-    tracks->setLayout(tracks_layout_of_verticals);
-
-    if (MyTracksLayout->count() == 1) {
-        MyTracksLayout->addWidget(tracks);
-    }
-}
 
 void MyTracksWidget::clearLayout(QLayout *layout) {
     if (layout == nullptr) return;
@@ -336,4 +262,12 @@ QVector<track> readFromJson(const QString& filePath) {
     }
 
     return trackList;
+}
+
+QString MyTracksWidget::getAlbumName(){
+    return likedTracks.name;
+}
+
+album MyTracksWidget::getAlbum(){
+    return likedTracks;
 }

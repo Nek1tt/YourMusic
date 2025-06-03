@@ -15,6 +15,8 @@
 #include <QMessageBox>
 #include <QDir>
 #include <QApplication>
+#include <QStackedWidget>
+
 
 
 #include "musicmain.h"
@@ -121,12 +123,18 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
 
     // // Создаем вкладку create
     createwidget = new CreateWidget(this, Create);
-    profilewidget = new ProfileWidget(this, Profile);
+
+
+    QVector <album> albums_vector = loadAlbumsFromJson("../resources/jsons/myalbums.json");
+    qDebug()<<albums_vector[2].author;
+    album loadedTracks = loadSingleAlbumFromJson("../resources/jsons/myloadedtracks.json");
+
+    album likedTracks = loadSingleAlbumFromJson("../resources/jsons/mytracks.json");
+    profilewidget = new ProfileWidget(albums_vector, likedTracks, loadedTracks, this, Profile);
     connect(profilewidget, &ProfileWidget::onAlbomClickedSignal, this, &MusicMain::on_albumButton_clicked);
     connect(profilewidget, &ProfileWidget::onTrackDoubleClickedignal, this, &MusicMain::on_TrackButton_clicked);
 
     profilewidget->setContentsMargins(0, 0, 0, 0);
-    qDebug()<<"3";
 
     // Пример загрузки треков
     QVector<track> tracks;
@@ -223,7 +231,11 @@ void MusicMain::on_createTab_clicked()
 void MusicMain::on_profileTab_clicked()
 {
     //playlistwidget->add_playlists();
-    profilewidget->button_profile_clicked();
+    //album info getting function
+    QVector <album> albums_vector = loadAlbumsFromJson("../resources/jsons/myalbums.json");
+
+
+    profilewidget->button_profile_clicked(albums_vector);
     //qDebug()<<"click";
     toggle_buttons(profileTab);
 }
@@ -274,6 +286,9 @@ void MusicMain::on_backButton_clicked(){
 
 void MusicMain::on_forwardButton_clicked(){
     int current = profilewidget->getCurrentIndex();
+    //QWidget* currentWidget = profilewidget->getInnerStacked()->currentWidget();
+    //currentWidget->getscro
+
     int total = profilewidget->getTotalIndex();
 
     if (current + 1 < total) {

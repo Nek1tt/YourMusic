@@ -80,6 +80,22 @@ AlbumTrackButton::AlbumTrackButton(const track &trackData, QString number, QWidg
 
 };
 
+QString AlbumTrackButton::getTrackName(){
+    return trackData.name;
+}
+
+track * AlbumTrackButton::getTrack(){
+    return &trackData;
+}
+
+void AlbumTrackButton::mouseDoubleClickEvent(QMouseEvent *event){
+    qDebug()<<getTrackName();
+    emit trackButtonClicked(getTrack());
+}
+
+
+
+
 AlbumTrackButton::AlbumTrackButton(QWidget *parent)
     : QPushButton(parent)
 {
@@ -134,7 +150,7 @@ AlbumWidget::AlbumWidget(const struct album &albumData, QWidget *parent)
     mainLayout->setContentsMargins(0, 0, 0, 0);
     // 2. Scroll area — контейнер, который умеет прокручивать
     QScrollArea *scrollArea = new QScrollArea(this);
-    scrollArea->setWidgetResizable(true);  // 🔥 чтобы scrollWidget подстраивался
+    scrollArea->setWidgetResizable(true);
 
     // 3. scrollWidget — внутренняя "коробка" в scrollArea
     QWidget *scrollWidget = new QWidget();
@@ -173,7 +189,10 @@ AlbumWidget::AlbumWidget(const struct album &albumData, QWidget *parent)
 
 
     QPushButton *albumAuthorButton= new QPushButton(albumData.author);
-    albumAuthorButton->setFixedSize(200, 20);
+    QFontMetrics fm(albumData.author);
+    int textWidth = fm.horizontalAdvance(albumData.author);
+    albumAuthorButton->setFixedWidth(textWidth + 35); // +10 — небольшой отступ по краям
+    //albumAuthorButton->setFixedSize(200, 20);
     set_button_style(albumAuthorButton, 20, "white");
 
     QLabel *albumInfoLabel = new QLabel();
@@ -217,6 +236,8 @@ AlbumWidget::AlbumWidget(const struct album &albumData, QWidget *parent)
         track sometrack = albumData.tracks[i];
         QString trackNumber = QString::number(i + 1); // превращаем число в строку
         AlbumTrackButton *button = new AlbumTrackButton(sometrack, trackNumber, this);
+        connect(button, &AlbumTrackButton::trackButtonClicked, this, &AlbumWidget::onTrackdoubleClicked);
+
         trackListLayout->addWidget(button);
     }
 
@@ -228,3 +249,13 @@ AlbumWidget::AlbumWidget(const struct album &albumData, QWidget *parent)
     // 7. Добавим scrollArea в основной layout
     mainLayout->addWidget(scrollArea);
 }
+
+
+
+void AlbumWidget::onTrackdoubleClicked(track *trackData){
+    emit trackButtonClicked(trackData);
+}
+
+
+
+

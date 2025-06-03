@@ -49,6 +49,12 @@ set(PROJECT_SOURCES
 
     loginwindow.h
     loginwindow.cpp
+
+    albomlistwidget.cpp
+    albomlistwidget.h
+
+    userslistwidget.h
+    userslistwidget.cpp
 )
 
 qt6_wrap_cpp(MOC_SOURCES
@@ -61,6 +67,8 @@ qt6_wrap_cpp(MOC_SOURCES
     mytrackswidget.h
     userProfileWidget.h
     loginwindow.h
+    albomlistwidget.h
+    userslistwidget.h
 )
 
 # Создание исполняемого файла
@@ -72,6 +80,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         resources/jsons/myloadedtracks.json
         setstyle.h setstyle.cpp
         loginwindow.h loginwindow.cpp
+        albomlistwidget.h albomlistwidget.cpp
+        userslistwidget.h userslistwidget.cpp
+        resources/jsons/users.json
 
         # resources/jsons/album.json
         # resources/jsons/mytracks.json

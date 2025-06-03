@@ -464,5 +464,4 @@ CMakeFiles/musicproject.dir/createwidget.cpp.obj: \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\myalbumswidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollArea \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
- C:\Users\Lenovo\upprpo\YourMusic\frontend\mytrackswidget.h
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h

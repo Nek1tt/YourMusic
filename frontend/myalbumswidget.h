@@ -3,10 +3,19 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QScrollArea>
-#include "mytrackswidget.h"
 
 #ifndef MYPLAYLISTSWIDGET_H
 #define MYPLAYLISTSWIDGET_H
+
+struct track {
+    int id;
+    int album_id;
+    QString name;
+    int duration_ms;
+    QString coverpath;
+    QString author;
+};
+
 
 struct album {
     int id;
@@ -35,8 +44,9 @@ class MyAlbumsWidget : public QWidget
 public:
     explicit MyAlbumsWidget(QWidget *parent = nullptr);
     void clearLayout(QLayout *layout);
-    void add_albums();
+    void add_albums(QVector<album> newAlbumList);
     void resizeAlbums(int width);
+    QVector<album> getAlbum();
 
 private:
     QVector<album> albums_vector = {};
@@ -48,6 +58,7 @@ private:
 
 signals:
     void albumButtonClicked(const album albumData);
+    void myAlbumsButtonClicked(const QVector<album> albumList);
 };
 
 
@@ -55,5 +66,6 @@ signals:
 // void write_album(album &album);
 // void read_albums(std::vector<album> &albums);
 QVector<album> loadAlbumsFromJson(const QString &filePath);
+album loadSingleAlbumFromJson(const QString &filePath);
 
 #endif // MYPLAYLISTSWIDGET_H

@@ -97,27 +97,29 @@ MyAlbumsWidget::MyAlbumsWidget(QWidget *parent) : QWidget(parent)
         "    text-decoration: underline;"        // Подчеркиваем текст при наведении
         "}"
         );
+    connect(myAlbumButton, &QPushButton::clicked, [this]() {
+        //qDebug() << "Открыт альбом: " << albumButton->getAlbumName();
+        emit myAlbumsButtonClicked(getAlbum());
+    });
     myAlbumButton->setFixedSize(200, 40);
     MyAlbumsLayout->addWidget(myAlbumButton);
 
 
     albums = new QWidget();  // виджет для прокрутки
     scrollAreaAlbums = new QScrollArea(this);  // прокручиваемая область
+    setFixedHeight(300);
 
     // Создаем горизонтальный layout
     albumsLayout = new QHBoxLayout(albums);
-
-    add_albums();
-
 }
 
+QVector<album> MyAlbumsWidget::getAlbum(){
+    return albums_vector;
+}
 
-void MyAlbumsWidget::add_albums() {
+void MyAlbumsWidget::add_albums(QVector<album> newAlbumList) {
     clearLayout(albumsLayout);
-    albums_vector.clear();
-    //read_albums(albums_vector);
-    albums_vector = loadAlbumsFromJson("../resources/jsons/myalbums.json");
-
+    albums_vector = newAlbumList;
     // connect(albumButton, &QPushButton::clicked, this, [this, albumButton]() {
     //     emit albumClicked(albumButton->getAlbumName());
     // });
@@ -249,4 +251,48 @@ QVector<album> loadAlbumsFromJson(const QString &filePath) {
     }
 
     return albums;
+}
+
+album loadSingleAlbumFromJson(const QString &filePath) {
+    QFile file(filePath);
+    album albumdata;
+
+    if (!file.open(QIODevice::ReadOnly)) {
+        qWarning() << "Cannot open file:" << filePath;
+        return albumdata;
+    }
+
+    QByteArray data = file.readAll();
+    file.close();
+
+    QJsonParseError parseError;
+    QJsonDocument doc = QJsonDocument::fromJson(data, &parseError);
+    if (parseError.error != QJsonParseError::NoError) {
+        qWarning() << "JSON parse error:" << parseError.errorString();
+        return albumdata;
+    }
+
+    QJsonObject root = doc.object();
+    QJsonArray trackArray = root["tracks"].toArray();
+
+    // Пример: создаём альбом вручную (можешь заменить на реальные данные)
+    albumdata.id = 0;
+    albumdata.name = "Mixed Tracks Album";
+    albumdata.coverpath = "../resources/imgs/ava.png";
+    albumdata.author = "nurshat";
+    albumdata.track_count = trackArray.size();
+
+    for (const QJsonValue &trackValue : trackArray) {
+        QJsonObject trackObj = trackValue.toObject();
+        track trackdata;
+        trackdata.id = trackObj["id"].toInt();
+        trackdata.album_id = trackObj["albumId"].toInt(); // по сути всегда 0
+        trackdata.name = trackObj["title"].toString();
+        trackdata.duration_ms = trackObj["durationMs"].toInt();
+        trackdata.coverpath = trackObj["coverPath"].toString();
+        trackdata.author = trackObj["author"].toString();
+        albumdata.tracks.append(trackdata);
+    }
+
+    return albumdata;
 }

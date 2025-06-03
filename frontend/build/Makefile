@@ -173,6 +173,30 @@ musicproject/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/build
 .PHONY : musicproject/fast
 
+albomlistwidget.obj: albomlistwidget.cpp.obj
+.PHONY : albomlistwidget.obj
+
+# target to build an object file
+albomlistwidget.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/albomlistwidget.cpp.obj
+.PHONY : albomlistwidget.cpp.obj
+
+albomlistwidget.i: albomlistwidget.cpp.i
+.PHONY : albomlistwidget.i
+
+# target to preprocess a source file
+albomlistwidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/albomlistwidget.cpp.i
+.PHONY : albomlistwidget.cpp.i
+
+albomlistwidget.s: albomlistwidget.cpp.s
+.PHONY : albomlistwidget.s
+
+# target to generate assembly for a file
+albomlistwidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/albomlistwidget.cpp.s
+.PHONY : albomlistwidget.cpp.s
+
 albumwidget.obj: albumwidget.cpp.obj
 .PHONY : albumwidget.obj
 
@@ -268,6 +292,30 @@ main.s: main.cpp.s
 main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/main.cpp.s
 .PHONY : main.cpp.s
+
+moc_albomlistwidget.obj: moc_albomlistwidget.cpp.obj
+.PHONY : moc_albomlistwidget.obj
+
+# target to build an object file
+moc_albomlistwidget.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_albomlistwidget.cpp.obj
+.PHONY : moc_albomlistwidget.cpp.obj
+
+moc_albomlistwidget.i: moc_albomlistwidget.cpp.i
+.PHONY : moc_albomlistwidget.i
+
+# target to preprocess a source file
+moc_albomlistwidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_albomlistwidget.cpp.i
+.PHONY : moc_albomlistwidget.cpp.i
+
+moc_albomlistwidget.s: moc_albomlistwidget.cpp.s
+.PHONY : moc_albomlistwidget.s
+
+# target to generate assembly for a file
+moc_albomlistwidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_albomlistwidget.cpp.s
+.PHONY : moc_albomlistwidget.cpp.s
 
 moc_albumwidget.obj: moc_albumwidget.cpp.obj
 .PHONY : moc_albumwidget.obj
@@ -485,6 +533,30 @@ moc_userProfileWidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_userProfileWidget.cpp.s
 .PHONY : moc_userProfileWidget.cpp.s
 
+moc_userslistwidget.obj: moc_userslistwidget.cpp.obj
+.PHONY : moc_userslistwidget.obj
+
+# target to build an object file
+moc_userslistwidget.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_userslistwidget.cpp.obj
+.PHONY : moc_userslistwidget.cpp.obj
+
+moc_userslistwidget.i: moc_userslistwidget.cpp.i
+.PHONY : moc_userslistwidget.i
+
+# target to preprocess a source file
+moc_userslistwidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_userslistwidget.cpp.i
+.PHONY : moc_userslistwidget.cpp.i
+
+moc_userslistwidget.s: moc_userslistwidget.cpp.s
+.PHONY : moc_userslistwidget.s
+
+# target to generate assembly for a file
+moc_userslistwidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_userslistwidget.cpp.s
+.PHONY : moc_userslistwidget.cpp.s
+
 musicmain.obj: musicmain.cpp.obj
 .PHONY : musicmain.obj
 
@@ -653,6 +725,30 @@ userProfileWidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/userProfileWidget.cpp.s
 .PHONY : userProfileWidget.cpp.s
 
+userslistwidget.obj: userslistwidget.cpp.obj
+.PHONY : userslistwidget.obj
+
+# target to build an object file
+userslistwidget.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/userslistwidget.cpp.obj
+.PHONY : userslistwidget.cpp.obj
+
+userslistwidget.i: userslistwidget.cpp.i
+.PHONY : userslistwidget.i
+
+# target to preprocess a source file
+userslistwidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/userslistwidget.cpp.i
+.PHONY : userslistwidget.cpp.i
+
+userslistwidget.s: userslistwidget.cpp.s
+.PHONY : userslistwidget.s
+
+# target to generate assembly for a file
+userslistwidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/userslistwidget.cpp.s
+.PHONY : userslistwidget.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -666,6 +762,9 @@ help:
 	@echo ... list_install_components
 	@echo ... rebuild_cache
 	@echo ... musicproject
+	@echo ... albomlistwidget.obj
+	@echo ... albomlistwidget.i
+	@echo ... albomlistwidget.s
 	@echo ... albumwidget.obj
 	@echo ... albumwidget.i
 	@echo ... albumwidget.s
@@ -678,6 +777,9 @@ help:
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s
+	@echo ... moc_albomlistwidget.obj
+	@echo ... moc_albomlistwidget.i
+	@echo ... moc_albomlistwidget.s
 	@echo ... moc_albumwidget.obj
 	@echo ... moc_albumwidget.i
 	@echo ... moc_albumwidget.s
@@ -705,6 +807,9 @@ help:
 	@echo ... moc_userProfileWidget.obj
 	@echo ... moc_userProfileWidget.i
 	@echo ... moc_userProfileWidget.s
+	@echo ... moc_userslistwidget.obj
+	@echo ... moc_userslistwidget.i
+	@echo ... moc_userslistwidget.s
 	@echo ... musicmain.obj
 	@echo ... musicmain.i
 	@echo ... musicmain.s
@@ -726,6 +831,9 @@ help:
 	@echo ... userProfileWidget.obj
 	@echo ... userProfileWidget.i
 	@echo ... userProfileWidget.s
+	@echo ... userslistwidget.obj
+	@echo ... userslistwidget.i
+	@echo ... userslistwidget.s
 .PHONY : help
 
 

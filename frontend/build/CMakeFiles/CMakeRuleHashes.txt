@@ -1,4 +1,5 @@
 # Hashes of file build rules.
+6e314893d5dfe0b36c06cb5e1449020d moc_albomlistwidget.cpp
 8cfb96b34159c9681da57aac6459b67f moc_albumwidget.cpp
 0bba51561bc3c85e88444f4e2ea5a54e moc_createwidget.cpp
 6646eeff1334f1c43766a58271d7ed4f moc_loginwindow.cpp
@@ -8,3 +9,4 @@
 6da10354186d5c661c6fbc563e753b5c moc_profilewidget.cpp
 802782deea810fd2b203ff854589202b moc_rightbarwidget.cpp
 2b830688d7d7faa3954c187d028ab26b moc_userProfileWidget.cpp
+e910b783c8f956ee6f2d544fbd8afaa5 moc_userslistwidget.cpp

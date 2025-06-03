@@ -22,16 +22,24 @@ class ProfileWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ProfileWidget(QWidget  *parent = nullptr, QWidget *tab = nullptr);
+    explicit ProfileWidget(QVector <album> albumList, album likedTracks, album loadedTracks, QWidget  *parent = nullptr, QWidget *tab = nullptr);
     void resizeProfile(int width);
-    void button_profile_clicked();
+    void button_profile_clicked(QVector <album> albums_vector);
     void onAlbumClicked(album albumData);
+    void onAlbumListClicked(QVector<album> albumList);
+    void onUsersListClicked(QVector<UserInfo> users);
 
     int getCurrentIndex();
     int getTotalIndex();
     void setCurrentIndex(int index);
     int get_widgetWidth();
     void onTrackdoubleClicked(track *trackData);
+    void onFollowersButtonClicked();
+    void onFollowingButtonClicked();
+    void onTracksLoadedButtonClicked();
+    void onTracksAddedButtonClicked();
+    QStackedWidget *getInnerStacked();
+
 
 private:
     UserProfileWidget *userProfile;
@@ -41,10 +49,14 @@ private:
     QStackedWidget *innerStacked;
     QWidget *scrollWidget;
     QWidget *mainWidget;
+    QScrollArea *scrollArea;
     int widgetWidth;
+    album likedTracks;
+    album loadedTracks;
+    QVector <album> albumList;
 
 signals:
-    void onAlbomClickedSignal(album albumData);
+    void onAlbomClickedSignal();
     void onTrackDoubleClickedignal(track *trackData);
 };
 

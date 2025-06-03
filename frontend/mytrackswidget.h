@@ -4,19 +4,11 @@
 #include <QVBoxLayout>
 #include <QScrollArea>
 
+#include "myalbumswidget.h"
 
 #ifndef MYTRACKSWIDGET_H
 #define MYTRACKSWIDGET_H
 
-
-struct track {
-    int id;
-    int album_id;
-    QString name;
-    int duration_ms;
-    QString coverpath;
-    QString author;
-};
 
 class TrackButton : public QPushButton {
     Q_OBJECT
@@ -43,8 +35,10 @@ public:
     explicit MyTracksWidget(QWidget *parent = nullptr);
     void resize_tracks(int width);
     void clearLayout(QLayout *layout);
-    void add_liked_tracks();
-    void add_loaded_tracks();
+    void add_liked_tracks(album newTracks, const QString &buttonText, bool isLiked);
+    //void add_loaded_tracks(album loadedTracks);
+    QString getAlbumName();
+    album getAlbum();
 
     void onTrackdoubleClicked(track *trackData);
 
@@ -53,11 +47,14 @@ private:
     QPushButton *myTracksButton;
     QWidget *tracks;
     QHBoxLayout *tracks_layout_of_verticals;
-    QVector<track> tracks_vector;
+    album likedTracks;
+    //album loadedTracks;
+    //QVector<track> tracks_vector;
     std::vector<TrackButton*> trackButtons;
 
 signals:
     void trackButtonClicked(track *trackData);
+    void mytracksButtonClicked(const album albumData);
 };
 
 

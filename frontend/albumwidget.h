@@ -16,10 +16,16 @@ public:
     explicit AlbumTrackButton(QWidget *parent = nullptr);
     //QString getTrackName();
     //void resize_trackbutton(int width);
+    QString getTrackName();
+    track* getTrack();
 
 private:
     track trackData;
     QString number;
+protected:
+    void mouseDoubleClickEvent(QMouseEvent *event) override;
+signals:
+    void trackButtonClicked(track *trackData);
 };
 
 class AlbumWidget : public QWidget
@@ -28,8 +34,12 @@ class AlbumWidget : public QWidget
 public:
     explicit AlbumWidget(const album &albumData, QWidget *parent = nullptr);
     AlbumWidget(const track &trackData, QWidget *parent = nullptr);
+    void onTrackdoubleClicked(track *trackData);
 private:
     album albumData;
+
+signals:
+    void trackButtonClicked(track *trackData);
 };
 
 #endif // ALBUMWIDGET_H
