@@ -8,6 +8,7 @@
 #include <iostream>
 #include <locale>
 #include <codecvt>
+#include <sstream>
 #include "db.h"
 
 namespace beast = boost::beast;

@@ -1,9 +1,5 @@
 // auth-service.cpp
 #include "auth-service.h"
-#include <iostream>
-#include <locale>
-#include <codecvt>
-#include <sstream>
 
 // -------------------- HttpSession implementation --------------------
 
@@ -142,9 +138,24 @@ http::response<http::string_body> HttpSession::handle_login(const json& body) {
         std::string password = body.at("password").get<std::string>();
 
         if (db_.check_credentials_by_email(email, password)) {
+            auto usertag_opt = db_.get_usertag_by_email(email);
+            if (!usertag_opt)
+            {
+                json resp = {
+                    {"status", "error"},
+                    {"message", "Usertag not found"}
+                };
+                http::response<http::string_body> r{http::status::internal_server_error, req_.version()};
+                r.set(http::field::content_type, "application/json");
+                r.body() = resp.dump();
+                r.prepare_payload();
+                return r;
+            }
+
             json resp = {
                 {"status", "ok"},
-                {"message", "Login successful"}
+                {"message", "Login successful"},
+                {"usertag", *usertag_opt}
             };
             http::response<http::string_body> r{http::status::ok, req_.version()};
             r.set(http::field::content_type, "application/json");
