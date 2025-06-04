@@ -114,20 +114,116 @@ private:
         session_.sendMessage(errorResponse.dump());
     }
 };
-    
+
 // ===================== CatalogHandler =====================
 class ApiSession::CatalogHandler {
 public:
-    explicit CatalogHandler(ApiSession& session) : session_(session) {
-        
-    }
+    explicit CatalogHandler(ApiSession& session) : session_(session) {}
 
     void handle(const nlohmann::json& req) {
-        //отправлять http запрос на catalog service и принимать ответ здесь
+        // Проверяем, есть ли поле action в запросе
+        if (!req.contains("action")) {
+            sendErrorResponse("Missing 'action' field");
+            return;
+        }
+
+        std::string action = req["action"];
+
+        // Определяем endpoint на основе action
+        // (здесь пока только "home", можно дополнять другими)
+        std::string endpoint;
+        if (action == "home") {
+            endpoint = "/home";
+        } else if (action == "profile") {
+            endpoint = "/profile";
+        } else {
+            sendErrorResponse("Unknown action: " + action);
+            return;
+        }
+
+        // Отправляем HTTP-запрос на catalog service
+        sendHttpRequest(endpoint, req);
     }
 
 private:
-    ApiSession& session_; // Ссылка на сессию API.
+    ApiSession& session_;
+
+    void sendHttpRequest(const std::string& endpoint, const nlohmann::json& requestData) {
+        try {
+            // Создаём собственный io_context для клиентского запроса
+            net::io_context ioc;
+
+            // Резолвим адрес catalog service (localhost:8083)
+            tcp::resolver resolver(ioc);
+            auto const results = resolver.resolve("127.0.0.1", "8083");
+
+            // Создаём и подключаемся через Beast TCP Stream
+            beast::tcp_stream stream(ioc);
+            stream.connect(results);
+
+            // Подготавливаем JSON-тело — копируем все поля кроме “endpoint” и “action”
+            nlohmann::json requestBody;
+            for (auto& [key, value] : requestData.items()) {
+                if (key != "endpoint") {
+                    requestBody[key] = value;
+                }
+            }
+            std::string body = requestBody.dump();
+
+            // Создаём HTTP POST-запрос
+            http::request<http::string_body> httpReq{http::verb::post, endpoint, 11};
+            httpReq.set(http::field::host, "127.0.0.1:8083");
+            httpReq.set(http::field::user_agent, "API-Gateway/1.0");
+            httpReq.set(http::field::content_type, "application/json");
+            httpReq.body() = body;
+            httpReq.prepare_payload();
+
+            // Логируем исходящий запрос
+            std::cout << "[ApiGateway→Catalog] OUTGOING HTTP:\n" << httpReq << "\n";
+
+            // Отправляем запрос
+            http::write(stream, httpReq);
+
+            // Читаем ответ
+            beast::flat_buffer buffer;
+            http::response<http::string_body> httpRes;
+            http::read(stream, buffer, httpRes);
+
+            // Закрываем соединение
+            beast::error_code ec;
+            stream.socket().shutdown(tcp::socket::shutdown_both, ec);
+
+            // Отправляем ответ клиенту (через WebSocket)
+            sendResponse(httpRes.body());
+
+        } catch (const std::exception& e) {
+            std::cerr << "[CatalogHandler] HTTP request error: " << e.what() << "\n";
+            sendErrorResponse("Catalog service unavailable");
+        }
+    }
+
+    void sendResponse(const std::string& response) {
+        try {
+            // Формируем JSON-ответ типа catalog_response
+            nlohmann::json responseJson;
+            responseJson["type"] = "catalog_response";
+            responseJson["data"] = nlohmann::json::parse(response);
+
+            session_.sendMessage(responseJson.dump());
+        } catch (const std::exception& e) {
+            std::cerr << "[CatalogHandler] Response parsing error: " << e.what() << "\n";
+            sendErrorResponse("Invalid response from catalog service");
+        }
+    }
+
+    void sendErrorResponse(const std::string& error) {
+        nlohmann::json errorResponse;
+        errorResponse["type"] = "catalog_response";
+        errorResponse["data"]["status"] = "error";
+        errorResponse["data"]["message"] = error;
+
+        session_.sendMessage(errorResponse.dump());
+    }
 };
 
 // ===================== StreamingHandler =====================
