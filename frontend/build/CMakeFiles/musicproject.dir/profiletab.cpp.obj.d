@@ -465,14 +465,29 @@ CMakeFiles/musicproject.dir/profiletab.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollBar \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollbar.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractslider.h \
- C:\Users\Lenovo\upprpo\YourMusic\frontend\profiletab.h \
- C:\Users\Lenovo\upprpo\YourMusic\frontend\userProfileWidget.h \
- C:\Users\Lenovo\upprpo\YourMusic\frontend\myalbumswidget.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\hometab.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollArea \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
- C:\Users\Lenovo\upprpo\YourMusic\frontend\mytrackswidget.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\homewidget.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QLineEdit \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qlineedit.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qtextcursor.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qtextformat.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qpen.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qtextoption.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\myalbumswidget.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\userProfileWidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\profilewidget.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\mytrackswidget.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\createwidget.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QFileDialog \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qfiledialog.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qdir.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTextEdit \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtextedit.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qstring.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\albumwidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\albomlistwidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/QResizeEvent \

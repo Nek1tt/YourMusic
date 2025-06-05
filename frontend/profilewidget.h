@@ -10,9 +10,9 @@ class ProfileWidget : public QWidget {
     Q_OBJECT
 
 public:
-    ProfileWidget(UserInfo userData, QVector<album> albumList, album likedTracks, album loadedTracks, QWidget *parent = nullptr);
+    ProfileWidget(QWidget *parent = nullptr);
     void resizeProfile(int width);
-    void updateAlbums(QVector<album> albums);
+    void updateAlbums(UserInfo userData, QVector<album> albumList, album likedTracks, album loadedTracks);
 
     void onAlbumClicked(album albumData);
     void onAlbumListClicked(QVector<album> albumList);

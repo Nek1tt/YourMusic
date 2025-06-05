@@ -14,7 +14,7 @@
 #include <QScrollBar>
 
 
-#include "profiletab.h"
+#include "hometab.h"
 #include "userProfileWidget.h"
 #include "myalbumswidget.h"
 #include "albumwidget.h"
@@ -22,19 +22,11 @@
 #include "albomlistwidget.h"
 #include "userslistwidget.h"
 
-ProfileTab::ProfileTab(UserInfo userData, QVector <album> albumList, album likedTracks, album loadedTracks, QWidget *parent, QWidget *tab)
-    : QWidget(parent),
-    userData(userData),
-    likedTracks(likedTracks),
-    loadedTracks(loadedTracks),
-    albumList(albumList),
-    userProfile(new UserProfileWidget(this)),
-    albumwidget(new MyAlbumsWidget(this)),
-    likedtrackwidget(new MyTracksWidget(this)),
-    loadedtrackwidget(new MyTracksWidget(this))
+ProfileTab::ProfileTab(QWidget  *parent, QWidget *tab)
+    : AbstractTab(parent)
 {
     innerStacked = new QStackedWidget();
-    mainWidget = new ProfileWidget(userData, albumList, likedTracks, loadedTracks);
+    mainWidget = new ProfileWidget();
 
     connect(mainWidget, &ProfileWidget::followersButtonClicked, this, &ProfileTab::onFollowersButtonClicked);
     connect(mainWidget, &ProfileWidget::followingButtonClicked, this, &ProfileTab::onFollowingButtonClicked);
@@ -51,9 +43,9 @@ ProfileTab::ProfileTab(UserInfo userData, QVector <album> albumList, album liked
     connect(mainWidget, &ProfileWidget::authorButtonClicked, this, &ProfileTab::onAuthorButtonClicked);
 
     scrollWidget = new QWidget();
-    profileLayout = new QVBoxLayout(scrollWidget);
-    profileLayout->setContentsMargins(0, 0, 0, 0);
-    profileLayout->addWidget(mainWidget);
+    mainLayout = new QVBoxLayout(scrollWidget);
+    mainLayout->setContentsMargins(0, 0, 0, 0);
+    mainLayout->addWidget(mainWidget);
 
     scrollArea = new QScrollArea(this);
     scrollArea->setWidget(scrollWidget);
@@ -66,7 +58,7 @@ ProfileTab::ProfileTab(UserInfo userData, QVector <album> albumList, album liked
     //mainWidget->setStyleSheet("QWidget { border: 1px solid red; }");
 
     // Размещаем стек в основной вкладке
-    QVBoxLayout *tabLayout = new QVBoxLayout(tab);
+    QVBoxLayout *tabLayout = new QVBoxLayout(this);
     tabLayout->setContentsMargins(0, 0, 0, 0);
     tabLayout->addWidget(innerStacked);
     setStyleSheet("border: 1px, solid, red");
@@ -83,10 +75,8 @@ void ProfileTab::resizeProfile(int width){
     mainWidget->resizeProfile(width);
 }
 
-
-void ProfileTab::button_profile_clicked(QVector <album> albums_vector){
-
-    //albumwidget->add_albums(albums_vector);
+void ProfileTab::profileButtonClicked(UserInfo userData, QVector<album> albumList, album likedTracks, album loadedTracks){
+    mainWidget->updateAlbums(userData, albumList, likedTracks, loadedTracks);
 }
 
 void ProfileTab::onFollowersButtonClicked(){
@@ -97,11 +87,12 @@ void ProfileTab::onFollowingButtonClicked(){
     QVector<UserInfo> users = loadUsersFromJson("../resources/jsons/users.json");
     onUsersListClicked(users);
 };
+
 void ProfileTab::onTracksLoadedButtonClicked(){
-    onAlbumClicked(loadedTracks);
+    //onAlbumClicked(loadedTracks);
 };
 void ProfileTab::onTracksAddedButtonClicked(){
-    onAlbumClicked(likedTracks);
+    //onAlbumClicked(likedTracks);
 };
 
 void ProfileTab::onAuthorButtonClicked(int authorId){
@@ -163,8 +154,9 @@ void ProfileTab::onUserButtonClicked(UserInfo userData){
         }
     }
 
-    ProfileWidget *userProfileWidget = new ProfileWidget(userData, albumList, likedTracks, loadedTracks);
+    ProfileWidget *userProfileWidget = new ProfileWidget();
     //profileLayout->addWidget(userProfileWidget);
+    userProfileWidget->updateAlbums(userData, albums_vector, likedTracks, loadedTracks);
     userProfileWidget->resizeProfile(widthForResize);
     connect(userProfileWidget, &ProfileWidget::followersButtonClicked, this, &ProfileTab::onFollowersButtonClicked);
     connect(userProfileWidget, &ProfileWidget::followingButtonClicked, this, &ProfileTab::onFollowingButtonClicked);
@@ -206,6 +198,7 @@ void ProfileTab::onAlbumClicked(album albumData){
     }
 
     AlbumWidget *albumwidgetTab = new AlbumWidget(albumData);
+
     connect(albumwidgetTab, &AlbumWidget::trackButtonClicked, this, &ProfileTab::onTrackdoubleClicked);
     connect(albumwidgetTab, &AlbumWidget::trackNameButtonClicked, this, &ProfileTab::onAlbumByTrackId);
     connect(albumwidgetTab, &AlbumWidget::authorButtonClickedByTrackId, this, &ProfileTab::onAuthorByTrackId);
@@ -258,20 +251,6 @@ void ProfileTab::onAlbumListClicked(QVector<album> albumList){
 
 void ProfileTab::onTrackdoubleClicked(track *trackData){
     emit onTrackDoubleClickedignal(trackData);
-}
-
-
-int ProfileTab::getCurrentIndex(){
-    return innerStacked->currentIndex();
-}
-
-int ProfileTab::getTotalIndex(){
-    return innerStacked->count();
-}
-
-void ProfileTab::setCurrentIndex(int currentIndex){
-
-    innerStacked->setCurrentIndex(currentIndex);
 }
 
 int ProfileTab::get_widgetWidth(){

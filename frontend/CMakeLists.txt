@@ -18,6 +18,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # Найти Qt
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(Qt6 REQUIRED COMPONENTS WebSockets)
 
 
 # Список всех исходников
@@ -30,11 +31,11 @@ set(PROJECT_SOURCES
     albumwidget.cpp
     albumwidget.h
 
-    createwidget.cpp
-    createwidget.h
+    createTab.cpp
+    # createTab.h
 
     profiletab.cpp
-    profiletab.h
+    #profiletab.h
 
     rightbarwidget.cpp
     rightbarwidget.h
@@ -59,13 +60,26 @@ set(PROJECT_SOURCES
 
     profilewidget.cpp
     profilewidget.h
+
+    websocketclient.h
+    websocketclient.cpp
+
+    hometab.h
+    hometab.cpp
+
+    homewidget.h
+    homewidget.cpp
+
+    createwidget.h
+    createwidget.cpp
+
 )
 
 qt6_wrap_cpp(MOC_SOURCES
     musicmain.h
     albumwidget.h
-    createwidget.h
-    profiletab.h
+    #createTab.h
+    #profiletab.h
     rightbarwidget.h
     myalbumswidget.h
     mytrackswidget.h
@@ -74,6 +88,10 @@ qt6_wrap_cpp(MOC_SOURCES
     albomlistwidget.h
     userslistwidget.h
     profilewidget.h
+    websocketclient.h
+    hometab.h
+    homewidget.h
+    createwidget.h
 )
 
 # Создание исполняемого файла
@@ -89,8 +107,12 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         userslistwidget.h userslistwidget.cpp
         resources/jsons/users.json
         profilewidget.h profilewidget.cpp
-        profiletab.h profiletab.cpp
-
+        #profiletab.h
+        profiletab.cpp
+        websocketclient.h websocketclient.cpp
+        hometab.h hometab.cpp
+        homewidget.h homewidget.cpp
+        createwidget.h createwidget.cpp
         # resources/jsons/album.json
         # resources/jsons/mytracks.json
     )
@@ -103,6 +125,7 @@ endif()
 
 # Линковка с Qt
 target_link_libraries(musicproject PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(musicproject PRIVATE Qt6::WebSockets)
 
 
 # Установка свойств (для macOS/iOS и Windows)

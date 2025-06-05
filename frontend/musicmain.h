@@ -7,12 +7,13 @@
 // #include <QWebSocket>
 
 //#include "./ui_musicmain.h"
-#include "profiletab.h"
+//#include "profiletab.h"
+#include "hometab.h"
 #include "userProfileWidget.h"  // Подключаем header для UserProfileWidget
 #include "myalbumswidget.h"
-#include "createwidget.h"
 #include "rightbarwidget.h"
 #include "mytrackswidget.h"
+#include "websocketclient.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -25,13 +26,14 @@ class MusicMain : public QMainWindow
     Q_OBJECT
 
 public:
-    MusicMain(QWidget *parent = nullptr);
+    MusicMain(QString usertag, WebSocketClient *webSocket, WebSocketClient *webSocketStas, QWidget *parent = nullptr);
+    void on_homeTab_clicked();
+    void onTextMessageReceived(const QString &type, const QJsonObject &data);
+    void getCurrentTab();
     ~MusicMain();
 
 private slots:
     void toggle_buttons(QPushButton*);
-
-    void on_homeTab_clicked();
     void on_createTab_clicked();
     void on_profileTab_clicked();
 
@@ -44,9 +46,10 @@ private slots:
     void on_TrackButton_clicked(track *trackData);
     void onSplitterMoved(int pos, int index);
 
-
-
 private:
+    WebSocketClient *webSocket;
+    WebSocketClient *webSocketStas;
+    QString usertag;
     QSplitter *mainSplitter;
     QWidget *mainWidget;
     QHBoxLayout *mainLayout;
@@ -59,23 +62,22 @@ private:
     QString inactiveStyle;
     QString activeStyle;
 
-    QWidget *Home;
     QWidget *Create;
-    QWidget *Profile;
 
     QPushButton *backButton;
     QPushButton *forwardButton;
-    QPushButton *homeTab;
-    QPushButton *createTab;
-    QPushButton *profileTab;
+    QPushButton *homeTabButton;
+    QPushButton *createTabButton;
+    QPushButton *profileTabButton;
 
     track *currentTrack;
-
+    AbstractTab *currentTabWidget;
     std::vector<QPushButton*> mainTabButtons;
     QPushButton* currentTab;
     //QWebSocket* webSocket;
-    ProfileTab *profilewidget;
-    CreateWidget *createwidget;
+    ProfileTab *profileTab;
+    HomeTab *homeTab;
+    CreateTab *createTab;
     RightBarWidget *rightbarwidget;
 
 

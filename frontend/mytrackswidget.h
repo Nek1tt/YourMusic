@@ -35,10 +35,10 @@ class MyTracksWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MyTracksWidget(QWidget *parent = nullptr);
+    explicit MyTracksWidget(QString widgetName, QWidget *parent = nullptr);
     void resize_tracks(int width);
     void clearLayout(QLayout *layout);
-    void add_liked_tracks(album newTracks, const QString &buttonText, bool isLiked);
+    void add_liked_tracks(album newTracks);
     //void add_loaded_tracks(album loadedTracks);
     QString getAlbumName();
     album getAlbum();

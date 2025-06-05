@@ -41,7 +41,6 @@ static constexpr auto qt_meta_stringdata_ZN9MusicMainE = QtMocHelpers::stringDat
     "toggle_buttons",
     "",
     "QPushButton*",
-    "on_homeTab_clicked",
     "on_createTab_clicked",
     "on_profileTab_clicked",
     "resizeEvent",
@@ -69,7 +68,7 @@ Q_CONSTINIT static const uint qt_meta_data_ZN9MusicMainE[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      11,   14, // methods
+      10,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -77,30 +76,28 @@ Q_CONSTINIT static const uint qt_meta_data_ZN9MusicMainE[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    1,   80,    2, 0x08,    1 /* Private */,
-       4,    0,   83,    2, 0x08,    3 /* Private */,
-       5,    0,   84,    2, 0x08,    4 /* Private */,
-       6,    0,   85,    2, 0x08,    5 /* Private */,
-       7,    1,   86,    2, 0x08,    6 /* Private */,
-      10,    1,   89,    2, 0x08,    8 /* Private */,
-      12,    0,   92,    2, 0x08,   10 /* Private */,
-      13,    0,   93,    2, 0x08,   11 /* Private */,
-      14,    0,   94,    2, 0x08,   12 /* Private */,
-      15,    1,   95,    2, 0x08,   13 /* Private */,
-      18,    2,   98,    2, 0x08,   15 /* Private */,
+       1,    1,   74,    2, 0x08,    1 /* Private */,
+       4,    0,   77,    2, 0x08,    3 /* Private */,
+       5,    0,   78,    2, 0x08,    4 /* Private */,
+       6,    1,   79,    2, 0x08,    5 /* Private */,
+       9,    1,   82,    2, 0x08,    7 /* Private */,
+      11,    0,   85,    2, 0x08,    9 /* Private */,
+      12,    0,   86,    2, 0x08,   10 /* Private */,
+      13,    0,   87,    2, 0x08,   11 /* Private */,
+      14,    1,   88,    2, 0x08,   12 /* Private */,
+      17,    2,   91,    2, 0x08,   14 /* Private */,
 
  // slots: parameters
     QMetaType::Void, 0x80000000 | 3,    2,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 8,    9,
-    QMetaType::Void, QMetaType::Int,   11,
-    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 7,    8,
+    QMetaType::Void, QMetaType::Int,   10,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 16,   17,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int,   19,   20,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 15,   16,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,   18,   19,
 
        0        // eod
 };
@@ -117,8 +114,6 @@ Q_CONSTINIT const QMetaObject MusicMain::staticMetaObject = { {
         // method 'toggle_buttons'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QPushButton *, std::false_type>,
-        // method 'on_homeTab_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_createTab_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_profileTab_clicked'
@@ -152,16 +147,15 @@ void MusicMain::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->toggle_buttons((*reinterpret_cast< std::add_pointer_t<QPushButton*>>(_a[1]))); break;
-        case 1: _t->on_homeTab_clicked(); break;
-        case 2: _t->on_createTab_clicked(); break;
-        case 3: _t->on_profileTab_clicked(); break;
-        case 4: _t->resizeEvent((*reinterpret_cast< std::add_pointer_t<QResizeEvent*>>(_a[1]))); break;
-        case 5: _t->setInitialSize((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
-        case 6: _t->on_backButton_clicked(); break;
-        case 7: _t->on_forwardButton_clicked(); break;
-        case 8: _t->on_albumButton_clicked(); break;
-        case 9: _t->on_TrackButton_clicked((*reinterpret_cast< std::add_pointer_t<track*>>(_a[1]))); break;
-        case 10: _t->onSplitterMoved((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
+        case 1: _t->on_createTab_clicked(); break;
+        case 2: _t->on_profileTab_clicked(); break;
+        case 3: _t->resizeEvent((*reinterpret_cast< std::add_pointer_t<QResizeEvent*>>(_a[1]))); break;
+        case 4: _t->setInitialSize((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 5: _t->on_backButton_clicked(); break;
+        case 6: _t->on_forwardButton_clicked(); break;
+        case 7: _t->on_albumButton_clicked(); break;
+        case 8: _t->on_TrackButton_clicked((*reinterpret_cast< std::add_pointer_t<track*>>(_a[1]))); break;
+        case 9: _t->onSplitterMoved((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<int>>(_a[2]))); break;
         default: ;
         }
     }
@@ -186,14 +180,14 @@ int MusicMain::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 11)
+        if (_id < 10)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 11;
+        _id -= 10;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 11)
+        if (_id < 10)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 11;
+        _id -= 10;
     }
     return _id;
 }

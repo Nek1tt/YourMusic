@@ -120,16 +120,21 @@ void TrackButton::mouseDoubleClickEvent(QMouseEvent *event){
 
 
 
-MyTracksWidget::MyTracksWidget(QWidget *parent)  :QWidget(parent)
+MyTracksWidget::MyTracksWidget(QString widgetName, QWidget *parent)  :QWidget(parent)
 {
     MyTracksLayout = new QVBoxLayout(this);
-    myTracksButton = new QPushButton();
+
+    QWidget *myTracksButtonWidget = new QWidget();
+    QVBoxLayout *myTracksButtonLayout = new QVBoxLayout(myTracksButtonWidget);
+    QPushButton *myTracksButton = new QPushButton(widgetName);
     connect(myTracksButton, &QPushButton::clicked, [this]() {
         emit mytracksButtonClicked(getAlbum());
     });
     set_button_style(myTracksButton, 32, "white", "left");
     //myTracksButton->setFixedSize(300, 40);
-    MyTracksLayout->addWidget(myTracksButton);
+
+    myTracksButtonLayout->addWidget(myTracksButton);
+    MyTracksLayout->addWidget(myTracksButtonWidget);
 
     tracks = new QWidget();
     tracks_layout_of_verticals = new QHBoxLayout(tracks);
@@ -138,13 +143,7 @@ MyTracksWidget::MyTracksWidget(QWidget *parent)  :QWidget(parent)
 
 }
 
-void MyTracksWidget::add_liked_tracks(album newTracks, const QString &buttonText, bool isLiked) {
-    myTracksButton->setText(buttonText);
-    if (isLiked) {
-        myTracksButton->setFixedWidth(200);
-    } else {
-        myTracksButton->setFixedWidth(300);
-    }
+void MyTracksWidget::add_liked_tracks(album newTracks) {
     likedTracks = newTracks;
 
     clearLayout(tracks_layout_of_verticals);

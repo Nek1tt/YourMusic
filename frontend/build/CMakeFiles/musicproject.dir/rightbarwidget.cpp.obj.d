@@ -470,6 +470,50 @@ CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\myalbumswidget.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\websocketclient.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
+ C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/QWebSocket \
+ C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qwebsocket.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsocket.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QUrl \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qurl.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QAbstractSocket \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qabstractsocket.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetworkglobal.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetwork-config.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetworkexports.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkRequest \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkrequest.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qhttpheaders.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QSharedDataPointer \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qshareddata.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qstring.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QVariant \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qvariant.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/q26numeric.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkProxy \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkproxy.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qhostaddress.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qabstractsocket.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkrequest.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QSslError \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslerror.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslcertificate.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcryptographichash.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qssl.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QFlags \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qflags.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QSslConfiguration \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslconfiguration.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslsocket.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtcpsocket.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslerror.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qwebsockets_global.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsockets_global.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qtwebsocketsexports.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qwebsocketprotocol.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsocketprotocol.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QTextStream \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qtextstream.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/QPainter \
@@ -478,4 +522,16 @@ CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qpen.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/QPainterPath \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qpainterpath.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonParseError \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsondocument.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonvalue.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcborvalue.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcborcommon.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qregularexpression.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/quuid.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonDocument \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonArray \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonarray.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonObject \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonobject.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\setstyle.h

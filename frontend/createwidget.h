@@ -1,14 +1,13 @@
-#include <QScreen> //for Qscreen *screen = QApplication::primaryScreen();
 #include <QWidget>
 #include <QLabel>
-#include <QPixmap>
-#include <QGridLayout>
-#include <QBoxLayout>
-#include <QVBoxLayout>
+#include <QLineEdit>
+#include <QPushButton>
 #include <QHBoxLayout>
-// #include <QWebSocket>
-#include <QMessageBox>
-#include <QDir>
+#include <QVBoxLayout>
+#include <QFileDialog>
+#include <QPixmap>
+#include <QTextEdit>
+
 
 #ifndef CREATEWIDGET_H
 #define CREATEWIDGET_H
@@ -17,20 +16,23 @@ class CreateWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CreateWidget(QWidget *parent = nullptr, QWidget *tab = nullptr);
-
+    explicit CreateWidget(QWidget *parent = nullptr);
 
 private slots:
-    void onAddNoizeClicked();     // Slot for Add Noize button click
-    void onAddAnacondazClicked(); // Slot for Add Anacondaz button click
-    void onAddOxxyClicked();
-
+    void chooseImage();
+    void on_typeButton_clicked();
+    void addAuthor(const QString &name);
+    void addNewTrackButton();
 private:
-    QPushButton *button1;
-    QPushButton *button2;
-    QPushButton *button3;
-    //QWidget *tab;
-    QVBoxLayout *createLayout;
+    QLabel *imageLabel;
+    QHBoxLayout *authorLayout;
+    QLineEdit *nameEdit;
+    QTextEdit *descriptionEdit;
+    QTextEdit *lyricsEdit;
+    bool isSingle = 1;
+    QPushButton *typeButton;
+    QVBoxLayout *trackLayout;
+    QWidget *trackContainer;
 };
 
 #endif // CREATEWIDGET_H

@@ -6,12 +6,16 @@
 #include <QTextStream>
 #include <QPainter>
 #include <QPainterPath>
+#include <QJsonParseError>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
 
 #include "setstyle.h"
 
 
-RightBarWidget::RightBarWidget(int initialScreenWidth, int initialScreenHeight, QWidget *parent, track *currentTrack)
-    : QWidget(parent), currentTrack(currentTrack), initialScreenWidth(initialScreenWidth), initialScreenHeight(initialScreenHeight)
+RightBarWidget::RightBarWidget(WebSocketClient *webSocket, int initialScreenWidth, int initialScreenHeight, QWidget *parent, track *currentTrack)
+    : QWidget(parent), currentTrack(currentTrack), initialScreenWidth(initialScreenWidth), initialScreenHeight(initialScreenHeight), webSocket(webSocket)
 {
 
     //sizes initalization
@@ -116,6 +120,21 @@ RightBarWidget::RightBarWidget(int initialScreenWidth, int initialScreenHeight, 
 
     scrollLayout->addWidget(currentTrackAuthorButton);
 
+
+    QWidget *playWidget = new QWidget();
+    QVBoxLayout *playLayout = new QVBoxLayout(playWidget);
+    QPushButton *playButton = new QPushButton("Play");
+
+    QPushButton *pauseButton = new QPushButton("Pause");
+    connect(playButton, &QPushButton::clicked, this, &RightBarWidget::on_Play_clicked);
+
+    connect(pauseButton, &QPushButton::clicked, this, &RightBarWidget::on_Pause_clicked);
+
+    playLayout->addWidget(playButton);
+    playLayout->addWidget(pauseButton);
+
+
+    scrollLayout->addWidget(playWidget);
 
     QWidget *choice_author_text_widget = new QWidget();
     QHBoxLayout *choice_author_text_layout = new QHBoxLayout(choice_author_text_widget);
@@ -244,6 +263,28 @@ RightBarWidget::RightBarWidget(int initialScreenWidth, int initialScreenHeight, 
     //this->resize(barSize, initialScreenHeight);
     //this->setFixedWidth(barSize);
 
+}
+
+void RightBarWidget::on_Play_clicked(){
+    QJsonObject payload;
+    payload["command"] = "load";
+    payload["path"] = "C:/Users/Lenovo/upprpo/YourMusic/frontend/resources/music/test.mp3";
+
+    QJsonDocument doc(payload);
+    QString message = QString::fromUtf8(doc.toJson());
+    qDebug()<<message;
+    webSocket->sendMessage(message);
+}
+
+void RightBarWidget::on_Pause_clicked(){
+    QJsonObject payload;
+    payload["command"] = "pause";
+    // payload["path"] = "C:/Users/Lenovo/upprpo/YourMusic/frontend/resources/music/test.mp3";
+
+    QJsonDocument doc(payload);
+    QString message = QString::fromUtf8(doc.toJson());
+    qDebug()<<message;
+    webSocket->sendMessage(message);
 }
 
 void RightBarWidget::setNewCurrentTrack(const track &trackData) {

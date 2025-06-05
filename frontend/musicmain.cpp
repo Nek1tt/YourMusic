@@ -11,20 +11,25 @@
 #include <QHBoxLayout>
 #include <QScrollArea>
 #include <QTabBar>
-//#include <QWebSocket>
-#include <QMessageBox>
+#include <QWebSocket>
 #include <QDir>
 #include <QApplication>
 #include <QStackedWidget>
-
+#include <QJsonParseError>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
 
 
 #include "musicmain.h"
 //#include "./ui_musicmain.h"
 
 
-MusicMain::MusicMain(QWidget *parent)//класс для окна
-    : QMainWindow(parent)
+MusicMain::MusicMain(QString usertag, WebSocketClient *webSocket, WebSocketClient *webSocketStas, QWidget *parent)//класс для окна
+    : QMainWindow(parent),
+    webSocket(webSocket),
+    usertag(usertag),
+    webSocketStas(webSocketStas)
 {
     QScreen *screen = QApplication::primaryScreen();// сохраняем экран
     QRect screenGeometry = screen->availableGeometry();//извлекаем параметры экрана
@@ -84,18 +89,18 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
     navLayout->addWidget(backButton);
     navLayout->addWidget(forwardButton);
 
-    homeTab = new QPushButton("Home");
-    createTab = new QPushButton("Create");
-    profileTab = new QPushButton("Profile");
+    homeTabButton = new QPushButton("Home");
+    createTabButton = new QPushButton("Create");
+    profileTabButton = new QPushButton("Profile");
 
-    connect(homeTab, &QPushButton::clicked, this, &MusicMain::on_homeTab_clicked);
-    connect(createTab, &QPushButton::clicked, this, &MusicMain::on_createTab_clicked);
-    connect(profileTab, &QPushButton::clicked, this, &MusicMain::on_profileTab_clicked);
+    connect(homeTabButton, &QPushButton::clicked, this, &MusicMain::on_homeTab_clicked);
+    connect(createTabButton, &QPushButton::clicked, this, &MusicMain::on_createTab_clicked);
+    connect(profileTabButton, &QPushButton::clicked, this, &MusicMain::on_profileTab_clicked);
 
     leftLayout->addWidget(navButtons, 0, Qt::AlignTop);
-    leftLayout->addWidget(homeTab);
-    leftLayout->addWidget(createTab);
-    leftLayout->addWidget(profileTab);
+    leftLayout->addWidget(homeTabButton);
+    leftLayout->addWidget(createTabButton);
+    leftLayout->addWidget(profileTabButton);
 
     mainSplitter->addWidget(leftBarWidget);
 
@@ -103,14 +108,11 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
     tabwidget = new QTabWidget(this);
     //tabwidget->setFixedWidth(1);
     tabwidget->setStyleSheet("QTabWidget::pane { margin: 0px; padding: 0px; }");
-    Create = new QWidget();
-    Home = new QWidget();
-    Profile = new QWidget();
+    //Create = new QWidget();
+    //Home = new QWidget();
+    //Profile = new QWidget();
 
     tabwidget->tabBar()->hide();
-    tabwidget->addTab(Home, "Home");
-    tabwidget->addTab(Create, "Create");
-    tabwidget->addTab(Profile, "Profile");
     mainSplitter->addWidget(tabwidget);
 
     this->setCentralWidget(mainWidget);
@@ -118,21 +120,18 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
 
 
     // // Создаем вкладку create
-    createwidget = new CreateWidget(this, Create);
+    createTab = new CreateTab(this);
+    profileTab = new ProfileTab(this);
+
+    connect(profileTab, &ProfileTab::onAlbomClickedSignal, this, &MusicMain::on_albumButton_clicked);
+    connect(profileTab, &ProfileTab::onTrackDoubleClickedignal, this, &MusicMain::on_TrackButton_clicked);
+    profileTab->setContentsMargins(0, 0, 0, 0);
 
 
-    QVector <album> albums_vector = loadAlbumsFromJson("../resources/jsons/myalbums.json");
-    album loadedTracks = loadSingleAlbumFromJson("../resources/jsons/myloadedtracks.json");
-
-    album likedTracks = loadSingleAlbumFromJson("../resources/jsons/mytracks.json");
-    QVector<UserInfo> users = loadUsersFromJson("../resources/jsons/users.json");
-
-    profilewidget = new ProfileTab(users[0], albums_vector, likedTracks, loadedTracks, this, Profile);
-    connect(profilewidget, &ProfileTab::onAlbomClickedSignal, this, &MusicMain::on_albumButton_clicked);
-    connect(profilewidget, &ProfileTab::onTrackDoubleClickedignal, this, &MusicMain::on_TrackButton_clicked);
-
-    profilewidget->setContentsMargins(0, 0, 0, 0);
-
+    homeTab = new HomeTab();
+    tabwidget->addTab(homeTab, "Home");
+    tabwidget->addTab(createTab, "Create");
+    tabwidget->addTab(profileTab, "Profile");
     // Пример загрузки треков
     QVector<track> tracks;
     track *currentTrack;
@@ -142,7 +141,7 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
     }
 
 
-    rightbarwidget = new RightBarWidget(windowWidth, windowHeight, this, currentTrack);
+    rightbarwidget = new RightBarWidget(webSocketStas, windowWidth, windowHeight, this, currentTrack);
     rightbarwidget->setNewCurrentTrack(*currentTrack);
     rightbarwidget->setSizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
 
@@ -166,20 +165,23 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
     // tabwidget = ui->tabWidget; // это у нас объект с главными вкладками
     tabwidget->setTabVisible(0,0);// делаем видимым вкладку
     tabwidget->setCurrentIndex(0);// ставим текущим вкладку 0
-    homeTab->setStyleSheet("color : black");
-    createTab->setStyleSheet("color : white");
-    profileTab->setStyleSheet("color : white");
-    currentTab = homeTab;
+    homeTabButton->setStyleSheet("color : black");
+    createTabButton->setStyleSheet("color : white");
+    profileTabButton->setStyleSheet("color : white");
+    currentTab = homeTabButton;
     currentTab->setEnabled(false);
 
 
-    mainTabButtons = { homeTab, createTab, profileTab}; //main tub buttons on screen
+    mainTabButtons = { homeTabButton, createTabButton, profileTabButton}; //main tub buttons on screen
 
 
 //this->resize(screenGeometry.width(), screenGeometry.height()); //seting the window size
     tabwidget->resize(50,this->height());
     setInitialSize(this->width());
     mainSplitter->setSizes({200, this->width()-200-360, 360});
+
+    connect(webSocket, &WebSocketClient::messageReceived,
+            this, &MusicMain::onTextMessageReceived);
 
     // webSocket = new QWebSocket();
     // connect(webSocket, &QWebSocket::connected, this, &MusicMain::onConnected);
@@ -188,6 +190,10 @@ MusicMain::MusicMain(QWidget *parent)//класс для окна
     // webSocket->open(QUrl("ws://84.237.53.143:881")); // Укажите правильный IP и порт
 }
 
+void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &data){
+    qDebug()<<"textreciever:";
+    qDebug()<<type;
+}
 
 
 MusicMain::~MusicMain()
@@ -213,24 +219,115 @@ void MusicMain::toggle_buttons(QPushButton* pushedButton){ // changes the button
 
 void MusicMain::on_homeTab_clicked()
 {
-    toggle_buttons(homeTab);
+
+    QJsonObject payload;
+    payload["endpoint"] = "/catalog";
+    payload["action"] = "home";
+    payload["usertag"] = usertag;
+
+    QJsonDocument doc(payload);
+    QString message = QString::fromUtf8(doc.toJson());
+    qDebug()<<message;
+    webSocket->sendMessage(message);
+
+    homeTab->homeButtonClicked();
+    currentTabWidget = homeTab;
+    toggle_buttons(homeTabButton);
+
+    int current = currentTabWidget->getCurrentIndex();
+    qDebug()<<"current";
+
+    qDebug()<<current;
+    if (current == 0) {
+        backButton->setStyleSheet(inactiveStyle);
+    }else{
+        backButton->setStyleSheet(activeStyle);
+    }
+
+    int total = currentTabWidget->getTotalIndex();
+    qDebug()<<"total";
+
+    qDebug()<<total;
+    if (current == total-1) {
+        forwardButton->setStyleSheet(inactiveStyle);
+    }else{
+        forwardButton->setStyleSheet(activeStyle);
+    }
 }
 
 
 void MusicMain::on_createTab_clicked()
 {
-    toggle_buttons(createTab);
+    //currentTabWidget = Create;
+    int current = currentTabWidget->getCurrentIndex();
+    qDebug()<<"current";
+
+    qDebug()<<current;
+    if (current == 0) {
+        backButton->setStyleSheet(inactiveStyle);
+    }else{
+        backButton->setStyleSheet(activeStyle);
+    }
+
+    int total = currentTabWidget->getTotalIndex();
+    qDebug()<<"total";
+
+    qDebug()<<total;
+    if (current == total-1) {
+        forwardButton->setStyleSheet(inactiveStyle);
+    }else{
+        forwardButton->setStyleSheet(activeStyle);
+    }
+    toggle_buttons(createTabButton);
 }
 
 void MusicMain::on_profileTab_clicked()
 {
-    //playlistwidget->add_playlists();
-    //album info getting function
+    QJsonObject payload;
+    payload["endpoint"] = "/catalog";
+    payload["action"] = "profile";
+    payload["usertag"] = usertag;
+    payload["flag"] = 0;
+
+    QJsonDocument doc(payload);
+    QString message = QString::fromUtf8(doc.toJson());
+    qDebug()<<message;
+    webSocket->sendMessage(message);
+
+
     QVector <album> albums_vector = loadAlbumsFromJson("../resources/jsons/myalbums.json");
+    album loadedTracks = loadSingleAlbumFromJson("../resources/jsons/myloadedtracks.json");
 
+    album likedTracks = loadSingleAlbumFromJson("../resources/jsons/mytracks.json");
+    QVector<UserInfo> users = loadUsersFromJson("../resources/jsons/users.json");
+    profileTab->profileButtonClicked(users[0], albums_vector, likedTracks, loadedTracks);
+    toggle_buttons(profileTabButton);
+    QList<int> sizes = mainSplitter->sizes();
+    //tabwidget->resize(20,this->height());
+    profileTab->resizeProfile(sizes[1]);
 
-    profilewidget->button_profile_clicked(albums_vector);
-    toggle_buttons(profileTab);
+    currentTabWidget = profileTab;
+
+    int current = currentTabWidget->getCurrentIndex();
+    qDebug()<<"current";
+
+    qDebug()<<current;
+    if (current == 0) {
+        backButton->setStyleSheet(inactiveStyle);
+    }else{
+        backButton->setStyleSheet(activeStyle);
+    }
+
+    int total = currentTabWidget->getTotalIndex();
+    qDebug()<<"total";
+
+    qDebug()<<total;
+    if (current == total-1) {
+        forwardButton->setStyleSheet(inactiveStyle);
+    }else{
+        forwardButton->setStyleSheet(activeStyle);
+    }
+
 }
 
 
@@ -240,7 +337,7 @@ void MusicMain::resizeEvent(QResizeEvent *event) {
     QList<int> sizes = mainSplitter->sizes();
     //tabwidget->resize(20,this->height());
     mainSplitter->setSizes({100, this->width()-100-rightBarWidgetWidth, rightBarWidgetWidth}); //mainsplitter может изменяться только так - никаких resize для виджетов mainsplitter
-    profilewidget->resizeProfile(sizes[1]);
+    profileTab->resizeProfile(sizes[1]);
 
     //rightbarwidget->resizeBarWidget(this->width());
 }
@@ -248,43 +345,101 @@ void MusicMain::resizeEvent(QResizeEvent *event) {
 void MusicMain::onSplitterMoved(int pos, int index) {
     QList<int> sizes = mainSplitter->sizes();
     rightbarwidget->resizeBarWidget(sizes[2]);
-    profilewidget->resizeProfile(sizes[1]);
+    profileTab->resizeProfile(sizes[1]);
 }
 
 
 void MusicMain::setInitialSize(int width){
-    profilewidget->resizeProfile(width);
+    profileTab->resizeProfile(width);
 }
 
 void MusicMain::on_backButton_clicked(){
-    int current = profilewidget->getCurrentIndex();
+
+    int current = currentTabWidget->getCurrentIndex();
+    // int current;
+    // if(currentTabWidget == homeTab){
+    //     current = homeTab->getCurrentIndex();
+    // }else if(currentTabWidget == Create){
+    //     current = 0;
+    // }else if(currentTabWidget == profileTab){
+    //     current = profileTab->getCurrentIndex();
+    // }
+
     if (current - 1 >= 0) {
-        profilewidget->setCurrentIndex(current - 1);
+        currentTabWidget->setCurrentIndex(current - 1);
         backButton->setStyleSheet(activeStyle);
     }
-    current = profilewidget->getCurrentIndex();
+    current = currentTabWidget->getCurrentIndex();
     if (current == 0) {
         backButton->setStyleSheet(inactiveStyle);
     }
-    int total = profilewidget->getTotalIndex();
+    int total = currentTabWidget->getTotalIndex();
+    // int total;
+
+    // if(currentTabWidget == homeTab){
+    //     total = homeTab->getTotalIndex();
+    // }else if(currentTabWidget == Create){
+    //     total = 0;
+    // }else if(currentTabWidget == profileTab){
+    //     total = profileTab->getTotalIndex();
+    // }
+
     if (current != total-1) {
         forwardButton->setStyleSheet(activeStyle);
     }
 }
 
 void MusicMain::on_forwardButton_clicked(){
-    int current = profilewidget->getCurrentIndex();
+    int current = currentTabWidget->getCurrentIndex();
+    // int current;
+
+    // if(currentTabWidget == homeTab){
+    //     current = homeTab->getCurrentIndex();
+    // }else if(currentTabWidget == Create){
+    //     current = 0;
+    // }else if(currentTabWidget == profileTab){
+    //     current = profileTab->getCurrentIndex();
+    // }
     //QWidget* currentWidget = profilewidget->getInnerStacked()->currentWidget();
     //currentWidget->getscro
 
-    int total = profilewidget->getTotalIndex();
+    int total = currentTabWidget->getTotalIndex();
+    // int total;
+
+    // if(currentTabWidget == homeTab){
+    //     total = homeTab->getTotalIndex();
+    // }else if(currentTabWidget == Create){
+    //     total = 0;
+    // }else if(currentTabWidget == profileTab){
+    //     total = profileTab->getTotalIndex();
+    // }
 
     if (current + 1 < total) {
-        profilewidget->setCurrentIndex(current + 1);
+        currentTabWidget->setCurrentIndex(current + 1);
     }
 
-    current = profilewidget->getCurrentIndex();
-    total = profilewidget->getTotalIndex();
+    current = currentTabWidget->getCurrentIndex();
+
+    // if(currentTabWidget == homeTab){
+    //     current = homeTab->getCurrentIndex();
+    // }else if(currentTabWidget == Create){
+    //     current = 0;
+    // }else if(currentTabWidget == profileTab){
+    //     current = profileTab->getCurrentIndex();
+    // }
+    //QWidget* currentWidget = profilewidget->getInnerStacked()->currentWidget();
+    //currentWidget->getscro
+
+    total = currentTabWidget->getTotalIndex();
+
+    // if(currentTabWidget == homeTab){
+    //     total = homeTab->getTotalIndex();
+    // }else if(currentTabWidget == Create){
+    //     total = 0;
+    // }else if(currentTabWidget == profileTab){
+    //     total = profileTab->getTotalIndex();
+    // }
+
     if (current == total-1) {
         forwardButton->setStyleSheet(inactiveStyle);
     }
@@ -296,8 +451,8 @@ void MusicMain::on_forwardButton_clicked(){
 
 void MusicMain::on_albumButton_clicked(){
     backButton->setStyleSheet(activeStyle);
-    int current = profilewidget->getCurrentIndex();
-    int total = profilewidget->getTotalIndex();
+    int current = profileTab->getCurrentIndex();
+    int total = profileTab->getTotalIndex();
     if (current == total-1) {
         forwardButton->setStyleSheet(inactiveStyle);
     }

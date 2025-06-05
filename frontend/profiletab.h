@@ -6,7 +6,6 @@
 #include <QBoxLayout>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
-// #include <QWebSocket>
 #include <QMessageBox>
 #include <QDir>
 #include <QStackedWidget>
@@ -23,9 +22,9 @@ class ProfileTab : public QWidget
 {
     Q_OBJECT
 public:
-    explicit ProfileTab(UserInfo userData, QVector <album> albumList, album likedTracks, album loadedTracks, QWidget  *parent = nullptr, QWidget *tab = nullptr);
+    explicit ProfileTab(QWidget  *parent = nullptr, QWidget *tab = nullptr);
     void resizeProfile(int width);
-    void button_profile_clicked(QVector <album> albums_vector);
+    void profileButtonClicked(UserInfo userData, QVector<album> albumList, album likedTracks, album loadedTracks);
     void onAlbumClicked(album albumData);
     void onAlbumListClicked(QVector<album> albumList);
     void onUsersListClicked(QVector<UserInfo> users);
@@ -50,10 +49,6 @@ private:
     UserInfo userData;
     int widthForResize;
     QVBoxLayout *profileLayout;
-    UserProfileWidget *userProfile;
-    MyAlbumsWidget *albumwidget;
-    MyTracksWidget *likedtrackwidget;
-    MyTracksWidget *loadedtrackwidget;
     QStackedWidget *innerStacked;
     QWidget *scrollWidget;
     ProfileWidget *mainWidget;

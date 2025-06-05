@@ -1,25 +1,18 @@
 #include "profilewidget.h"
 #include <QVBoxLayout>
 
-ProfileWidget::ProfileWidget(UserInfo userData, QVector<album> albumList, album likedTracks, album loadedTracks, QWidget *parent)
+ProfileWidget::ProfileWidget(QWidget *parent)
     : QWidget(parent),
-    userData(userData),
     userProfile(new UserProfileWidget(this)),
-    albumwidget(new MyAlbumsWidget(this)),
-    likedtrackwidget(new MyTracksWidget(this)),
-    loadedtrackwidget(new MyTracksWidget(this))
+    albumwidget(new MyAlbumsWidget("My albums", this)),
+    likedtrackwidget(new MyTracksWidget("My tracks", this)),
+    loadedtrackwidget(new MyTracksWidget("My loaded tracks", this))
 {
     // Внутренний виджет, который будет содержать всё содержимое
     QWidget *contentWidget = new QWidget;
     QVBoxLayout *mainLayout = new QVBoxLayout(contentWidget);
     mainLayout->setContentsMargins(10, 10, 10, 10);
-
-    userProfile->setUserProfile(userData);
     mainLayout->addWidget(userProfile, 0, Qt::AlignTop);
-
-    likedtrackwidget->add_liked_tracks(likedTracks, "My tracks", 1);
-    loadedtrackwidget->add_liked_tracks(loadedTracks, "My loaded tracks", 0);
-    albumwidget->add_albums(albumList);
 
     mainLayout->addWidget(albumwidget);
     mainLayout->addWidget(likedtrackwidget);
@@ -67,8 +60,11 @@ void ProfileWidget::resizeProfile(int width){
     userProfile->resize(width * 0.6, 220);
 }
 
-void ProfileWidget::updateAlbums(QVector<album> albums){
-    albumwidget->add_albums(albums);
+void ProfileWidget::updateAlbums(UserInfo userData, QVector<album> albumList, album likedTracks, album loadedTracks){
+    userProfile->setUserProfile(userData);
+    likedtrackwidget->add_liked_tracks(likedTracks);
+    loadedtrackwidget->add_liked_tracks(loadedTracks);
+    albumwidget->add_albums(albumList);
 }
 
 void ProfileWidget::onFollowersButtonClicked(){

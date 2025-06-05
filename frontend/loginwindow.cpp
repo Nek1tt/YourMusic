@@ -3,7 +3,6 @@
 #include <QDialog>
 #include <QHBoxLayout>
 #include <QVBoxLayout>
-#include <QLabel>
 #include <QPixmap>
 #include <QLineEdit>
 #include <QPushButton>
@@ -11,9 +10,9 @@
 #include <QFrame>
 #include <QTabBar>
 
-
-LoginWindow::LoginWindow(QWidget *parent)
-    : QDialog(parent)
+LoginWindow::LoginWindow(WebSocketClient *webSocket, QWidget *parent)
+    : QDialog(parent),
+    webSocket(webSocket)
 {
     setFixedSize(720, 512);
     setStyleSheet("background-color: #111;");
@@ -40,7 +39,7 @@ LoginWindow::LoginWindow(QWidget *parent)
     formLayout->setAlignment(Qt::AlignCenter);
 
     QFrame *formFrame = new QFrame(this);
-    formFrame->setFixedSize(300, 350);
+    formFrame->setFixedSize(300, 400);
     formFrame->setStyleSheet(
         "QFrame { background-color: #222; border-radius: 10px; }"
         );
@@ -84,24 +83,37 @@ LoginWindow::LoginWindow(QWidget *parent)
     loginTab->setStyleSheet("background-color: #222;");
 
     QVBoxLayout *loginLayout = new QVBoxLayout(loginTab);
-
-    loginLayout->addWidget(new QLabel("Email"));
-    logUsernameEdit = new QLineEdit();
-    logUsernameEdit->setStyleSheet("QLabel, QLineEdit, QPushButton { color: white; font-size: 14px; } QLineEdit { background-color: #111; border: 1px solid #333; border-radius: 5px; padding: 5px; }");
-    logUsernameEdit->setPlaceholderText("Enter your email");
-    loginLayout->addWidget(logUsernameEdit);
+    QHBoxLayout *logUserEmailLayout = new QHBoxLayout();
+    logUserEmailLayout->addWidget(new QLabel("Email "));
+    logErrorLabel = new QLabel();
+    logErrorLabel->setAlignment(Qt::AlignLeft);
+    //errorLabel->setText("saasd");
+    logUserEmailLayout->addWidget(logErrorLabel);
+    //loginLayout->addWidget(new QLabel("User Name"));
+    loginLayout->addLayout(logUserEmailLayout);
+    logUserEmaildit = new QLineEdit();
+    connect(logUserEmaildit, &QLineEdit::textChanged, this, [=]() {
+        resetLineEditStyle(logUserEmaildit);
+    });
+    logUserEmaildit->setStyleSheet("QLabel, QLineEdit, QPushButton { color: white; font-size: 14px; } QLineEdit { background-color: #111; border: 1px solid #333; border-radius: 5px; padding: 5px; }");
+    logUserEmaildit->setPlaceholderText("Enter email");
+    loginLayout->addWidget(logUserEmaildit);
 
     loginLayout->addWidget(new QLabel("Password"));
     logPasswordEdit = new QLineEdit();
+    connect(logPasswordEdit, &QLineEdit::textChanged, this, [=]() {
+        resetLineEditStyle(logPasswordEdit);
+    });
     logPasswordEdit->setStyleSheet("QLabel, QLineEdit, QPushButton { color: white; font-size: 14px; } QLineEdit { background-color: #111; border: 1px solid #333; border-radius: 5px; padding: 5px; }");
-    logPasswordEdit->setPlaceholderText("Enter your password");
+    logPasswordEdit->setPlaceholderText("Enter password");
     logPasswordEdit->setEchoMode(QLineEdit::Password);
     loginLayout->addWidget(logPasswordEdit);
 
     loginButton = new QPushButton("Login");
+    //registerButton->setDefault(true);
     loginButton->setStyleSheet(
         "QLabel, QLineEdit, QPushButton { color: white; font-size: 14px; }"
-        "QPushButton { background-color: #c00; border: none; padding: 8px 16px; border-radius: 5px; }"
+        "QPushButton { background-color: #c00; border: none; padding: 5px 16px; border-radius: 5px; }"
         "QPushButton:hover { background-color: #e00; }");
     loginLayout->addStretch();
     loginLayout->addWidget(loginButton, 0, Qt::AlignCenter);
@@ -110,60 +122,58 @@ LoginWindow::LoginWindow(QWidget *parent)
     QWidget *registerTab = new QWidget();
     registerTab->setStyleSheet("background-color: #222;");
 
-//     registerTab->setStyleSheet(R"(
-//     QTabWidget {background-color: #222;
-//     border: none;
-//     color: white;
-// }
-//     QLineEdit {
-//         background-color: #111;
-//         color: white;
-//         border: 1px solid #555;
-//         border-radius: 4px;
-//         padding: 4px 8px;
-//     }
-
-//     QPushButton {
-//         background-color: #c00;
-//         color: white;
-//         border: none;
-//         border-radius: 4px;
-//         padding: 6px 12px;
-//     }
-
-//     QPushButton:hover {
-//         background-color: #a00;
-//     }
-
-//     QPushButton:pressed {
-//         background-color: #800;
-//     }
-// )");
-
-
     tabs->addTab(loginTab, "Login");
     tabs->addTab(registerTab, "Register");
-
     // Register tab (как на скрине)
     QVBoxLayout *registerLayout = new QVBoxLayout(registerTab);
+    QHBoxLayout *regUserEmailLayout = new QHBoxLayout();
+    regUserEmailLayout->addWidget(new QLabel("Username"));
+    regErrorLabel = new QLabel();
+    regErrorLabel->setAlignment(Qt::AlignLeft);
+    //errorLabel->setText("saasd");
+    regUserEmailLayout->addWidget(regErrorLabel);
+    //registerLayout->addWidget(new QLabel("User Name"));
+    registerLayout->addLayout(regUserEmailLayout);
+    regUsernameEdit = new QLineEdit();
+    connect(regUsernameEdit, &QLineEdit::textChanged, this, [=]() {
+        resetLineEditStyle(regUsernameEdit);
+    });
+    regUsernameEdit->setStyleSheet("QLabel, QLineEdit, QPushButton { color: white; font-size: 14px; } QLineEdit { background-color: #111; border: 1px solid #333; border-radius: 5px; padding: 5px; }");
+    regUsernameEdit->setPlaceholderText("Enter username");
+    registerLayout->addWidget(regUsernameEdit);
 
     registerLayout->addWidget(new QLabel("Email"));
-    regUsernameEdit = new QLineEdit();
-    regUsernameEdit->setStyleSheet("QLabel, QLineEdit, QPushButton { color: white; font-size: 14px; } QLineEdit { background-color: #111; border: 1px solid #333; border-radius: 5px; padding: 5px; }");
-    regUsernameEdit->setPlaceholderText("Enter your email");
-    registerLayout->addWidget(regUsernameEdit);
+    regUserEmailEdit = new QLineEdit();
+    connect(regUserEmailEdit, &QLineEdit::textChanged, this, [=]() {
+        resetLineEditStyle(regUserEmailEdit);
+    });
+    regUserEmailEdit->setStyleSheet("QLabel, QLineEdit, QPushButton { color: white; font-size: 14px; } QLineEdit { background-color: #111; border: 1px solid #333; border-radius: 5px; padding: 5px; }");
+    regUserEmailEdit->setPlaceholderText("Enter email");
+    registerLayout->addWidget(regUserEmailEdit);
+
+    registerLayout->addWidget(new QLabel("Usertag"));
+    regUsertagEdit = new QLineEdit();
+    connect(regUsertagEdit, &QLineEdit::textChanged, this, [=]() {
+        resetLineEditStyle(regUsertagEdit);
+    });
+    regUsertagEdit->setStyleSheet("QLabel, QLineEdit, QPushButton { color: white; font-size: 14px; } QLineEdit { background-color: #111; border: 1px solid #333; border-radius: 5px; padding: 5px; }");
+    regUsertagEdit->setPlaceholderText("Enter usertag");
+    registerLayout->addWidget(regUsertagEdit);
 
     registerLayout->addWidget(new QLabel("Password"));
     regPasswordEdit = new QLineEdit();
+    connect(regPasswordEdit, &QLineEdit::textChanged, this, [=]() {
+        resetLineEditStyle(regPasswordEdit);
+    });
     regPasswordEdit->setStyleSheet("QLabel, QLineEdit, QPushButton { color: white; font-size: 14px; } QLineEdit { background-color: #111; border: 1px solid #333; border-radius: 5px; padding: 5px; }");
-    regPasswordEdit->setPlaceholderText("Enter your password");
+    regPasswordEdit->setPlaceholderText("Enter password");
     regPasswordEdit->setEchoMode(QLineEdit::Password);
     registerLayout->addWidget(regPasswordEdit);
 
     registerButton = new QPushButton("Register");
     registerButton->setStyleSheet(
                    "QLabel, QLineEdit, QPushButton { color: white; font-size: 14px; }"
-                   "QPushButton { background-color: #c00; border: none; padding: 8px 16px; border-radius: 5px; }"
+                   "QPushButton { background-color: #c00; border: none; padding: 5px 16px; border-radius: 5px; }"
                    "QPushButton:hover { background-color: #e00; }");
     registerLayout->addStretch();
     registerLayout->addWidget(registerButton, 0, Qt::AlignCenter);
@@ -176,18 +186,21 @@ LoginWindow::LoginWindow(QWidget *parent)
     tabs->setCurrentWidget(registerTab);
 
     toggle_buttons();
-
+    // webSocket = new QWebSocket();
+    // connect(webSocket, &QWebSocket::connected, this, &LoginWindow::onConnected);
+    // connect(webSocket, &QWebSocket::disconnected, this, &LoginWindow::onDisconnected);
+    // connect(webSocket, &QWebSocket::textMessageReceived, this, &LoginWindow::onTextMessageReceived);
+    // webSocket->open(QUrl("ws://84.237.53.143:8080"));
+    connect(webSocket, &WebSocketClient::messageReceived,
+            this, &LoginWindow::onTextMessageReceived);
 }
 
-// void MusicMain::on_toserver_clicked()
-// {
-//     if (webSocket->state() == QAbstractSocket::ConnectedState) {
-//         // Отправляем сообщение на сервер
-//         webSocket->sendTextMessage(R"({"command": "play_track", "track_id": 1})");
-//     } else {
-//         QMessageBox::warning(this, "Ошибка", "Нет подключения к серверу");
-//     }
-// }
+
+
+
+QString LoginWindow::getUsertag(){
+    return userTag;
+}
 
 // void LoginWindow::onConnected() {
 //     QMessageBox::information(this, "Успех", "Подключение к серверу установлено");
@@ -197,49 +210,131 @@ LoginWindow::LoginWindow(QWidget *parent)
 //     QMessageBox::warning(this, "Ошибка", "Соединение с сервером разорвано");
 // }
 
-// void LoginWindow::onTextMessageReceived(const QString &message) {
-//     qDebug()<<message;
-//     QMessageBox::information(this, "Ответ от сервера", message);
+void LoginWindow::onTextMessageReceived(const QString &type, const QJsonObject &dataObj) {
+    qDebug()<<type;
+    if(type=="auth_response"){
+        serverStatus = dataObj.value("status").toString();
+        serverMessage = dataObj.value("message").toString();
+        if(current_query == "register"){
+            if(serverStatus=="ok"){
+                accept();
+            }else{
+                regErrorLabel->setText(serverMessage);
+                regErrorLabel->setStyleSheet("color: red;");
+                qDebug()<<"error: "<<serverMessage;
+            }
+        }
+        if(current_query=="login"){
+            if(serverStatus=="ok"){
+                userTag = dataObj.value("usertag").toString();
+                accept();
+            }else{
+                logErrorLabel->setText(serverMessage);
+                logErrorLabel->setStyleSheet("color: red;");
+                qDebug()<<"error: "<<serverMessage;
+            }
+        }
+    }
 
-// }
+}
+
+void LoginWindow::resetLineEditStyle(QLineEdit *lineEdit) {
+    lineEdit->setStyleSheet(R"(
+        QLineEdit {
+        color: white; font-size: 14px;
+        background-color: #111;
+        border: 1px solid #333;
+        border-radius: 5px; padding: 5px;
+    }
+    )");
+    logErrorLabel->setText("");
+    regErrorLabel->setText("");
+}
 
 
 
 void LoginWindow::tryRegister()
 {
-    // Простой пример: разрешаем вход при любом логине
-    // Здесь ты можешь добавить свою проверку логина/пароля
-    // if (webSocket->state() == QAbstractSocket::ConnectedState) {
-    //     // Отправляем сообщение на сервер
-    //     webSocket->sendTextMessage(R"({"command": "play_track", "track_id": 1})");
-    // } else {
-    //     QMessageBox::warning(this, "Ошибка", "Нет подключения к серверу");
-    // }
-    if (!regUsernameEdit->text().isEmpty()) {
-        //accept(); // закрыть окно и вернуть QDialog::Accepted
-    } else {
-        // можно показать ошибку
+    if (regUsernameEdit->text().trimmed().isEmpty()) {
+        regUsernameEdit->setStyleSheet("QLineEdit {color: white; font-size: 14px; background-color: #111; border: 1px solid red; border-radius: 5px; padding: 5px; }");
+        regUsernameEdit->setFocus();
+        return;
     }
+
+    if (regUserEmailEdit->text().trimmed().isEmpty()) {
+        regUserEmailEdit->setStyleSheet("QLabel, QLineEdit, QPushButton { color: white; font-size: 14px; } QLineEdit { background-color: #111; border: 1px solid red; border-radius: 5px; padding: 5px; }");
+        regUserEmailEdit->setFocus();
+        return;
+    }
+
+    if (regUsertagEdit->text().trimmed().isEmpty()) {
+        regUsertagEdit->setStyleSheet("QLabel, QLineEdit, QPushButton { color: white; font-size: 14px; } QLineEdit { background-color: #111; border: 1px solid red; border-radius: 5px; padding: 5px; }");
+        regUsertagEdit->setFocus();
+        return;
+    }
+
+    if (regPasswordEdit->text().trimmed().isEmpty()) {
+        regPasswordEdit->setStyleSheet("QLabel, QLineEdit, QPushButton { color: white; font-size: 14px; } QLineEdit { background-color: #111; border: 1px solid red; border-radius: 5px; padding: 5px; }");
+        regPasswordEdit->setFocus();
+        return;
+    }
+
+    QJsonObject payload;
+    payload["endpoint"] = "/auth";
+    payload["action"] = "register";
+    payload["username"] = regUsernameEdit->text();
+    payload["email"] = regUserEmailEdit->text();
+    payload["password"] = regPasswordEdit->text();
+    payload["usertag"] = regUsertagEdit->text();
+    userTag = regUsertagEdit->text();
+
+    QJsonDocument doc(payload);
+    QString message = QString::fromUtf8(doc.toJson());
+    qDebug()<<message;
+    current_query = "register";
+    webSocket->sendMessage(message);
+
 }
 
 void LoginWindow::tryLogin()
 {
-    // Простой пример: разрешаем вход при любом логине
-    // Здесь ты можешь добавить свою проверку логина/пароля
-    if (!logUsernameEdit->text().isEmpty()) {
-        accept(); // закрыть окно и вернуть QDialog::Accepted
-    } else {
-        // можно показать ошибку
+    if(logUserEmaildit->text() == "1"){
+        accept();
+        userTag = "asd";
     }
+    if (logUserEmaildit->text().trimmed().isEmpty()) {
+        logUserEmaildit->setStyleSheet("QLabel, QLineEdit, QPushButton { color: white; font-size: 14px; } QLineEdit { background-color: #111; border: 1px solid red; border-radius: 5px; padding: 5px; }");
+        logUserEmaildit->setFocus();
+        return;
+    }
+
+    if (logPasswordEdit->text().trimmed().isEmpty()) {
+        logPasswordEdit->setStyleSheet("QLabel, QLineEdit, QPushButton { color: white; font-size: 14px; } QLineEdit { background-color: #111; border: 1px solid red; border-radius: 5px; padding: 5px; }");
+        logPasswordEdit->setFocus();
+        return;
+    }
+    ////Простой пример: разрешаем вход при любом логине
+    // Здесь ты можешь добавить свою проверку логина/пароля
+    QJsonObject payload;
+    payload["endpoint"] = "/auth";
+    payload["action"] = "login";
+    payload["email"] = logUserEmaildit->text();
+    payload["password"] = logPasswordEdit->text();
+
+    QJsonDocument doc(payload);
+    QString message = QString::fromUtf8(doc.toJson());
+    qDebug()<<message;
+    current_query = "login";
+    webSocket->sendMessage(message);
 }
 
 void LoginWindow::on_Login_clicked(){
-    isLogin = false;
+    isRegister = false;
     toggle_buttons();
 }
 
 void LoginWindow::on_Register_clicked(){
-    isLogin = true;
+    isRegister = true;
     toggle_buttons();
 }
 
@@ -271,7 +366,7 @@ void LoginWindow::toggle_buttons(){
         " text-decoration: underline;"
         "}";
 
-    if (isLogin) {
+    if (isRegister) {
         registerTabBtn->setStyleSheet(activeStyle);
         loginTabBtn->setStyleSheet(inactiveStyle);
         registerTabBtn->setEnabled(false);

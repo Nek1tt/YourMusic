@@ -373,6 +373,73 @@ CMakeFiles/musicproject.dir/loginwindow.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qbitmap.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTabWidget \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtabwidget.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonParseError \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsondocument.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonvalue.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcborvalue.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcborcommon.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qdatetime.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcalendar.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qlocale.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qregularexpression.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qurl.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/quuid.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonDocument \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonArray \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonarray.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonObject \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonobject.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QLabel \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qlabel.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qframe.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qpicture.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qiodevice.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qtextdocument.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\websocketclient.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qobject.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/QWebSocket \
+ C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qwebsocket.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsocket.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QUrl \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qurl.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QAbstractSocket \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qabstractsocket.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetworkglobal.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetwork-config.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetworkexports.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkRequest \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkrequest.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qhttpheaders.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QSharedDataPointer \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qshareddata.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qstring.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QVariant \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qvariant.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/q26numeric.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkProxy \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkproxy.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qhostaddress.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qabstractsocket.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkrequest.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QSslError \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslerror.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslcertificate.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcryptographichash.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qssl.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QFlags \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qflags.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QSslConfiguration \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslconfiguration.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslsocket.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtcpsocket.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslerror.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qwebsockets_global.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsockets_global.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qtwebsocketsexports.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qwebsocketprotocol.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsocketprotocol.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QApplication \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qapplication.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication.h \
@@ -384,7 +451,6 @@ CMakeFiles/musicproject.dir/loginwindow.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication_platform.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qguiapplication.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qinputmethod.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qlocale.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qguiapplication_platform.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QHBoxLayout \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qboxlayout.h \
@@ -393,13 +459,6 @@ CMakeFiles/musicproject.dir/loginwindow.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qboxlayout.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qgridlayout.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QVBoxLayout \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/QLabel \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/qlabel.h \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/qframe.h \
- C:/Qt/6.8.2/mingw_64/include/QtGui/qpicture.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qiodevice.h \
- C:/Qt/6.8.2/mingw_64/include/QtGui/qtextdocument.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qurl.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/QPixmap \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qpixmap.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QLineEdit \

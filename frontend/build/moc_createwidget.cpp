@@ -38,10 +38,12 @@ struct qt_meta_tag_ZN12CreateWidgetE_t {};
 #ifdef QT_MOC_HAS_STRINGDATA
 static constexpr auto qt_meta_stringdata_ZN12CreateWidgetE = QtMocHelpers::stringData(
     "CreateWidget",
-    "onAddNoizeClicked",
+    "chooseImage",
     "",
-    "onAddAnacondazClicked",
-    "onAddOxxyClicked"
+    "on_typeButton_clicked",
+    "addAuthor",
+    "name",
+    "addNewTrackButton"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -53,7 +55,7 @@ Q_CONSTINIT static const uint qt_meta_data_ZN12CreateWidgetE[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -61,13 +63,15 @@ Q_CONSTINIT static const uint qt_meta_data_ZN12CreateWidgetE[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   32,    2, 0x08,    1 /* Private */,
-       3,    0,   33,    2, 0x08,    2 /* Private */,
-       4,    0,   34,    2, 0x08,    3 /* Private */,
+       1,    0,   38,    2, 0x08,    1 /* Private */,
+       3,    0,   39,    2, 0x08,    2 /* Private */,
+       4,    1,   40,    2, 0x08,    3 /* Private */,
+       6,    0,   43,    2, 0x08,    5 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,    5,
     QMetaType::Void,
 
        0        // eod
@@ -82,11 +86,14 @@ Q_CONSTINIT const QMetaObject CreateWidget::staticMetaObject = { {
     qt_incomplete_metaTypeArray<qt_meta_tag_ZN12CreateWidgetE_t,
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<CreateWidget, std::true_type>,
-        // method 'onAddNoizeClicked'
+        // method 'chooseImage'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'onAddAnacondazClicked'
+        // method 'on_typeButton_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'onAddOxxyClicked'
+        // method 'addAuthor'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'addNewTrackButton'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -97,13 +104,13 @@ void CreateWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id
     auto *_t = static_cast<CreateWidget *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->onAddNoizeClicked(); break;
-        case 1: _t->onAddAnacondazClicked(); break;
-        case 2: _t->onAddOxxyClicked(); break;
+        case 0: _t->chooseImage(); break;
+        case 1: _t->on_typeButton_clicked(); break;
+        case 2: _t->addAuthor((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 3: _t->addNewTrackButton(); break;
         default: ;
         }
     }
-    (void)_a;
 }
 
 const QMetaObject *CreateWidget::metaObject() const
@@ -125,14 +132,14 @@ int CreateWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 4)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
 }

@@ -46,7 +46,7 @@ class MyAlbumsWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit MyAlbumsWidget(QWidget *parent = nullptr);
+    explicit MyAlbumsWidget(QString widgetName, QWidget *parent = nullptr);
     void clearLayout(QLayout *layout);
     void add_albums(QVector<album> newAlbumList);
     void resizeAlbums(int width);

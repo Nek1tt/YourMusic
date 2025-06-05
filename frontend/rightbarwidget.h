@@ -15,6 +15,7 @@
 
 
 #include "mytrackswidget.h"
+#include "websocketclient.h"
 
 #ifndef RIGHTBARWIDGET_H
 #define RIGHTBARWIDGET_H
@@ -24,17 +25,20 @@ class RightBarWidget : public QWidget
 {
     Q_OBJECT
 public:
-    explicit RightBarWidget(int initialScreenWidth, int initialScreenHeight, QWidget *parent = nullptr, track *currentTrack = nullptr);
+    explicit RightBarWidget(WebSocketClient *webSocket, int initialScreenWidth, int initialScreenHeight, QWidget *parent = nullptr, track *currentTrack = nullptr);
     void toggle_buttons();
     void on_toAuthor_clicked();
     void on_toLyrics_clicked();
     void on_followButton_clicked();
+    void on_Play_clicked();
+    void on_Pause_clicked();
     void resizeBarWidget(int width);
     int get_barWidth();
     void setNewCurrentTrack(const track &trackData);
     //void set_author_text_tab();
 
 private:
+    WebSocketClient *webSocket;
     int initialScreenWidth;
     int initialScreenHeight;
     int barSize;

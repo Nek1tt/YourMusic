@@ -89,15 +89,18 @@ int AlbumButton::getAuthorId(){
 }
 
 
-MyAlbumsWidget::MyAlbumsWidget(QWidget *parent) : QWidget(parent)
+MyAlbumsWidget::MyAlbumsWidget(QString widgetName, QWidget *parent) : QWidget(parent)
 {
 
     MyAlbumsLayout = new QVBoxLayout(this);
-    QPushButton *myAlbumButton = new QPushButton("My albums");
+    QWidget *myAlbumButtonWidget = new QWidget();
+    QVBoxLayout *myAlbumButtonLayout = new QVBoxLayout(myAlbumButtonWidget);
+    QPushButton *myAlbumButton = new QPushButton(widgetName);
     myAlbumButton->setStyleSheet(
         "QPushButton {"
         "font-weight: bold;"
         "font-size: 32px;"
+        "text-align: left;"
         "font-family: 'Tahoma';"
         "    background: none;"                  // Убираем фон
         "    border: none;"                      // Убираем рамку
@@ -111,8 +114,9 @@ MyAlbumsWidget::MyAlbumsWidget(QWidget *parent) : QWidget(parent)
     connect(myAlbumButton, &QPushButton::clicked, [this]() {
         emit myAlbumsButtonClicked(getAlbum());
     });
-    myAlbumButton->setFixedSize(200, 40);
-    MyAlbumsLayout->addWidget(myAlbumButton);
+    //myAlbumButton->setFixedSize(200, 40);
+    myAlbumButtonLayout->addWidget(myAlbumButton);
+    MyAlbumsLayout->addWidget(myAlbumButtonWidget);
 
 
     albums = new QWidget();  // виджет для прокрутки

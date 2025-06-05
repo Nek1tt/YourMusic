@@ -7,15 +7,15 @@
 void set_button_style(QPushButton *button, int fontsize, QString color, QString textalign, QString padb){
     button->setStyleSheet(
         "QPushButton {"
-        "text-align: '"+ textalign + "';"
+        "text-align: "+ textalign + ";"
         "padding-left: 0px;"
-        "padding-bottom: '" + padb +"';"
+        "padding-bottom: " + padb +";"
         "font-weight: bold;"
         "font-size: " + QString::number(fontsize) + "px;"
         "font-family: 'Tahoma';"
         "background: none;"
         "border: none;"
-        "color: '" + color + "';"
+        "color: " + color + ";"
         "text-decoration: none;"
         "}"
         "QPushButton:hover {"

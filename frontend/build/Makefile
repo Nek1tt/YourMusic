@@ -221,6 +221,30 @@ albumwidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/albumwidget.cpp.s
 .PHONY : albumwidget.cpp.s
 
+createTab.obj: createTab.cpp.obj
+.PHONY : createTab.obj
+
+# target to build an object file
+createTab.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/createTab.cpp.obj
+.PHONY : createTab.cpp.obj
+
+createTab.i: createTab.cpp.i
+.PHONY : createTab.i
+
+# target to preprocess a source file
+createTab.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/createTab.cpp.i
+.PHONY : createTab.cpp.i
+
+createTab.s: createTab.cpp.s
+.PHONY : createTab.s
+
+# target to generate assembly for a file
+createTab.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/createTab.cpp.s
+.PHONY : createTab.cpp.s
+
 createwidget.obj: createwidget.cpp.obj
 .PHONY : createwidget.obj
 
@@ -244,6 +268,54 @@ createwidget.s: createwidget.cpp.s
 createwidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/createwidget.cpp.s
 .PHONY : createwidget.cpp.s
+
+hometab.obj: hometab.cpp.obj
+.PHONY : hometab.obj
+
+# target to build an object file
+hometab.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/hometab.cpp.obj
+.PHONY : hometab.cpp.obj
+
+hometab.i: hometab.cpp.i
+.PHONY : hometab.i
+
+# target to preprocess a source file
+hometab.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/hometab.cpp.i
+.PHONY : hometab.cpp.i
+
+hometab.s: hometab.cpp.s
+.PHONY : hometab.s
+
+# target to generate assembly for a file
+hometab.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/hometab.cpp.s
+.PHONY : hometab.cpp.s
+
+homewidget.obj: homewidget.cpp.obj
+.PHONY : homewidget.obj
+
+# target to build an object file
+homewidget.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/homewidget.cpp.obj
+.PHONY : homewidget.cpp.obj
+
+homewidget.i: homewidget.cpp.i
+.PHONY : homewidget.i
+
+# target to preprocess a source file
+homewidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/homewidget.cpp.i
+.PHONY : homewidget.cpp.i
+
+homewidget.s: homewidget.cpp.s
+.PHONY : homewidget.s
+
+# target to generate assembly for a file
+homewidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/homewidget.cpp.s
+.PHONY : homewidget.cpp.s
 
 loginwindow.obj: loginwindow.cpp.obj
 .PHONY : loginwindow.obj
@@ -365,6 +437,54 @@ moc_createwidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_createwidget.cpp.s
 .PHONY : moc_createwidget.cpp.s
 
+moc_hometab.obj: moc_hometab.cpp.obj
+.PHONY : moc_hometab.obj
+
+# target to build an object file
+moc_hometab.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_hometab.cpp.obj
+.PHONY : moc_hometab.cpp.obj
+
+moc_hometab.i: moc_hometab.cpp.i
+.PHONY : moc_hometab.i
+
+# target to preprocess a source file
+moc_hometab.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_hometab.cpp.i
+.PHONY : moc_hometab.cpp.i
+
+moc_hometab.s: moc_hometab.cpp.s
+.PHONY : moc_hometab.s
+
+# target to generate assembly for a file
+moc_hometab.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_hometab.cpp.s
+.PHONY : moc_hometab.cpp.s
+
+moc_homewidget.obj: moc_homewidget.cpp.obj
+.PHONY : moc_homewidget.obj
+
+# target to build an object file
+moc_homewidget.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_homewidget.cpp.obj
+.PHONY : moc_homewidget.cpp.obj
+
+moc_homewidget.i: moc_homewidget.cpp.i
+.PHONY : moc_homewidget.i
+
+# target to preprocess a source file
+moc_homewidget.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_homewidget.cpp.i
+.PHONY : moc_homewidget.cpp.i
+
+moc_homewidget.s: moc_homewidget.cpp.s
+.PHONY : moc_homewidget.s
+
+# target to generate assembly for a file
+moc_homewidget.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_homewidget.cpp.s
+.PHONY : moc_homewidget.cpp.s
+
 moc_loginwindow.obj: moc_loginwindow.cpp.obj
 .PHONY : moc_loginwindow.obj
 
@@ -461,30 +581,6 @@ moc_mytrackswidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_mytrackswidget.cpp.s
 .PHONY : moc_mytrackswidget.cpp.s
 
-moc_profiletab.obj: moc_profiletab.cpp.obj
-.PHONY : moc_profiletab.obj
-
-# target to build an object file
-moc_profiletab.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_profiletab.cpp.obj
-.PHONY : moc_profiletab.cpp.obj
-
-moc_profiletab.i: moc_profiletab.cpp.i
-.PHONY : moc_profiletab.i
-
-# target to preprocess a source file
-moc_profiletab.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_profiletab.cpp.i
-.PHONY : moc_profiletab.cpp.i
-
-moc_profiletab.s: moc_profiletab.cpp.s
-.PHONY : moc_profiletab.s
-
-# target to generate assembly for a file
-moc_profiletab.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_profiletab.cpp.s
-.PHONY : moc_profiletab.cpp.s
-
 moc_profilewidget.obj: moc_profilewidget.cpp.obj
 .PHONY : moc_profilewidget.obj
 
@@ -580,6 +676,30 @@ moc_userslistwidget.s: moc_userslistwidget.cpp.s
 moc_userslistwidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_userslistwidget.cpp.s
 .PHONY : moc_userslistwidget.cpp.s
+
+moc_websocketclient.obj: moc_websocketclient.cpp.obj
+.PHONY : moc_websocketclient.obj
+
+# target to build an object file
+moc_websocketclient.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_websocketclient.cpp.obj
+.PHONY : moc_websocketclient.cpp.obj
+
+moc_websocketclient.i: moc_websocketclient.cpp.i
+.PHONY : moc_websocketclient.i
+
+# target to preprocess a source file
+moc_websocketclient.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_websocketclient.cpp.i
+.PHONY : moc_websocketclient.cpp.i
+
+moc_websocketclient.s: moc_websocketclient.cpp.s
+.PHONY : moc_websocketclient.s
+
+# target to generate assembly for a file
+moc_websocketclient.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/moc_websocketclient.cpp.s
+.PHONY : moc_websocketclient.cpp.s
 
 musicmain.obj: musicmain.cpp.obj
 .PHONY : musicmain.obj
@@ -797,6 +917,30 @@ userslistwidget.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/userslistwidget.cpp.s
 .PHONY : userslistwidget.cpp.s
 
+websocketclient.obj: websocketclient.cpp.obj
+.PHONY : websocketclient.obj
+
+# target to build an object file
+websocketclient.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/websocketclient.cpp.obj
+.PHONY : websocketclient.cpp.obj
+
+websocketclient.i: websocketclient.cpp.i
+.PHONY : websocketclient.i
+
+# target to preprocess a source file
+websocketclient.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/websocketclient.cpp.i
+.PHONY : websocketclient.cpp.i
+
+websocketclient.s: websocketclient.cpp.s
+.PHONY : websocketclient.s
+
+# target to generate assembly for a file
+websocketclient.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\musicproject.dir\build.make CMakeFiles/musicproject.dir/websocketclient.cpp.s
+.PHONY : websocketclient.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -816,9 +960,18 @@ help:
 	@echo ... albumwidget.obj
 	@echo ... albumwidget.i
 	@echo ... albumwidget.s
+	@echo ... createTab.obj
+	@echo ... createTab.i
+	@echo ... createTab.s
 	@echo ... createwidget.obj
 	@echo ... createwidget.i
 	@echo ... createwidget.s
+	@echo ... hometab.obj
+	@echo ... hometab.i
+	@echo ... hometab.s
+	@echo ... homewidget.obj
+	@echo ... homewidget.i
+	@echo ... homewidget.s
 	@echo ... loginwindow.obj
 	@echo ... loginwindow.i
 	@echo ... loginwindow.s
@@ -834,6 +987,12 @@ help:
 	@echo ... moc_createwidget.obj
 	@echo ... moc_createwidget.i
 	@echo ... moc_createwidget.s
+	@echo ... moc_hometab.obj
+	@echo ... moc_hometab.i
+	@echo ... moc_hometab.s
+	@echo ... moc_homewidget.obj
+	@echo ... moc_homewidget.i
+	@echo ... moc_homewidget.s
 	@echo ... moc_loginwindow.obj
 	@echo ... moc_loginwindow.i
 	@echo ... moc_loginwindow.s
@@ -846,9 +1005,6 @@ help:
 	@echo ... moc_mytrackswidget.obj
 	@echo ... moc_mytrackswidget.i
 	@echo ... moc_mytrackswidget.s
-	@echo ... moc_profiletab.obj
-	@echo ... moc_profiletab.i
-	@echo ... moc_profiletab.s
 	@echo ... moc_profilewidget.obj
 	@echo ... moc_profilewidget.i
 	@echo ... moc_profilewidget.s
@@ -861,6 +1017,9 @@ help:
 	@echo ... moc_userslistwidget.obj
 	@echo ... moc_userslistwidget.i
 	@echo ... moc_userslistwidget.s
+	@echo ... moc_websocketclient.obj
+	@echo ... moc_websocketclient.i
+	@echo ... moc_websocketclient.s
 	@echo ... musicmain.obj
 	@echo ... musicmain.i
 	@echo ... musicmain.s
@@ -888,6 +1047,9 @@ help:
 	@echo ... userslistwidget.obj
 	@echo ... userslistwidget.i
 	@echo ... userslistwidget.s
+	@echo ... websocketclient.obj
+	@echo ... websocketclient.i
+	@echo ... websocketclient.s
 .PHONY : help
 
 
