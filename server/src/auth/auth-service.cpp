@@ -1,4 +1,3 @@
-// auth-service.cpp
 #include "auth-service.h"
 
 // -------------------- HttpSession implementation --------------------
@@ -24,7 +23,6 @@ void HttpSession::do_read() {
 }
 
 void HttpSession::handle_request(http::request<http::string_body> req) {
-    // Вместо buffer_, печатаем сам parsed request через operator<<
     std::ostringstream oss;
     oss << req;
     std::string rawRequest = oss.str();
@@ -72,10 +70,10 @@ http::response<http::string_body> HttpSession::handle_register(const json& body)
         std::string password = body.at("password").get<std::string>();
         std::string usertag = body.at("usertag").get<std::string>();
 
-        if (db_.user_exists_by_username(username)) {
+        if (db_.user_exists_by_usertag(usertag)) {
             json resp = {
                 {"status", "error"},
-                {"message", "Username already exists"}
+                {"message", "Usertag already exists"}
             };
             http::response<http::string_body> r{http::status::conflict, req_.version()};
             r.set(http::field::content_type, "application/json");
@@ -195,7 +193,6 @@ void HttpSession::do_write(http::response<http::string_body> res) {
             if (ec) {
                 std::cerr << "[HttpSession] Write error: " << ec.message() << "\n";
             }
-            // Закрываем соединение после отправки
             beast::error_code ec_shutdown;
             self->socket_.shutdown(tcp::socket::shutdown_send, ec_shutdown);
         }
@@ -228,7 +225,6 @@ void AuthService::on_accept(beast::error_code ec, tcp::socket socket) {
     } else {
         int err_code = ec.value();
         std::string msg_cp = ec.message();
-        // Конвертация ANSI → UTF-8
         std::wstring_convert<std::codecvt<wchar_t, char, std::mbstate_t>> to_wide;
         std::wstring u16 = to_wide.from_bytes(msg_cp);
         std::string  u8  = std::wstring_convert<std::codecvt_utf8<wchar_t>>().to_bytes(u16);
@@ -240,7 +236,6 @@ void AuthService::on_accept(beast::error_code ec, tcp::socket socket) {
 // -------------------- main --------------------
 
 int main() {
-    std::setlocale(LC_ALL, "C");
     try {
         net::io_context ioc;
 
