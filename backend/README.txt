@@ -1,20 +1,8 @@
-запуск трека
-curl.exe -X POST http://localhost:8080 -H "Content-Type: application/json" --data-raw '{\"command\":\"load\", \"path\":\"C:/Users/LeMeS/Downloads/gimn-sssr-klassicheskiy.mp3\"}'
-
-
-вопсроизвести
-curl.exe -X POST http://localhost:8080 -H "Content-Type: application/json" --data-raw '{\"command\":\"resume\"}'
-
-музыкальная паУза
-curl.exe -X POST http://localhost:8080 -H "Content-Type: application/json" --data-raw '{\"command\":\"pause\"}'
-
-
-выключить
-curl.exe -X POST http://localhost:8080 -H "Content-Type: application/json" --data-raw '{\"command\":\"quit\"}'
-
-громкость
-curl.exe -X POST http://localhost:8080 -H "Content-Type: application/json" --data-raw '{\"command\":\"volume\", \"level\":0.7}'
-
-
-пермотка
-curl.exe -X POST http://localhost:8080 -H "Content-Type: application/json" --data-raw '{\"command\":\"seeking\", \"position\":0.4}'
+| Команда | Формат JSON                                 | Описание                                      |
+| ------- | ------------------------------------------- | --------------------------------------------- |
+| load    | `{ "command": "load", "path": "..." }`      | Загрузить и начать воспроизведение трека      |
+| resume  | `{ "command": "resume" }`                   | Продолжить воспроизведение                    |
+| pause   | `{ "command": "pause" }`                    | Поставить трек на паузу                       |
+| quit    | `{ "command": "quit" }`                     | Остановить и выгрузить трек, завершить сервер |
+| seeking | `{ "command": "seeking", "position": 0.5 }` | Перемотать на позицию (0.0–1.0)               |
+| volume  | `{ "command": "volume", "level": 0.8 }`     | Установить громкость (0.0–1.0)                |
