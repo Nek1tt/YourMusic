@@ -2,7 +2,7 @@
 #include "AudioPlayer.h"
 #include <nlohmann/json.hpp>
 #include <memory>
-#include <nlohmann/json.hpp>
+
 
 class AudioPlayer;
 
@@ -17,6 +17,7 @@ public:
     nlohmann::json handle_quit();
     nlohmann::json handle_seek(const nlohmann::json& j);
     nlohmann::json handle_volume(const nlohmann::json& j);
+    nlohmann::json handle_auth(const nlohmann::json& request);
 
     bool is_running() const;
 
