@@ -1,5 +1,6 @@
 #include "ServerHandler.h"
 #include <nlohmann/json.hpp>
+#include <regex>
 
 ServerHandler::ServerHandler() : player(nullptr), running(true) {}
 
@@ -18,6 +19,7 @@ nlohmann::json ServerHandler::handle_json(const nlohmann::json& request) {
         if (command == "quit") return handle_quit();
         if (command == "seeking") return handle_seek(request);
         if (command == "volume") return handle_volume(request);
+        if (command == "auth") return handle_auth(request);
         response["error"] = "Unknown command: " + command;
     } catch (const std::exception& e) {
         response["error"] = e.what();
@@ -145,5 +147,54 @@ nlohmann::json ServerHandler::handle_volume(const nlohmann::json& j)
     }
     player->setVolume(static_cast<float>(level));
     response["status"] = "Volume set to " + std::to_string(level);
+    return response;
+}
+
+bool is_valid_email_or_login(const std::string& input) {
+    if (input.find('@') != std::string::npos) {
+        const std::regex email_pattern(R"(^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$)");
+        return std::regex_match(input, email_pattern);
+    } else {
+        const std::regex login_pattern(R"(^[A-Za-z0-9._-]+$)");
+        return std::regex_match(input, login_pattern);
+    }
+}
+
+bool is_valid_password(const std::string& password) {
+    if (password.size() < 8 || password.size() > 20) return false;
+    const std::regex password_pattern(R"(^[A-Za-z0-9._-]+$)");
+    if (!std::regex_match(password, password_pattern)) return false;
+
+    for (char c : password) {
+        if (isalnum(static_cast<unsigned char>(c))) return true;
+    }
+    return false;
+}
+
+nlohmann::json ServerHandler::handle_auth(const nlohmann::json& request) {
+    nlohmann::json response;
+    if (!request.contains("login") || !request["login"].is_string()) {
+        response["error"] = "Missing or invalid 'login' field";
+        return response;
+    }
+    if (!request.contains("password") || !request["password"].is_string()) {
+        response["error"] = "Missing or invalid 'password' field";
+        return response;
+    }
+
+    std::string login = request["login"];
+    std::string password = request["password"];
+
+    bool login_ok = is_valid_email_or_login(login);
+    bool pass_ok = is_valid_password(password);
+
+    if (login_ok && pass_ok) {
+        response["status"] = "ACCEPTED";
+        response["message"] = "Login and password are valid";
+    } else {
+        response["status"] = "REJECTED";
+        if (!login_ok) response["login_error"] = "Invalid login/email format";
+        if (!pass_ok) response["password_error"] = "Invalid password format";
+    }
     return response;
 }
