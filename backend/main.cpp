@@ -1,169 +1,278 @@
+// main_ws.cpp
+
 #include "AudioPlayer.h"
 #include <iostream>
 #include <memory>
 #include <mutex>
-#include <condition_variable>
 #include <thread>
-#include <unordered_set>
 #include <boost/beast/core.hpp>
-#include <boost/beast/http.hpp>
-#include <boost/beast/version.hpp>
+#include <boost/beast/websocket.hpp>
 #include <boost/asio/ip/tcp.hpp>
-#include <boost/asio/signal_set.hpp>
-#include <boost/asio/strand.hpp>
-#include <boost/config.hpp>
 #include <nlohmann/json.hpp>
 
 using tcp = boost::asio::ip::tcp;
-namespace http = boost::beast::http;
+namespace beast     = boost::beast;
+namespace websocket = beast::websocket;
 using json = nlohmann::json;
 
-class AudioServer {
+
+class AudioServer 
+{
 public:
-    AudioServer(boost::asio::io_context& ioc) : player(nullptr), ioc_(ioc) {}
+    AudioServer() : player(nullptr), running(true) {}
 
-    void handle_request(http::request<http::string_body> req, http::response<http::string_body>& res) {
-        try {
-            auto json_body = json::parse(req.body());
 
-            if (!json_body.contains("command")) {
-                return send_error(res, http::status::bad_request, "Missing 'command' field");
-            }
+    json handle_json(const json& request)
+    {
+        json response;
 
-            std::string command = json_body["command"];
 
-            if (command == "load") handle_load(json_body, res);
-            else if (command == "resume") handle_resume(res);
-            else if (command == "pause") handle_pause(res);
-            else if (command == "quit") handle_quit(res);
-            else if (command == "seeking") handle_seek(json_body, res);
-            else if (command == "volume") handle_volume(json_body, res);
-            else send_error(res, http::status::bad_request, "Unknown command");
+        if (!request.contains("command") || !request["command"].is_string())
+        {
+            response["error"] = "Missing or invalid 'command' field";
+            return response;
         }
-        catch (const std::exception& e) {
-            send_error(res, http::status::internal_server_error, e.what());
+
+        std::string command = request["command"].get<std::string>();
+
+        try {
+            if (command == "load") 
+            {
+                return handle_load(request);
+            }
+            else if (command == "resume") 
+            {
+                return handle_resume();
+            }
+            else if (command == "pause") 
+            {
+                return handle_pause();
+            }
+            else if (command == "quit") 
+            {
+                return handle_quit();
+            }
+            else if (command == "seeking") 
+            {
+                return handle_seek(request);
+            }
+            else if (command == "volume") 
+            {
+                return handle_volume(request);
+            }
+            else 
+            {
+                response["error"] = "Unknown command: " + command;
+                return response;
+            }
+        }
+        catch (const std::exception& e) 
+        {
+
+            response["error"] = e.what();
+            return response;
         }
     }
 
     bool is_running() const { return running; }
-    void stop() { running = false; }
 
 private:
     std::unique_ptr<AudioPlayer> player;
-    bool running = true;
-    boost::asio::io_context& ioc_;
+    bool running;
 
-    void send_error(http::response<http::string_body>& res, http::status status, const std::string& message) {
-        res.result(status);
-        res.set(http::field::content_type, "application/json");
-        res.body() = json({{"error", message}}).dump();
-        res.prepare_payload();
-    }
 
-    void send_status(http::response<http::string_body>& res, const std::string& message) {
-        res.result(http::status::ok);
-        res.set(http::field::content_type, "application/json");
-        res.body() = json({{"status", message}}).dump();
-        res.prepare_payload();
-    }
-
-    void handle_load(const json& j, http::response<http::string_body>& res) {
-        if (!j.contains("path")) {
-            return send_error(res, http::status::bad_request, "Missing 'path' for load command");
+    json handle_load(const json& j) 
+    {
+        json response;
+        if (!j.contains("path") || !j["path"].is_string()) 
+        {
+            response["error"] = "Missing or invalid 'path' field for load";
+            return response;
         }
 
-        std::string path = j["path"];
-        if (player) {
+        std::string path = j["path"].get<std::string>();
+
+
+        if (player) 
+        {
             player->stopAudio();
             player.reset();
         }
 
         player = std::make_unique<AudioPlayer>(path.c_str());
-        if (!player->init()) {
+        if (!player->init()) 
+        {
             player.reset();
-            return send_error(res, http::status::internal_server_error, "Failed to load audio file");
+            response["error"] = "Failed to load audio file: " + path;
+            return response;
         }
 
         player->playAudio();
-        send_status(res, "Playing");
+        response["status"] = "Playing";
+        return response;
     }
 
-    void handle_resume(http::response<http::string_body>& res) {
-        if (!player) return send_error(res, http::status::bad_request, "No track loaded");
+    json handle_resume() 
+    {
+        json response;
+        if (!player) 
+        {
+            response["error"] = "No track loaded";
+            return response;
+        }
         player->playAudio();
-        send_status(res, "Resumed");
+        response["status"] = "Resumed";
+        return response;
     }
 
-    void handle_pause(http::response<http::string_body>& res) {
-        if (!player) return send_error(res, http::status::bad_request, "No track loaded");
+    json handle_pause() 
+    {
+        json response;
+        if (!player) 
+        {
+            response["error"] = "No track loaded";
+            return response;
+        }
         player->pauseAudio();
-        send_status(res, "Paused");
+        response["status"] = "Paused";
+        return response;
     }
 
-    void handle_quit(http::response<http::string_body>& res) {
-        if (player) {
+    json handle_quit() 
+    {
+        json response;
+        if (player) 
+        {
             player->stopAudio();
             player.reset();
         }
-        send_status(res, "Stopped");
-        stop();
+        response["status"] = "Stopped";
+
+        running = false;
+        return response;
     }
 
-    void handle_seek(const json& j, http::response<http::string_body>& res) {
-        if (!player) return send_error(res, http::status::bad_request, "No track loaded");
-        if (!j.contains("position") || !j["position"].is_number()) {
-            return send_error(res, http::status::bad_request, "Missing or invalid 'position' field");
+    json handle_seek(const json& j) 
+    {
+        json response;
+        if (!player) 
+        {
+            response["error"] = "No track loaded";
+            return response;
         }
-        double pos = j["position"];
-        if (pos < 0.01 || pos > 1.0) {
-            return send_error(res, http::status::bad_request, "Position must be between 0.01 and 1.00");
+        if (!j.contains("position") || !j["position"].is_number()) 
+        {
+            response["error"] = "Missing or invalid 'position' field";
+            return response;
         }
-        if (!player->seekTo(pos)) {
-            return send_error(res, http::status::internal_server_error, "Failed to seek");
+        double pos = j["position"].get<double>();
+        if (pos < 0.0 || pos > 1.0) 
+        {
+            response["error"] = "Position must be between 0.0 and 1.0";
+            return response;
         }
-        send_status(res, "Seeked");
+        if (!player->seekTo(pos)) 
+        {
+            response["error"] = "Failed to seek to position " + std::to_string(pos);
+            return response;
+        }
+        response["status"] = "Seeked";
+        return response;
     }
 
-    void handle_volume(const json& j, http::response<http::string_body>& res) {
-        if (!player) return send_error(res, http::status::bad_request, "No track loaded");
-        if (!j.contains("level") || !j["level"].is_number()) {
-            return send_error(res, http::status::bad_request, "Missing or invalid 'level' field");
+    json handle_volume(const json& j) 
+    {
+        json response;
+        if (!player) 
+        {
+            response["error"] = "No track loaded";
+            return response;
         }
-        float vol = j["level"];
-        if (vol < 0.01f || vol > 1.0f) {
-            return send_error(res, http::status::bad_request, "Volume level must be between 0.01 and 1.00");
+        if (!j.contains("level") || !j["level"].is_number()) 
+        {
+            response["error"] = "Missing or invalid 'level' field";
+            return response;
         }
-        player->setVolume(vol);
-        send_status(res, "Volume set");
+        double level = j["level"].get<double>();
+        if (level < 0.0 || level > 1.0) 
+        {
+            response["error"] = "Volume level must be between 0.0 and 1.0";
+            return response;
+        }
+        player->setVolume(static_cast<float>(level));
+        response["status"] = "Volume set to " + std::to_string(level);
+        return response;
     }
 };
 
-int main(int argc, char* argv[]) {
-    try {
+
+int main(int argc, char* argv[]) 
+{
+    try 
+    {
+
         boost::asio::io_context ioc{1};
-        tcp::acceptor acceptor{ioc, {tcp::v4(), 8080}};
-        AudioServer server(ioc);
+        tcp::acceptor acceptor{ioc, {boost::asio::ip::make_address("127.0.0.1"), 8080}};
 
-        std::cout << "Server listening on port 8080" << std::endl;
+        std::cout << "WebSocket AudioServer listening on ws://127.0.0.1:8080\n";
 
-        for (;;) {
+        while (true) 
+        {
             tcp::socket socket{ioc};
             acceptor.accept(socket);
 
-            boost::beast::flat_buffer buffer;
-            http::request<http::string_body> req;
-            http::read(socket, buffer, req);
+            std::thread{[s = std::move(socket)]() mutable {
+                try 
+                {
 
-            http::response<http::string_body> res;
-            server.handle_request(std::move(req), res);
+                    websocket::stream<tcp::socket> ws{std::move(s)};
 
-            http::write(socket, res);
+                    ws.accept();
+
+                    AudioServer server_logic;
+
+                    beast::flat_buffer buffer;
+                    while (server_logic.is_running()) 
+                    {
+
+                        ws.read(buffer);
+                        std::string raw_request = beast::buffers_to_string(buffer.data());
+                        buffer.consume(buffer.size());
+
+                        json request_json;
+                        json response_json;
+                        try 
+                        {
+                            request_json = json::parse(raw_request);
+                            response_json = server_logic.handle_json(request_json);
+                        }
+                        catch (const std::exception& e) 
+                        {
+
+                            response_json = { {"error", "Invalid JSON: "} };
+                            response_json["error"] = std::string("Invalid JSON: ") + e.what();
+                        }
+
+                        std::string resp_str = response_json.dump();
+                        ws.write(boost::asio::buffer(resp_str));
+                    }
+
+                    ws.close(websocket::close_code::normal);
+                }
+                catch (const std::exception& e) 
+                {
+                    std::cerr << "[Session] Exception: " << e.what() << "\n";
+                }
+            }}.detach();
         }
+
+
     }
-    catch (const std::exception& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
-        return 1;
+    catch (const std::exception& e) 
+    {
+        std::cerr << "Fatal error in main: " << e.what() << std::endl;
+        return EXIT_FAILURE;
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }
