@@ -9,15 +9,13 @@ public:
     }
 
     void handle(const nlohmann::json& req) {
-        // Проверяем, есть ли поле action в запросе
         if (!req.contains("action")) {
             sendErrorResponse("Missing 'action' field");
             return;
         }
         
         std::string action = req["action"];
-        
-        // Определяем endpoint на основе action
+
         std::string endpoint;
         if (action == "register") {
             endpoint = "/register";
@@ -28,7 +26,6 @@ public:
             return;
         }
         
-        // Отправляем HTTP запрос на auth service
         sendHttpRequest(endpoint, req);
     }
 
@@ -37,21 +34,12 @@ private:
     
     void sendHttpRequest(const std::string& endpoint, const nlohmann::json& requestData) {
         try {
-            // Создаем io_context для HTTP клиента
             net::io_context ioc;
-            
-            // Резолвим адрес auth service (localhost:8082)
             tcp::resolver resolver(ioc);
             auto const results = resolver.resolve("127.0.0.1", "8082");
-            
-            // Создаем сокет и подключаемся
             beast::tcp_stream stream(ioc);
             stream.connect(results);
-            
-            // Подготавливаем тело запроса (только данные без endpoint и action)
             nlohmann::json requestBody;
-            
-            // Копируем все поля кроме endpoint и action
             for (auto& [key, value] : requestData.items()) {
                 if (key != "endpoint" && key != "action") {
                     requestBody[key] = value;
@@ -59,30 +47,26 @@ private:
             }
             
             std::string body = requestBody.dump();
-            
-            // Создаем HTTP POST запрос
+  
             http::request<http::string_body> req{http::verb::post, endpoint, 11};
             req.set(http::field::host, "127.0.0.1:8082");
             req.set(http::field::user_agent, "API-Gateway/1.0");
             req.set(http::field::content_type, "application/json");
             req.body() = body;
             req.prepare_payload();
-            
-            // Отправляем запрос
+
+            //для отладки
             std::cout << "[ApiGateway→Auth] OUTGOING HTTP:\n" << req << "\n";
             
             http::write(stream, req);
-            
-            // Читаем ответ
+
             beast::flat_buffer buffer;
             http::response<http::string_body> res;
             http::read(stream, buffer, res);
-            
-            // Закрываем соединение
+
             beast::error_code ec;
             stream.socket().shutdown(tcp::socket::shutdown_both, ec);
-            
-            // Отправляем ответ клиенту
+
             sendResponse(res.body());
             
         } catch (const std::exception& e) {
@@ -93,7 +77,6 @@ private:
     
     void sendResponse(const std::string& response) {
         try {
-            // Создаем JSON ответ с данными от auth service
             nlohmann::json responseJson;
             responseJson["type"] = "auth_response";
             responseJson["data"] = nlohmann::json::parse(response);
@@ -121,27 +104,24 @@ public:
     explicit CatalogHandler(ApiSession& session) : session_(session) {}
 
     void handle(const nlohmann::json& req) {
-        // Проверяем, есть ли поле action в запросе
         if (!req.contains("action")) {
             sendErrorResponse("Missing 'action' field");
             return;
         }
 
         std::string action = req["action"];
-
-        // Определяем endpoint на основе action
-        // (здесь пока только "home", можно дополнять другими)
         std::string endpoint;
         if (action == "home") {
             endpoint = "/home";
         } else if (action == "profile") {
             endpoint = "/profile";
-        } else {
+        } else if (action == "create") {
+            endpoint = "/create";
+        }
+        else {
             sendErrorResponse("Unknown action: " + action);
             return;
         }
-
-        // Отправляем HTTP-запрос на catalog service
         sendHttpRequest(endpoint, req);
     }
 
@@ -149,28 +129,24 @@ private:
     ApiSession& session_;
 
     void sendHttpRequest(const std::string& endpoint, const nlohmann::json& requestData) {
-        try {
-            // Создаём собственный io_context для клиентского запроса
-            net::io_context ioc;
 
-            // Резолвим адрес catalog service (localhost:8083)
+        try {
+            net::io_context ioc;
             tcp::resolver resolver(ioc);
             auto const results = resolver.resolve("127.0.0.1", "8083");
 
-            // Создаём и подключаемся через Beast TCP Stream
             beast::tcp_stream stream(ioc);
             stream.connect(results);
+            stream.expires_after(std::chrono::seconds(120));
 
-            // Подготавливаем JSON-тело — копируем все поля кроме “endpoint” и “action”
             nlohmann::json requestBody;
             for (auto& [key, value] : requestData.items()) {
                 if (key != "endpoint") {
                     requestBody[key] = value;
                 }
-            }
+            }  
             std::string body = requestBody.dump();
 
-            // Создаём HTTP POST-запрос
             http::request<http::string_body> httpReq{http::verb::post, endpoint, 11};
             httpReq.set(http::field::host, "127.0.0.1:8083");
             httpReq.set(http::field::user_agent, "API-Gateway/1.0");
@@ -178,33 +154,30 @@ private:
             httpReq.body() = body;
             httpReq.prepare_payload();
 
-            // Логируем исходящий запрос
+            //для отладки
             std::cout << "[ApiGateway→Catalog] OUTGOING HTTP:\n" << httpReq << "\n";
-
-            // Отправляем запрос
             http::write(stream, httpReq);
+            stream.expires_never();
 
-            // Читаем ответ
+            stream.expires_after(std::chrono::seconds(120));
+
             beast::flat_buffer buffer;
             http::response<http::string_body> httpRes;
             http::read(stream, buffer, httpRes);
+            stream.expires_never();
 
-            // Закрываем соединение
             beast::error_code ec;
             stream.socket().shutdown(tcp::socket::shutdown_both, ec);
 
-            // Отправляем ответ клиенту (через WebSocket)
             sendResponse(httpRes.body());
-
         } catch (const std::exception& e) {
-            std::cerr << "[CatalogHandler] HTTP request error: " << e.what() << "\n";
+            std::cerr << "[CatalogHandler] Exception: " << e.what() << "\n";
             sendErrorResponse("Catalog service unavailable");
         }
     }
 
     void sendResponse(const std::string& response) {
         try {
-            // Формируем JSON-ответ типа catalog_response
             nlohmann::json responseJson;
             responseJson["type"] = "catalog_response";
             responseJson["data"] = nlohmann::json::parse(response);
@@ -238,7 +211,7 @@ public:
         // ATTENTION - проигрывание трека минует этот код и сразу в streaming
     }
 private:
-    ApiSession& session_; // Ссылка на сессию API.
+    ApiSession& session_;
 };
     
 // ===================== ApiSession =====================
@@ -248,50 +221,42 @@ ApiSession::ApiSession(tcp::socket&& socket)
       authHandler_(nullptr),
       catalogHandler_(nullptr),
       streamingHandler_(nullptr) {
-    // Конструктор инициализирует WebSocket-сессию с переданным сокетом.
-    // Обработчики для различных эндпоинтов (auth, catalog, streaming) инициализируются как nullptr.
+    
 }
 
 void ApiSession::run() {
-    // Асинхронное принятие WebSocket-соединения.
-    // Если соединение успешно установлено, вызывается метод doRead для чтения данных.
     ws_.async_accept([self = shared_from_this()](beast::error_code ec) {
-        if (!ec) self->doRead(); // Если нет ошибок, начинаем чтение данных.
+        if (!ec) self->doRead();
     });
 }
 
 void ApiSession::doRead() {
-    // Асинхронное чтение данных из WebSocket.
     ws_.async_read(buffer_, [self = shared_from_this()](beast::error_code ec, std::size_t bytes_transferred) {
-        boost::ignore_unused(bytes_transferred); // Игнорируем количество переданных байт (не используется).
-        if (ec == websocket::error::closed) return; // Если соединение закрыто, завершаем чтение.
-        if (ec) return self->logError(ec, "read"); // Логируем ошибку чтения, если она возникла.
+        boost::ignore_unused(bytes_transferred); 
+        if (ec == websocket::error::closed) return;
+        if (ec) return self->logError(ec, "read");
 
         try {
-            // Преобразуем данные из буфера в строку.
             auto message = beast::buffers_to_string(self->buffer_.data());
-            // Парсим JSON-сообщение.
             auto request = nlohmann::json::parse(message);
-            self->handleRequest(request); // Передаем запрос на обработку.
+            self->handleRequest(request);
         } catch (const std::exception& e) {
-            // Логируем ошибку парсинга JSON.
             std::cerr << "JSON error: " << e.what() << "\n";
         }
 
-        self->buffer_.consume(self->buffer_.size()); // Очищаем буфер после обработки данных.
-        self->doRead(); // Рекурсивно вызываем doRead для продолжения чтения данных.
+        self->buffer_.consume(self->buffer_.size()); 
+        self->doRead();
     });
 }
 
 void ApiSession::handleRequest(const nlohmann::json& req) {
-    // Проверяем, содержит ли запрос поле "endpoint".
     if (!req.contains("endpoint")) {
-        std::cerr << "Missing 'endpoint' field\n"; // Логируем ошибку, если поле отсутствует.
+        std::cerr << "Missing 'endpoint' field\n"; 
         return;
     }
 
-    std::string endpoint = req["endpoint"]; // Извлекаем значение поля "endpoint".
-    routeToHandler(endpoint, req); // Передаем запрос на соответствующий обработчик.
+    std::string endpoint = req["endpoint"];
+    routeToHandler(endpoint, req);
 }
 
 void ApiSession::routeToHandler(const std::string& path, const nlohmann::json& req) {
@@ -314,9 +279,7 @@ void ApiSession::routeToHandler(const std::string& path, const nlohmann::json& r
 }
 
 void ApiSession::sendMessage(const std::string& message) {
-    // Кладём копию строки в shared_ptr, чтобы она жила до завершения async_write
     auto msg = std::make_shared<std::string>(message);
-
     ws_.async_write(
         net::buffer(*msg),
         [self = shared_from_this(), msg](beast::error_code ec, std::size_t bytes_transferred) {
@@ -329,14 +292,12 @@ void ApiSession::sendMessage(const std::string& message) {
 }
 
 void ApiSession::logError(beast::error_code ec, const std::string& where) {
-    // Логирование ошибок с указанием контекста (where) и сообщения об ошибке.
     std::cerr << where << ": " << ec.message() << "\n";
 }
 
 // ===================== ApiGatewayServer =====================
 ApiGatewayServer::ApiGatewayServer(net::io_context& ioc, unsigned short port)
     : acceptor_(ioc, { tcp::v4(), port }) {
-    // Инициализация сервера: создание акцептора для прослушивания входящих соединений на указанном порту.
     doAccept(); // Начинаем принимать входящие соединения.
 }
 
@@ -353,9 +314,8 @@ void ApiGatewayServer::doAccept() {
 
 // ===================== main =====================
 int main() {
-    std::setlocale(LC_ALL, "C"); 
-    net::io_context ioc; // Создаем контекст асинхронных операций.
-    ApiGatewayServer server(ioc, 8080); // Инициализируем сервер на порту 8080.
+    net::io_context ioc;
+    ApiGatewayServer server(ioc, 8080);
     std::cout << "[ApiGateway] Server is running on port 8080...\n";
-    ioc.run(); // Запускаем цикл обработки событий.
+    ioc.run();
 }
