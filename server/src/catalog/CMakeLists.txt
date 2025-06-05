@@ -4,10 +4,10 @@ project(CatalogService)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Пути к include (относительно server/src/catalog)
+
 include_directories(
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../include/catalog   # до catalog-service.h и home-handler.h
-    ${CMAKE_CURRENT_SOURCE_DIR}/../../common            # до db.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../include/catalog   
+    ${CMAKE_CURRENT_SOURCE_DIR}/../../common
 )
 
 # Если используете vcpkg, передавайте toolchain при вызове cmake:
@@ -17,7 +17,7 @@ include_directories(
 find_package(Boost REQUIRED COMPONENTS
     system
     thread
-    mysql      # для Boost.MySQL (не header-only)
+    mysql
 )
 find_package(OpenSSL REQUIRED)
 find_package(Threads REQUIRED)
@@ -27,6 +27,7 @@ add_executable(catalog-service
     catalog-service.cpp
     home-handler.cpp
     profile-handler.cpp
+    create-handler.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../../common/db.cpp
 )
 
@@ -40,7 +41,6 @@ target_link_libraries(catalog-service PRIVATE
     Threads::Threads
 )
 
-# Директории заголовков для header-only Boost (JSON, Charconv и т.д.)
 target_include_directories(catalog-service PRIVATE
     ${Boost_INCLUDE_DIRS}
 )
