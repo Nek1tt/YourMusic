@@ -549,9 +549,15 @@ CMakeFiles/musicproject.dir/musicmain.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qdir.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTextEdit \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtextedit.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\websocketclient.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\rightbarwidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTabWidget \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtabwidget.h \
- C:\Users\Lenovo\upprpo\YourMusic\frontend\websocketclient.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/QObject
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QSlider \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qslider.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractslider.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QTimer \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qtimer.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qbasictimer.h

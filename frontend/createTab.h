@@ -10,6 +10,7 @@
 #include <QMessageBox>
 #include <QDir>
 
+#include "websocketclient.h"
 #ifndef CREATEWIDGET_H
 #define CREATEWIDGET_H
 
@@ -17,7 +18,7 @@ class CreateTab : public QWidget
 {
     Q_OBJECT
 public:
-    explicit CreateTab(QWidget *parent = nullptr, QWidget *tab = nullptr);
+    explicit CreateTab(, QWidget *parent = nullptr, QWidget *tab = nullptr);
 
 
 private slots:

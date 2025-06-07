@@ -26,7 +26,7 @@ class MusicMain : public QMainWindow
     Q_OBJECT
 
 public:
-    MusicMain(QString usertag, WebSocketClient *webSocket, WebSocketClient *webSocketStas, QWidget *parent = nullptr);
+    MusicMain(QString *usertag, WebSocketClient *webSocket, WebSocketClient *webSocketStas, QWidget *parent = nullptr);
     void on_homeTab_clicked();
     void onTextMessageReceived(const QString &type, const QJsonObject &data);
     void getCurrentTab();
@@ -49,7 +49,7 @@ private slots:
 private:
     WebSocketClient *webSocket;
     WebSocketClient *webSocketStas;
-    QString usertag;
+    QString *usertag;
     QSplitter *mainSplitter;
     QWidget *mainWidget;
     QHBoxLayout *mainLayout;

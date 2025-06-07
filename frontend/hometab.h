@@ -72,7 +72,7 @@ class CreateTab : public AbstractTab
 {
     Q_OBJECT
 public:
-    explicit CreateTab(QWidget *parent = nullptr);
+    explicit CreateTab(QString *usertag, WebSocketClient *webSocketStas, QWidget *parent = nullptr);
     void homeButtonClicked();
     void chooseImage();
 private:

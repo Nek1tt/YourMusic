@@ -25,7 +25,7 @@
 //#include "./ui_musicmain.h"
 
 
-MusicMain::MusicMain(QString usertag, WebSocketClient *webSocket, WebSocketClient *webSocketStas, QWidget *parent)//класс для окна
+MusicMain::MusicMain(QString *usertag, WebSocketClient *webSocket, WebSocketClient *webSocketStas, QWidget *parent)//класс для окна
     : QMainWindow(parent),
     webSocket(webSocket),
     usertag(usertag),
@@ -120,7 +120,7 @@ MusicMain::MusicMain(QString usertag, WebSocketClient *webSocket, WebSocketClien
 
 
     // // Создаем вкладку create
-    createTab = new CreateTab(this);
+    createTab = new CreateTab(usertag, webSocket, this);
     profileTab = new ProfileTab(this);
 
     connect(profileTab, &ProfileTab::onAlbomClickedSignal, this, &MusicMain::on_albumButton_clicked);
@@ -223,7 +223,7 @@ void MusicMain::on_homeTab_clicked()
     QJsonObject payload;
     payload["endpoint"] = "/catalog";
     payload["action"] = "home";
-    payload["usertag"] = usertag;
+    payload["usertag"] = *usertag;
 
     QJsonDocument doc(payload);
     QString message = QString::fromUtf8(doc.toJson());
@@ -286,7 +286,7 @@ void MusicMain::on_profileTab_clicked()
     QJsonObject payload;
     payload["endpoint"] = "/catalog";
     payload["action"] = "profile";
-    payload["usertag"] = usertag;
+    payload["usertag"] = *usertag;
     payload["flag"] = 0;
 
     QJsonDocument doc(payload);

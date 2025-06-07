@@ -16,12 +16,12 @@
 #include "myalbumswidget.h"
 #include "profilewidget.h"
 
-CreateTab::CreateTab(QWidget *parent)
+CreateTab::CreateTab(QString *usertag, WebSocketClient *webSocketStas, QWidget *parent)
     : AbstractTab(parent)
 {
     // Initialize buttons
     innerStacked = new QStackedWidget();
-    mainWidget = new CreateWidget();
+    mainWidget = new CreateWidget(usertag, webSocketStas);
 
     scrollWidget = new QWidget();
     mainLayout = new QVBoxLayout(scrollWidget);

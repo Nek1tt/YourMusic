@@ -19,7 +19,7 @@ class LoginWindow : public QDialog
 
 public:
     LoginWindow(WebSocketClient *webSocket, QWidget *parent = nullptr);
-    QString getUsertag();
+    QString *getUsertag();
 
 private slots:
     void tryLogin();

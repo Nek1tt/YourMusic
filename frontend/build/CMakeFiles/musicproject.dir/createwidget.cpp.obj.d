@@ -441,10 +441,101 @@ CMakeFiles/musicproject.dir/createwidget.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTextEdit \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtextedit.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\websocketclient.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qobject.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/QWebSocket \
+ C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qwebsocket.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsocket.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QUrl \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qurl.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QAbstractSocket \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qabstractsocket.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetworkglobal.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetwork-config.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetworkexports.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkRequest \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkrequest.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qhttpheaders.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QSharedDataPointer \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qshareddata.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qstring.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QVariant \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qvariant.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/q26numeric.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkProxy \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkproxy.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qhostaddress.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qabstractsocket.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkrequest.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QSslError \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslerror.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslcertificate.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcryptographichash.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qssl.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QFlags \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qflags.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QSslConfiguration \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslconfiguration.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslsocket.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtcpsocket.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslerror.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qwebsockets_global.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsockets_global.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qtwebsocketsexports.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qwebsocketprotocol.h \
+ C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsocketprotocol.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\setstyle.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollArea \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/QPainter \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qpainter.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/QPainterPath \
- C:/Qt/6.8.2/mingw_64/include/QtGui/qpainterpath.h
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qpainterpath.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QMessageBox \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qmessagebox.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonParseError \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsondocument.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonvalue.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcborvalue.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcborcommon.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qregularexpression.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/quuid.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonDocument \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonArray \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonarray.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonObject \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonobject.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QEvent \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreevent.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/QKeyEvent \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qevent.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreevent.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qeventpoint.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qvector2d.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qvectornd.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qpointingdevice.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qinputdevice.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qscreen.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QList \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qlist.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qrect.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QSize \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qsize.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QSizeF \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/QTransform \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qtransform.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qnativeinterface.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qscreen_platform.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qguiapplication.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qdeadlinetimer.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qelapsedtimer.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qeventloop.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication_platform.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qinputmethod.h \
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qguiapplication_platform.h

@@ -6,11 +6,6 @@
 #include <QTextStream>
 #include <QPainter>
 #include <QPainterPath>
-#include <QJsonParseError>
-#include <QJsonDocument>
-#include <QJsonArray>
-#include <QJsonObject>
-
 #include "setstyle.h"
 
 
@@ -123,16 +118,63 @@ RightBarWidget::RightBarWidget(WebSocketClient *webSocket, int initialScreenWidt
 
     QWidget *playWidget = new QWidget();
     QVBoxLayout *playLayout = new QVBoxLayout(playWidget);
-    QPushButton *playButton = new QPushButton("Play");
+    // Настройка кнопок
+    auto *shuffleButton = makeIconButton("../resources/icons/playbutton.png");
+    auto *prevButton    = makeIconButton("../resources/icons/prev.png");
+    pauseButton   = makeIconButton("../resources/icons/pause.png");
+    auto *nextButton    = makeIconButton("../resources/icons/next.png");
+    auto *repeatButton  = makeIconButton("../resources/icons/playbutton.png");
 
-    QPushButton *pauseButton = new QPushButton("Pause");
-    connect(playButton, &QPushButton::clicked, this, &RightBarWidget::on_Play_clicked);
+    auto *buttonsLayout = new QHBoxLayout();
+    buttonsLayout->addStretch();
+    buttonsLayout->addWidget(shuffleButton);
+    buttonsLayout->addWidget(prevButton);
+    buttonsLayout->addWidget(pauseButton);
+    buttonsLayout->addWidget(nextButton);
+    buttonsLayout->addWidget(repeatButton);
+    buttonsLayout->addStretch();
+
+    connect(shuffleButton, &QPushButton::clicked, this, &RightBarWidget::on_PlayAndLoad_clicked);
+
+    connect(repeatButton, &QPushButton::clicked, this, &RightBarWidget::on_Play_clicked);
 
     connect(pauseButton, &QPushButton::clicked, this, &RightBarWidget::on_Pause_clicked);
 
-    playLayout->addWidget(playButton);
-    playLayout->addWidget(pauseButton);
+    slider = new QSlider(Qt::Horizontal);
+    connect(slider, &QSlider::valueChanged, this, &RightBarWidget::onSliderValueChanged);
 
+    currentTimeLabel = new QLabel("0:00");
+    totalTimeLabel = new QLabel("4:35");
+    slider->setRange(0, 275);  // например, totalSeconds = 120
+    slider->setValue(0);
+    connect(slider, &QSlider::sliderReleased, this, [this]() {
+        int value = slider->value();
+        on_seeking_clicked(value, slider);
+    });
+
+    auto *sliderLayout = new QHBoxLayout();
+    sliderLayout->addWidget(currentTimeLabel);
+    sliderLayout->addWidget(slider);
+    sliderLayout->addWidget(totalTimeLabel);
+
+    timer = new QTimer(this);
+    //connect(timer, &QTimer::timeout, this, &RightBarWidget::onTimerTick);
+
+    connect(timer, &QTimer::timeout, this, [this]() {
+        int currentValue = slider->value();
+        if (currentValue < slider->maximum()) {
+            slider->setValue(currentValue + 1);
+        } else {
+            // дошли до конца
+            // timer->stop();
+        }
+    });
+    //timer->start(1000);  // срабатывание раз в секунду
+    //timer->stop();
+
+    // Основной layout
+    playLayout->addLayout(sliderLayout);
+    playLayout->addLayout(buttonsLayout);
 
     scrollLayout->addWidget(playWidget);
 
@@ -165,59 +207,20 @@ RightBarWidget::RightBarWidget(WebSocketClient *webSocket, int initialScreenWidt
     infoLayout->setAlignment(Qt::AlignTop & Qt::AlignCenter);  // Устанавливаем выравнивание по верхнему краю
     infoLayout->setContentsMargins(0, 0, 0, 0);
     authorInfoLayout->addWidget(infoWidget);
-
-    // QPixmap authorAva("../resources/imgs/ava.png");
     avaLabel = new QLabel();
-    // avaLabel->setFixedHeight(200);
-    // avaLabel->setAlignment(Qt::AlignHCenter);  // Сохранение верхней части картинки
-    // //avaLabel->setStyleSheet("padding-bottom: 0px");
+
     infoLayout->addWidget(avaLabel,0, Qt::AlignHCenter);
 
 
     authorNameButton = new QPushButton();
     set_button_style(authorNameButton, 18, "white", "left", "10px");
-    // authorNameButton->setStyleSheet(
-    //     "QPushButton {"
-    //     "text-align: left; padding-left: 10px;
-    //     "padding-bottom: 10px;"
-    //     "font-weight: bold;"
-    //     "font-size: 18px;"
-    //     "font-family: 'Tahoma';"
-    //     "    background: none;"                  // Убираем фон
-    //     "    border: none;"                      // Убираем рамку
-    //     //"    border: 2px solid blue;"  // рамка 2px
-    //     "    text-decoration: none;"             // Убираем подчеркивание по умолчанию
-    //     "}"
-    //     "QPushButton:hover {"
-    //     "    text-decoration: underline;"        // Подчеркиваем текст при наведении
-    //     "}"
-    //     );
     infoLayout->addWidget(authorNameButton, 0, Qt::AlignHCenter);
     followButton = new QPushButton();
 
     connect(followButton, &QPushButton::clicked, this, &RightBarWidget::on_followButton_clicked);
     followButton->setFixedWidth(100);
     set_border_button_style(followButton, 16, "white");
-    // followButton->setStyleSheet(
-    //     "QPushButton {"
-    //     "    text-align: center;"  // Центрируем текст
-    //     "    font-weight: bold;"
-    //     "    font-size: 16px;"
-    //     "    font-family: 'Tahoma';"
-    //     "    background-color: #333333;"  // Темно-серый фон
-    //     "    border: 1px solid white;"     // Белая рамка 1px
-    //     "    border-radius: 4px;"          // Скругленные углы радиусом 4px
-    //     "    text-decoration: none;"       // Убираем подчеркивание по умолчанию
-    //     "}"
-    //     "QPushButton:hover {"
-    //     "    border: 2px solid white;"      // Увеличенная рамка до 2px при наведении
-    //     "}"
-    //     );
     infoLayout->addWidget(followButton, 0, Qt::AlignHCenter);
-
-
-    // QLabel *authorInfoLabel = new QLabel(currentTrack->artist);
-    // authorInfoLayout->addWidget(authorInfoLabel);
     authorWidget->setLayout(authorInfoLayout); // ← добавлено
 
 
@@ -265,26 +268,114 @@ RightBarWidget::RightBarWidget(WebSocketClient *webSocket, int initialScreenWidt
 
 }
 
-void RightBarWidget::on_Play_clicked(){
-    QJsonObject payload;
-    payload["command"] = "load";
-    payload["path"] = "C:/Users/Lenovo/upprpo/YourMusic/frontend/resources/music/test.mp3";
+QPushButton* RightBarWidget::makeIconButton(const QString& iconPath)
+{
+    // Загружаем картинку
+    QPixmap originalPixmap(iconPath);
 
+    // Делаем crop по центру
+    int squareSize = 50;
+    QSize srcSize = originalPixmap.size();
+    int centerX = srcSize.width() / 2;
+    int centerY = srcSize.height() / 2;
+    int halfSize = squareSize / 2;
+
+    QRect cropRect(centerX - halfSize, centerY - halfSize, squareSize, squareSize);
+    QPixmap croppedPixmap = originalPixmap.copy(cropRect);
+
+    // Создаём кнопку
+    QPushButton *btn = new QPushButton();
+    btn->setIcon(QIcon(croppedPixmap));
+    btn->setIconSize(QSize(squareSize, squareSize));
+    btn->setFlat(true);
+    btn->setText("");  // без текста
+    btn->setFixedSize(squareSize + 20, squareSize + 20);  // например, чуть больше чтобы красиво смотрелось
+    btn->setStyleSheet(R"(
+        QPushButton {
+            background-color: transparent;
+        }
+    )");
+
+    return btn;
+}
+
+
+
+void RightBarWidget::on_seeking_clicked(int value,QSlider *slider){
+    onSliderValueChanged(value);
+    float normalized = (float)value / slider->maximum();
+
+    QJsonObject payload;
+    payload["command"] = "seeking";
+    payload["position"] = normalized;
     QJsonDocument doc(payload);
     QString message = QString::fromUtf8(doc.toJson());
-    qDebug()<<message;
     webSocket->sendMessage(message);
 }
 
-void RightBarWidget::on_Pause_clicked(){
-    QJsonObject payload;
-    payload["command"] = "pause";
-    // payload["path"] = "C:/Users/Lenovo/upprpo/YourMusic/frontend/resources/music/test.mp3";
+void RightBarWidget::onSliderValueChanged(int value)
+{
+    currentSeconds = value;
+    currentTimeLabel->setText(QString::number(value / 60) + ":" + QString("%1").arg(value % 60, 2, 10, QChar('0')));
+}
 
-    QJsonDocument doc(payload);
-    QString message = QString::fromUtf8(doc.toJson());
-    qDebug()<<message;
-    webSocket->sendMessage(message);
+void RightBarWidget::onTimerTick()
+{
+    qDebug()<<"Tick";
+    if (currentSeconds < totalSeconds)
+    {
+        ++currentSeconds;
+        slider->setValue(currentSeconds);
+    }
+    else
+    {
+        timer->stop();
+    }
+}
+
+void RightBarWidget::on_Play_clicked(){
+
+}
+
+void RightBarWidget::on_Pause_clicked(){
+    if (!timer->isActive())
+    {
+        QJsonObject payload;
+        payload["command"] = "resume";
+
+        QJsonDocument doc(payload);
+        QString message = QString::fromUtf8(doc.toJson());
+        webSocket->sendMessage(message);
+        timer->start(1000);
+
+        pauseButton->setIcon(QIcon("../resources/icons/pause.png"));
+    }
+    else
+    {
+        QJsonObject payload;
+        payload["command"] = "pause";
+        QJsonDocument doc(payload);
+        QString message = QString::fromUtf8(doc.toJson());
+        webSocket->sendMessage(message);
+        timer->stop();
+        pauseButton->setIcon(QIcon("../resources/icons/play.png"));
+    }
+}
+
+
+
+void RightBarWidget::on_PlayAndLoad_clicked(){
+    if (!timer->isActive())
+    {
+        QJsonObject payload;
+        payload["command"] = "load";
+        payload["path"] = "C:/Users/Lenovo/upprpo/YourMusic/frontend/resources/music/test.mp3";
+
+        QJsonDocument doc(payload);
+        QString message = QString::fromUtf8(doc.toJson());
+        webSocket->sendMessage(message);
+        timer->start(1000);
+    }
 }
 
 void RightBarWidget::setNewCurrentTrack(const track &trackData) {

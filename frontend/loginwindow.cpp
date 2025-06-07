@@ -198,8 +198,8 @@ LoginWindow::LoginWindow(WebSocketClient *webSocket, QWidget *parent)
 
 
 
-QString LoginWindow::getUsertag(){
-    return userTag;
+QString *LoginWindow::getUsertag(){
+    return &userTag;
 }
 
 // void LoginWindow::onConnected() {

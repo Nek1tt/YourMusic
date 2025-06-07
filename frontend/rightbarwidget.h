@@ -12,7 +12,12 @@
 #include <QMessageBox>
 #include <QDir>
 #include <QTabBar>
-
+#include <QJsonParseError>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QSlider>
+#include <QTimer>
 
 #include "mytrackswidget.h"
 #include "websocketclient.h"
@@ -32,9 +37,15 @@ public:
     void on_followButton_clicked();
     void on_Play_clicked();
     void on_Pause_clicked();
+    void on_PlayAndLoad_clicked();
+    void on_seeking_clicked(int value, QSlider *slider);
+    void onSliderValueChanged(int value);
+    void onTimerTick();
     void resizeBarWidget(int width);
     int get_barWidth();
     void setNewCurrentTrack(const track &trackData);
+    QPushButton* makeIconButton(const QString& iconPath);
+
     //void set_author_text_tab();
 
 private:
@@ -61,7 +72,15 @@ private:
     QWidget *lyricsWidget;
     QWidget *authorWidget;
     QPushButton *followButton;
+    QPushButton *pauseButton;
+    int currentSeconds;
+    int totalSeconds;
+    QLabel *currentTimeLabel;
+    QLabel *totalTimeLabel;
+    QTimer *timer;
+    QSlider *slider;
     bool isFollowed = 0;
+    bool isPause = 1;
 };
 
 #endif // RIGHTBARWIDGET_H

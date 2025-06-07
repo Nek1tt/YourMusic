@@ -489,13 +489,6 @@ CMakeFiles/musicproject.dir/main.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qdir.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTextEdit \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtextedit.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qstring.h \
- C:\Users\Lenovo\upprpo\YourMusic\frontend\rightbarwidget.h \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTabWidget \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtabwidget.h \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTabBar \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtabbar.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\websocketclient.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
  C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/QWebSocket \
@@ -514,6 +507,7 @@ CMakeFiles/musicproject.dir/main.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QSharedDataPointer \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qshareddata.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qstring.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QVariant \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qvariant.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/q26numeric.h \
@@ -539,9 +533,12 @@ CMakeFiles/musicproject.dir/main.cpp.obj: \
  C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qtwebsocketsexports.h \
  C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qwebsocketprotocol.h \
  C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsocketprotocol.h \
- C:\Users\Lenovo\upprpo\YourMusic\frontend\loginwindow.h \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/QDialog \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/qdialog.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\rightbarwidget.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTabWidget \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtabwidget.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTabBar \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtabbar.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonParseError \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsondocument.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonvalue.h \
@@ -554,5 +551,16 @@ CMakeFiles/musicproject.dir/main.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonarray.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonObject \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonobject.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QSlider \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qslider.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractslider.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QTimer \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qtimer.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qbasictimer.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\loginwindow.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QDialog \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qdialog.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QApplication \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/qapplication.h
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qapplication.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QProcess \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qprocess.h

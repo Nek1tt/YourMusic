@@ -22,7 +22,7 @@ void WebSocketClient::sendMessage(const QString &message) {
         m_socket.sendTextMessage(message);
         qDebug()<<"sendMeassage";
     } else {
-        QMessageBox::warning(nullptr, "Ошибка", "Нет подключения к серверу");
+        //QMessageBox::warning(nullptr, "Ошибка", "Нет подключения к серверу");
     }
 
 }
@@ -40,7 +40,7 @@ void WebSocketClient::onTextMessageReceived(const QString &message) {
         QJsonObject dataObj = obj.value("data").toObject();
 
         qDebug() << "Тип запроса:" << type;
-        qDebug() << "Данные:" << dataObj;
+        //qDebug() << "Данные:" << dataObj;
 
         emit messageReceived(type, dataObj);
     } else {
@@ -56,6 +56,6 @@ void WebSocketClient::onConnected() {
 
 void WebSocketClient::onDisconnected() {
     qDebug()<<"disconnected";
-    QMessageBox::warning(nullptr, "Ошибка", "Соединение с сервером разорвано");
+   // QMessageBox::warning(nullptr, "Ошибка", "Соединение с сервером разорвано");
      m_socket.open(QUrl("ws://84.237.53.143:8080"));
 }
