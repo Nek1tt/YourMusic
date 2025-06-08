@@ -47,7 +47,6 @@ http::response<http::string_body> HomeHandler::operator()(int http_version) cons
                 }
 
                 album["tracks"] = std::move(tracks);
-                album["author_usertag"] = author_tag;
                 new_albums.push_back(std::move(album));
             }
 

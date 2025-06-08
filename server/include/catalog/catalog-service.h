@@ -6,8 +6,6 @@
 #include <boost/beast/http/vector_body.hpp>
 #include <iostream>
 #include <sstream>
-#include <locale>
-#include <codecvt>
 #include <string>
 #include <memory>
 #include <unordered_map>
