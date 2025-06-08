@@ -118,6 +118,15 @@ public:
         } else if (action == "create") {
             endpoint = "/create";
         }
+          else if (action == "search") {
+            endpoint = "/search";
+        }
+          else if (action == "search_user") {
+            endpoint = "/search_user";
+        }
+        else if (action == "user_action") {
+            endpoint = "/user_action";
+        }
         else {
             sendErrorResponse("Unknown action: " + action);
             return;
@@ -203,15 +212,43 @@ private:
 class ApiSession::StreamingHandler {
 public:
     explicit StreamingHandler(ApiSession& session) : session_(session) {
-        
     }
 
     void handle(const nlohmann::json& req) {
-        //отправлять http запрос на streaming service и принимать ответ здесь.
-        // ATTENTION - проигрывание трека минует этот код и сразу в streaming
+        if (!req.contains("action") || !req["action"].is_string()) {
+            sendErrorResponse("Missing or invalid 'action'");
+            return;
+        }
+        std::string action = req["action"].get<std::string>();
+        if (action == "play") {
+            if (!req.contains("track_id") || !req["track_id"].is_number_integer()) {
+                sendErrorResponse("Missing or invalid 'track_id'");
+                return;
+            }
+            int trackId = req["track_id"].get<int>();
+
+            std::string streamUrl = "http://84.237.53.143:8084/stream/" + std::to_string(trackId);
+
+            nlohmann::json resp;
+            resp["type"] = "stream_url";
+            resp["data"]["url"] = streamUrl;
+            session_.sendMessage(resp.dump());
+        }
+        else {
+            sendErrorResponse("Unknown action: " + action);
+        }
     }
+
 private:
     ApiSession& session_;
+
+    void sendErrorResponse(const std::string& error) {
+        nlohmann::json errorResponse;
+        errorResponse["type"] = "stream_error";
+        errorResponse["data"]["status"] = "error";
+        errorResponse["data"]["message"] = error;
+        session_.sendMessage(errorResponse.dump());
+    }
 };
     
 // ===================== ApiSession =====================

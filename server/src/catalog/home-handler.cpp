@@ -39,7 +39,6 @@ http::response<http::string_body> HomeHandler::operator()(int http_version) cons
                 if (!album_opt.has_value()) continue;
                 json album = album_opt.value();
 
-                // Получаем треки альбома
                 json tracks = db_.get_tracks_for_album(album_id);
                 for (auto const& t : tracks) {
                     if (t.contains("id") && t["id"].is_number_integer()) {

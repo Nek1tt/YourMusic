@@ -28,6 +28,9 @@ add_executable(catalog-service
     home-handler.cpp
     profile-handler.cpp
     create-handler.cpp
+    search-handler.cpp
+    search-user-handler.cpp
+    user-action-handler.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/../../common/db.cpp
 )
 

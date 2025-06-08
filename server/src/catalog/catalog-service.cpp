@@ -1,6 +1,9 @@
 #include "catalog-service.h"
 #include "profile-handler.h"
 #include "create-handler.h"
+#include "search-handler.h"
+#include "search-user-handler.h"
+#include "user-action-handler.h"
 #include <iostream>
 #include <sstream>
 #include <locale>
@@ -23,14 +26,17 @@ void CatalogSession::do_read() {
 
     stream_.expires_after(std::chrono::seconds(120));
     auto parser = std::make_shared<http::request_parser<http::string_body>>();
-    parser->body_limit(250ULL * 1024 * 1024);
-
+    parser->body_limit(750ULL * 1024 * 1024);
+    buffer_.reserve(750ULL * 1024 * 1024);
     http::async_read(stream_, buffer_, *parser,
-        [self = shared_from_this(), parser](beast::error_code ec, std::size_t) {
+        [self = shared_from_this(), parser](beast::error_code ec, std::size_t bytes_transferred) {
+            std::cerr << "[CatalogSession] async_read completed, ec = " << ec.message() << ", bytes_transferred = " << bytes_transferred << "\n";
+
             if (ec) {
                 std::cerr << "[CatalogSession] Read error: " << ec.message() << "\n";
                 return;
             }
+
             http::request<http::string_body> req = parser->get();
             self->handle_request(std::move(req));
         }
@@ -38,7 +44,6 @@ void CatalogSession::do_read() {
 }
 
 void CatalogSession::handle_request(http::request<http::string_body> req) {
-    // Выведем для отладки распарсенный HTTP-запрос
     {
         std::ostringstream oss;
         oss << req;
@@ -69,6 +74,15 @@ void CatalogSession::handle_request(http::request<http::string_body> req) {
                     }
                     else if (action == "create") {
                         res = on_create(body_json, version);
+                    }
+                    else if (action == "search") {
+                        res = on_search(body_json, version);
+                    }
+                    else if (action == "search_user") {
+                        res = on_search_user(body_json, version);
+                    }
+                    else if (action == "user_action") {
+                        res = on_user_action(body_json, version);
                     }
                 } else {
                     res = handle_unknown_action(action, version);
@@ -102,6 +116,15 @@ void CatalogSession::init_action_map() {
     action_map_.emplace("create", [this](const json& b) {
         return http::response<http::string_body>();
     });
+    action_map_.emplace("search", [this](const json& b) {
+        return http::response<http::string_body>();
+    });
+    action_map_.emplace("search_user", [this](const json& b) {
+        return http::response<http::string_body>();
+    });
+    action_map_.emplace("user_action", [this](const json& b) {
+        return http::response<http::string_body>();
+    });
 }
 
 
@@ -119,18 +142,19 @@ http::response<http::string_body> CatalogSession::on_home(const json& body, int 
 }
 
 http::response<http::string_body> CatalogSession::on_profile(const json& body, int version) {
-    if (!body.contains("usertag") || !body["usertag"].is_string() ||
-        !body.contains("flag")    || !body["flag"].is_number_integer())
-    {
+    if (!body.contains("usertag1") || !body["usertag1"].is_string()) {
         http::response<http::string_body> res{http::status::bad_request, version};
         res.set(http::field::content_type, "application/json");
-        res.body() = R"({"status":"error","message":"Missing or invalid 'usertag' or 'flag'"})";
+        res.body() = R"({"status":"error","message":"Missing or invalid 'usertag1'"})";
         res.prepare_payload();
         return res;
     }
-    std::string usertag = body["usertag"].get<std::string>();
-    int flag = body["flag"].get<int>(); 
-    ProfileHandler handler(db_, usertag, flag);
+    std::string usertag1 = body["usertag1"].get<std::string>();
+    std::optional<std::string> usertag2;
+    if (body.contains("usertag2") && body["usertag2"].is_string()) {
+        usertag2 = body["usertag2"].get<std::string>();
+    }
+    ProfileHandler handler(db_, usertag1, usertag2);
     return handler(version);
 }
 
@@ -149,6 +173,41 @@ http::response<http::string_body> CatalogSession::on_create(const json& body, in
     return handler(version, body);
 }
 
+http::response<http::string_body> CatalogSession::on_search(const json& body, int version) {
+    if (!body.contains("query") || !body["query"].is_string()) {
+        http::response<http::string_body> res{http::status::bad_request, version};
+        res.set(http::field::content_type, "application/json");
+        res.body() = R"({"status":"error","message":"Missing or invalid 'query'"})";
+        res.prepare_payload();
+        return res;
+    }
+    SearchHandler handler(db_);
+    return handler(version, body);
+}
+
+http::response<http::string_body> CatalogSession::on_search_user(const json& body, int version) {
+    if (!body.contains("query") || !body["query"].is_string()) {
+        http::response<http::string_body> res{http::status::bad_request, version};
+        res.set(http::field::content_type, "application/json");
+        res.body() = R"({"status":"error","message":"Missing or invalid 'query'"})";
+        res.prepare_payload();
+        return res;
+    }
+    SearchUserHandler handler(db_);
+    return handler(version, body);
+}
+
+http::response<http::string_body> CatalogSession::on_user_action(const json& body, int version) {
+     if (!body.contains("subaction") || !body["subaction"].is_string()) {
+        http::response<http::string_body> res{http::status::bad_request, version};
+        res.set(http::field::content_type, "application/json");
+        res.body() = R"({"status":"error","message":"Missing or invalid 'subaction'"})";
+        res.prepare_payload();
+        return res;
+    }
+    UserActionHandler handler(db_);
+    return handler(version, body);
+}
 http::response<http::string_body> CatalogSession::handle_unknown_action(const std::string& action, int version) {
     json resp_body = {
         {"status", "error"},

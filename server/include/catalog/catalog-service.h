@@ -42,6 +42,9 @@ private:
     http::response<http::string_body> on_home(const json& body, int version);
     http::response<http::string_body> on_profile(const json& body, int version);
     http::response<http::string_body> on_create(const json& body, int version);
+    http::response<http::string_body> on_search(const json& body, int version);
+    http::response<http::string_body> on_search_user(const json& body, int version);
+    http::response<http::string_body> on_user_action(const json& body, int version);
     http::response<http::string_body> handle_unknown_action(const std::string& action, int version);
 
     void do_write(http::response<http::string_body> res);

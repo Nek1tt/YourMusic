@@ -18,8 +18,8 @@ using json = nlohmann::json;
  * Хендлер “PROFILE”.
  *
  * На вход принимает JSON с:
- *   - "usertag": string  — чей профиль запрашиваем
- *   - "flag": int        — 0 = свой профиль, 1 = чужой профиль
+ *   - "usertag1": string  — чей профиль (ID1, всегда)
+ *   - "usertag2": string (optional) — чей профиль просматривается (ID2, если чужой)
  *
  * В ответе возвращает JSON с полями:
  * 1) user_info: {
@@ -28,27 +28,33 @@ using json = nlohmann::json;
  *       "followersnum": int,
  *       "followingnum": int,
  *       "tracksLoadedNum": int,
- *       "tracksAddedNum": int
+ *       "tracksAddedNum": int,
+ *       // при usertag2:
+ *       "isFollowing": bool,   // подписан ли usertag1 на usertag2
+ *       "isFollowed": bool     // подписан ли usertag2 на usertag1
  *    }
- * 2) albums: [ { album_id, title, author_username, author_usertag, track_count, "tracks": [ ... ] }, ... ]
- * 3) liked_tracks: [ { /* структура get_track_info()  }, ... ]
- * 4) loaded_tracks: [ { /* структура get_track_info()  }, ... ]
+ * 2) albums: ...
+ * 3) liked_tracks: ...
+ * 4) loaded_tracks: ...
  *
- * Если flag=1 (чужой профиль), то проверяются флаги приватности 
- * из users.(myalbums, mytracks, myloadedtracks). При значении 0 соответствующий 
- * массив возвращается как пустой.
+ * Логика:
+ * - Если usertag2 передан, все структуры собираются для usertag2.
+ * - Флаги приватности берутся у usertag2.
  */
 
 class ProfileHandler {
 public:
-    ProfileHandler(const DB& db, std::string usertag, int flag)
-        : db_(db), usertag_(std::move(usertag)), flag_(flag) {}
+    ProfileHandler(const DB& db, std::string usertag1, std::optional<std::string> usertag2)
+        : db_(db)
+        , usertag1_(std::move(usertag1))
+        , usertag2_(std::move(usertag2))
+    {}
 
     // Формирует и возвращает HTTP‑ответ
     http::response<http::string_body> operator()(int http_version) const;
 
 private:
     const DB& db_;
-    std::string usertag_;
-    int flag_;  // 0 = свой, 1 = чужой
+    std::string usertag1_;               // ID1, текущий
+    std::optional<std::string> usertag2_; // ID2, профиль для просмотра
 };
