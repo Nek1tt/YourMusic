@@ -94,6 +94,10 @@
 - Инициализирует плеер, если не удалось — возвращает ошибку.
 - Запускает воспроизведение.
 
+
+4.1 **nlohmann::json ServerHandler::handle_load_only(const nlohmann::json& j)**
+  -Тоже самое что и предыдущая, но без проигрывания.
+
 5. **nlohmann::json ServerHandler::handle_resume()**
 
 - Возобновляет воспроизведение.
