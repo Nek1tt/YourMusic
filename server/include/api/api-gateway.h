@@ -49,7 +49,6 @@ private:
 
     std::unique_ptr<AuthHandler> authHandler_;
     std::unique_ptr<CatalogHandler> catalogHandler_;
-    std::unique_ptr<StreamingHandler> streamingHandler_;
 };
 
 // ===================== WebSocket API-сервер =====================
