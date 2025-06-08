@@ -45,7 +45,6 @@ private:
     // Все обработчики
     class AuthHandler;
     class CatalogHandler;
-    class StreamingHandler;
 
     std::unique_ptr<AuthHandler> authHandler_;
     std::unique_ptr<CatalogHandler> catalogHandler_;
