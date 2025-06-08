@@ -54,8 +54,41 @@ nlohmann::json ServerHandler::handle_load(const nlohmann::json& j)
         return response;
     }
 
+    player->setVolume(static_cast<float>(volume_level));
+
     player->playAudio();
     response["status"] = "Playing";
+    return response;
+}
+
+nlohmann::json ServerHandler::handle_load_only(const nlohmann::json& j) 
+{
+    nlohmann::json response;
+    if (!j.contains("path") || !j["path"].is_string()) 
+    {
+        response["error"] = "Missing or invalid 'path' field for load";
+        return response;
+    }
+
+    std::string path = j["path"].get<std::string>();
+
+    if (player) 
+    {
+        player->stopAudio();
+        player.reset();
+    }
+
+    player = std::make_unique<AudioPlayer>(path.c_str());
+    if (!player->init()) 
+    {
+        player.reset();
+        response["error"] = "Failed to load audio file: " + path;
+        return response;
+    }
+
+    player->setVolume(static_cast<float>(volume_level));
+
+    response["status"] = "Loaded";
     return response;
 }
 
@@ -129,24 +162,28 @@ nlohmann::json ServerHandler::handle_seek(const nlohmann::json& j)
 nlohmann::json ServerHandler::handle_volume(const nlohmann::json& j) 
 {
     nlohmann::json response;
-    if (!player) 
-    {
-        response["error"] = "No track loaded";
-        return response;
-    }
+
     if (!j.contains("level") || !j["level"].is_number()) 
     {
         response["error"] = "Missing or invalid 'level' field";
         return response;
     }
+
     double level = j["level"].get<double>();
     if (level < 0.0 || level > 1.0) 
     {
         response["error"] = "Volume level must be between 0.0 and 1.0";
         return response;
     }
-    player->setVolume(static_cast<float>(level));
-    response["status"] = "Volume set to " + std::to_string(level);
+
+    volume_level = level; 
+
+    if (player) 
+    {
+        player->setVolume(static_cast<float>(volume_level));
+    }
+
+    response["status"] = "Volume set to " + std::to_string(volume_level);
     return response;
 }
 
