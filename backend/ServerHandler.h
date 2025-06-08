@@ -12,6 +12,7 @@ public:
 
     nlohmann::json handle_json(const nlohmann::json& request);
     nlohmann::json handle_load(const nlohmann::json& j);
+    nlohmann::json handle_load_only(const nlohmann::json& j);
     nlohmann::json handle_resume();
     nlohmann::json handle_pause();
     nlohmann::json handle_quit();
