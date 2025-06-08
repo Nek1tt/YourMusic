@@ -118,6 +118,15 @@ public:
         } else if (action == "create") {
             endpoint = "/create";
         }
+          else if (action == "search") {
+            endpoint = "/search";
+        }
+          else if (action == "search_user") {
+            endpoint = "/search_user";
+        }
+        else if (action == "user_action") {
+            endpoint = "/user_action";
+        }
         else {
             sendErrorResponse("Unknown action: " + action);
             return;
@@ -198,31 +207,13 @@ private:
         session_.sendMessage(errorResponse.dump());
     }
 };
-
-// ===================== StreamingHandler =====================
-class ApiSession::StreamingHandler {
-public:
-    explicit StreamingHandler(ApiSession& session) : session_(session) {
-        
-    }
-
-    void handle(const nlohmann::json& req) {
-        //отправлять http запрос на streaming service и принимать ответ здесь.
-        // ATTENTION - проигрывание трека минует этот код и сразу в streaming
-    }
-private:
-    ApiSession& session_;
-};
     
 // ===================== ApiSession =====================
 
 ApiSession::ApiSession(tcp::socket&& socket)
     : ws_(std::move(socket)),
       authHandler_(nullptr),
-      catalogHandler_(nullptr),
-      streamingHandler_(nullptr) {
-    
-}
+      catalogHandler_(nullptr) {}
 
 void ApiSession::run() {
     ws_.async_accept([self = shared_from_this()](beast::error_code ec) {
@@ -268,10 +259,6 @@ void ApiSession::routeToHandler(const std::string& path, const nlohmann::json& r
     else if (path == "/catalog") {
         if (!catalogHandler_) catalogHandler_ = std::make_unique<CatalogHandler>(*this); // Создаем обработчик каталога, если он еще не создан.
         catalogHandler_->handle(req); // Передаем запрос обработчику каталога.
-    }
-    else if (path == "/streaming") {
-        if (!streamingHandler_) streamingHandler_ = std::make_unique<StreamingHandler>(*this); // Создаем обработчик стриминга, если он еще не создан.
-        streamingHandler_->handle(req); // Передаем запрос обработчику стриминга.
     }
     else {
         std::cerr << "Unknown endpoint: " << path << "\n"; // Логируем неизвестный эндпоинт.
