@@ -62,8 +62,27 @@ void StreamingSession::handle_request(http::request<http::string_body> req) {
     }
 
     int track_id = 0;
+    std::string subscriber, author;
     try {
         track_id = std::stoi(target.substr(prefix.size()));
+        std::string path = target.substr(prefix.size());
+        std::string qs;
+        auto qpos = path.find('?');
+        if (qpos != std::string::npos) {
+            qs   = path.substr(qpos + 1);
+            path = path.substr(0, qpos);
+        }
+        track_id = std::stoi(path);
+        std::istringstream qss(qs);
+        std::string kv;
+        while (std::getline(qss, kv, '&')) {
+            auto eq = kv.find('=');
+            if (eq == std::string::npos) continue;
+            auto key = kv.substr(0, eq);
+            auto val = kv.substr(eq + 1);
+            if (key == "user") subscriber = val;
+            if (key == "author") author = val;
+        }
     } catch (...) {
         http::response<http::string_body> res{http::status::bad_request, version};
         res.set(http::field::content_type, "text/plain");
@@ -85,6 +104,10 @@ void StreamingSession::handle_request(http::request<http::string_body> req) {
     http::response<http::vector_body<uint8_t>> res{http::status::ok, version};
     res.set(http::field::server, "StreamingService/1.0");
     res.set(http::field::content_type, "audio/mpeg");
+    if (!subscriber.empty() && !author.empty()) {
+        bool isSub = db_.is_following(subscriber, author);
+        res.set("X-Subscribed", isSub ? "true" : "false");
+    }
     res.content_length(blob.size());
     res.body() = blob;
     res.keep_alive(req.keep_alive());
