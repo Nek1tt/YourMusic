@@ -1,13 +1,10 @@
 #include "catalog-service.h"
+#include "home-handler.h"
 #include "profile-handler.h"
 #include "create-handler.h"
 #include "search-handler.h"
 #include "search-user-handler.h"
 #include "user-action-handler.h"
-#include <iostream>
-#include <sstream>
-#include <locale>
-#include <codecvt>
 
 
 // -------------------- CatalogSession implementation --------------------
@@ -43,47 +40,106 @@ void CatalogSession::do_read() {
     );
 }
 
+#include <boost/beast/http/vector_body.hpp>
+
 void CatalogSession::handle_request(http::request<http::string_body> req) {
+    // Log raw request
     {
         std::ostringstream oss;
         oss << req;
         std::cerr << "[CatalogSession] RAW HTTP received:\n" << oss.str() << "\n";
     }
 
-    http::response<http::string_body> res;
     int version = req.version();
 
+    // --- NEW: Image GET routes ---
+    if (req.method() == http::verb::get) {
+        // Convert target to std::string
+        boost::beast::string_view sv = req.target();
+        std::string target(sv.data(), sv.size());
+
+        // Helper: try route, return true if handled
+        auto handle_blob_route = [&](const std::string& prefix, auto getBlob) {
+            if (target.rfind(prefix, 0) != 0)
+                return false;
+
+            std::string id_str = target.substr(prefix.size());
+            try {
+                using BlobOpt = std::optional<std::vector<uint8_t>>;
+                BlobOpt blob = getBlob(id_str);
+
+                if (!blob || blob->empty()) {
+                    http::response<http::string_body> res{http::status::not_found, version};
+                    res.set(http::field::content_type, "application/json");
+                    res.body() = R"({"status":"error","message":"Not found"})";
+                    res.prepare_payload();
+                    do_write(res);
+                    return true;
+                }
+
+                auto const& data = *blob;
+                std::string mime;
+                // PNG signature
+                if (data.size() >= 4 && data[0]==0x89 && data[1]==0x50 && data[2]==0x4E && data[3]==0x47)
+                    mime = "image/png";
+                // JPEG signature
+                else if (data.size() >= 3 && data[0]==0xFF && data[1]==0xD8 && data[2]==0xFF)
+                    mime = "image/jpeg";
+                else {
+                    http::response<http::string_body> res{http::status::unsupported_media_type, version};
+                    res.set(http::field::content_type, "application/json");
+                    res.body() = R"({"status":"error","message":"Unsupported image format"})";
+                    res.prepare_payload();
+                    do_write(res);
+                    return true;
+                }
+
+                http::response<http::vector_body<unsigned char>> res{http::status::ok, version};
+                res.set(http::field::content_type, mime);
+                res.content_length(data.size());
+                res.body() = data;
+                do_write(std::move(res));
+                return true;
+            }
+            catch (...) {
+                http::response<http::string_body> res{http::status::bad_request, version};
+                res.set(http::field::content_type, "application/json");
+                res.body() = R"({"status":"error","message":"Invalid identifier"})";
+                res.prepare_payload();
+                do_write(res);
+                return true;
+            }
+        };
+
+        // Try each image route
+        if (handle_blob_route("/album/", [&](const std::string& id) { return db_.get_album_cover(std::stoi(id)); }))
+            return;
+        if (handle_blob_route("/track/", [&](const std::string& id) { return db_.get_track_cover(std::stoi(id)); }))
+            return;
+        if (handle_blob_route("/profile/", [&](const std::string& tag) { return db_.get_user_cover(tag); }))
+            return;
+    }
+
+    // --- Existing POST JSON logic ---
+    http::response<http::string_body> res;
     try {
-        json body_json = json::parse(req.body());
+        auto body_json = json::parse(req.body());
         if (req.method() == http::verb::post) {
             if (!body_json.contains("action") || !body_json["action"].is_string()) {
                 res = http::response<http::string_body>(http::status::bad_request, version);
                 res.set(http::field::content_type, "application/json");
                 res.body() = R"({"status":"error","message":"Missing or invalid 'action'"})";
                 res.prepare_payload();
-            }
-            else {
+            } else {
                 std::string action = body_json["action"].get<std::string>();
                 auto it = action_map_.find(action);
                 if (it != action_map_.end()) {
-                    if (action == "home") {
-                        res = on_home(body_json, version);
-                    }
-                    else if (action == "profile") {
-                        res = on_profile(body_json, version);
-                    }
-                    else if (action == "create") {
-                        res = on_create(body_json, version);
-                    }
-                    else if (action == "search") {
-                        res = on_search(body_json, version);
-                    }
-                    else if (action == "search_user") {
-                        res = on_search_user(body_json, version);
-                    }
-                    else if (action == "user_action") {
-                        res = on_user_action(body_json, version);
-                    }
+                    if (action == "home")         res = on_home(body_json, version);
+                    else if (action == "profile")  res = on_profile(body_json, version);
+                    else if (action == "create")   res = on_create(body_json, version);
+                    else if (action == "search")   res = on_search(body_json, version);
+                    else if (action == "search_user") res = on_search_user(body_json, version);
+                    else if (action == "user_action") res = on_user_action(body_json, version);
                 } else {
                     res = handle_unknown_action(action, version);
                 }
@@ -94,17 +150,16 @@ void CatalogSession::handle_request(http::request<http::string_body> req) {
             res.body() = R"({"status":"error","message":"Only POST is allowed"})";
             res.prepare_payload();
         }
-    }
-    catch (const std::exception& e) {
+    } catch (const std::exception& e) {
         res = http::response<http::string_body>(http::status::bad_request, version);
         res.set(http::field::content_type, "application/json");
-        res.body() = std::string(R"({"status":"error","message":"Invalid JSON: )") 
-                     + e.what() + "\"}";
+        res.body() = std::string("{\"status\":\"error\",\"message\":\"Invalid JSON: ") + e.what() + "\"}";
         res.prepare_payload();
     }
 
     do_write(std::move(res));
 }
+
 
 void CatalogSession::init_action_map() {
     action_map_.emplace("home", [this](const json& b) {
@@ -232,6 +287,16 @@ void CatalogSession::do_write(http::response<http::string_body> res) {
             self->stream_.socket().shutdown(tcp::socket::shutdown_send, ec_shutdown);
         }
     );
+}
+
+void CatalogSession::do_write(http::response<http::vector_body<unsigned char>> res) {
+    stream_.expires_after(std::chrono::seconds(120));
+    auto sp = std::make_shared<http::response<http::vector_body<unsigned char>>>(std::move(res));
+    http::async_write(stream_, *sp,
+        [self = shared_from_this(), sp](beast::error_code ec, std::size_t) {
+            beast::error_code ec_shutdown;
+            self->stream_.socket().shutdown(tcp::socket::shutdown_send, ec_shutdown);
+        });
 }
 
 // -------------------- CatalogService implementation --------------------

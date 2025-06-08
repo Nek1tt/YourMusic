@@ -3,12 +3,16 @@
 #include <boost/beast.hpp>
 #include <boost/asio.hpp>
 #include <nlohmann/json.hpp>
+#include <boost/beast/http/vector_body.hpp>
+#include <iostream>
+#include <sstream>
+#include <locale>
+#include <codecvt>
 #include <string>
 #include <memory>
 #include <unordered_map>
 #include <functional>
 #include "db.h"
-#include "home-handler.h"
 
 namespace beast = boost::beast;
 namespace http = beast::http;
@@ -48,6 +52,7 @@ private:
     http::response<http::string_body> handle_unknown_action(const std::string& action, int version);
 
     void do_write(http::response<http::string_body> res);
+    void do_write(http::response<http::vector_body<unsigned char>> res);
 };
 
 // -------------------- CatalogService --------------------
