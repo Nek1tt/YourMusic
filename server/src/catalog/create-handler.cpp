@@ -54,9 +54,10 @@ http::response<http::string_body> CreateHandler::operator()(int http_version, co
             }
 
             std::string album_title  = body_json["album_title"].get<std::string>();
+            std::string album_description = body_json.value("description", std::string{});
 
             // 1) Создаём пустой альбом, получаем album_id
-            int album_id = db_.create_empty_album(album_title);
+            int album_id = db_.create_empty_album(album_title, album_description);
             if (album_id < 0) {
                 throw std::runtime_error("Failed to create album record");
             }
@@ -141,14 +142,17 @@ http::response<http::string_body> CreateHandler::operator()(int http_version, co
                 return res;
             }
 
-            std::string track_title    = body_json["title"].get<std::string>();
-            int duration_seconds       = body_json["duration_seconds"].get<int>();
-            std::string file_b64       = body_json["file_blob"].get<std::string>();
+            std::string track_title = body_json["title"].get<std::string>();
+            int duration_seconds = body_json["duration_seconds"].get<int>();
+            std::string file_b64 = body_json["file_blob"].get<std::string>();
             std::string cover_b64 = body_json["cover_blob"].get<std::string>();
             std::vector<uint8_t> file_blob = decode_base64(file_b64);
             std::vector<uint8_t> cover_blob = decode_base64(cover_b64);
+            // Опциональные поля
+            std::string description = body_json.value("description", std::string{});
+            std::string track_text  = body_json.value("track_text",  std::string{});
             // 1) Создаём запись с album_id = NULL (0 => no album)
-            int track_id = db_.create_track(0, track_title, duration_seconds, file_blob, cover_blob);
+            int track_id = db_.create_track(0, track_title, duration_seconds, file_blob, cover_blob, description, track_text);
             if (track_id < 0) {
                 throw std::runtime_error("Failed to create track record");
             }
@@ -174,7 +178,7 @@ http::response<http::string_body> CreateHandler::operator()(int http_version, co
             res.result(http::status::bad_request);
             res.body()   = R"({"status":"error","message":"Invalid 'entity' value"})";
             res.prepare_payload();
-            return res;
+            return res; 
         }
     }
     catch (const std::exception& e) {

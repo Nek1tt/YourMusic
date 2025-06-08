@@ -40,10 +40,7 @@ void CatalogSession::do_read() {
     );
 }
 
-#include <boost/beast/http/vector_body.hpp>
-
 void CatalogSession::handle_request(http::request<http::string_body> req) {
-    // Log raw request
     {
         std::ostringstream oss;
         oss << req;
@@ -52,13 +49,10 @@ void CatalogSession::handle_request(http::request<http::string_body> req) {
 
     int version = req.version();
 
-    // --- NEW: Image GET routes ---
     if (req.method() == http::verb::get) {
-        // Convert target to std::string
         boost::beast::string_view sv = req.target();
         std::string target(sv.data(), sv.size());
 
-        // Helper: try route, return true if handled
         auto handle_blob_route = [&](const std::string& prefix, auto getBlob) {
             if (target.rfind(prefix, 0) != 0)
                 return false;
@@ -79,10 +73,8 @@ void CatalogSession::handle_request(http::request<http::string_body> req) {
 
                 auto const& data = *blob;
                 std::string mime;
-                // PNG signature
                 if (data.size() >= 4 && data[0]==0x89 && data[1]==0x50 && data[2]==0x4E && data[3]==0x47)
                     mime = "image/png";
-                // JPEG signature
                 else if (data.size() >= 3 && data[0]==0xFF && data[1]==0xD8 && data[2]==0xFF)
                     mime = "image/jpeg";
                 else {
@@ -111,7 +103,6 @@ void CatalogSession::handle_request(http::request<http::string_body> req) {
             }
         };
 
-        // Try each image route
         if (handle_blob_route("/album/", [&](const std::string& id) { return db_.get_album_cover(std::stoi(id)); }))
             return;
         if (handle_blob_route("/track/", [&](const std::string& id) { return db_.get_track_cover(std::stoi(id)); }))
@@ -120,7 +111,6 @@ void CatalogSession::handle_request(http::request<http::string_body> req) {
             return;
     }
 
-    // --- Existing POST JSON logic ---
     http::response<http::string_body> res;
     try {
         auto body_json = json::parse(req.body());
@@ -325,11 +315,7 @@ void CatalogService::on_accept(beast::error_code ec, tcp::socket socket) {
         std::make_shared<CatalogSession>(std::move(stream), db_)->run();
     } else {
         int err_code = ec.value();
-        std::string msg_cp = ec.message();
-        std::wstring_convert<std::codecvt<wchar_t, char, std::mbstate_t>> to_wide;
-        std::wstring u16 = to_wide.from_bytes(msg_cp);
-        std::string  u8  = std::wstring_convert<std::codecvt_utf8<wchar_t>>().to_bytes(u16);
-        std::cerr << "[CatalogService] Accept error (" << err_code << "): " << u8 << "\n";
+        std::cerr << "[CatalogService] Accept error (" << err_code << "): " << "\n";
     }
     do_accept();
 }
@@ -337,7 +323,11 @@ void CatalogService::on_accept(beast::error_code ec, tcp::socket socket) {
 int main() {
     try {
         net::io_context ioc;
-        DB db("127.0.0.1", "root", "YourMusic", "yourmusic");
+        const char* host = std::getenv("DB_HOST") ? std::getenv("DB_HOST") : "127.0.0.1";
+        const char* user = std::getenv("DB_USER") ? std::getenv("DB_USER") : "root";
+        const char* pass = std::getenv("DB_PASS") ? std::getenv("DB_PASS") : "YourMusic";
+        const char* name = std::getenv("DB_NAME") ? std::getenv("DB_NAME") : "yourmusic";
+        DB db(host, user, pass, name);
         if (!db.is_connected()) {
             std::cerr << "[main] Failed to connect to database.\n";
             return 1;
