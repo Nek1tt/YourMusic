@@ -207,59 +207,13 @@ private:
         session_.sendMessage(errorResponse.dump());
     }
 };
-
-// ===================== StreamingHandler =====================
-class ApiSession::StreamingHandler {
-public:
-    explicit StreamingHandler(ApiSession& session) : session_(session) {
-    }
-
-    void handle(const nlohmann::json& req) {
-        if (!req.contains("action") || !req["action"].is_string()) {
-            sendErrorResponse("Missing or invalid 'action'");
-            return;
-        }
-        std::string action = req["action"].get<std::string>();
-        if (action == "play") {
-            if (!req.contains("track_id") || !req["track_id"].is_number_integer()) {
-                sendErrorResponse("Missing or invalid 'track_id'");
-                return;
-            }
-            int trackId = req["track_id"].get<int>();
-
-            std::string streamUrl = "http://84.237.53.143:8084/stream/" + std::to_string(trackId);
-
-            nlohmann::json resp;
-            resp["type"] = "stream_url";
-            resp["data"]["url"] = streamUrl;
-            session_.sendMessage(resp.dump());
-        }
-        else {
-            sendErrorResponse("Unknown action: " + action);
-        }
-    }
-
-private:
-    ApiSession& session_;
-
-    void sendErrorResponse(const std::string& error) {
-        nlohmann::json errorResponse;
-        errorResponse["type"] = "stream_error";
-        errorResponse["data"]["status"] = "error";
-        errorResponse["data"]["message"] = error;
-        session_.sendMessage(errorResponse.dump());
-    }
-};
     
 // ===================== ApiSession =====================
 
 ApiSession::ApiSession(tcp::socket&& socket)
     : ws_(std::move(socket)),
       authHandler_(nullptr),
-      catalogHandler_(nullptr),
-      streamingHandler_(nullptr) {
-    
-}
+      catalogHandler_(nullptr) {}
 
 void ApiSession::run() {
     ws_.async_accept([self = shared_from_this()](beast::error_code ec) {
@@ -305,10 +259,6 @@ void ApiSession::routeToHandler(const std::string& path, const nlohmann::json& r
     else if (path == "/catalog") {
         if (!catalogHandler_) catalogHandler_ = std::make_unique<CatalogHandler>(*this); // Создаем обработчик каталога, если он еще не создан.
         catalogHandler_->handle(req); // Передаем запрос обработчику каталога.
-    }
-    else if (path == "/streaming") {
-        if (!streamingHandler_) streamingHandler_ = std::make_unique<StreamingHandler>(*this); // Создаем обработчик стриминга, если он еще не создан.
-        streamingHandler_->handle(req); // Передаем запрос обработчику стриминга.
     }
     else {
         std::cerr << "Unknown endpoint: " << path << "\n"; // Логируем неизвестный эндпоинт.
