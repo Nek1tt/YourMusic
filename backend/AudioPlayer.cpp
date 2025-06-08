@@ -195,7 +195,22 @@ void AudioPlayer::stopAudio() {
         SDL_PauseAudio(1);
         isPlaying = false;
     }
-    // Можно добавить очистку буфера, сброс позиций, если нужно
+
+
+    if (codecCtx) {
+        avcodec_flush_buffers(codecCtx);
+    }
+
+
+    if (audioData) {
+        audioData->bufferIndex = 0;
+        audioData->bufferSize = 0;
+    }
+
+
+    if (audioBuffer) {
+        memset(audioBuffer, 0, bufferSize);
+    }
 }
 
 bool AudioPlayer::seekTo(double position) {
