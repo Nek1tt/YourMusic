@@ -27,7 +27,7 @@ private:
 
 signals:
     void albumButtonClicked(const album albumData);
-    void authorButtonClicked(int authorId);
+    void authorButtonClicked(QString authorUsername);
 };
 #endif // ALBOMLISTWIDGET_H
 

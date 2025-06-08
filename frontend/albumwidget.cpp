@@ -11,6 +11,12 @@
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QScrollArea>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QPixmap>
+#include <QLabel>
+#include <QBuffer>
 // #include <QWebSocket>
 #include <QMessageBox>
 #include <QDir>
@@ -46,14 +52,14 @@ AlbumTrackButton::AlbumTrackButton(const track &trackData, QString number, QWidg
     nameButton->setFixedWidth(textWidth + 25); // +10 — небольшой отступ по краям
     set_button_style(nameButton, 14, "white");
 
-    QPushButton *authorButton = new QPushButton(trackData.author);
+    QPushButton *authorButton = new QPushButton(trackData.authors[0]);
     connect(authorButton, &QPushButton::clicked, [this]() {
         emit trackAuthorButtonClicked();
     });
     authorButton->setFixedHeight(14);
     //int widthOfAuthor = trackData.author.size()*7;
     QFontMetrics fm_au(authorButton->font());
-    int textWidth_au = fm_au.horizontalAdvance(trackData.author);
+    int textWidth_au = fm_au.horizontalAdvance(trackData.authors[0]);
     authorButton->setFixedWidth(textWidth_au + 20); // +10 — небольшой отступ по краям
     set_button_style(authorButton, 12, "#828282");
 
@@ -62,8 +68,8 @@ AlbumTrackButton::AlbumTrackButton(const track &trackData, QString number, QWidg
     name_and_author->addWidget(authorButton);
     trackLayout->addLayout(name_and_author);
 
-    int minutes = trackData.duration_ms / 1000 / 60;
-    int seconds = trackData.duration_ms / 1000 % 60;
+    int minutes = trackData.duration_s / 60;
+    int seconds = trackData.duration_s % 60;
     QString duration = QString("%1:%2").arg(minutes).arg(seconds, 2, 10, QChar('0'));
     QLabel *durationLabel = new QLabel(duration);
 
@@ -120,13 +126,13 @@ AlbumTrackButton::AlbumTrackButton(QWidget *parent)
     numberOfTrackLabel->setMargin(0);
     numberOfTrackLabel->setText("#");
     numberOfTrackLabel->setFixedWidth(50);
-    numberOfTrackLabel->setStyleSheet("font-weight: bold; font-size: 14px; font-family: 'Tahoma'; padding-left: 20px");
+    numberOfTrackLabel->setStyleSheet("background: transparent; font-weight: bold; font-size: 14px; font-family: 'Tahoma'; padding-left: 20px");
     trackLayout->addWidget(numberOfTrackLabel);
 
     QVBoxLayout *name_and_author = new QVBoxLayout();
     QLabel *nameLabel = new QLabel("Name");
     nameLabel->setFixedWidth(250);
-    nameLabel->setStyleSheet("font-weight: bold; font-size: 14px; font-family: 'Tahoma';");
+    nameLabel->setStyleSheet("background: transparent; font-weight: bold; font-size: 14px; font-family: 'Tahoma';");
     nameLabel->setAlignment(Qt::AlignCenter);
 
     name_and_author->addWidget(nameLabel);
@@ -139,7 +145,7 @@ AlbumTrackButton::AlbumTrackButton(QWidget *parent)
 
     durationLabel->setFixedHeight(14);
     durationLabel->setFixedWidth(50);
-    durationLabel->setStyleSheet("color: #828282; font-weight: bold; font-size: 12px; font-family: 'Tahoma';");
+    durationLabel->setStyleSheet("background: transparent; color: #828282; font-weight: bold; font-size: 12px; font-family: 'Tahoma';");
     trackLayout->addStretch(); // добавляет растяжку перед durationLabel
     trackLayout->addWidget(durationLabel);
 
@@ -178,7 +184,7 @@ AlbumWidget::AlbumWidget(const struct album &albumData, QWidget *parent)
     albumInfoLayout->setContentsMargins(0,0,0,0);
 
     QLabel *coverLabel = new QLabel(this);
-    setRoundedImage(coverLabel, albumData.coverpath, 200, 15);
+    loadCover(albumData.coverpath, coverLabel);
     albumInfoLayout->addWidget(coverLabel);
 
     QWidget *albumNameWidget = new QWidget();
@@ -202,14 +208,14 @@ AlbumWidget::AlbumWidget(const struct album &albumData, QWidget *parent)
     albumNameLabel->setStyleSheet("font-size: 40px; font-family: 'Tahoma'; font-weight: bold;");
 
 
-    QPushButton *albumAuthorButton= new QPushButton(albumData.author);
+    QPushButton *albumAuthorButton= new QPushButton(albumData.authorUsername);
     connect(albumAuthorButton, &QPushButton::clicked, [this, albumData]() {
-        emit authorButtonClicked(albumData.author_id);
+        emit authorButtonClicked(albumData.authorUsertag);
     });
 
 
-    QFontMetrics fm(albumData.author);
-    int textWidth = fm.horizontalAdvance(albumData.author);
+    QFontMetrics fm(albumData.authorUsername);
+    int textWidth = fm.horizontalAdvance(albumData.authorUsername);
     albumAuthorButton->setFixedWidth(textWidth + 35); // +10 — небольшой отступ по краям
     //albumAuthorButton->setFixedSize(200, 20);
     set_button_style(albumAuthorButton, 20, "white");
@@ -237,7 +243,7 @@ AlbumWidget::AlbumWidget(const struct album &albumData, QWidget *parent)
     playAlbumButton->setCursor(Qt::PointingHandCursor);
     playAlbumButton->setFixedSize(50, 50);
     QLabel *playAlbumButtonLabel = new QLabel(playAlbumButton);
-    QPixmap playAlbumButtonPath("../resources/icons/playbutton.png");
+    QPixmap playAlbumButtonPath("resources/icons/playbutton.png");
     playAlbumButtonLabel->setPixmap(playAlbumButtonPath.scaled(50, 50, Qt::KeepAspectRatio));
     albumNameLayout->addWidget(playAlbumButton);
 
@@ -274,6 +280,30 @@ AlbumWidget::AlbumWidget(const struct album &albumData, QWidget *parent)
     // 7. Добавим scrollArea в основной layout
     mainLayout->addWidget(scrollArea);
 }
+
+void AlbumWidget::loadCover(const QString& url, QLabel *label) {
+    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+
+    connect(manager, &QNetworkAccessManager::finished, this, [label, manager](QNetworkReply *reply) {
+        if (reply->error() == QNetworkReply::NoError) {
+            QByteArray data = reply->readAll();
+            QPixmap pixmap;
+            if (pixmap.loadFromData(data)) {
+                label->setPixmap(pixmap.scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            } else {
+                qDebug() << "Не удалось загрузить картинку из данных!";
+            }
+        } else {
+            qDebug() << "Ошибка загрузки:" << reply->errorString();
+        }
+        reply->deleteLater();
+        manager->deleteLater();
+    });
+
+    QNetworkRequest request(url);
+    manager->get(request);
+}
+
 
 
 

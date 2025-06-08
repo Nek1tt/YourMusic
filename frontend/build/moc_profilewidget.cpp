@@ -54,7 +54,7 @@ static constexpr auto qt_meta_stringdata_ZN13ProfileWidgetE = QtMocHelpers::stri
     "tracksLoadedButtonClicked",
     "tracksAddedButtonClicked",
     "authorButtonClicked",
-    "authorId",
+    "authorUsername",
     "trackNameButtonClicked",
     "trackId"
 );
@@ -94,7 +94,7 @@ Q_CONSTINIT static const uint qt_meta_data_ZN13ProfileWidgetE[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,   16,
+    QMetaType::Void, QMetaType::QString,   16,
     QMetaType::Void, QMetaType::Int,   18,
 
        0        // eod
@@ -128,7 +128,7 @@ Q_CONSTINIT const QMetaObject ProfileWidget::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'authorButtonClicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
         // method 'trackNameButtonClicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<int, std::false_type>
@@ -148,7 +148,7 @@ void ProfileWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 4: _t->followingButtonClicked(); break;
         case 5: _t->tracksLoadedButtonClicked(); break;
         case 6: _t->tracksAddedButtonClicked(); break;
-        case 7: _t->authorButtonClicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 7: _t->authorButtonClicked((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
         case 8: _t->trackNameButtonClicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         default: ;
         }
@@ -205,7 +205,7 @@ void ProfileWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
             }
         }
         {
-            using _q_method_type = void (ProfileWidget::*)(int );
+            using _q_method_type = void (ProfileWidget::*)(QString );
             if (_q_method_type _q_method = &ProfileWidget::authorButtonClicked; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
                 *result = 7;
                 return;
@@ -298,7 +298,7 @@ void ProfileWidget::tracksAddedButtonClicked()
 }
 
 // SIGNAL 7
-void ProfileWidget::authorButtonClicked(int _t1)
+void ProfileWidget::authorButtonClicked(QString _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 7, _a);

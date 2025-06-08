@@ -119,11 +119,11 @@ RightBarWidget::RightBarWidget(WebSocketClient *webSocket, int initialScreenWidt
     QWidget *playWidget = new QWidget();
     QVBoxLayout *playLayout = new QVBoxLayout(playWidget);
     // Настройка кнопок
-    auto *shuffleButton = makeIconButton("../resources/icons/playbutton.png");
-    auto *prevButton    = makeIconButton("../resources/icons/prev.png");
-    pauseButton   = makeIconButton("../resources/icons/pause.png");
-    auto *nextButton    = makeIconButton("../resources/icons/next.png");
-    auto *repeatButton  = makeIconButton("../resources/icons/playbutton.png");
+    auto *shuffleButton = makeIconButton("resources/icons/playbutton.png");
+    auto *prevButton    = makeIconButton("resources/icons/prev.png");
+    pauseButton   = makeIconButton("resources/icons/pause.png");
+    auto *nextButton    = makeIconButton("resources/icons/next.png");
+    auto *repeatButton  = makeIconButton("resources/icons/playbutton.png");
 
     auto *buttonsLayout = new QHBoxLayout();
     buttonsLayout->addStretch();
@@ -145,6 +145,9 @@ RightBarWidget::RightBarWidget(WebSocketClient *webSocket, int initialScreenWidt
 
     currentTimeLabel = new QLabel("0:00");
     totalTimeLabel = new QLabel("4:35");
+    // totalTimeLabel->setStyleSheet("background: transparent;");
+    // currentTimeLabel->setStyleSheet("background: transparent;");
+
     slider->setRange(0, 275);  // например, totalSeconds = 120
     slider->setValue(0);
     connect(slider, &QSlider::sliderReleased, this, [this]() {
@@ -348,7 +351,7 @@ void RightBarWidget::on_Pause_clicked(){
         webSocket->sendMessage(message);
         timer->start(1000);
 
-        pauseButton->setIcon(QIcon("../resources/icons/pause.png"));
+        pauseButton->setIcon(QIcon("resources/icons/pause.png"));
     }
     else
     {
@@ -358,7 +361,7 @@ void RightBarWidget::on_Pause_clicked(){
         QString message = QString::fromUtf8(doc.toJson());
         webSocket->sendMessage(message);
         timer->stop();
-        pauseButton->setIcon(QIcon("../resources/icons/play.png"));
+        pauseButton->setIcon(QIcon("resources/icons/play.png"));
     }
 }
 
@@ -369,7 +372,7 @@ void RightBarWidget::on_PlayAndLoad_clicked(){
     {
         QJsonObject payload;
         payload["command"] = "load";
-        payload["path"] = "C:/Users/Lenovo/upprpo/YourMusic/frontend/resources/music/test.mp3";
+        payload["path"] = "resources/music/test.mp3";
 
         QJsonDocument doc(payload);
         QString message = QString::fromUtf8(doc.toJson());
@@ -387,11 +390,11 @@ void RightBarWidget::setNewCurrentTrack(const track &trackData) {
 
     currentTrackNameButton->setText(currentTrack->name);
 
-    currentTrackAuthorButton->setText(currentTrack->author);
+    currentTrackAuthorButton->setText(currentTrack->authors[0]);
 
-    setRoundedImage(avaLabel, "../resources/imgs/ava.png", 200, 15);
+    setRoundedImage(avaLabel, "resources/imgs/ava.png", 200, 15);
 
-    authorNameButton->setText(currentTrack->author);
+    authorNameButton->setText(currentTrack->authors[0]);
 
     if (isFollowed){
         followButton->setText("Unfollow");
@@ -399,7 +402,7 @@ void RightBarWidget::setNewCurrentTrack(const track &trackData) {
         followButton->setText("Follow");
     }
 
-    QFile file("../resources/text/song_texts/noize.txt");
+    QFile file("resources/text/song_texts/noize.txt");
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
         QString lyrics = in.readAll();

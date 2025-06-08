@@ -13,11 +13,12 @@ class HomeWidget : public QWidget
     Q_OBJECT
 public:
     HomeWidget();
-    void homeButtonClicked(QVector<album> album_list);
+    void homeButtonClicked(QVector<album> *newAlbums, QVector<album> *recAlbums, QVector<album> *randomAlbums);
 
 private:
     MyAlbumsWidget *newAlbumsWidget;
     MyAlbumsWidget *recommendedAlbumsWidget;
+    MyAlbumsWidget *randomAlbumsWidget;
 };
 
 #endif // HOMEWIDGET_H

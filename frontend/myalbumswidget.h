@@ -11,9 +11,10 @@ struct track {
     int id;
     int album_id;
     QString name;
-    int duration_ms;
+    int duration_s;
     QString coverpath;
-    QString author;
+    QVector<QString> authors;
+    QString upload_date;
 };
 
 
@@ -21,10 +22,13 @@ struct album {
     int id;
     QString name;
     QString coverpath;
-    QString author;
-    int author_id;
+    QString authorUsername;
+    QString authorUsertag;
     int track_count;
     QVector<track> tracks;
+    QString createDate;
+    QString description;
+    int total_duration;
 };
 
 class AlbumButton : public QPushButton {
@@ -34,7 +38,9 @@ public:
 
     QString getAlbumName();
     album getAlbum();
-    int getAuthorId();
+    QString  getAuthorUsertag();
+    void loadCover(const QString& url, QLabel *label);
+
 signals:
     void albumNameButtonClicked();
     void authorButtonClicked();
@@ -62,7 +68,7 @@ private:
 
 signals:
     void albumButtonClicked(const album albumData);
-    void authorButtonClicked(int authorId);
+    void authorButtonClicked(QString authorUsertag);
     void myAlbumsButtonClicked(const QVector<album> albumList);
 };
 

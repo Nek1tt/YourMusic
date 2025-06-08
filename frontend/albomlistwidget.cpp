@@ -61,7 +61,7 @@ void AlbomListWidget::buildGrid(QVector<album> albumList)
             emit albumButtonClicked(albumButton->getAlbum());
         });
         connect(albumButton, &AlbumButton::authorButtonClicked, [this, albumButton]() {
-            emit authorButtonClicked(albumButton->getAuthorId());
+            emit authorButtonClicked(albumButton->getAuthorUsertag());
         });
         //button->setMinimumSize(100, 100);
         //buttons.push_back(button);

@@ -441,6 +441,47 @@ CMakeFiles/musicproject.dir/myalbumswidget.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonarray.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonObject \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonobject.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkAccessManager \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkaccessmanager.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetworkglobal.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetwork-config.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetworkexports.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkrequest.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qhttpheaders.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QSharedDataPointer \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qshareddata.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QUrl \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qurl.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QVariant \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qvariant.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/q26numeric.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QSslConfiguration \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslconfiguration.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslsocket.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtcpsocket.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qabstractsocket.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qhostaddress.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslerror.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslcertificate.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcryptographichash.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qssl.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QFlags \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qflags.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QSslPreSharedKeyAuthenticator \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslpresharedkeyauthenticator.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QMetaType \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qmetatype.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkReply \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkreply.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QIODevice \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qiodevice.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkRequest \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkrequest.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkAccessManager \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkRequest \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QBuffer \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qbuffer.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QMessageBox \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qmessagebox.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qdialog.h \

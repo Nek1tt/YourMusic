@@ -120,6 +120,7 @@ void UserProfileWidget::setUserProfile(const UserInfo &user) {
     QPixmap avatarPixmap(user.avatarPath);
     QPixmap scaledPixmap = avatarPixmap.scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
+    qDebug()<<user.username;
     // Создаем круглую маску
     QPixmap roundedPixmap(scaledPixmap.size());
     roundedPixmap.fill(Qt::transparent); // Прозрачный фон
@@ -169,7 +170,7 @@ QVector<UserInfo> loadUsersFromJson(const QString &filePath) {
         user.avatarPath = root["avatarPath"].toString();
         user.username = root["username"].toString();
         user.usertag = root["usertag"].toString();
-        user.authorId = root["authorId"].toInt();
+        //user.authorId = root["authorId"].toInt();
         user.followersnum = root["followersnum"].toInt();
         user.followingnum = root["followingnum"].toInt();
         user.tracksLoadednum = root["tracksLoadednum"].toInt();

@@ -18,6 +18,8 @@ public:
     track* getTrack();
     int getTrackId();
     void resize_trackbutton(int width);
+    void loadCover(const QString& url, QLabel *label);
+
 
 protected:
     void mouseDoubleClickEvent(QMouseEvent *event) override;
@@ -42,7 +44,6 @@ public:
     //void add_loaded_tracks(album loadedTracks);
     QString getAlbumName();
     album getAlbum();
-
     void onTrackdoubleClicked(track *trackData);
 
 private:
@@ -58,7 +59,7 @@ private:
 signals:
     void trackButtonClicked(track *trackData);
     void trackNameButtonClicked(int trackId);
-    void authorButtonClicked(int authorId);
+    void authorButtonClicked(QString authorUsertag);
     void mytracksButtonClicked(const album albumData);
 };
 

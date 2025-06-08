@@ -38,6 +38,8 @@ public:
     explicit AlbumWidget(const album &albumData, QWidget *parent = nullptr);
     AlbumWidget(const track &trackData, QWidget *parent = nullptr);
     void onTrackdoubleClicked(track *trackData);
+    void loadCover(const QString& url, QLabel *label);
+
 private:
     album albumData;
 
@@ -45,7 +47,7 @@ signals:
     void trackButtonClicked(track *trackData);
     void trackNameButtonClicked(int trackId);
     void authorButtonClickedByTrackId(int trackid);
-    void authorButtonClicked(int authorId);
+    void authorButtonClicked(QString authorUsertag);
 };
 
 #endif // ALBUMWIDGET_H

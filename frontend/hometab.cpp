@@ -26,9 +26,9 @@ HomeTab::HomeTab(QWidget *tab) {
     tabLayout->addWidget(innerStacked);
 }
 
-void HomeTab::homeButtonClicked(){
-    QVector <album> albums_vector = loadAlbumsFromJson("../resources/jsons/myalbums.json");
-    mainWidget->homeButtonClicked(albums_vector);
+void HomeTab::homeButtonClicked(QVector<album> *newAlbums, QVector<album> *recAlbums, QVector<album> *randomAlbums){
+    QVector <album> albums_vector = loadAlbumsFromJson("resources/jsons/myalbums.json");
+    mainWidget->homeButtonClicked(newAlbums, recAlbums, randomAlbums);
 }
 
 int AbstractTab::getCurrentIndex()  {

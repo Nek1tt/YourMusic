@@ -36,9 +36,6 @@ MusicMain::MusicMain(QString *usertag, WebSocketClient *webSocket, WebSocketClie
     // // Получаем размер окна
     int windowWidth = this->width();
     int windowHeight = this->height();
-
-    qDebug()<<"width"<<windowWidth<<"heght"<<windowHeight;
-
     mainWidget = new QWidget();
     mainSplitter = new QSplitter(Qt::Horizontal, mainWidget);
     connect(mainSplitter, &QSplitter::splitterMoved, this, &MusicMain::onSplitterMoved);
@@ -89,6 +86,7 @@ MusicMain::MusicMain(QString *usertag, WebSocketClient *webSocket, WebSocketClie
     navLayout->addWidget(backButton);
     navLayout->addWidget(forwardButton);
 
+
     homeTabButton = new QPushButton("Home");
     createTabButton = new QPushButton("Create");
     profileTabButton = new QPushButton("Profile");
@@ -104,7 +102,6 @@ MusicMain::MusicMain(QString *usertag, WebSocketClient *webSocket, WebSocketClie
 
     mainSplitter->addWidget(leftBarWidget);
 
-
     tabwidget = new QTabWidget(this);
     //tabwidget->setFixedWidth(1);
     tabwidget->setStyleSheet("QTabWidget::pane { margin: 0px; padding: 0px; }");
@@ -116,9 +113,6 @@ MusicMain::MusicMain(QString *usertag, WebSocketClient *webSocket, WebSocketClie
     mainSplitter->addWidget(tabwidget);
 
     this->setCentralWidget(mainWidget);
-
-
-
     // // Создаем вкладку create
     createTab = new CreateTab(usertag, webSocket, this);
     profileTab = new ProfileTab(this);
@@ -127,7 +121,6 @@ MusicMain::MusicMain(QString *usertag, WebSocketClient *webSocket, WebSocketClie
     connect(profileTab, &ProfileTab::onTrackDoubleClickedignal, this, &MusicMain::on_TrackButton_clicked);
     profileTab->setContentsMargins(0, 0, 0, 0);
 
-
     homeTab = new HomeTab();
     tabwidget->addTab(homeTab, "Home");
     tabwidget->addTab(createTab, "Create");
@@ -135,11 +128,12 @@ MusicMain::MusicMain(QString *usertag, WebSocketClient *webSocket, WebSocketClie
     // Пример загрузки треков
     QVector<track> tracks;
     track *currentTrack;
-    tracks = readFromJson("../resources/jsons/mytracks.json");
+    tracks = readFromJson("resources/jsons/mytracks.json");
+
     if (!tracks.empty()) {
         currentTrack = &tracks[0];
-    }
 
+    }
 
     rightbarwidget = new RightBarWidget(webSocketStas, windowWidth, windowHeight, this, currentTrack);
     rightbarwidget->setNewCurrentTrack(*currentTrack);
@@ -153,16 +147,6 @@ MusicMain::MusicMain(QString *usertag, WebSocketClient *webSocket, WebSocketClie
     // // Вычисляем позицию для окна, чтобы правый верхний угол сопоставлялся с правым верхним углом экрана
     int xPos = screenGeometry.right() - windowWidth;
     int yPos = screenGeometry.top();
-
-    // // Перемещаем окно в вычисленную позицию
-    //this->move(xPos, yPos);
-    // this->setStyleSheet("QWidget {border: 1px solid black}");
-
-    // QHBoxLayout *mainLayout = new QHBoxLayout(this);
-    // mainLayout->addWidget(tabwidget);
-    // mainLayout->addWidget(rightbarwidget);
-    // //создаем профиль пользователя с помощью соответствующего клас
-    // tabwidget = ui->tabWidget; // это у нас объект с главными вкладками
     tabwidget->setTabVisible(0,0);// делаем видимым вкладку
     tabwidget->setCurrentIndex(0);// ставим текущим вкладку 0
     homeTabButton->setStyleSheet("color : black");
@@ -170,7 +154,6 @@ MusicMain::MusicMain(QString *usertag, WebSocketClient *webSocket, WebSocketClie
     profileTabButton->setStyleSheet("color : white");
     currentTab = homeTabButton;
     currentTab->setEnabled(false);
-
 
     mainTabButtons = { homeTabButton, createTabButton, profileTabButton}; //main tub buttons on screen
 
@@ -182,17 +165,290 @@ MusicMain::MusicMain(QString *usertag, WebSocketClient *webSocket, WebSocketClie
 
     connect(webSocket, &WebSocketClient::messageReceived,
             this, &MusicMain::onTextMessageReceived);
+    qDebug()<<"width1"<<windowWidth<<"heght1"<<windowHeight;
 
-    // webSocket = new QWebSocket();
-    // connect(webSocket, &QWebSocket::connected, this, &MusicMain::onConnected);
-    // connect(webSocket, &QWebSocket::disconnected, this, &MusicMain::onDisconnected);
-    // connect(webSocket, &QWebSocket::textMessageReceived, this, &MusicMain::onTextMessageReceived);
-    // webSocket->open(QUrl("ws://84.237.53.143:881")); // Укажите правильный IP и порт
 }
 
 void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &data){
-    qDebug()<<"textreciever:";
-    qDebug()<<type;
+    if(type == "catalog_response"){
+        if(typeOfQuery == "homeButton"){
+            qDebug()<<data;
+            randomAlbums = new QVector<album>;
+            newAlbums = new QVector<album>;
+            recAlbums = new QVector<album>;
+                // Получаем массив random_tracks
+
+            QJsonArray randomTracksArray = data["random_tracks"].toArray();
+            QJsonArray newAlbumsArray = data["new_albums"].toArray();
+            QJsonArray newTracksArray = data["new_tracks"].toArray();
+            QJsonArray recAlbumsArray = data["recomendations_albums"].toArray();
+            QJsonArray recTracksArray = data["recomendations_tracks"].toArray();
+
+            for (const QJsonValue& val : randomTracksArray) {
+                QJsonObject trackObj = val.toObject();
+
+                track t;
+                t.id = trackObj["id"].toInt();
+                t.album_id = trackObj["album_id"].toInt();
+                t.name = trackObj["title"].toString();
+                t.duration_s = trackObj["duration_seconds"].toInt();
+                QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                t.coverpath = coverUrl;
+                QString authorsStr = trackObj["authors"].toString();
+                QStringList authorList = authorsStr.split(",", Qt::SkipEmptyParts);
+                for (const QString &author : authorList) {
+                    t.authors.append(author.trimmed());  // убираем пробелы вокруг
+                }
+
+                album a;
+                a.id = 0;                      // можно брать album_id == 0, либо генерировать уникальный id
+                a.name = t.name;                        // в данном случае можно просто взять название трека
+                a.coverpath = t.coverpath;
+                if (!t.authors.isEmpty()) {
+                    a.authorUsername = t.authors[0];
+                } else {
+                    a.authorUsername = "Unknown";  // или "" — на твой вкус
+                }
+
+                a.authorUsertag = 0;                       // если author_id нет в JSON — задаём -1 или 0
+                a.track_count = 1;
+
+                randomAlbums->append(a);
+            }
+
+            for (const QJsonValue& val : newAlbumsArray) {
+                QJsonObject albumObj = val.toObject();
+                album a;
+                a.authorUsername = albumObj["authors"].toString();
+                a.authorUsertag = albumObj["author_usertag"].toString();
+                a.createDate = albumObj["created_date"].toString();
+                a.description = albumObj["description"].toString();
+                a.id = albumObj["id"].toInt();
+                a.name = albumObj["title"].toString();
+                a.total_duration = albumObj["total_duration"].toInt();
+                a.track_count = albumObj["track_count"].toInt();
+                QString coverUrl = QString("http://84.237.53.143:8083/album/%1").arg(a.id);
+                a.coverpath = coverUrl;
+
+                // Если в альбоме есть массив tracks — парсим его
+                QJsonArray tracksArray = albumObj["tracks"].toArray();
+                for (const QJsonValue& trackVal : tracksArray) {
+                    QJsonObject trackObj = trackVal.toObject();
+                    track t;
+                    t.album_id = trackObj["album_id"].toInt();
+                    QString authorsStr = trackObj["authors"].toString();
+                    QStringList authorList = authorsStr.split(",", Qt::SkipEmptyParts);
+                    for (const QString &author : authorList) {
+                        t.authors.append(author.trimmed());  // убираем пробелы вокруг
+                    }
+                    t.duration_s = trackObj["duration_seconds"].toInt();
+                    t.id = trackObj["id"].toInt();
+                    t.name = trackObj["title"].toString();
+                    t.upload_date = trackObj["upload_date"].toString();
+                    QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                    t.coverpath = coverUrl;
+                    a.tracks.append(t);
+                }
+                newAlbums->append(a);
+            }
+
+            // Если в альбоме есть массив tracks — парсим его
+            for (const QJsonValue& val : newTracksArray) {
+                QJsonObject trackObj = val.toObject();
+
+                track t;
+                t.id = trackObj["id"].toInt();
+                t.album_id = trackObj["album_id"].toInt();
+                t.name = trackObj["title"].toString();
+                t.duration_s = trackObj["duration_seconds"].toInt();
+                QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                t.coverpath = coverUrl;
+                QString authorsStr = trackObj["authors"].toString();
+                QStringList authorList = authorsStr.split(",", Qt::SkipEmptyParts);
+                for (const QString &author : authorList) {
+                    t.authors.append(author.trimmed());  // убираем пробелы вокруг
+                }
+
+                album a;
+                a.id = 0;                      // можно брать album_id == 0, либо генерировать уникальный id
+                a.name = t.name;                        // в данном случае можно просто взять название трека
+                a.coverpath = t.coverpath;
+                a.authorUsername = t.authors[0];
+                a.authorUsertag = 0;                       // если author_id нет в JSON — задаём -1 или 0
+                a.track_count = 1;
+
+                newAlbums->append(a);
+            }
+
+            for (const QJsonValue& val : recAlbumsArray) {
+                QJsonObject albumObj = val.toObject();
+                album a;
+                a.authorUsername = albumObj["authors"].toString();
+                a.authorUsertag = albumObj["author_usertag"].toString();
+                a.createDate = albumObj["created_date"].toString();
+                a.description = albumObj["description"].toString();
+                a.id = albumObj["id"].toInt();
+                a.name = albumObj["title"].toString();
+                a.total_duration = albumObj["total_duration"].toInt();
+                a.track_count = albumObj["track_count"].toInt();
+                QString coverUrl = QString("http://84.237.53.143:8083/album/%1").arg(a.id);
+                a.coverpath = coverUrl;
+                // Если в альбоме есть массив tracks — парсим его
+                QJsonArray tracksArray = albumObj["tracks"].toArray();
+                for (const QJsonValue& trackVal : tracksArray) {
+                    QJsonObject trackObj = trackVal.toObject();
+                    track t;
+                    t.album_id = trackObj["album_id"].toInt();
+                    QString authorsStr = trackObj["authors"].toString();
+                    QStringList authorList = authorsStr.split(",", Qt::SkipEmptyParts);
+                    for (const QString &author : authorList) {
+                        t.authors.append(author.trimmed());  // убираем пробелы вокруг
+                    }
+                    t.duration_s = trackObj["duration_seconds"].toInt();
+                    t.id = trackObj["id"].toInt();
+                    t.name = trackObj["title"].toString();
+                    t.upload_date = trackObj["upload_date"].toString();
+                    QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                    t.coverpath = coverUrl;
+                    a.tracks.append(t);
+                }
+                recAlbums->append(a);
+            }
+
+            // Если в альбоме есть массив tracks — парсим его
+            for (const QJsonValue& val : recTracksArray) {
+                QJsonObject trackObj = val.toObject();
+
+                track t;
+                t.id = trackObj["id"].toInt();
+                t.album_id = trackObj["album_id"].toInt();
+                t.name = trackObj["title"].toString();
+                t.duration_s = trackObj["duration_seconds"].toInt();
+                QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                t.coverpath = coverUrl;
+                QString authorsStr = trackObj["authors"].toString();
+                QStringList authorList = authorsStr.split(",", Qt::SkipEmptyParts);
+                for (const QString &author : authorList) {
+                    t.authors.append(author.trimmed());  // убираем пробелы вокруг
+                }
+
+                album a;
+                a.id = 0;                      // можно брать album_id == 0, либо генерировать уникальный id
+                a.name = t.name;                        // в данном случае можно просто взять название трека
+                a.coverpath = t.coverpath;
+                a.authorUsername = t.authors[0];
+                a.authorUsertag = 0;                       // если author_id нет в JSON — задаём -1 или 0
+                a.track_count = 1;
+
+                recAlbums->append(a);
+            }
+            qDebug()<<'end';
+            homeTab->homeButtonClicked(newAlbums, recAlbums, randomAlbums);
+        }
+        if(typeOfQuery=="profileButton"){
+            qDebug()<<data;
+            likedAlbums = new QVector<album>;
+            loadedAlbums = new QVector<album>;
+            likedTracks = new album;
+            loadedTracks = new album;
+            mainUserInfo = new UserInfo;
+            viewUserInfo = new UserInfo;
+
+
+            QJsonArray likedAlbumsArray = data["liked_albums"].toArray();
+            QJsonArray likedTracksArray = data["liked_tracks"].toArray();
+            QJsonArray loadedAlbumsArray = data["loaded_albums"].toArray();
+            QJsonArray loadedTracksArray = data["loaded_tracks"].toArray();
+            QJsonObject user = data.value("user_info").toObject();
+            mainUserInfo->username = user["username"].toString();
+            mainUserInfo->avatarPath = "resources/photo/yan.jpg";
+            mainUserInfo->usertag = user["usertag"].toString();
+            mainUserInfo->followersnum = user["followersnum"].toInt();
+            mainUserInfo->followingnum = user["followingnum"].toInt();
+            mainUserInfo->tracksAddednum = user["tracksAddedNum"].toInt();
+            mainUserInfo->tracksLoadednum = user["tracksLoadedNum"].toInt();
+
+
+            for (const QJsonValue& val : likedAlbumsArray) {
+                QJsonObject albumObj = val.toObject();
+                album a;
+                a.authorUsername = albumObj["author_username"].toString();
+                a.authorUsertag = albumObj["author_usertag"].toString();
+                a.createDate = albumObj["created_date"].toString();
+                a.description = albumObj["description"].toString();
+                a.id = albumObj["album_id"].toInt();
+                a.name = albumObj["title"].toString();
+                a.total_duration = albumObj["total_duration"].toInt();
+                a.track_count = albumObj["track_count"].toInt();
+                QString coverUrl = QString("http://84.237.53.143:8083/album/%1").arg(a.id);
+                a.coverpath = coverUrl;
+
+                // Если в альбоме есть массив tracks — парсим его
+                QJsonArray tracksArray = albumObj["tracks"].toArray();
+                for (const QJsonValue& trackVal : tracksArray) {
+                    QJsonObject trackObj = trackVal.toObject();
+                    track t;
+                    t.album_id = trackObj["album_id"].toInt();
+                    QString authorsStr = trackObj["authors"].toString();
+                    QStringList authorList = authorsStr.split(",", Qt::SkipEmptyParts);
+                    for (const QString &author : authorList) {
+                        t.authors.append(author.trimmed());  // убираем пробелы вокруг
+                    }
+                    t.duration_s = trackObj["duration_seconds"].toInt();
+                    t.id = trackObj["id"].toInt();
+                    t.name = trackObj["title"].toString();
+                    t.upload_date = trackObj["upload_date"].toString();
+                    QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                    t.coverpath = coverUrl;
+                    a.tracks.append(t);
+                }
+                likedAlbums->append(a);
+            }
+
+            for (const QJsonValue& trackVal : likedTracksArray) {
+                QJsonObject trackObj = trackVal.toObject();
+                track t;
+                t.album_id = trackObj["album_id"].toInt();
+                QString authorsStr = trackObj["authors"].toString();
+                QStringList authorList = authorsStr.split(",", Qt::SkipEmptyParts);
+                for (const QString &author : authorList) {
+                    t.authors.append(author.trimmed());  // убираем пробелы вокруг
+                }
+                t.duration_s = trackObj["duration_seconds"].toInt();
+                t.id = trackObj["id"].toInt();
+                t.name = trackObj["title"].toString();
+                t.upload_date = trackObj["upload_date"].toString();
+                QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                t.coverpath = coverUrl;
+                likedTracks->tracks.append(t);
+            }
+
+            for (const QJsonValue& trackVal : loadedTracksArray) {
+                QJsonObject trackObj = trackVal.toObject();
+                track t;
+                t.album_id = trackObj["album_id"].toInt();
+                QString authorsStr = trackObj["authors"].toString();
+                QStringList authorList = authorsStr.split(",", Qt::SkipEmptyParts);
+                for (const QString &author : authorList) {
+                    t.authors.append(author.trimmed());  // убираем пробелы вокруг
+                }
+                t.duration_s = trackObj["duration_seconds"].toInt();
+                t.id = trackObj["id"].toInt();
+                t.name = trackObj["title"].toString();
+                t.upload_date = trackObj["upload_date"].toString();
+                QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                t.coverpath = coverUrl;
+                loadedTracks->tracks.append(t);
+            }
+
+
+            profileTab->profileButtonClicked(*mainUserInfo, *likedAlbums, *likedTracks, *loadedTracks);
+            QList<int> sizes = mainSplitter->sizes();
+            //tabwidget->resize(20,this->height());
+            profileTab->resizeProfile(sizes[1]);
+
+        }
+    }
 }
 
 
@@ -223,14 +479,14 @@ void MusicMain::on_homeTab_clicked()
     QJsonObject payload;
     payload["endpoint"] = "/catalog";
     payload["action"] = "home";
-    payload["usertag"] = *usertag;
+    payload["usertag"] = "stas";
 
     QJsonDocument doc(payload);
     QString message = QString::fromUtf8(doc.toJson());
     qDebug()<<message;
     webSocket->sendMessage(message);
+    typeOfQuery = "homeButton";
 
-    homeTab->homeButtonClicked();
     currentTabWidget = homeTab;
     toggle_buttons(homeTabButton);
 
@@ -286,32 +542,19 @@ void MusicMain::on_profileTab_clicked()
     QJsonObject payload;
     payload["endpoint"] = "/catalog";
     payload["action"] = "profile";
-    payload["usertag"] = *usertag;
+    payload["usertag1"] = "stas";
     payload["flag"] = 0;
 
     QJsonDocument doc(payload);
     QString message = QString::fromUtf8(doc.toJson());
     qDebug()<<message;
     webSocket->sendMessage(message);
+    typeOfQuery = "profileButton";
 
-
-    QVector <album> albums_vector = loadAlbumsFromJson("../resources/jsons/myalbums.json");
-    album loadedTracks = loadSingleAlbumFromJson("../resources/jsons/myloadedtracks.json");
-
-    album likedTracks = loadSingleAlbumFromJson("../resources/jsons/mytracks.json");
-    QVector<UserInfo> users = loadUsersFromJson("../resources/jsons/users.json");
-    profileTab->profileButtonClicked(users[0], albums_vector, likedTracks, loadedTracks);
     toggle_buttons(profileTabButton);
-    QList<int> sizes = mainSplitter->sizes();
-    //tabwidget->resize(20,this->height());
-    profileTab->resizeProfile(sizes[1]);
-
     currentTabWidget = profileTab;
 
     int current = currentTabWidget->getCurrentIndex();
-    qDebug()<<"current";
-
-    qDebug()<<current;
     if (current == 0) {
         backButton->setStyleSheet(inactiveStyle);
     }else{
@@ -319,9 +562,7 @@ void MusicMain::on_profileTab_clicked()
     }
 
     int total = currentTabWidget->getTotalIndex();
-    qDebug()<<"total";
 
-    qDebug()<<total;
     if (current == total-1) {
         forwardButton->setStyleSheet(inactiveStyle);
     }else{

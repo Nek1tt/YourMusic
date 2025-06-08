@@ -29,7 +29,7 @@ public:
     void onAlbumListClicked(QVector<album> albumList);
     void onUsersListClicked(QVector<UserInfo> users);
     void onUserButtonClicked(UserInfo userData);
-    void onAuthorButtonClicked(int authorId);
+    void onAuthorButtonClicked(QString authorUsername);
     void onAlbumByTrackId(int trackId);
     void onAuthorByTrackId(int trackId);
 

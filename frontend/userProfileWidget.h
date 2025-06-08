@@ -10,7 +10,6 @@ struct UserInfo
     QString avatarPath;
     QString username;
     QString usertag;
-    int authorId;
     int followersnum;
     int followingnum;
     int tracksLoadednum;

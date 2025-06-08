@@ -26,7 +26,7 @@ LoginWindow::LoginWindow(WebSocketClient *webSocket, QWidget *parent)
     photoLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     photoLabel->setAlignment(Qt::AlignCenter);
 
-    QPixmap pixmap("../resources/photo/photo.jpg");
+    QPixmap pixmap("resources/photo/photo.jpg");
     photoLabel->setPixmap(pixmap.scaled(this->width() / 2, this->height(),
                                         Qt::KeepAspectRatioByExpanding,
                                         Qt::SmoothTransformation));
@@ -39,7 +39,7 @@ LoginWindow::LoginWindow(WebSocketClient *webSocket, QWidget *parent)
     formLayout->setAlignment(Qt::AlignCenter);
 
     QFrame *formFrame = new QFrame(this);
-    formFrame->setFixedSize(300, 400);
+    formFrame->setFixedSize(300, 450);
     formFrame->setStyleSheet(
         "QFrame { background-color: #222; border-radius: 10px; }"
         );

@@ -21,7 +21,7 @@ public:
     void onFollowingButtonClicked();
     void onTracksLoadedButtonClicked();
     void onTracksAddedButtonClicked();
-    void onAuthorButtonClicked(int authorId);
+    void onAuthorButtonClicked(QString authorUsername);
     void onTrackNameButtonClicked(int trackId);
 
 
@@ -33,7 +33,7 @@ signals:
     void followingButtonClicked();
     void tracksLoadedButtonClicked();
     void tracksAddedButtonClicked();
-    void authorButtonClicked(int authorId);
+    void authorButtonClicked(QString authorUsername);
     void trackNameButtonClicked(int trackId);
 
 private:

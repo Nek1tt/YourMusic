@@ -80,7 +80,20 @@ private:
     CreateTab *createTab;
     RightBarWidget *rightbarwidget;
 
+    QVector<album> *randomAlbums;
+    QVector<album> *newAlbums;
+    album *newTracks;
+    album *recTracks;
+    QVector<album> *recAlbums;
 
+    QString typeOfQuery;
+
+    QVector<album> *likedAlbums;
+    QVector<album> *loadedAlbums;
+    album *likedTracks;
+    album *loadedTracks;
+    UserInfo *mainUserInfo;
+    UserInfo *viewUserInfo;
     //UserProfileWidget *userProfile;
     //MyPlaylistsWidget *playlistwidget;
     //QWidget *scrollWidget;

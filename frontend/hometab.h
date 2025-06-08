@@ -55,7 +55,7 @@ class HomeTab : public AbstractTab
     Q_OBJECT
 public:
     explicit HomeTab(QWidget *tab = nullptr);
-    void homeButtonClicked();
+    void homeButtonClicked(QVector<album> *newAlbums, QVector<album> *recAlbums, QVector<album> *randomAlbums);
 private:    
     HomeWidget *mainWidget;
 
@@ -102,7 +102,7 @@ public:
     void onAlbumListClicked(QVector<album> albumList);
     void onUsersListClicked(QVector<UserInfo> users);
     void onUserButtonClicked(UserInfo userData);
-    void onAuthorButtonClicked(int authorId);
+    void onAuthorButtonClicked(QString authorUsername);
     void onAlbumByTrackId(int trackId);
     void onAuthorByTrackId(int trackId);
 

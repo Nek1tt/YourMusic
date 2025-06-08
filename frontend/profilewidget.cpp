@@ -80,8 +80,8 @@ void ProfileWidget::onTracksAddedButtonClicked(){
     emit tracksAddedButtonClicked();
 };
 
-void ProfileWidget::onAuthorButtonClicked(int authorId){
-    emit authorButtonClicked(authorId);
+void ProfileWidget::onAuthorButtonClicked(QString authorUsername){
+    emit authorButtonClicked(authorUsername);
 }
 
 void ProfileWidget::onAlbumClicked(album albumData){

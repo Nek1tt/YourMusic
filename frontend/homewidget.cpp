@@ -3,7 +3,8 @@
 
 HomeWidget::HomeWidget()
     :newAlbumsWidget(new MyAlbumsWidget( "New relises", this)),
-    recommendedAlbumsWidget(new MyAlbumsWidget("Recommended relises", this))
+    recommendedAlbumsWidget(new MyAlbumsWidget("Recommended relises", this)),
+    randomAlbumsWidget(new MyAlbumsWidget("Recommended tracks", this))
 {
     QWidget *contentWidget = new QWidget;
     QVBoxLayout *mainLayout = new QVBoxLayout(contentWidget);
@@ -37,6 +38,7 @@ HomeWidget::HomeWidget()
 
     mainLayout->addWidget(newAlbumsWidget, 1, Qt::AlignTop);
     mainLayout->addWidget(recommendedAlbumsWidget, 2, Qt::AlignTop);
+    mainLayout->addWidget(randomAlbumsWidget, 3, Qt::AlignTop);
 
 
 
@@ -53,7 +55,8 @@ HomeWidget::HomeWidget()
 
 }
 
-void HomeWidget::homeButtonClicked(QVector<album> album_list){
-    recommendedAlbumsWidget->add_albums(album_list);
-    newAlbumsWidget->add_albums(album_list);
+void HomeWidget::homeButtonClicked(QVector<album> *newAlbums, QVector<album> *recAlbums, QVector<album> *randomAlbums){
+    recommendedAlbumsWidget->add_albums(*recAlbums);
+    newAlbumsWidget->add_albums(*newAlbums);
+    randomAlbumsWidget->add_albums(*randomAlbums);
 }

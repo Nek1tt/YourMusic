@@ -16,6 +16,12 @@
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QFontMetrics>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QPixmap>
+#include <QLabel>
+#include <QBuffer>
 // #include <QWebSocket>
 #include <QMessageBox>
 #include <QDir>
@@ -32,9 +38,11 @@
 TrackButton::TrackButton(const struct track &trackData, QWidget *parent)
     :QPushButton(parent), trackData(trackData)
 {
+    qDebug()<<trackData.coverpath;
+    qDebug()<<trackData.name;
     QHBoxLayout *layout = new QHBoxLayout(this);
     QLabel *coverLabel = new QLabel(this);
-    setRoundedImage(coverLabel, trackData.coverpath, 70, 15);
+    loadCover(trackData.coverpath, coverLabel);
     //coverLabel->setFixedWidth(80);
     //QPixmap coverPixmap(trackData.coverpath);
     //coverLabel->setPixmap(coverPixmap.scaled(70, 70, Qt::KeepAspectRatio));
@@ -53,14 +61,14 @@ TrackButton::TrackButton(const struct track &trackData, QWidget *parent)
     set_button_style(nameButton, 14, "white");
     //nameButton->setAlignment(Qt::AlignLeft);
 
-    QPushButton *authorButton = new QPushButton(trackData.author);
+    QPushButton *authorButton = new QPushButton(trackData.authors[0]);
     connect(authorButton, &QPushButton::clicked, [this]() {
         emit trackAuthorButtonClicked();
     });
     authorButton->setFixedHeight(14);
     //int widthOfAuthor = trackData.author.size()*7;
     QFontMetrics fm_au(authorButton->font());
-    int textWidth_au = fm_au.horizontalAdvance(trackData.author);
+    int textWidth_au = fm_au.horizontalAdvance(trackData.authors[0]);
     authorButton->setFixedWidth(textWidth_au + 20); // +10 — небольшой отступ по краям
 
     set_button_style(authorButton, 12, "#828282");
@@ -71,12 +79,12 @@ TrackButton::TrackButton(const struct track &trackData, QWidget *parent)
     name_and_author->addWidget(authorButton);
     layout->addLayout(name_and_author);
 
-    int minutes = trackData.duration_ms / 1000 / 60;
-    int seconds = trackData.duration_ms / 1000 % 60;
+    int minutes = trackData.duration_s / 60;
+    int seconds = trackData.duration_s  % 60;
     QString duration = QString("%1:%2").arg(minutes).arg(seconds, 2, 10, QChar('0'));
 
     QLabel *durationLabel = new QLabel(duration);
-    durationLabel->setFixedHeight(14);
+    durationLabel->setFixedHeight(20);
     durationLabel->setStyleSheet("color: #828282; font-weight: bold; font-size: 12px; font-family: 'Tahoma';");
     durationLabel->setAlignment(Qt::AlignRight);
     layout->addWidget(durationLabel);
@@ -96,6 +104,28 @@ TrackButton::TrackButton(const struct track &trackData, QWidget *parent)
         "}"
         );
 
+}
+void TrackButton::loadCover(const QString& url, QLabel *label) {
+    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+
+    connect(manager, &QNetworkAccessManager::finished, this, [label, manager](QNetworkReply *reply) {
+        if (reply->error() == QNetworkReply::NoError) {
+            QByteArray data = reply->readAll();
+            QPixmap pixmap;
+            if (pixmap.loadFromData(data)) {
+                label->setPixmap(pixmap.scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+            } else {
+                qDebug() << "Не удалось загрузить картинку из данных!";
+            }
+        } else {
+            qDebug() << "Ошибка загрузки:" << reply->errorString();
+        }
+        reply->deleteLater();
+        manager->deleteLater();
+    });
+
+    QNetworkRequest request(url);
+    manager->get(request);
 }
 
 QString TrackButton::getTrackName(){
@@ -170,7 +200,7 @@ void MyTracksWidget::add_liked_tracks(album newTracks) {
             emit trackNameButtonClicked(trackButton->getTrackId());
         });
         connect(trackButton, &TrackButton::trackAuthorButtonClicked, [this, trackButton]() {
-            emit authorButtonClicked(trackButton->getTrackId());
+            //emit authorButtonClicked(trackButton->getTrackId());
         });
     }
 
@@ -215,27 +245,6 @@ void MyTracksWidget::onTrackdoubleClicked(track *trackData){
 }
 
 
-// void write_track(track &track){
-//     std::ofstream tracksFile("../resources/text/tracks.txt", std::ios::app);
-//     tracksFile << track.name.toStdString() << ' '
-//                << track.author.toStdString() << ' '
-//                << track.coverpath.toStdString() << ' '
-//                << track.min << ' ' << track.sec << std::endl;
-
-//     tracksFile.close();
-// }
-
-// void read_tracks(std::vector<track> &tracks, std::string track_path){
-//     std::ifstream trackFile(track_path);
-//     std::string line;
-//     while (std::getline(trackFile, line)){
-//         QString qline = QString::fromStdString(line);
-//         QStringList words = qline.split(' ');
-//         track track = {words[0], words[1], words[2], words[3].toInt(), words[4].toInt()};
-//         tracks.push_back(track);
-//     }
-//     trackFile.close();
-// }
 QVector<track> readFromJson(const QString& filePath) {
     QVector<track> trackList;
 
@@ -261,9 +270,9 @@ QVector<track> readFromJson(const QString& filePath) {
         track t;
         t.id = obj["id"].toInt();
         t.name = obj["title"].toString();
-        t.duration_ms = obj["durationMs"].toInt();
+        t.duration_s = obj["durationMs"].toInt();
         t.coverpath = obj["coverPath"].toString();
-        t.author = obj["author"].toString();
+        t.authors.push_back(obj["author"].toString());
         t.album_id = obj["albumId"].toInt();
         trackList.append(t);
     }

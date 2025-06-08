@@ -26,6 +26,8 @@ CreateWidget::CreateWidget(QString *usertag, WebSocketClient *webSocketStas, QWi
 
     // --- Левая часть: картинка ---
     QPushButton *addCoverButton = new QPushButton();
+    addCoverButton->setStyleSheet("background: transparent;");
+
 
     addCoverButton->setCursor(Qt::PointingHandCursor);
     addCoverButton->setFixedSize(310, 310);
@@ -34,7 +36,7 @@ CreateWidget::CreateWidget(QString *usertag, WebSocketClient *webSocketStas, QWi
 
     // Загружаем и масштабируем изображение
     //QPixmap albumCoverPath(currentTrack->coverpath);
-    setRoundedImage(imageLabel, "../resources/photo/addCover.png", 300, 15);
+    setRoundedImage(imageLabel, "resources/photo/addCover.png", 300, 15);
 
 
     connect(addCoverButton, &QPushButton::clicked, this, &CreateWidget::chooseImage);
@@ -49,7 +51,7 @@ CreateWidget::CreateWidget(QString *usertag, WebSocketClient *webSocketStas, QWi
     connect(typeButton, &QPushButton::clicked, this, &CreateWidget::on_typeButton_clicked);
     typeButton->setCursor(Qt::PointingHandCursor);
     typeButton->setFixedHeight(16);
-    typeButton->setStyleSheet("color: #615D5D; font-size: 15px; font-family: 'K2D'; font-weight: bold; text-align:left;");
+    typeButton->setStyleSheet("background: transparent; color: #615D5D; font-size: 15px; font-family: 'K2D'; font-weight: bold; text-align:left;");
 
     nameEdit = new QLineEdit();
     connect(nameEdit, &QLineEdit::textChanged, this, [=]() {
@@ -62,7 +64,7 @@ CreateWidget::CreateWidget(QString *usertag, WebSocketClient *webSocketStas, QWi
     descriptionEdit = new QTextEdit();
     descriptionEdit->setPlaceholderText("Description");
     descriptionEdit->setStyleSheet("QTextEdit {color: white; font-size: 18px; background-color: #111; border: 1px solid #333; border-radius: 5px; }");
-    descriptionEdit->setFixedHeight(32);
+    descriptionEdit->setFixedHeight(40);
     descriptionEdit->setWordWrapMode(QTextOption::WordWrap);
     descriptionEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     descriptionEdit->setContentsMargins(0, 0, 0, 0);
@@ -72,8 +74,8 @@ CreateWidget::CreateWidget(QString *usertag, WebSocketClient *webSocketStas, QWi
         QSize docSize = doc->size().toSize();
 
         int newHeight = docSize.height(); // добавим чуть-чуть на отступ
-        if (newHeight < 30)
-            newHeight = 30;
+        if (newHeight < 40)
+            newHeight = 40;
         else if (newHeight > 100) {
             newHeight = 80;
             descriptionEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
@@ -211,7 +213,7 @@ void CreateWidget::addNewTrackButton() {
     addTrackBtn->setFixedHeight(100);
 
     // Задать иконку слева + текст
-    QIcon icon("../resources/icons/playbutton.png"); // путь к иконке
+    QIcon icon("resources/icons/playbutton.png"); // путь к иконке
     addTrackBtn->setIcon(icon);
     addTrackBtn->setIconSize(QSize(70, 70)); // Размер иконки при необходимости подстрой
 
@@ -539,7 +541,7 @@ TrackWidget::TrackWidget(QString fileName, int index, QWidget *parent)
     tracLyricsEdit = new QTextEdit();
     tracLyricsEdit->setPlaceholderText("Lyrics");
     tracLyricsEdit->setStyleSheet("QTextEdit {color: white; font-size: 18px; background-color: #111; border: 1px solid #333; border-radius: 5px; }");
-    tracLyricsEdit->setFixedHeight(50); // стартовая высота
+    tracLyricsEdit->setFixedHeight(40); // стартовая высота
     tracLyricsEdit->setWordWrapMode(QTextOption::WordWrap);
     tracLyricsEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     tracLyricsEdit->setContentsMargins(0, 0, 0, 0);
@@ -575,7 +577,7 @@ TrackWidget::TrackWidget(QString fileName, int index, QWidget *parent)
     collapseButton->setFixedWidth(50);
 
     connect(collapseButton, &QPushButton::clicked, this, [=]() {
-        tracLyricsEdit->setFixedHeight(50);
+        tracLyricsEdit->setFixedHeight(40);
         tracLyricsEdit->clearFocus();
     });
 
@@ -592,6 +594,7 @@ TrackWidget::TrackWidget(QString fileName, int index, QWidget *parent)
 
     // Кнопка "Добавить автора"
     QWidget *authorWidget = new QWidget();
+    authorWidget->setStyleSheet("border: none;");
     QScrollArea *authorScrollArea = new QScrollArea();
     authorScrollArea->setWidgetResizable(true);
     authorScrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
@@ -705,7 +708,7 @@ bool TrackWidget::eventFilter(QObject *obj, QEvent *event) {
     if (obj == tracLyricsEdit) {
         //this->parentWidget()->setFixedHeight(200);
         if (event->type() == QEvent::FocusIn) {
-            tracLyricsEdit->setFixedHeight(100);
+            tracLyricsEdit->setFixedHeight(80);
             tracLyricsEdit->raise();
         }
     }

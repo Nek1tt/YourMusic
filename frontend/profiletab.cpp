@@ -80,11 +80,11 @@ void ProfileTab::profileButtonClicked(UserInfo userData, QVector<album> albumLis
 }
 
 void ProfileTab::onFollowersButtonClicked(){
-    QVector<UserInfo> users = loadUsersFromJson("../resources/jsons/users.json");
+    QVector<UserInfo> users = loadUsersFromJson("resources/jsons/users.json");
     onUsersListClicked(users);
 };
 void ProfileTab::onFollowingButtonClicked(){
-    QVector<UserInfo> users = loadUsersFromJson("../resources/jsons/users.json");
+    QVector<UserInfo> users = loadUsersFromJson("resources/jsons/users.json");
     onUsersListClicked(users);
 };
 
@@ -95,18 +95,18 @@ void ProfileTab::onTracksAddedButtonClicked(){
     //onAlbumClicked(likedTracks);
 };
 
-void ProfileTab::onAuthorButtonClicked(int authorId){
-    QVector<UserInfo> users = loadUsersFromJson("../resources/jsons/users.json");
+void ProfileTab::onAuthorButtonClicked(QString authorUsername){
+    QVector<UserInfo> users = loadUsersFromJson("resources/jsons/users.json");
     onUserButtonClicked(users[1]);
 }
 
 void ProfileTab::onAlbumByTrackId(int trackId){
-    QVector <album> albums_vector = loadAlbumsFromJson("../resources/jsons/myalbums.json");
+    QVector <album> albums_vector = loadAlbumsFromJson("resources/jsons/myalbums.json");
     onAlbumClicked(albums_vector[0]);
 }
 
 void ProfileTab::onAuthorByTrackId(int trackId){
-    QVector<UserInfo> users = loadUsersFromJson("../resources/jsons/users.json");
+    QVector<UserInfo> users = loadUsersFromJson("resources/jsons/users.json");
     onUserButtonClicked(users[1]);
 }
 
@@ -137,10 +137,10 @@ void ProfileTab::onUsersListClicked(QVector<UserInfo> users){
 
 void ProfileTab::onUserButtonClicked(UserInfo userData){
 
-    QVector <album> albums_vector = loadAlbumsFromJson("../resources/jsons/myalbums.json");
-    album loadedTracks = loadSingleAlbumFromJson("../resources/jsons/myloadedtracks.json");
+    QVector <album> albums_vector = loadAlbumsFromJson("resources/jsons/myalbums.json");
+    album loadedTracks = loadSingleAlbumFromJson("resources/jsons/myloadedtracks.json");
 
-    album likedTracks = loadSingleAlbumFromJson("../resources/jsons/mytracks.json");
+    album likedTracks = loadSingleAlbumFromJson("resources/jsons/mytracks.json");
 
     int currentWidgetIndex = getCurrentIndex();
     int totalIndex = getTotalIndex();
