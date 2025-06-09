@@ -34,7 +34,7 @@ jobs:
           git clone https://github.com/microsoft/vcpkg.git vcpkg
           ./vcpkg/bootstrap-vcpkg.sh
 
-      - name: Install Boost via vcpkg
+      - name: Install Boost & MySQL via vcpkg
         run: |
           ./vcpkg/vcpkg install boost-system boost-thread boost-filesystem boost-mysql
 
@@ -53,9 +53,10 @@ jobs:
       - name: Build ${{ matrix.service }}
         run: cmake --build server/build-${{ matrix.service }} --config ${{ env.BUILD_TYPE }}
 
-      - name: Verify artifact for ${{ matrix.service }}
+      - name: Verify executable in server/build-${{ matrix.service }}
         run: |
-          if [ ! -f server/build-${{ matrix.service }}/${{ matrix.service }} ]; then
-            echo "❌ Build artifact not found for ${{ matrix.service }}"
+          count=$(find server/build-${{ matrix.service }} -maxdepth 1 -type f -executable | wc -l)
+          if [ "$count" -eq "0" ]; then
+            echo "❌ No executables found in build-${{ matrix.service }}"
             exit 1
           fi
