@@ -27,6 +27,7 @@ jobs:
             libboost-system-dev \
             libboost-thread-dev \
             libboost-filesystem-dev
+            nlohmann-json3-dev
 
       - name: Bootstrap vcpkg
         run: |
