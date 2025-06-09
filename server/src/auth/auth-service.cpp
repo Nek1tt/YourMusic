@@ -258,7 +258,11 @@ int main() {
     try {
         net::io_context ioc;
 
-        DB db("127.0.0.1", "root", "YourMusic", "yourmusic");
+    const char* host = std::getenv("DB_HOST") ? std::getenv("DB_HOST") : "127.0.0.1";
+    const char* user = std::getenv("DB_USER") ? std::getenv("DB_USER") : "root";
+    const char* pass = std::getenv("DB_PASS") ? std::getenv("DB_PASS") : "YourMusic";
+    const char* name = std::getenv("DB_NAME") ? std::getenv("DB_NAME") : "yourmusic";
+    DB db(host, user, pass, name);
         if (!db.is_connected()) {
             std::cerr << "[main] Failed to connect to database.\n";
             return 1;
