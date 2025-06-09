@@ -247,11 +247,7 @@ void AuthService::on_accept(beast::error_code ec, tcp::socket socket) {
         std::make_shared<HttpSession>(std::move(socket), db_)->run();
     } else {
         int err_code = ec.value();
-        std::string msg_cp = ec.message();
-        std::wstring_convert<std::codecvt<wchar_t, char, std::mbstate_t>> to_wide;
-        std::wstring u16 = to_wide.from_bytes(msg_cp);
-        std::string  u8  = std::wstring_convert<std::codecvt_utf8<wchar_t>>().to_bytes(u16);
-        std::cerr << "[AuthService] Accept error (" << err_code << "): " << u8 << "\n";
+        std::cerr << "[AuthService] Accept error (" << err_code << "): " << "\n";
     }
     do_accept();
 }

@@ -6,8 +6,6 @@
 #include <string>
 #include <memory>
 #include <iostream>
-#include <locale>
-#include <codecvt>
 #include <sstream>
 #include "db.h"
 
