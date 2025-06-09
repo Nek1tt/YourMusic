@@ -10,6 +10,10 @@
 #include <QDir>
 #include <QStackedWidget>
 #include <QScrollArea>
+#include <QJsonParseError>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonObject>
 
 #include "homewidget.h"
 #include "userProfileWidget.h"
@@ -31,7 +35,6 @@ public:
     virtual int getCurrentIndex();
     virtual int getTotalIndex();
     virtual void setCurrentIndex(int index);
-
     virtual ~AbstractTab() {}
 
 protected:
@@ -39,6 +42,11 @@ protected:
     QWidget *scrollWidget;
     QVBoxLayout *mainLayout;
     QScrollArea *scrollArea;
+    int cuurentViewerIndex = 0;
+    UserInfo currentAuthorOfObjects;
+    QVector<QString> currentViewers;
+    QString typeOfQuery="None";
+
 
 signals:
     void onAlbomClickedSignal();
@@ -54,10 +62,27 @@ class HomeTab : public AbstractTab
 {
     Q_OBJECT
 public:
-    explicit HomeTab(QWidget *tab = nullptr);
-    void homeButtonClicked(QVector<album> *newAlbums, QVector<album> *recAlbums, QVector<album> *randomAlbums);
+    explicit HomeTab(QString *usertag, UserInfo currentAuthor, WebSocketClient *webSocket, QWidget *tab = nullptr);
+    void homeButtonClicked(UserInfo userData, QVector<album> *newAlbums, QVector<album> *recAlbums, QVector<album> *randomAlbums);
+
+    void onAlbumClicked(album albumData, QVector<int> likedTracks);
+    void onAlbumListClicked(QVector<album> albumList);
+    void onUsersListClicked(QVector<UserInfo> users);
+    void onUserButtonClicked(UserInfo *userData, QVector <album> *albums_vector, album *loadedTracks, album *likedTracks);
+    void onAuthorButtonClicked(QString *authorUsertag);
+    void onAlbumByTrack(track *TrackData);
+    void onTrackdoubleClicked(track *trackData);
+    void onTextMessageReceived(const QString &type, const QJsonObject &dataObj);
+    void onFollowersButtonClicked();
+    void onFollowingButtonClicked();
+    void onTracksLoadedButtonClicked();
+    void onTracksAddedButtonClicked();
+    void onAlbumById(album albumData);
+
 private:    
     HomeWidget *mainWidget;
+    QString *mainUsertag;
+    WebSocketClient *webSocket;
 
 };
 
@@ -72,7 +97,7 @@ class CreateTab : public AbstractTab
 {
     Q_OBJECT
 public:
-    explicit CreateTab(QString *usertag, WebSocketClient *webSocketStas, QWidget *parent = nullptr);
+    explicit CreateTab(QString *usertag, WebSocketClient *webSocket, QWidget *parent = nullptr);
     void homeButtonClicked();
     void chooseImage();
 private:
@@ -95,16 +120,16 @@ class ProfileTab : public AbstractTab
 {
     Q_OBJECT
 public:
-    explicit ProfileTab(QWidget  *parent = nullptr, QWidget *tab = nullptr);
+    explicit ProfileTab(QString *usertag, UserInfo currentAuthorOfObjects, WebSocketClient *webSocket, QWidget  *parent = nullptr, QWidget *tab = nullptr);
     void resizeProfile(int width);
     void profileButtonClicked(UserInfo userData, QVector<album> albumList, album likedTracks, album loadedTracks);
-    void onAlbumClicked(album albumData);
+    void onAlbumClicked(album albumData, QVector<int> likedTracks);
     void onAlbumListClicked(QVector<album> albumList);
     void onUsersListClicked(QVector<UserInfo> users);
-    void onUserButtonClicked(UserInfo userData);
-    void onAuthorButtonClicked(QString authorUsername);
-    void onAlbumByTrackId(int trackId);
-    void onAuthorByTrackId(int trackId);
+    void onUserButtonClicked(UserInfo *userData, QVector <album> *albums_vector, album *loadedTracks, album *likedTracks);
+    void onAuthorButtonClicked(QString *authorUsertag);
+    void onAlbumByTrack(track *TrackData);
+    void onAlbumById(album albumData);
 
     int get_widgetWidth();
     void onTrackdoubleClicked(track *trackData);
@@ -113,12 +138,15 @@ public:
     void onTracksLoadedButtonClicked();
     void onTracksAddedButtonClicked();
     QStackedWidget *getInnerStacked();
-
+    void onTextMessageReceived(const QString &type, const QJsonObject &dataObj);
 
 private:
     int widthForResize;
     ProfileWidget *mainWidget;
     int widgetWidth;
+    QString *mainUsertag;
+    WebSocketClient *webSocket;
+    //int cuurentViewerIndex=0;
 };
 
 #endif // PROFILEWIDGET_H

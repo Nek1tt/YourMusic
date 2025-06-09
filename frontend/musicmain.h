@@ -49,7 +49,7 @@ private slots:
 private:
     WebSocketClient *webSocket;
     WebSocketClient *webSocketStas;
-    QString *usertag;
+    QString mainUsertag;
     QSplitter *mainSplitter;
     QWidget *mainWidget;
     QHBoxLayout *mainLayout;

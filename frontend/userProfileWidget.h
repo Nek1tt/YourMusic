@@ -22,6 +22,7 @@ class UserProfileWidget : public QWidget {
 public:
     explicit UserProfileWidget(QWidget *parent = nullptr);
     void setUserProfile(const UserInfo &user);
+    void loadCover(const QString& url, QLabel *label);
 
 private:
     QLabel *avatarLabel;

@@ -24,6 +24,9 @@ public:
     void setAddButtonStyle(QString color);
     void resetLineEditStyle(QLineEdit *lineEdit);
     bool eventFilter(QObject *obj, QEvent *event) override;
+    QString getfilename();
+    QTextEdit *getTracLyricsEdit();
+
 private:
     QString fileName;
     QTextEdit *tracLyricsEdit;

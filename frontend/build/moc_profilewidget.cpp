@@ -54,9 +54,10 @@ static constexpr auto qt_meta_stringdata_ZN13ProfileWidgetE = QtMocHelpers::stri
     "tracksLoadedButtonClicked",
     "tracksAddedButtonClicked",
     "authorButtonClicked",
-    "authorUsername",
+    "QString*",
+    "authorUsertag",
     "trackNameButtonClicked",
-    "trackId"
+    "TrackData"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -84,7 +85,7 @@ Q_CONSTINIT static const uint qt_meta_data_ZN13ProfileWidgetE[] = {
       13,    0,   79,    2, 0x06,    9 /* Public */,
       14,    0,   80,    2, 0x06,   10 /* Public */,
       15,    1,   81,    2, 0x06,   11 /* Public */,
-      17,    1,   84,    2, 0x06,   13 /* Public */,
+      18,    1,   84,    2, 0x06,   13 /* Public */,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -94,8 +95,8 @@ Q_CONSTINIT static const uint qt_meta_data_ZN13ProfileWidgetE[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   16,
-    QMetaType::Void, QMetaType::Int,   18,
+    QMetaType::Void, 0x80000000 | 16,   17,
+    QMetaType::Void, 0x80000000 | 9,   19,
 
        0        // eod
 };
@@ -128,10 +129,10 @@ Q_CONSTINIT const QMetaObject ProfileWidget::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'authorButtonClicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<QString *, std::false_type>,
         // method 'trackNameButtonClicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<int, std::false_type>
+        QtPrivate::TypeAndForceComplete<track *, std::false_type>
     >,
     nullptr
 } };
@@ -148,8 +149,8 @@ void ProfileWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         case 4: _t->followingButtonClicked(); break;
         case 5: _t->tracksLoadedButtonClicked(); break;
         case 6: _t->tracksAddedButtonClicked(); break;
-        case 7: _t->authorButtonClicked((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
-        case 8: _t->trackNameButtonClicked((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
+        case 7: _t->authorButtonClicked((*reinterpret_cast< std::add_pointer_t<QString*>>(_a[1]))); break;
+        case 8: _t->trackNameButtonClicked((*reinterpret_cast< std::add_pointer_t<track*>>(_a[1]))); break;
         default: ;
         }
     }
@@ -205,14 +206,14 @@ void ProfileWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
             }
         }
         {
-            using _q_method_type = void (ProfileWidget::*)(QString );
+            using _q_method_type = void (ProfileWidget::*)(QString * );
             if (_q_method_type _q_method = &ProfileWidget::authorButtonClicked; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
                 *result = 7;
                 return;
             }
         }
         {
-            using _q_method_type = void (ProfileWidget::*)(int );
+            using _q_method_type = void (ProfileWidget::*)(track * );
             if (_q_method_type _q_method = &ProfileWidget::trackNameButtonClicked; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
                 *result = 8;
                 return;
@@ -298,14 +299,14 @@ void ProfileWidget::tracksAddedButtonClicked()
 }
 
 // SIGNAL 7
-void ProfileWidget::authorButtonClicked(QString _t1)
+void ProfileWidget::authorButtonClicked(QString * _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 7, _a);
 }
 
 // SIGNAL 8
-void ProfileWidget::trackNameButtonClicked(int _t1)
+void ProfileWidget::trackNameButtonClicked(track * _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 8, _a);

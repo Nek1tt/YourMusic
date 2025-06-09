@@ -53,6 +53,17 @@ HomeWidget::HomeWidget()
     outerLayout->setContentsMargins(0, 0, 0, 0);
     outerLayout->addWidget(scrollArea);
 
+    connect(newAlbumsWidget, &MyAlbumsWidget::albumButtonClicked, this, &HomeWidget::onAlbumClicked);
+    connect(newAlbumsWidget, &MyAlbumsWidget::myAlbumsButtonClicked, this, &HomeWidget::onAlbumListClicked);
+    connect(newAlbumsWidget, &MyAlbumsWidget::authorButtonClicked, this, &HomeWidget::onAuthorButtonClicked);
+
+    connect(recommendedAlbumsWidget, &MyAlbumsWidget::albumButtonClicked, this, &HomeWidget::onAlbumClicked);
+    connect(recommendedAlbumsWidget, &MyAlbumsWidget::myAlbumsButtonClicked, this, &HomeWidget::onAlbumListClicked);
+    connect(recommendedAlbumsWidget, &MyAlbumsWidget::authorButtonClicked, this, &HomeWidget::onAuthorButtonClicked);
+
+    connect(randomAlbumsWidget, &MyAlbumsWidget::albumButtonClicked, this, &HomeWidget::onAlbumClicked);
+    connect(randomAlbumsWidget, &MyAlbumsWidget::myAlbumsButtonClicked, this, &HomeWidget::onAlbumListClicked);
+    connect(randomAlbumsWidget, &MyAlbumsWidget::authorButtonClicked, this, &HomeWidget::onAuthorButtonClicked);
 }
 
 void HomeWidget::homeButtonClicked(QVector<album> *newAlbums, QVector<album> *recAlbums, QVector<album> *randomAlbums){
@@ -60,3 +71,16 @@ void HomeWidget::homeButtonClicked(QVector<album> *newAlbums, QVector<album> *re
     newAlbumsWidget->add_albums(*newAlbums);
     randomAlbumsWidget->add_albums(*randomAlbums);
 }
+
+void HomeWidget::onAuthorButtonClicked(QString *authorUsertag){
+    emit authorButtonClicked(authorUsertag);
+}
+void HomeWidget::onAlbumClicked(album albumData){
+    emit albumClicked(albumData);
+};
+void HomeWidget::onAlbumListClicked(QVector<album> albumList){
+    emit albumListClicked(albumList);
+};
+
+
+

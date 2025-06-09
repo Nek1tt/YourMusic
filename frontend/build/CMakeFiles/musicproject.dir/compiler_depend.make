@@ -3,11 +3,6 @@
 
 CMakeFiles/musicproject.dir/albomlistwidget.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/frontend/albomlistwidget.cpp \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QDebug \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/QList \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/QSize \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/QSizeF \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QVector \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20iterator.h \
@@ -39,16 +34,10 @@ CMakeFiles/musicproject.dir/albomlistwidget.cpp.obj: C:/Users/Lenovo/upprpo/Your
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcontainerinfo.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcontainertools_impl.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcontiguouscache.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication_platform.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreevent.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qdarwinhelpers.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qdatastream.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qdeadlinetimer.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qdebug.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qelapsedtimer.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qendian.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qeventloop.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qexceptionhandling.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qflags.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qfloat16.h \
@@ -67,7 +56,6 @@ CMakeFiles/musicproject.dir/albomlistwidget.cpp.obj: C:/Users/Lenovo/upprpo/Your
   C:/Qt/6.8.2/mingw_64/include/QtCore/qlatin1stringview.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qline.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qlist.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qlocale.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qlogging.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qmalloc.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qmap.h \
@@ -77,7 +65,6 @@ CMakeFiles/musicproject.dir/albomlistwidget.cpp.obj: C:/Users/Lenovo/upprpo/Your
   C:/Qt/6.8.2/mingw_64/include/QtCore/qmetatype.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qminmax.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qnamespace.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qnativeinterface.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qnumeric.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qobject.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qobject_impl.h \
@@ -140,44 +127,31 @@ CMakeFiles/musicproject.dir/albomlistwidget.cpp.obj: C:/Users/Lenovo/upprpo/Your
   C:/Qt/6.8.2/mingw_64/include/QtCore/qversiontagging.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qxptype_traits.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qyieldcpu.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/QResizeEvent \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/QTransform \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qaction.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qbitmap.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qbrush.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qcolor.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qcursor.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qevent.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qeventpoint.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qfont.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qfontinfo.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qfontmetrics.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qguiapplication.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qguiapplication_platform.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qicon.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qimage.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qinputdevice.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qinputmethod.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qkeysequence.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpaintdevice.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpalette.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpicture.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpixelformat.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpixmap.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qpointingdevice.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpolygon.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qregion.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qrgb.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qrgba64.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qscreen.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qscreen_platform.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qtextdocument.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qtgui-config.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qtguiexports.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qtguiglobal.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qtransform.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qvector2d.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qvectornd.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs_win.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGridLayout \
@@ -424,19 +398,27 @@ CMakeFiles/musicproject.dir/albomlistwidget.cpp.obj: C:/Users/Lenovo/upprpo/Your
   C:/Users/Lenovo/upprpo/YourMusic/frontend/setstyle.h
 
 CMakeFiles/musicproject.dir/albumwidget.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/frontend/albumwidget.cpp \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QBuffer \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QDebug \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QDir \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QFlags \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QIODevice \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QList \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QMetaType \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QSharedDataPointer \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QSize \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QSizeF \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QUrl \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QVariant \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20iterator.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20memory.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20type_traits.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q23utility.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/q26numeric.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qalgorithms.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qanystringview.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qarraydata.h \
@@ -447,6 +429,7 @@ CMakeFiles/musicproject.dir/albumwidget.cpp.obj: C:/Users/Lenovo/upprpo/YourMusi
   C:/Qt/6.8.2/mingw_64/include/QtCore/qatomic_cxx11.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qbasicatomic.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qbindingstorage.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qbuffer.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qbytearray.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qbytearrayalgorithms.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qbytearraylist.h \
@@ -466,6 +449,7 @@ CMakeFiles/musicproject.dir/albumwidget.cpp.obj: C:/Users/Lenovo/upprpo/YourMusi
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication_platform.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreevent.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qcryptographichash.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qdarwinhelpers.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qdatastream.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qdatetime.h \
@@ -605,6 +589,27 @@ CMakeFiles/musicproject.dir/albumwidget.cpp.obj: C:/Users/Lenovo/upprpo/YourMusi
   C:/Qt/6.8.2/mingw_64/include/QtGui/qtransform.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs_win.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkAccessManager \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkReply \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkRequest \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/QSslConfiguration \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/QSslPreSharedKeyAuthenticator \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qabstractsocket.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qhostaddress.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qhttpheaders.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkaccessmanager.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkreply.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkrequest.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qssl.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslcertificate.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslconfiguration.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslerror.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslpresharedkeyauthenticator.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslsocket.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtcpsocket.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetwork-config.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetworkexports.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetworkglobal.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QApplication \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QBoxLayout \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGridLayout \
@@ -897,6 +902,10 @@ CMakeFiles/musicproject.dir/albumwidget.cpp.obj: C:/Users/Lenovo/upprpo/YourMusi
 CMakeFiles/musicproject.dir/createTab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/frontend/createTab.cpp \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QDir \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QFlags \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonArray \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonDocument \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonObject \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonParseError \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QList \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
@@ -927,6 +936,8 @@ CMakeFiles/musicproject.dir/createTab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/
   C:/Qt/6.8.2/mingw_64/include/QtCore/qbytearraylist.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qbytearrayview.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcalendar.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qcborcommon.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qcborvalue.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qchar.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcompare.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcompare_impl.h \
@@ -970,6 +981,10 @@ CMakeFiles/musicproject.dir/createTab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/
   C:/Qt/6.8.2/mingw_64/include/QtCore/qiodevicebase.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qiterable.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qiterator.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonarray.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsondocument.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonobject.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonvalue.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qlatin1stringview.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qline.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qlist.h \
@@ -995,6 +1010,7 @@ CMakeFiles/musicproject.dir/createTab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/
   C:/Qt/6.8.2/mingw_64/include/QtCore/qprocessordetection.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qrect.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qrefcount.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qregularexpression.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qscopedpointer.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qscopeguard.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qset.h \
@@ -1041,6 +1057,7 @@ CMakeFiles/musicproject.dir/createTab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/
   C:/Qt/6.8.2/mingw_64/include/QtCore/qtypes.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qurl.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qutf8stringview.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/quuid.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qvariant.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qvarlengtharray.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qversiontagging.h \
@@ -1930,6 +1947,10 @@ CMakeFiles/musicproject.dir/createwidget.cpp.obj: C:/Users/Lenovo/upprpo/YourMus
 CMakeFiles/musicproject.dir/hometab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/frontend/hometab.cpp \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QDir \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QFlags \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonArray \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonDocument \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonObject \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonParseError \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QList \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
@@ -1939,6 +1960,7 @@ CMakeFiles/musicproject.dir/hometab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/fr
   C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QUrl \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QVariant \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QVector \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20iterator.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20memory.h \
@@ -1960,6 +1982,8 @@ CMakeFiles/musicproject.dir/hometab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/fr
   C:/Qt/6.8.2/mingw_64/include/QtCore/qbytearraylist.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qbytearrayview.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcalendar.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qcborcommon.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qcborvalue.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qchar.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcompare.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcompare_impl.h \
@@ -2003,6 +2027,10 @@ CMakeFiles/musicproject.dir/hometab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/fr
   C:/Qt/6.8.2/mingw_64/include/QtCore/qiodevicebase.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qiterable.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qiterator.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonarray.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsondocument.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonobject.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonvalue.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qlatin1stringview.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qline.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qlist.h \
@@ -2028,6 +2056,7 @@ CMakeFiles/musicproject.dir/hometab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/fr
   C:/Qt/6.8.2/mingw_64/include/QtCore/qprocessordetection.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qrect.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qrefcount.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qregularexpression.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qscopedpointer.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qscopeguard.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qset.h \
@@ -2074,12 +2103,15 @@ CMakeFiles/musicproject.dir/hometab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/fr
   C:/Qt/6.8.2/mingw_64/include/QtCore/qtypes.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qurl.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qutf8stringview.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/quuid.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qvariant.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qvarlengtharray.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qvector.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qversiontagging.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qxptype_traits.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qyieldcpu.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/QPixmap \
+  C:/Qt/6.8.2/mingw_64/include/QtGui/QResizeEvent \
   C:/Qt/6.8.2/mingw_64/include/QtGui/QScreen \
   C:/Qt/6.8.2/mingw_64/include/QtGui/QTransform \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qaction.h \
@@ -2087,6 +2119,8 @@ CMakeFiles/musicproject.dir/hometab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/fr
   C:/Qt/6.8.2/mingw_64/include/QtGui/qbrush.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qcolor.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qcursor.h \
+  C:/Qt/6.8.2/mingw_64/include/QtGui/qevent.h \
+  C:/Qt/6.8.2/mingw_64/include/QtGui/qeventpoint.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qfont.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qfontinfo.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qfontmetrics.h \
@@ -2094,6 +2128,7 @@ CMakeFiles/musicproject.dir/hometab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/fr
   C:/Qt/6.8.2/mingw_64/include/QtGui/qguiapplication_platform.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qicon.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qimage.h \
+  C:/Qt/6.8.2/mingw_64/include/QtGui/qinputdevice.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qinputmethod.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qkeysequence.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpaintdevice.h \
@@ -2102,6 +2137,7 @@ CMakeFiles/musicproject.dir/hometab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/fr
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpicture.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpixelformat.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpixmap.h \
+  C:/Qt/6.8.2/mingw_64/include/QtGui/qpointingdevice.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpolygon.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qregion.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qrgb.h \
@@ -2116,6 +2152,8 @@ CMakeFiles/musicproject.dir/hometab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/fr
   C:/Qt/6.8.2/mingw_64/include/QtGui/qtguiexports.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qtguiglobal.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qtransform.h \
+  C:/Qt/6.8.2/mingw_64/include/QtGui/qvector2d.h \
+  C:/Qt/6.8.2/mingw_64/include/QtGui/qvectornd.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs_win.h \
   C:/Qt/6.8.2/mingw_64/include/QtNetwork/QAbstractSocket \
@@ -2146,12 +2184,14 @@ CMakeFiles/musicproject.dir/hometab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/fr
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QMessageBox \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QPushButton \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollArea \
+  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollBar \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QStackedWidget \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTextEdit \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QVBoxLayout \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QWidget \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractbutton.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractslider.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qboxlayout.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qdialog.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
@@ -2165,6 +2205,7 @@ CMakeFiles/musicproject.dir/hometab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/fr
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qmessagebox.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qpushbutton.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h \
+  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollbar.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qsizepolicy.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qstackedwidget.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtextedit.h \
@@ -2428,6 +2469,8 @@ CMakeFiles/musicproject.dir/hometab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/fr
   C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsocket.h \
   C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsocketprotocol.h \
   C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsockets_global.h \
+  C:/Users/Lenovo/upprpo/YourMusic/frontend/albomlistwidget.h \
+  C:/Users/Lenovo/upprpo/YourMusic/frontend/albumwidget.h \
   C:/Users/Lenovo/upprpo/YourMusic/frontend/createwidget.h \
   C:/Users/Lenovo/upprpo/YourMusic/frontend/hometab.h \
   C:/Users/Lenovo/upprpo/YourMusic/frontend/homewidget.h \
@@ -2435,6 +2478,7 @@ CMakeFiles/musicproject.dir/hometab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/fr
   C:/Users/Lenovo/upprpo/YourMusic/frontend/mytrackswidget.h \
   C:/Users/Lenovo/upprpo/YourMusic/frontend/profilewidget.h \
   C:/Users/Lenovo/upprpo/YourMusic/frontend/userProfileWidget.h \
+  C:/Users/Lenovo/upprpo/YourMusic/frontend/userslistwidget.h \
   C:/Users/Lenovo/upprpo/YourMusic/frontend/websocketclient.h
 
 CMakeFiles/musicproject.dir/homewidget.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/frontend/homewidget.cpp \
@@ -3844,11 +3888,6 @@ CMakeFiles/musicproject.dir/main.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/front
   C:/Users/Lenovo/upprpo/YourMusic/frontend/websocketclient.h
 
 CMakeFiles/musicproject.dir/moc_albomlistwidget.cpp.obj: moc_albomlistwidget.cpp \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/QList \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/QSize \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/QSizeF \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QVector \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20iterator.h \
@@ -3880,16 +3919,10 @@ CMakeFiles/musicproject.dir/moc_albomlistwidget.cpp.obj: moc_albomlistwidget.cpp
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcontainerinfo.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcontainertools_impl.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcontiguouscache.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication_platform.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreevent.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qdarwinhelpers.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qdatastream.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qdeadlinetimer.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qdebug.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qelapsedtimer.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qendian.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qeventloop.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qexceptionhandling.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qflags.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qfloat16.h \
@@ -3908,7 +3941,6 @@ CMakeFiles/musicproject.dir/moc_albomlistwidget.cpp.obj: moc_albomlistwidget.cpp
   C:/Qt/6.8.2/mingw_64/include/QtCore/qlatin1stringview.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qline.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qlist.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qlocale.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qlogging.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qmalloc.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qmap.h \
@@ -3918,7 +3950,6 @@ CMakeFiles/musicproject.dir/moc_albomlistwidget.cpp.obj: moc_albomlistwidget.cpp
   C:/Qt/6.8.2/mingw_64/include/QtCore/qmetatype.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qminmax.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qnamespace.h \
-  C:/Qt/6.8.2/mingw_64/include/QtCore/qnativeinterface.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qnumeric.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qobject.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qobject_impl.h \
@@ -3982,44 +4013,31 @@ CMakeFiles/musicproject.dir/moc_albomlistwidget.cpp.obj: moc_albomlistwidget.cpp
   C:/Qt/6.8.2/mingw_64/include/QtCore/qversiontagging.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qxptype_traits.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qyieldcpu.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/QResizeEvent \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/QTransform \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qaction.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qbitmap.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qbrush.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qcolor.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qcursor.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qevent.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qeventpoint.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qfont.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qfontinfo.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qfontmetrics.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qguiapplication.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qguiapplication_platform.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qicon.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qimage.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qinputdevice.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qinputmethod.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qkeysequence.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpaintdevice.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpalette.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpicture.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpixelformat.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpixmap.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qpointingdevice.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qpolygon.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qregion.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qrgb.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qrgba64.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qscreen.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qscreen_platform.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qtextdocument.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qtgui-config.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qtguiexports.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qtguiglobal.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qtransform.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qvector2d.h \
-  C:/Qt/6.8.2/mingw_64/include/QtGui/qvectornd.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs_win.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGridLayout \
@@ -5137,6 +5155,10 @@ CMakeFiles/musicproject.dir/moc_createwidget.cpp.obj: moc_createwidget.cpp \
 CMakeFiles/musicproject.dir/moc_hometab.cpp.obj: moc_hometab.cpp \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QDir \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QFlags \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonArray \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonDocument \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonObject \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonParseError \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QList \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
@@ -5167,6 +5189,8 @@ CMakeFiles/musicproject.dir/moc_hometab.cpp.obj: moc_hometab.cpp \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qbytearraylist.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qbytearrayview.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcalendar.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qcborcommon.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qcborvalue.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qchar.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcompare.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcompare_impl.h \
@@ -5210,6 +5234,10 @@ CMakeFiles/musicproject.dir/moc_hometab.cpp.obj: moc_hometab.cpp \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qiodevicebase.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qiterable.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qiterator.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonarray.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsondocument.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonobject.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonvalue.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qlatin1stringview.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qline.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qlist.h \
@@ -5235,6 +5263,7 @@ CMakeFiles/musicproject.dir/moc_hometab.cpp.obj: moc_hometab.cpp \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qprocessordetection.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qrect.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qrefcount.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qregularexpression.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qscopedpointer.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qscopeguard.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qset.h \
@@ -5282,6 +5311,7 @@ CMakeFiles/musicproject.dir/moc_hometab.cpp.obj: moc_hometab.cpp \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qtypes.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qurl.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qutf8stringview.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/quuid.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qvariant.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qvarlengtharray.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qversiontagging.h \
@@ -5646,6 +5676,7 @@ CMakeFiles/musicproject.dir/moc_hometab.cpp.obj: moc_hometab.cpp \
   C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsockets_global.h
 
 CMakeFiles/musicproject.dir/moc_homewidget.cpp.obj: moc_homewidget.cpp \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QList \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20iterator.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20memory.h \
@@ -11460,6 +11491,10 @@ CMakeFiles/musicproject.dir/mytrackswidget.cpp.obj: C:/Users/Lenovo/upprpo/YourM
 CMakeFiles/musicproject.dir/profiletab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/frontend/profiletab.cpp \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QDir \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QFlags \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonArray \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonDocument \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonObject \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonParseError \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QList \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
@@ -11491,6 +11526,8 @@ CMakeFiles/musicproject.dir/profiletab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic
   C:/Qt/6.8.2/mingw_64/include/QtCore/qbytearraylist.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qbytearrayview.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcalendar.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qcborcommon.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qcborvalue.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qchar.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcompare.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcompare_impl.h \
@@ -11534,6 +11571,10 @@ CMakeFiles/musicproject.dir/profiletab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic
   C:/Qt/6.8.2/mingw_64/include/QtCore/qiodevicebase.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qiterable.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qiterator.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonarray.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsondocument.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonobject.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonvalue.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qlatin1stringview.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qline.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qlist.h \
@@ -11559,6 +11600,7 @@ CMakeFiles/musicproject.dir/profiletab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic
   C:/Qt/6.8.2/mingw_64/include/QtCore/qprocessordetection.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qrect.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qrefcount.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qregularexpression.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qscopedpointer.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qscopeguard.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qset.h \
@@ -11605,6 +11647,7 @@ CMakeFiles/musicproject.dir/profiletab.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic
   C:/Qt/6.8.2/mingw_64/include/QtCore/qtypes.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qurl.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qutf8stringview.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/quuid.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qvariant.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qvarlengtharray.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qvector.h \
@@ -13288,20 +13331,28 @@ CMakeFiles/musicproject.dir/setstyle.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/f
 
 CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj: C:/Users/Lenovo/upprpo/YourMusic/frontend/userProfileWidget.cpp \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QDir \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QFlags \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QIODevice \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonArray \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonDocument \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonObject \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonParseError \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QList \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QMetaType \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QSharedDataPointer \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QSize \
   C:/Qt/6.8.2/mingw_64/include/QtCore/QSizeF \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QUrl \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/QVariant \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20iterator.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20memory.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q20type_traits.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/q23utility.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/q26numeric.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qalgorithms.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qanystringview.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qarraydata.h \
@@ -13333,6 +13384,7 @@ CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj: C:/Users/Lenovo/upprpo/Yo
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication_platform.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreevent.h \
+  C:/Qt/6.8.2/mingw_64/include/QtCore/qcryptographichash.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qdarwinhelpers.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qdatastream.h \
   C:/Qt/6.8.2/mingw_64/include/QtCore/qdatetime.h \
@@ -13484,6 +13536,27 @@ CMakeFiles/musicproject.dir/userProfileWidget.cpp.obj: C:/Users/Lenovo/upprpo/Yo
   C:/Qt/6.8.2/mingw_64/include/QtGui/qtransform.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs_win.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkAccessManager \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkReply \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkRequest \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/QSslConfiguration \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/QSslPreSharedKeyAuthenticator \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qabstractsocket.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qhostaddress.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qhttpheaders.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkaccessmanager.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkreply.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkrequest.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qssl.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslcertificate.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslconfiguration.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslerror.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslpresharedkeyauthenticator.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslsocket.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtcpsocket.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetwork-config.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetworkexports.h \
+  C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetworkglobal.h \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QBoxLayout \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGridLayout \
   C:/Qt/6.8.2/mingw_64/include/QtWidgets/QHBoxLayout \
@@ -14604,21 +14677,11 @@ CMakeFiles/musicproject.dir/websocketclient.cpp.obj: C:/Users/Lenovo/upprpo/Your
   C:/Users/Lenovo/upprpo/YourMusic/frontend/websocketclient.h
 
 
-C:/Qt/6.8.2/mingw_64/include/QtCore/qiterator.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qtnoop.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qdarwinhelpers.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qmath.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/QList:
-
-C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkrequest.h:
-
-C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_construct.h:
-
 C:/Users/Lenovo/upprpo/YourMusic/frontend/albomlistwidget.cpp:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qarraydataops.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/q23utility.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qglobal.h:
 
@@ -14628,57 +14691,15 @@ C:/Qt/6.8.2/mingw_64/include/QtCore/QVector:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/syslimits.h:
 
-C:/Qt/6.8.2/mingw_64/include/QtCore/qglobalstatic.h:
-
-C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h:
-
-C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_heap.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/QObject:
-
-C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unordered_map.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/QRect:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/QSize:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/q20memory.h:
-
-C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/QSizeF:
-
-C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocated_ptr.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractslider.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtGui/qcolor.h:
-
 C:/Qt/6.8.2/mingw_64/include/QtCore/qiodevicebase.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qversiontagging.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qttranslation.h:
 
-C:/Qt/6.8.2/mingw_64/include/QtCore/qdeadlinetimer.h:
-
-C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstddef:
-
-C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/debug/assertions.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtcpsocket.h:
-
-C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/parse_numbers.h:
-
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_string.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/q20functional.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qeventloop.h:
-
-C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/pstl_config.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/q20iterator.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_conv.h:
 
@@ -14686,9 +14707,15 @@ C:/Qt/6.8.2/mingw_64/include/QtCore/q20type_traits.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/string_view.tcc:
 
-C:/Qt/6.8.2/mingw_64/include/QtCore/qarraydataops.h:
+C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/pstl_config.h:
 
-C:/Qt/6.8.2/mingw_64/include/QtCore/q23utility.h:
+C:/Qt/6.8.2/mingw_64/include/QtCore/q20iterator.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qmargins.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/q20memory.h:
+
+C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtGui/QFontMetrics:
 
@@ -14698,6 +14725,14 @@ C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/corecrt.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qalgorithms.h:
 
+C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/pthread.h:
+
+C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_facets.tcc:
+
+C:/Qt/6.8.2/mingw_64/include/QtWidgets/qfiledialog.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qmap.h:
+
 C:/Qt/6.8.2/mingw_64/include/QtCore/qanystringview.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/bessel_function.tcc:
@@ -14705,6 +14740,18 @@ C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/besse
 C:/Qt/6.8.2/mingw_64/include/QtCore/qarraydata.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cerrno:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qminmax.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtGui/qaction.h:
+
+C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/malloc.h:
+
+C:/Users/Lenovo/upprpo/YourMusic/frontend/profilewidget.cpp:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qmetacontainer.h:
+
+C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_multimap.h:
 
 C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/QWebSocket:
 
@@ -14724,6 +14771,12 @@ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslsocket.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qassert.h:
 
+C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonDocument:
+
+C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qwebsockets_global.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qnamespace.h:
+
 C:/Qt/6.8.2/mingw_64/include/QtWidgets/qstackedwidget.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qatomic_cxx11.h:
@@ -14736,17 +14789,17 @@ C:/Qt/6.8.2/mingw_64/include/QtCore/qbasicatomic.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qscopeguard.h:
 
-C:/Qt/6.8.2/mingw_64/include/QtCore/qconfig.h:
+C:/Qt/6.8.2/mingw_64/include/QtCore/qline.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qbindingstorage.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qline.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/fs_dir.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/version:
 
 C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/_mingw_stat64.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qconfig.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qflags.h:
 
@@ -14764,13 +14817,13 @@ C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/shar
 
 C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/ctype.h:
 
-C:/Qt/6.8.2/mingw_64/include/QtCore/qbytearrayview.h:
-
 C:/Qt/6.8.2/mingw_64/include/QtNetwork/QAbstractSocket:
 
-C:/Qt/6.8.2/mingw_64/include/QtCore/qchar.h:
+C:/Qt/6.8.2/mingw_64/include/QtCore/qbytearrayview.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qmalloc.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qchar.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward/binders.h:
 
@@ -14796,35 +14849,13 @@ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qlayoutitem.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qcontiguouscache.h:
 
-C:/Qt/6.8.2/mingw_64/include/QtCore/qlatin1stringview.h:
+C:/Qt/6.8.2/mingw_64/include/QtCore/qtnoop.h:
 
-C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication.h:
+C:/Qt/6.8.2/mingw_64/include/QtCore/qmath.h:
 
-C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/invoke.h:
+C:/Qt/6.8.2/mingw_64/include/QtCore/qdarwinhelpers.h:
 
-C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/quoted_string.h:
-
-C:/Users/Lenovo/upprpo/YourMusic/frontend/albumwidget.h:
-
-C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bit:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonParseError:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qfunctionpointer.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qvariant.h:
-
-C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/crtdefs.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTextEdit:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication_platform.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qtypes.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qbasictimer.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreevent.h:
+C:/Qt/6.8.2/mingw_64/include/QtCore/qiterator.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/typeinfo:
 
@@ -14834,10 +14865,6 @@ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonarray.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qdebug.h:
 
-C:/Qt/6.8.2/mingw_64/include/QtCore/qelapsedtimer.h:
-
-C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/clocale:
-
 C:/Qt/6.8.2/mingw_64/include/QtCore/qhashfunctions.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/algorithm:
@@ -14845,6 +14872,8 @@ C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/algorithm
 C:/Qt/6.8.2/mingw_64/include/QtCore/qendian.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qstringalgorithms.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qlogging.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qfunctionaltools_impl.h:
 
@@ -14858,9 +14887,17 @@ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QPushButton:
 
 C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetworkglobal.h:
 
+C:/Qt/6.8.2/mingw_64/include/QtCore/qfunctionpointer.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonParseError:
+
 C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollbar.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qgenericatomic.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qglobalstatic.h:
+
+C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wchar.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qhash.h:
 
@@ -14870,27 +14907,9 @@ C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w6
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qiterable.h:
 
+C:/Qt/6.8.2/mingw_64/include/QtCore/qlatin1stringview.h:
+
 C:/Qt/6.8.2/mingw_64/include/QtCore/qlist.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qlocale.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qlogging.h:
-
-C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/pthread.h:
-
-C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/locale_facets.tcc:
-
-C:/Qt/6.8.2/mingw_64/include/QtWidgets/qfiledialog.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qmap.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qmargins.h:
-
-C:/Users/Lenovo/upprpo/YourMusic/frontend/profilewidget.cpp:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qmetacontainer.h:
-
-C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_multimap.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cwctype:
 
@@ -14899,24 +14918,6 @@ C:/Qt/6.8.2/mingw_64/include/QtCore/qmetatype.h:
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/atomic_lockfree_defines.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/legendre_function.tcc:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qminmax.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtGui/qaction.h:
-
-C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/malloc.h:
-
-C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qwebsockets_global.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qnamespace.h:
-
-C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/optional:
-
-C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wctype.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qnativeinterface.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtGui/qscreen.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qnumeric.h:
 
@@ -15030,10 +15031,6 @@ C:/Qt/6.8.2/mingw_64/include/QtGui/qpixmap.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qtconfiginclude.h:
 
-C:/Qt/6.8.2/mingw_64/include/QtCore/QProcess:
-
-C:/Qt/6.8.2/mingw_64/include/QtGui/qtextcursor.h:
-
 C:/Qt/6.8.2/mingw_64/include/QtCore/qtconfigmacros.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qtmochelpers.h:
@@ -15066,6 +15063,10 @@ C:/Qt/6.8.2/mingw_64/include/QtCore/qtresource.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h:
 
+C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsockets_global.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonObject:
+
 C:/Qt/6.8.2/mingw_64/include/QtWidgets/QFrame:
 
 C:/Users/Lenovo/upprpo/YourMusic/frontend/homewidget.h:
@@ -15080,9 +15081,23 @@ C:/Qt/6.8.2/mingw_64/include/QtCore/qtversionchecks.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/initializer_list:
 
+C:/Qt/6.8.2/mingw_64/include/QtCore/qbasictimer.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreevent.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qtypes.h:
+
 C:/Qt/6.8.2/mingw_64/include/QtCore/qurl.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qutf8stringview.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTextEdit:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication_platform.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qvariant.h:
+
+C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/crtdefs.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qvarlengtharray.h:
 
@@ -15102,18 +15117,6 @@ C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/new_
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qyieldcpu.h:
 
-C:/Qt/6.8.2/mingw_64/include/QtWidgets/QLabel:
-
-C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkAccessManager:
-
-C:/Qt/6.8.2/mingw_64/include/QtGui/QResizeEvent:
-
-C:/Qt/6.8.2/mingw_64/include/QtGui/qpointingdevice.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtGui/QTransform:
-
-C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/fstream:
-
 C:/Qt/6.8.2/mingw_64/include/QtGui/qbitmap.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ctime:
@@ -15122,11 +15125,15 @@ C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stddef.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtGui/qbrush.h:
 
+C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/allocated_ptr.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/QSizeF:
+
+C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractslider.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtGui/qcolor.h:
+
 C:/Qt/6.8.2/mingw_64/include/QtGui/qcursor.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtGui/qevent.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtGui/qeventpoint.h:
 
 moc_myalbumswidget.cpp:
 
@@ -15136,21 +15143,11 @@ C:/Qt/6.8.2/mingw_64/include/QtGui/qfontinfo.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtGui/qfontmetrics.h:
 
-C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/filesystem:
-
-C:/Qt/6.8.2/mingw_64/include/QtGui/qguiapplication.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtGui/qguiapplication_platform.h:
-
 C:/Qt/6.8.2/mingw_64/include/QtGui/qicon.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtNetwork/QSslPreSharedKeyAuthenticator:
 
 C:/Qt/6.8.2/mingw_64/include/QtGui/qimage.h:
 
-C:/Qt/6.8.2/mingw_64/include/QtGui/qinputdevice.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtGui/qinputmethod.h:
+C:/Qt/6.8.2/mingw_64/include/QtNetwork/QSslPreSharedKeyAuthenticator:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tuple:
 
@@ -15186,8 +15183,6 @@ C:/Qt/6.8.2/mingw_64/include/QtGui/qregion.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtGui/qrgba64.h:
 
-C:/Qt/6.8.2/mingw_64/include/QtGui/qscreen_platform.h:
-
 C:/Qt/6.8.2/mingw_64/include/QtGui/qtextdocument.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/stdexcept:
@@ -15199,16 +15194,6 @@ C:/Qt/6.8.2/mingw_64/include/QtGui/qtgui-config.h:
 C:/Qt/6.8.2/mingw_64/include/QtGui/qtguiexports.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtGui/qtguiglobal.h:
-
-C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/corecrt_stdio_config.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtGui/qvector2d.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslconfiguration.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtGui/qvectornd.h:
-
-C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/poly_hermite.tcc:
 
 C:/Qt/6.8.2/mingw_64/include/QtGui/qwindowdefs.h:
 
@@ -15223,6 +15208,14 @@ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qframe.h:
 C:/Qt/6.8.2/mingw_64/include/QtWidgets/qapplication.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGridLayout:
+
+C:/Qt/6.8.2/mingw_64/include/QtGui/QResizeEvent:
+
+C:/Qt/6.8.2/mingw_64/include/QtGui/qpointingdevice.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkAccessManager:
+
+C:/Qt/6.8.2/mingw_64/include/QtWidgets/QLabel:
 
 C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollArea:
 
@@ -15259,6 +15252,16 @@ C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/array:
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/atomic:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward/auto_ptr.h:
+
+C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/invoke.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qcoreapplication.h:
+
+C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/quoted_string.h:
+
+C:/Users/Lenovo/upprpo/YourMusic/frontend/albumwidget.h:
+
+C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bit:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/algorithmfwd.h:
 
@@ -15340,6 +15343,16 @@ C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/nest
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/node_handle.h:
 
+C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cstddef:
+
+C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/debug/assertions.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qdeadlinetimer.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtcpsocket.h:
+
+C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/parse_numbers.h:
+
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/predefined_ops.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/ptr_traits.h:
@@ -15354,11 +15367,11 @@ C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/sys/types.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/requires_hosted.h:
 
-C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslerror.h:
-
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/shared_ptr_atomic.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/basic_ios.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslerror.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qcryptographichash.h:
 
@@ -15378,9 +15391,21 @@ C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w6
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_algobase.h:
 
+C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkaccessmanager.h:
+
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_bvector.h:
 
+C:/Qt/6.8.2/mingw_64/include/QtCore/QList:
+
+C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkrequest.h:
+
+C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_construct.h:
+
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_function.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/QObject:
+
+C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_heap.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stl_iterator.h:
 
@@ -15422,9 +15447,13 @@ C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/stri
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uniform_int_dist.h:
 
+C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_ptr.h:
+
 C:/Qt/6.8.2/mingw_64/include/QtCore/QMetaType:
 
-C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unique_ptr.h:
+C:/Qt/6.8.2/mingw_64/include/QtCore/QRect:
+
+C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/unordered_map.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/uses_allocator.h:
 
@@ -15444,8 +15473,6 @@ C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/map:
 
 C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/math.h:
 
-C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkProxy:
-
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cassert:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/x86_64-w64-mingw32/bits/messages_members.h:
@@ -15462,6 +15489,10 @@ C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/string.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/climits:
 
+C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/clocale:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qelapsedtimer.h:
+
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/numeric:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/cmath:
@@ -15474,11 +15505,11 @@ C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/sec_api/wchar_s.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/debug/debug.h:
 
+C:/Qt/6.8.2/mingw_64/include/QtCore/qdir.h:
+
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/alloc_traits.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/q26numeric.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qdir.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/ext/numeric_traits.h:
 
@@ -15493,6 +15524,14 @@ C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/iterator:
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/list:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/memory:
+
+C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/optional:
+
+C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/wctype.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qnativeinterface.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtGui/qscreen.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/pstl/execution_defs.h:
 
@@ -15522,9 +15561,15 @@ C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/stdarg.h:
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/hypergeometric.tcc:
 
+C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkproxy.h:
+
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/modified_bessel_func.tcc:
 
-C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkproxy.h:
+C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslconfiguration.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtGui/qvectornd.h:
+
+C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/tr1/poly_hermite.tcc:
 
 C:/Users/Lenovo/upprpo/YourMusic/frontend/profilewidget.h:
 
@@ -15571,6 +15616,8 @@ C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/_mingw_mac.h:
 C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/_mingw_secapi.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/QVariant:
+
+C:/Qt/Tools/mingw1310_64/x86_64-w64-mingw32/include/corecrt_stdio_config.h:
 
 C:/Users/Lenovo/upprpo/YourMusic/frontend/createTab.cpp:
 
@@ -15622,25 +15669,73 @@ C:/Users/Lenovo/upprpo/YourMusic/frontend/myalbumswidget.cpp:
 
 C:/Users/Lenovo/upprpo/YourMusic/frontend/albomlistwidget.h:
 
-C:/Qt/6.8.2/mingw_64/include/QtWidgets/QFileDialog:
-
 C:/Users/Lenovo/upprpo/YourMusic/frontend/myalbumswidget.h:
 
 C:/Users/Lenovo/upprpo/YourMusic/frontend/albumwidget.cpp:
 
+C:/Qt/6.8.2/mingw_64/include/QtCore/QBuffer:
+
 C:/Qt/6.8.2/mingw_64/include/QtCore/QDir:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/QIODevice:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/QSharedDataPointer:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/QSize:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qbuffer.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qcalendar.h:
 
-C:/Qt/6.8.2/mingw_64/include/QtCore/qdatetime.h:
-
 C:/Qt/6.8.2/mingw_64/include/QtGui/qpen.h:
 
+C:/Qt/6.8.2/mingw_64/include/QtCore/qdatetime.h:
+
 C:/Qt/6.8.2/mingw_64/include/QtCore/qdirlisting.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qeventloop.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qfile.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/qfiledevice.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qlocale.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtGui/QTransform:
+
+C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/fstream:
+
+C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/filesystem:
+
+C:/Qt/6.8.2/mingw_64/include/QtGui/qguiapplication.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtGui/qguiapplication_platform.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtGui/qinputmethod.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtGui/qscreen_platform.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkReply:
+
+C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkRequest:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qjsondocument.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtNetwork/QSslConfiguration:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonArray:
+
+C:/Qt/6.8.2/mingw_64/include/QtNetwork/qhttpheaders.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtWidgets/qmainwindow.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkreply.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslcertificate.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslpresharedkeyauthenticator.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetwork-config.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtWidgets/QApplication:
 
@@ -15651,10 +15746,6 @@ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QMainWindow:
 C:/Qt/6.8.2/mingw_64/include/QtWidgets/QMessageBox:
 
 C:/Qt/6.8.2/mingw_64/include/QtWidgets/qdialog.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtWidgets/qmainwindow.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtNetwork/qhttpheaders.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtWidgets/qmessagebox.h:
 
@@ -15684,23 +15775,27 @@ C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/bits/loca
 
 C:/Qt/Tools/mingw1310_64/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/codecvt:
 
-C:/Qt/6.8.2/mingw_64/include/QtCore/QSharedDataPointer:
+C:/Qt/6.8.2/mingw_64/include/QtCore/qcborcommon.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qcborvalue.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonobject.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonvalue.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtCore/QProcess:
+
+C:/Qt/6.8.2/mingw_64/include/QtGui/qtextcursor.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtGui/qtextformat.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtGui/qtextoption.h:
 
-C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkRequest:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qjsondocument.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtNetwork/QSslConfiguration:
+C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkProxy:
 
 C:/Qt/6.8.2/mingw_64/include/QtNetwork/QSslError:
 
-C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslcertificate.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtNetwork/qtnetwork-config.h:
+C:/Qt/6.8.2/mingw_64/include/QtWidgets/QFileDialog:
 
 C:/Qt/6.8.2/mingw_64/include/QtWidgets/QLineEdit:
 
@@ -15720,10 +15815,6 @@ C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsocket.h:
 
 C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsocketprotocol.h:
 
-C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonObject:
-
-C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsockets_global.h:
-
 C:/Users/Lenovo/upprpo/YourMusic/frontend/createwidget.h:
 
 C:/Users/Lenovo/upprpo/YourMusic/frontend/userProfileWidget.h:
@@ -15734,25 +15825,23 @@ C:/Users/Lenovo/upprpo/YourMusic/frontend/createwidget.cpp:
 
 C:/Qt/6.8.2/mingw_64/include/QtCore/QEvent:
 
-C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonArray:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonDocument:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qcborcommon.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qcborvalue.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonobject.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonvalue.h:
-
 C:/Qt/6.8.2/mingw_64/include/QtGui/QPainter:
+
+C:/Qt/6.8.2/mingw_64/include/QtGui/qevent.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtGui/qeventpoint.h:
+
+C:/Qt/6.8.2/mingw_64/include/QtGui/qinputdevice.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtGui/qpainter.h:
 
 C:/Qt/6.8.2/mingw_64/include/QtGui/qpainterpath.h:
 
+C:/Qt/6.8.2/mingw_64/include/QtGui/qvector2d.h:
+
 C:/Users/Lenovo/upprpo/YourMusic/frontend/hometab.cpp:
+
+C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollBar:
 
 C:/Users/Lenovo/upprpo/YourMusic/frontend/homewidget.cpp:
 
@@ -15804,25 +15893,9 @@ moc_websocketclient.cpp:
 
 moc_mytrackswidget.cpp:
 
-C:/Qt/6.8.2/mingw_64/include/QtCore/QBuffer:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/QIODevice:
-
-C:/Qt/6.8.2/mingw_64/include/QtCore/qbuffer.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkReply:
-
-C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkaccessmanager.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkreply.h:
-
-C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslpresharedkeyauthenticator.h:
-
 C:/Users/Lenovo/upprpo/YourMusic/frontend/mytrackswidget.cpp:
 
 C:/Users/Lenovo/upprpo/YourMusic/frontend/profiletab.cpp:
-
-C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollBar:
 
 C:/Users/Lenovo/upprpo/YourMusic/frontend/setstyle.cpp:
 

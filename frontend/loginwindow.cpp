@@ -235,7 +235,6 @@ void LoginWindow::onTextMessageReceived(const QString &type, const QJsonObject &
             }
         }
     }
-
 }
 
 void LoginWindow::resetLineEditStyle(QLineEdit *lineEdit) {
@@ -300,7 +299,7 @@ void LoginWindow::tryLogin()
 {
     if(logUserEmaildit->text() == "1"){
         accept();
-        userTag = "asd";
+        userTag = "stas";
     }
     if (logUserEmaildit->text().trimmed().isEmpty()) {
         logUserEmaildit->setStyleSheet("QLabel, QLineEdit, QPushButton { color: white; font-size: 14px; } QLineEdit { background-color: #111; border: 1px solid red; border-radius: 5px; padding: 5px; }");

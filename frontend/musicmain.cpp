@@ -28,9 +28,10 @@
 MusicMain::MusicMain(QString *usertag, WebSocketClient *webSocket, WebSocketClient *webSocketStas, QWidget *parent)//класс для окна
     : QMainWindow(parent),
     webSocket(webSocket),
-    usertag(usertag),
+    mainUsertag(*usertag),
     webSocketStas(webSocketStas)
 {
+    mainUserInfo = new UserInfo;
     QScreen *screen = QApplication::primaryScreen();// сохраняем экран
     QRect screenGeometry = screen->availableGeometry();//извлекаем параметры экрана
     // // Получаем размер окна
@@ -113,15 +114,17 @@ MusicMain::MusicMain(QString *usertag, WebSocketClient *webSocket, WebSocketClie
     mainSplitter->addWidget(tabwidget);
 
     this->setCentralWidget(mainWidget);
+    homeTab = new HomeTab(&mainUsertag, *mainUserInfo, webSocket, this);
     // // Создаем вкладку create
-    createTab = new CreateTab(usertag, webSocket, this);
-    profileTab = new ProfileTab(this);
+    createTab = new CreateTab(&mainUsertag, webSocket, this);
+    profileTab = new ProfileTab(&mainUsertag, *mainUserInfo, webSocket, this);
 
     connect(profileTab, &ProfileTab::onAlbomClickedSignal, this, &MusicMain::on_albumButton_clicked);
-    connect(profileTab, &ProfileTab::onTrackDoubleClickedignal, this, &MusicMain::on_TrackButton_clicked);
+    connect(profileTab, &ProfileTab::onTrackDoubleClickedignal, this, &MusicMain::on_TrackButton_clicked); 
+    connect(homeTab, &HomeTab::onAlbomClickedSignal, this, &MusicMain::on_albumButton_clicked);
+    connect(homeTab, &HomeTab::onTrackDoubleClickedignal, this, &MusicMain::on_TrackButton_clicked);
     profileTab->setContentsMargins(0, 0, 0, 0);
 
-    homeTab = new HomeTab();
     tabwidget->addTab(homeTab, "Home");
     tabwidget->addTab(createTab, "Create");
     tabwidget->addTab(profileTab, "Profile");
@@ -155,6 +158,7 @@ MusicMain::MusicMain(QString *usertag, WebSocketClient *webSocket, WebSocketClie
     currentTab = homeTabButton;
     currentTab->setEnabled(false);
 
+
     mainTabButtons = { homeTabButton, createTabButton, profileTabButton}; //main tub buttons on screen
 
 
@@ -165,8 +169,6 @@ MusicMain::MusicMain(QString *usertag, WebSocketClient *webSocket, WebSocketClie
 
     connect(webSocket, &WebSocketClient::messageReceived,
             this, &MusicMain::onTextMessageReceived);
-    qDebug()<<"width1"<<windowWidth<<"heght1"<<windowHeight;
-
 }
 
 void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &data){
@@ -194,22 +196,36 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                 t.duration_s = trackObj["duration_seconds"].toInt();
                 QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
                 t.coverpath = coverUrl;
+                t.description = trackObj["description"].toString();
                 QString authorsStr = trackObj["authors"].toString();
                 QStringList authorList = authorsStr.split(",", Qt::SkipEmptyParts);
                 for (const QString &author : authorList) {
                     t.authors.append(author.trimmed());  // убираем пробелы вокруг
+                }
+                QString usertagsStr = trackObj["author_usertag"].toString();
+                QStringList userList = usertagsStr.split(",", Qt::SkipEmptyParts);
+                for (const QString &author : userList) {
+                    t.authorUsertags.append(author.trimmed());
                 }
 
                 album a;
                 a.id = 0;                      // можно брать album_id == 0, либо генерировать уникальный id
                 a.name = t.name;                        // в данном случае можно просто взять название трека
                 a.coverpath = t.coverpath;
+                a.description = t.description;
+                a.tracks.push_back(t);
                 if (!t.authors.isEmpty()) {
                     a.authorUsername = t.authors[0];
                 } else {
                     a.authorUsername = "Unknown";  // или "" — на твой вкус
                 }
+                if (!t.authorUsertags.isEmpty()) {
+                    a.authorUsertag = t.authorUsertags[0];
+                } else {
+                    a.authorUsertag = "stas";  // или "" — на твой вкус
+                }
 
+                a.total_duration = t.duration_s;
                 a.authorUsertag = 0;                       // если author_id нет в JSON — задаём -1 или 0
                 a.track_count = 1;
 
@@ -241,6 +257,14 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                     for (const QString &author : authorList) {
                         t.authors.append(author.trimmed());  // убираем пробелы вокруг
                     }
+                    QString usertagsStr = trackObj["author_usertag"].toString();
+                    QStringList userList = usertagsStr.split(",", Qt::SkipEmptyParts);
+                    for (const QString &author : userList) {
+                        qDebug()<<"author";
+                        qDebug()<<author;
+
+                        t.authorUsertags.append(author.trimmed());
+                    }
                     t.duration_s = trackObj["duration_seconds"].toInt();
                     t.id = trackObj["id"].toInt();
                     t.name = trackObj["title"].toString();
@@ -267,6 +291,14 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                 QStringList authorList = authorsStr.split(",", Qt::SkipEmptyParts);
                 for (const QString &author : authorList) {
                     t.authors.append(author.trimmed());  // убираем пробелы вокруг
+                }
+                QString usertagsStr = trackObj["author_usertag"].toString();
+                QStringList userList = usertagsStr.split(",", Qt::SkipEmptyParts);
+                for (const QString &author : userList) {
+                    qDebug()<<"author";
+                    qDebug()<<author;
+
+                    t.authorUsertags.append(author.trimmed());
                 }
 
                 album a;
@@ -304,6 +336,14 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                     for (const QString &author : authorList) {
                         t.authors.append(author.trimmed());  // убираем пробелы вокруг
                     }
+                    QString usertagsStr = trackObj["author_usertag"].toString();
+                    QStringList userList = usertagsStr.split(",", Qt::SkipEmptyParts);
+                    for (const QString &author : userList) {
+                        qDebug()<<"author";
+                        qDebug()<<author;
+
+                        t.authorUsertags.append(author.trimmed());
+                    }
                     t.duration_s = trackObj["duration_seconds"].toInt();
                     t.id = trackObj["id"].toInt();
                     t.name = trackObj["title"].toString();
@@ -331,6 +371,14 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                 for (const QString &author : authorList) {
                     t.authors.append(author.trimmed());  // убираем пробелы вокруг
                 }
+                QString usertagsStr = trackObj["author_usertag"].toString();
+                QStringList userList = usertagsStr.split(",", Qt::SkipEmptyParts);
+                for (const QString &author : userList) {
+                    qDebug()<<"author";
+                    qDebug()<<author;
+
+                    t.authorUsertags.append(author.trimmed());
+                }
 
                 album a;
                 a.id = 0;                      // можно брать album_id == 0, либо генерировать уникальный id
@@ -343,14 +391,15 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                 recAlbums->append(a);
             }
             qDebug()<<'end';
-            homeTab->homeButtonClicked(newAlbums, recAlbums, randomAlbums);
+            mainUserInfo->usertag = mainUsertag;
+            homeTab->homeButtonClicked(*mainUserInfo, newAlbums, recAlbums, randomAlbums);
+            typeOfQuery="None";
+
         }
         if(typeOfQuery=="profileButton"){
             qDebug()<<data;
             likedAlbums = new QVector<album>;
             loadedAlbums = new QVector<album>;
-            likedTracks = new album;
-            loadedTracks = new album;
             mainUserInfo = new UserInfo;
             viewUserInfo = new UserInfo;
 
@@ -361,19 +410,42 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
             QJsonArray loadedTracksArray = data["loaded_tracks"].toArray();
             QJsonObject user = data.value("user_info").toObject();
             mainUserInfo->username = user["username"].toString();
-            mainUserInfo->avatarPath = "resources/photo/yan.jpg";
             mainUserInfo->usertag = user["usertag"].toString();
+            QString coverUrl = QString("http://84.237.53.143:8083/profile/%1").arg(mainUserInfo->usertag);
+            mainUserInfo->avatarPath = coverUrl;
             mainUserInfo->followersnum = user["followersnum"].toInt();
             mainUserInfo->followingnum = user["followingnum"].toInt();
             mainUserInfo->tracksAddednum = user["tracksAddedNum"].toInt();
             mainUserInfo->tracksLoadednum = user["tracksLoadedNum"].toInt();
 
+            likedTracks = new album;
+            likedTracks->authorUsername = mainUserInfo->username;
+            likedTracks->authorUsertag = mainUserInfo->usertag;
+            likedTracks->name = "Liked Tracks";
+            likedTracks->total_duration = 0;
+            likedTracks->track_count = 0;
+            coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(4007);
+            likedTracks->coverpath = coverUrl;
+
+            loadedTracks = new album;
+            loadedTracks = new album;
+            loadedTracks->authorUsername = mainUserInfo->username;
+            loadedTracks->authorUsertag = mainUserInfo->usertag;
+            loadedTracks->name = "Loaded Tracks";
+            loadedTracks->total_duration = 0;
+            loadedTracks->track_count = 0;
+            coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(4006);
+            loadedTracks->coverpath = coverUrl;
+
+
 
             for (const QJsonValue& val : likedAlbumsArray) {
                 QJsonObject albumObj = val.toObject();
                 album a;
-                a.authorUsername = albumObj["author_username"].toString();
+                a.authorUsername = albumObj["authors"].toString();
                 a.authorUsertag = albumObj["author_usertag"].toString();
+                qDebug()<<a.authorUsername;
+                qDebug()<<a.authorUsertag;
                 a.createDate = albumObj["created_date"].toString();
                 a.description = albumObj["description"].toString();
                 a.id = albumObj["album_id"].toInt();
@@ -393,6 +465,14 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                     QStringList authorList = authorsStr.split(",", Qt::SkipEmptyParts);
                     for (const QString &author : authorList) {
                         t.authors.append(author.trimmed());  // убираем пробелы вокруг
+                    }
+                    QString usertagsStr = trackObj["author_usertag"].toString();
+                    QStringList userList = usertagsStr.split(",", Qt::SkipEmptyParts);
+                    for (const QString &author : userList) {
+                        qDebug()<<"author";
+                        qDebug()<<author;
+
+                        t.authorUsertags.append(author.trimmed());
                     }
                     t.duration_s = trackObj["duration_seconds"].toInt();
                     t.id = trackObj["id"].toInt();
@@ -414,6 +494,14 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                 for (const QString &author : authorList) {
                     t.authors.append(author.trimmed());  // убираем пробелы вокруг
                 }
+                QString usertagsStr = trackObj["author_usertag"].toString();
+                QStringList userList = usertagsStr.split(",", Qt::SkipEmptyParts);
+                for (const QString &author : userList) {
+                    qDebug()<<"author";
+                    qDebug()<<author;
+
+                    t.authorUsertags.append(author.trimmed());
+                }
                 t.duration_s = trackObj["duration_seconds"].toInt();
                 t.id = trackObj["id"].toInt();
                 t.name = trackObj["title"].toString();
@@ -421,6 +509,8 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                 QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
                 t.coverpath = coverUrl;
                 likedTracks->tracks.append(t);
+                likedTracks->total_duration += t.duration_s;
+                likedTracks->track_count++;
             }
 
             for (const QJsonValue& trackVal : loadedTracksArray) {
@@ -432,6 +522,14 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                 for (const QString &author : authorList) {
                     t.authors.append(author.trimmed());  // убираем пробелы вокруг
                 }
+                QString usertagsStr = trackObj["author_usertag"].toString();
+                QStringList userList = usertagsStr.split(",", Qt::SkipEmptyParts);
+                for (const QString &author : userList) {
+                    qDebug()<<"author";
+                    qDebug()<<author;
+
+                    t.authorUsertags.append(author.trimmed());
+                }
                 t.duration_s = trackObj["duration_seconds"].toInt();
                 t.id = trackObj["id"].toInt();
                 t.name = trackObj["title"].toString();
@@ -439,6 +537,8 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                 QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
                 t.coverpath = coverUrl;
                 loadedTracks->tracks.append(t);
+                loadedTracks->total_duration += t.duration_s;
+                loadedTracks->track_count++;
             }
 
 
@@ -446,6 +546,7 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
             QList<int> sizes = mainSplitter->sizes();
             //tabwidget->resize(20,this->height());
             profileTab->resizeProfile(sizes[1]);
+            typeOfQuery="None";
 
         }
     }
@@ -479,7 +580,7 @@ void MusicMain::on_homeTab_clicked()
     QJsonObject payload;
     payload["endpoint"] = "/catalog";
     payload["action"] = "home";
-    payload["usertag"] = "stas";
+    payload["usertag"] = mainUsertag;
 
     QJsonDocument doc(payload);
     QString message = QString::fromUtf8(doc.toJson());
@@ -491,9 +592,7 @@ void MusicMain::on_homeTab_clicked()
     toggle_buttons(homeTabButton);
 
     int current = currentTabWidget->getCurrentIndex();
-    qDebug()<<"current";
 
-    qDebug()<<current;
     if (current == 0) {
         backButton->setStyleSheet(inactiveStyle);
     }else{
@@ -501,9 +600,7 @@ void MusicMain::on_homeTab_clicked()
     }
 
     int total = currentTabWidget->getTotalIndex();
-    qDebug()<<"total";
 
-    qDebug()<<total;
     if (current == total-1) {
         forwardButton->setStyleSheet(inactiveStyle);
     }else{
@@ -516,9 +613,7 @@ void MusicMain::on_createTab_clicked()
 {
     //currentTabWidget = Create;
     int current = currentTabWidget->getCurrentIndex();
-    qDebug()<<"current";
 
-    qDebug()<<current;
     if (current == 0) {
         backButton->setStyleSheet(inactiveStyle);
     }else{
@@ -526,7 +621,6 @@ void MusicMain::on_createTab_clicked()
     }
 
     int total = currentTabWidget->getTotalIndex();
-    qDebug()<<"total";
 
     qDebug()<<total;
     if (current == total-1) {
@@ -542,7 +636,7 @@ void MusicMain::on_profileTab_clicked()
     QJsonObject payload;
     payload["endpoint"] = "/catalog";
     payload["action"] = "profile";
-    payload["usertag1"] = "stas";
+    payload["usertag1"] = mainUsertag;
     payload["flag"] = 0;
 
     QJsonDocument doc(payload);
@@ -597,14 +691,6 @@ void MusicMain::setInitialSize(int width){
 void MusicMain::on_backButton_clicked(){
 
     int current = currentTabWidget->getCurrentIndex();
-    // int current;
-    // if(currentTabWidget == homeTab){
-    //     current = homeTab->getCurrentIndex();
-    // }else if(currentTabWidget == Create){
-    //     current = 0;
-    // }else if(currentTabWidget == profileTab){
-    //     current = profileTab->getCurrentIndex();
-    // }
 
     if (current - 1 >= 0) {
         currentTabWidget->setCurrentIndex(current - 1);
@@ -615,15 +701,6 @@ void MusicMain::on_backButton_clicked(){
         backButton->setStyleSheet(inactiveStyle);
     }
     int total = currentTabWidget->getTotalIndex();
-    // int total;
-
-    // if(currentTabWidget == homeTab){
-    //     total = homeTab->getTotalIndex();
-    // }else if(currentTabWidget == Create){
-    //     total = 0;
-    // }else if(currentTabWidget == profileTab){
-    //     total = profileTab->getTotalIndex();
-    // }
 
     if (current != total-1) {
         forwardButton->setStyleSheet(activeStyle);
@@ -632,28 +709,8 @@ void MusicMain::on_backButton_clicked(){
 
 void MusicMain::on_forwardButton_clicked(){
     int current = currentTabWidget->getCurrentIndex();
-    // int current;
-
-    // if(currentTabWidget == homeTab){
-    //     current = homeTab->getCurrentIndex();
-    // }else if(currentTabWidget == Create){
-    //     current = 0;
-    // }else if(currentTabWidget == profileTab){
-    //     current = profileTab->getCurrentIndex();
-    // }
-    //QWidget* currentWidget = profilewidget->getInnerStacked()->currentWidget();
-    //currentWidget->getscro
 
     int total = currentTabWidget->getTotalIndex();
-    // int total;
-
-    // if(currentTabWidget == homeTab){
-    //     total = homeTab->getTotalIndex();
-    // }else if(currentTabWidget == Create){
-    //     total = 0;
-    // }else if(currentTabWidget == profileTab){
-    //     total = profileTab->getTotalIndex();
-    // }
 
     if (current + 1 < total) {
         currentTabWidget->setCurrentIndex(current + 1);
@@ -661,26 +718,7 @@ void MusicMain::on_forwardButton_clicked(){
 
     current = currentTabWidget->getCurrentIndex();
 
-    // if(currentTabWidget == homeTab){
-    //     current = homeTab->getCurrentIndex();
-    // }else if(currentTabWidget == Create){
-    //     current = 0;
-    // }else if(currentTabWidget == profileTab){
-    //     current = profileTab->getCurrentIndex();
-    // }
-    //QWidget* currentWidget = profilewidget->getInnerStacked()->currentWidget();
-    //currentWidget->getscro
-
     total = currentTabWidget->getTotalIndex();
-
-    // if(currentTabWidget == homeTab){
-    //     total = homeTab->getTotalIndex();
-    // }else if(currentTabWidget == Create){
-    //     total = 0;
-    // }else if(currentTabWidget == profileTab){
-    //     total = profileTab->getTotalIndex();
-    // }
-
     if (current == total-1) {
         forwardButton->setStyleSheet(inactiveStyle);
     }

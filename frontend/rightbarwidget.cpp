@@ -324,7 +324,6 @@ void RightBarWidget::onSliderValueChanged(int value)
 
 void RightBarWidget::onTimerTick()
 {
-    qDebug()<<"Tick";
     if (currentSeconds < totalSeconds)
     {
         ++currentSeconds;

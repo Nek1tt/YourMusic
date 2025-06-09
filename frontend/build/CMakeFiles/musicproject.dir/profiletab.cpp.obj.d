@@ -469,6 +469,18 @@ CMakeFiles/musicproject.dir/profiletab.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollArea \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonParseError \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsondocument.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonvalue.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcborvalue.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcborcommon.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qregularexpression.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/quuid.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonDocument \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonArray \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonarray.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonObject \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonobject.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\homewidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QLineEdit \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qlineedit.h \
@@ -533,6 +545,9 @@ CMakeFiles/musicproject.dir/profiletab.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\albumwidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\albomlistwidget.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QVector \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qvector.h \
+ C:\Users\Lenovo\upprpo\YourMusic\frontend\userslistwidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/QResizeEvent \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qevent.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qeventpoint.h \
@@ -540,7 +555,4 @@ CMakeFiles/musicproject.dir/profiletab.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qvectornd.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qpointingdevice.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qinputdevice.h \
- C:/Qt/6.8.2/mingw_64/include/QtGui/qscreen.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/QVector \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qvector.h \
- C:\Users\Lenovo\upprpo\YourMusic\frontend\userslistwidget.h
+ C:/Qt/6.8.2/mingw_64/include/QtGui/qscreen.h

@@ -15,7 +15,7 @@ class UserButton : public QPushButton {
 
 public:
     explicit UserButton(UserInfo userData);
-    UserInfo getUserData();
+    QString *getUsertag();
 private:
     UserInfo userData;
 };
@@ -36,7 +36,7 @@ private:
 
     void buildGrid();
 signals:
-    void userButtonClicked(UserInfo userData);
+    void userButtonClicked(QString *usertag);
 };
 
 #endif // USERSLISTWIDGET_H

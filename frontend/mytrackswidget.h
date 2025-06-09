@@ -16,7 +16,7 @@ public:
     explicit TrackButton(const track &trackData,QWidget *parent = nullptr);
     QString getTrackName();
     track* getTrack();
-    int getTrackId();
+    QString *getAuthorUsertag();
     void resize_trackbutton(int width);
     void loadCover(const QString& url, QLabel *label);
 
@@ -58,8 +58,8 @@ private:
 
 signals:
     void trackButtonClicked(track *trackData);
-    void trackNameButtonClicked(int trackId);
-    void authorButtonClicked(QString authorUsertag);
+    void trackNameButtonClicked(track* trackData);
+    void authorButtonClicked(QString *authorUsertag);
     void mytracksButtonClicked(const album albumData);
 };
 

@@ -2,12 +2,15 @@
 #include "setstyle.h"
 #include <QDebug>
 
-AlbomListWidget::AlbomListWidget(QVector<album> albumList, QWidget *parent)
+
+// Виджет, в котором хранится список альбомов.
+AlbomListWidget::AlbomListWidget(QVector<album> albumList, QWidget *parent) // передаем сам список виджетов для отображения
     : QWidget(parent)
 {
+    //сооздаем скролл чтобы сделать виджет прокручиваемым
     scrollArea = new QScrollArea(this);
     scrollArea->setWidgetResizable(true);
-    //setStyleSheet("border: 1px solid red");
+
     centerWrapper = new QWidget();
     QVBoxLayout *centerLayout = new QVBoxLayout(centerWrapper);
     centerLayout->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
@@ -15,27 +18,31 @@ AlbomListWidget::AlbomListWidget(QVector<album> albumList, QWidget *parent)
     QWidget *albumsWidget = new QWidget();
     albumsWidget->setFixedHeight(40);
     QHBoxLayout *albumsLayout = new QHBoxLayout(albumsWidget);
-    QLabel *albumsLabel = new QLabel("Albums");
+
+    QLabel *albumsLabel = new QLabel("Albums"); //заголовок виджета
     albumsLabel->setStyleSheet(
-          "padding-left: 5px;"
+        "padding-left: 5px;"
         "padding-bottom: 0px;"
-     "font-weight: bold;"
-     "font-size: 23px;"
-      "font-family: 'Tahoma';"
-      "background: none;"
-      "border: none;"
-      "text-decoration: none;"
-      "}"
-      "QPushButton:hover {"
-      "text-decoration: underline;");
+        "font-weight: bold;"
+        "font-size: 23px;"
+        "font-family: 'Tahoma';"
+        "background: none;"
+        "border: none;"
+        "text-decoration: none;"
+        "}"
+        "QPushButton:hover {"
+        "text-decoration: underline;"
+        );
     albumsLayout->addWidget(albumsLabel);
     centerLayout->addWidget(albumsWidget);
+
+    //основной виджет с альбомами, они идут сеткой, в ряду - 4 альбома
     containerWidget = new QWidget();
     gridLayout = new QGridLayout(containerWidget);
     gridLayout->setSpacing(10);
     gridLayout->setContentsMargins(10, 10, 10, 10);
-
     containerWidget->setLayout(gridLayout);
+
     centerLayout->addWidget(containerWidget);
     scrollArea->setWidget(centerWrapper);
 
@@ -47,12 +54,14 @@ AlbomListWidget::AlbomListWidget(QVector<album> albumList, QWidget *parent)
     buildGrid(albumList);
 }
 
+//функция для построения сетки с заданным значением столбцов
 void AlbomListWidget::buildGrid(QVector<album> albumList)
 {
-    int columns = 4;
+    constexpr int columns = 4;
 
     for (int i = 0; i < albumList.size(); ++i) {
         auto *albumButton = new AlbumButton(albumList[i]);
+
         connect(albumButton, &QPushButton::clicked, [this, albumButton]() {
             emit albumButtonClicked(albumButton->getAlbum());
         });
@@ -60,11 +69,11 @@ void AlbomListWidget::buildGrid(QVector<album> albumList)
         connect(albumButton, &AlbumButton::albumNameButtonClicked, [this, albumButton]() {
             emit albumButtonClicked(albumButton->getAlbum());
         });
+
         connect(albumButton, &AlbumButton::authorButtonClicked, [this, albumButton]() {
-            emit authorButtonClicked(albumButton->getAuthorUsertag());
+            QString tempUsertag = albumButton->getAuthorUsertag();
+            emit authorButtonClicked(&tempUsertag);
         });
-        //button->setMinimumSize(100, 100);
-        //buttons.push_back(button);
 
         int row = i / columns;
         int col = i % columns;

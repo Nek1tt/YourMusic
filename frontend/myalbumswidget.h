@@ -14,7 +14,9 @@ struct track {
     int duration_s;
     QString coverpath;
     QVector<QString> authors;
+    QVector<QString> authorUsertags;
     QString upload_date;
+    QString description;
 };
 
 
@@ -68,7 +70,7 @@ private:
 
 signals:
     void albumButtonClicked(const album albumData);
-    void authorButtonClicked(QString authorUsertag);
+    void authorButtonClicked(QString *authorUsertag);
     void myAlbumsButtonClicked(const QVector<album> albumList);
 };
 

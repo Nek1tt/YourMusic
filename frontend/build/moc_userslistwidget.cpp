@@ -109,8 +109,8 @@ static constexpr auto qt_meta_stringdata_ZN15UsersListWidgetE = QtMocHelpers::st
     "UsersListWidget",
     "userButtonClicked",
     "",
-    "UserInfo",
-    "userData"
+    "QString*",
+    "usertag"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -149,7 +149,7 @@ Q_CONSTINIT const QMetaObject UsersListWidget::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<UsersListWidget, std::true_type>,
         // method 'userButtonClicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<UserInfo, std::false_type>
+        QtPrivate::TypeAndForceComplete<QString *, std::false_type>
     >,
     nullptr
 } };
@@ -159,14 +159,14 @@ void UsersListWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
     auto *_t = static_cast<UsersListWidget *>(_o);
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: _t->userButtonClicked((*reinterpret_cast< std::add_pointer_t<UserInfo>>(_a[1]))); break;
+        case 0: _t->userButtonClicked((*reinterpret_cast< std::add_pointer_t<QString*>>(_a[1]))); break;
         default: ;
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
         int *result = reinterpret_cast<int *>(_a[0]);
         {
-            using _q_method_type = void (UsersListWidget::*)(UserInfo );
+            using _q_method_type = void (UsersListWidget::*)(QString * );
             if (_q_method_type _q_method = &UsersListWidget::userButtonClicked; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
                 *result = 0;
                 return;
@@ -207,7 +207,7 @@ int UsersListWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 }
 
 // SIGNAL 0
-void UsersListWidget::userButtonClicked(UserInfo _t1)
+void UsersListWidget::userButtonClicked(QString * _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 0, _a);

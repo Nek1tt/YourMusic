@@ -1,50 +1,38 @@
-#include <QScreen> //for Qscreen *screen = QApplication::primaryScreen();
 #include <QWidget>
 #include <QLabel>
-#include <QPixmap>
-#include <QGridLayout>
-#include <QBoxLayout>
 #include <QVBoxLayout>
-#include <QHBoxLayout>
-#include <QPushButton>
-// #include <QWebSocket>
-#include <QMessageBox>
-#include <QDir>
-
 
 #include "hometab.h"
 #include "myalbumswidget.h"
 #include "profilewidget.h"
 
-CreateTab::CreateTab(QString *usertag, WebSocketClient *webSocketStas, QWidget *parent)
+CreateTab::CreateTab(QString *usertag, WebSocketClient *webSocket, QWidget *parent)
     : AbstractTab(parent)
 {
-    // Initialize buttons
+    // создаём стек виджетов для переключения между экранами
     innerStacked = new QStackedWidget();
-    mainWidget = new CreateWidget(usertag, webSocketStas);
 
+    // основной виджет вкладки создания с передачей параметров
+    mainWidget = new CreateWidget(usertag, webSocket);
+
+    // виджет для скролла и его layout
     scrollWidget = new QWidget();
     mainLayout = new QVBoxLayout(scrollWidget);
-    mainLayout->setContentsMargins(0, 0, 0, 0);
+    mainLayout->setContentsMargins(0, 0, 0, 0); // убираем внешние отступы
     mainLayout->addWidget(mainWidget);
 
+    // настраиваем scroll area для прокрутки содержимого
     scrollArea = new QScrollArea(this);
     scrollArea->setWidget(scrollWidget);
-    scrollArea->setWidgetResizable(true);
-    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    scrollArea->setWidgetResizable(true); // чтобы содержимое масштабировалось по размеру окна
+    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff); // горизонтальная прокрутка отключена
+    scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);    // вертикальная прокрутка по необходимости
 
-    // Добавляем scrollArea как главный экран в стек
+    // добавляем scrollArea в стек виджетов
     innerStacked->addWidget(scrollArea);
-    //mainWidget->setStyleSheet("QWidget { border: 1px solid red; }");
 
-    // Размещаем стек в основной вкладке
+    // создаём основной layout вкладки и добавляем в него стек
     QVBoxLayout *tabLayout = new QVBoxLayout(this);
     tabLayout->setContentsMargins(0, 0, 0, 0);
     tabLayout->addWidget(innerStacked);
-    setStyleSheet("border: 1px, solid, red");
-
-    // Set the layout of the Create tab to this layout
-   // createtab->setLayout(createLayout);
 }
-

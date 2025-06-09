@@ -61,8 +61,8 @@ UserButton::UserButton(UserInfo userData)
 
 }
 
-UserInfo UserButton::getUserData(){
-    return userData;
+QString *UserButton::getUsertag(){
+    return &userData.usertag;
 };
 
 
@@ -120,16 +120,16 @@ void UsersListWidget::buildGrid()
     int columns = 1;
 
     for (int i = 0; i < users.size(); ++i) {
-        auto *albumButton = new UserButton(users[i]);
-        connect(albumButton, &QPushButton::clicked, [this, albumButton]() {
-            emit userButtonClicked(albumButton->getUserData());
+        auto *userButton = new UserButton(users[i]);
+        connect(userButton, &QPushButton::clicked, [this, userButton]() {
+            emit userButtonClicked(userButton->getUsertag());
         });
         //button->setMinimumSize(100, 100);
         //buttons.push_back(button);
 
         int row = i / columns+1;
         int col = i % columns;
-        trackListLayout->addWidget(albumButton, row, col);
+        trackListLayout->addWidget(userButton, row, col);
     }
 
     containerWidget->adjustSize();

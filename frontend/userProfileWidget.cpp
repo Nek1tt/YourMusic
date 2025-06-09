@@ -10,6 +10,9 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
 // #include <QWebSocket>
 #include <QMessageBox>
 #include <QDir>
@@ -117,22 +120,21 @@ UserProfileWidget::UserProfileWidget(QWidget *parent) // класс для ин�
 }
 
 void UserProfileWidget::setUserProfile(const UserInfo &user) {
-    QPixmap avatarPixmap(user.avatarPath);
-    QPixmap scaledPixmap = avatarPixmap.scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    // QPixmap avatarPixmap(user.avatarPath);
+    // QPixmap scaledPixmap = avatarPixmap.scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    // // Создаем круглую маску
+    // QPixmap roundedPixmap(scaledPixmap.size());
+    // roundedPixmap.fill(Qt::transparent); // Прозрачный фон
 
-    qDebug()<<user.username;
-    // Создаем круглую маску
-    QPixmap roundedPixmap(scaledPixmap.size());
-    roundedPixmap.fill(Qt::transparent); // Прозрачный фон
+    // QPainter painter(&roundedPixmap);
+    // painter.setRenderHint(QPainter::Antialiasing);
+    // QPainterPath path;
+    // path.addRoundedRect(roundedPixmap.rect(), 20, 20); // Закругление по радиусу (100 – круг)
+    // painter.setClipPath(path);
+    // painter.drawPixmap(0, 0, scaledPixmap);
 
-    QPainter painter(&roundedPixmap);
-    painter.setRenderHint(QPainter::Antialiasing);
-    QPainterPath path;
-    path.addRoundedRect(roundedPixmap.rect(), 20, 20); // Закругление по радиусу (100 – круг)
-    painter.setClipPath(path);
-    painter.drawPixmap(0, 0, scaledPixmap);
-
-    avatarLabel->setPixmap(roundedPixmap); //добавляем в слой авы саму аву
+    // avatarLabel->setPixmap(roundedPixmap); //добавляем в слой авы саму аву
+    loadCover(user.avatarPath, avatarLabel);
     usernameLabel->setText(user.username);
     usertagLabel->setText(user.usertag);
     followersNumLabel->setText(QString::number(user.followersnum));
@@ -142,6 +144,28 @@ void UserProfileWidget::setUserProfile(const UserInfo &user) {
 }// функция, что заполняет информацией и авой профиль.
 
 
+void UserProfileWidget::loadCover(const QString& url, QLabel *label) {
+    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+
+    connect(manager, &QNetworkAccessManager::finished, this, [label, manager](QNetworkReply *reply) {
+        if (reply->error() == QNetworkReply::NoError) {
+            QByteArray data = reply->readAll();
+            QPixmap pixmap;
+            if (pixmap.loadFromData(data)) {
+                label->setPixmap(pixmap.scaled(200, 200, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation).copy(0, 0, 200, 200));
+            } else {
+                qDebug() << "Не удалось загрузить картинку из данных!";
+            }
+        } else {
+            qDebug() << "Ошибка загрузки:" << reply->errorString();
+        }
+        reply->deleteLater();
+        manager->deleteLater();
+    });
+
+    QNetworkRequest request(url);
+    manager->get(request);
+}
 
 QVector<UserInfo> loadUsersFromJson(const QString &filePath) {
     QFile file(filePath);

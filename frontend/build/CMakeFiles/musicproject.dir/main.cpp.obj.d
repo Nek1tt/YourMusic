@@ -469,6 +469,18 @@ CMakeFiles/musicproject.dir/main.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollArea \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonParseError \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsondocument.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonvalue.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcborvalue.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qcborcommon.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qregularexpression.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/quuid.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonDocument \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonArray \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonarray.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonObject \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonobject.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\homewidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QLineEdit \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qlineedit.h \
@@ -539,18 +551,6 @@ CMakeFiles/musicproject.dir/main.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtabwidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTabBar \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtabbar.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonParseError \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qjsondocument.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonvalue.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qcborvalue.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qcborcommon.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qregularexpression.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/quuid.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonDocument \
- C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonArray \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonarray.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonObject \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonobject.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QSlider \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qslider.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractslider.h \

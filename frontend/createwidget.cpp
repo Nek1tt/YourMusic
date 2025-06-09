@@ -282,16 +282,10 @@ void CreateWidget::addNewTrackButton() {
 }
 
 void CreateWidget::on_upload_clicked(){
-    qDebug()<<"1";
-
-
     if(!(typeOfObject == "single") && nameEdit->text().trimmed().isEmpty()){
-        qDebug()<<"2";
-
         nameEdit->setStyleSheet("QLineEdit {color: white; font-size: 18px; background-color: #111; border: 1px solid #333; border-radius: 5px; padding: 5px; border: 1px solid red; }");
         nameEdit->setFocus();
         qDebug()<<"3";
-
         return;
 
     }
@@ -340,16 +334,18 @@ void CreateWidget::on_upload_clicked(){
     if(typeOfObject == "single"){
         payload["title"] = trackWidgets[0]->getTitleEdit()->text();
         payload["entity"] = "track";
-        payload["duration_seconds"] = 3453;
+        payload["duration_seconds"] = 180;
         payload["file_blob"] = base64String;
         QJsonArray trackTags;
         for (auto author:*trackWidgets[0]->getAuthors()){
             trackTags.append(author);
         }
+        payload["lyrics"] = trackWidgets[0]->getTracLyricsEdit()->toPlainText();
         payload["usertags"] = trackTags;
         payload["cover_blob"] = base64String;
     }else{
         payload["entity"] = typeOfObject;
+        payload["description"] = descriptionEdit->toPlainText();
         payload["album_title"] = nameEdit->text();
         QJsonArray albumtags;
         albumtags.append(*usertag);
@@ -362,6 +358,16 @@ void CreateWidget::on_upload_clicked(){
             QJsonObject track1;
             track1["title"] = widget->getTitleEdit()->text();
             track1["duration_seconds"] = 180;
+
+            QFile musFile(widget->getfilename());
+            QString base64String;
+            if (file.open(QIODevice::ReadOnly)) {
+                QByteArray fileData = musFile.readAll();
+                base64String = fileData.toBase64();
+            } else {
+                qDebug() << "Failed to open cover image!";
+            }
+
             track1["file_blob"] = base64String;
 
             QJsonArray trackTags;
@@ -379,7 +385,7 @@ void CreateWidget::on_upload_clicked(){
 
     QJsonDocument doc(payload);
     QString message = QString::fromUtf8(doc.toJson());
-    qDebug()<<message;
+    // qDebug()<<message;
     webSocketStas->sendMessage(message);
     qDebug()<<"6";
 
@@ -792,7 +798,10 @@ void TrackWidget::resetLineEditStyle(QLineEdit *lineEdit){
     lineEdit->setStyleSheet("QLineEdit {color: white; font-size: 18px; background-color: #111; border: 1px solid #333; border-radius: 5px; padding: 5px; }");
 }
 
+QString TrackWidget::getfilename(){
+    return fileName;
+}
 
-
-
-
+QTextEdit *TrackWidget::getTracLyricsEdit(){
+    return tracLyricsEdit;
+}

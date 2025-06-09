@@ -92,7 +92,7 @@ void AlbumButton::loadCover(const QString& url, QLabel *label) {
             QByteArray data = reply->readAll();
             QPixmap pixmap;
             if (pixmap.loadFromData(data)) {
-                label->setPixmap(pixmap.scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+                label->setPixmap(pixmap.scaled(200, 200, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation).copy(0, 0, 200, 200));
             } else {
                 qDebug() << "Не удалось загрузить картинку из данных!";
             }
@@ -166,7 +166,7 @@ void MyAlbumsWidget::add_albums(QVector<album> newAlbumList) {
     clearLayout(albumsLayout);
     albums_vector = newAlbumList;
     if(newAlbumList.isEmpty()){
-        this->hide();
+        //this->hide();
     }else{
          this->show();
     }
@@ -199,7 +199,8 @@ void MyAlbumsWidget::add_albums(QVector<album> newAlbumList) {
             emit albumButtonClicked(albumButton->getAlbum());
         });
         connect(albumButton, &AlbumButton::authorButtonClicked, [this, albumButton]() {
-            emit authorButtonClicked(albumButton->getAuthorUsertag());
+            QString tempUsertag = albumButton->getAuthorUsertag();
+            emit authorButtonClicked(&tempUsertag);
         });
     }
 

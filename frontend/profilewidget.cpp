@@ -80,8 +80,8 @@ void ProfileWidget::onTracksAddedButtonClicked(){
     emit tracksAddedButtonClicked();
 };
 
-void ProfileWidget::onAuthorButtonClicked(QString authorUsername){
-    emit authorButtonClicked(authorUsername);
+void ProfileWidget::onAuthorButtonClicked(QString *authorUsertag){
+    emit authorButtonClicked(authorUsertag);
 }
 
 void ProfileWidget::onAlbumClicked(album albumData){
@@ -94,8 +94,8 @@ void ProfileWidget::onTrackDoubleClicked(track *trackData){
     emit trackDoubleClicked(trackData);
 };
 
-void ProfileWidget::onTrackNameButtonClicked(int trackId){
-    emit trackNameButtonClicked(trackId);
+void ProfileWidget::onTrackNameButtonClicked(track *TrackData){
+    emit trackNameButtonClicked(TrackData);
 }
 
 

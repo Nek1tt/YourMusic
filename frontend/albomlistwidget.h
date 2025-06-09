@@ -1,20 +1,21 @@
+#ifndef ALBOMLISTWIDGET_H
+#define ALBOMLISTWIDGET_H
+
 #include <QWidget>
 #include <QScrollArea>
 #include <QGridLayout>
-#include <QPushButton>
-#include <QResizeEvent>
 #include <QVector>
-#include "myalbumswidget.h"
-
-
-#ifndef ALBOMLISTWIDGET_H
-#define ALBOMLISTWIDGET_H
+#include "myalbumswidget.h" //отсюда берем album и AlbumButton
 
 class AlbomListWidget : public QWidget {
     Q_OBJECT
 
 public:
     explicit AlbomListWidget(QVector<album> albumList, QWidget *parent = nullptr);
+
+signals:
+    void albumButtonClicked(const album albumData);
+    void authorButtonClicked(QString *trackUsertag);
 
 private:
     QScrollArea *scrollArea;
@@ -24,13 +25,6 @@ private:
     QVector<AlbumButton> buttons;
 
     void buildGrid(QVector<album> albumList);
-
-signals:
-    void albumButtonClicked(const album albumData);
-    void authorButtonClicked(QString authorUsername);
 };
+
 #endif // ALBOMLISTWIDGET_H
-
-
-
-

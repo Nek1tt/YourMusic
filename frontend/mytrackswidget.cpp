@@ -38,17 +38,15 @@
 TrackButton::TrackButton(const struct track &trackData, QWidget *parent)
     :QPushButton(parent), trackData(trackData)
 {
-    qDebug()<<trackData.coverpath;
-    qDebug()<<trackData.name;
     QHBoxLayout *layout = new QHBoxLayout(this);
     QLabel *coverLabel = new QLabel(this);
     loadCover(trackData.coverpath, coverLabel);
     //coverLabel->setFixedWidth(80);
     //QPixmap coverPixmap(trackData.coverpath);
     //coverLabel->setPixmap(coverPixmap.scaled(70, 70, Qt::KeepAspectRatio));
-    layout->addWidget(coverLabel);  // Добавляем обложку в макет
-
-    QVBoxLayout *name_and_author = new QVBoxLayout();
+    layout->addWidget(coverLabel, 0, Qt::AlignLeft);  // Добавляем обложку в макет
+    QWidget *name_and_author_widget = new QWidget();
+    QVBoxLayout *name_and_author = new QVBoxLayout(name_and_author_widget);
     QPushButton *nameButton = new QPushButton(trackData.name);
     connect(nameButton, &QPushButton::clicked, [this]() {
         emit trackNameButtonClicked();
@@ -65,7 +63,7 @@ TrackButton::TrackButton(const struct track &trackData, QWidget *parent)
     connect(authorButton, &QPushButton::clicked, [this]() {
         emit trackAuthorButtonClicked();
     });
-    authorButton->setFixedHeight(14);
+    authorButton->setFixedHeight(16);
     //int widthOfAuthor = trackData.author.size()*7;
     QFontMetrics fm_au(authorButton->font());
     int textWidth_au = fm_au.horizontalAdvance(trackData.authors[0]);
@@ -77,7 +75,7 @@ TrackButton::TrackButton(const struct track &trackData, QWidget *parent)
 
     name_and_author->addWidget(nameButton);
     name_and_author->addWidget(authorButton);
-    layout->addLayout(name_and_author);
+    layout->addWidget(name_and_author_widget, 1, Qt::AlignLeft);
 
     int minutes = trackData.duration_s / 60;
     int seconds = trackData.duration_s  % 60;
@@ -113,7 +111,7 @@ void TrackButton::loadCover(const QString& url, QLabel *label) {
             QByteArray data = reply->readAll();
             QPixmap pixmap;
             if (pixmap.loadFromData(data)) {
-                label->setPixmap(pixmap.scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation));
+                label->setPixmap(pixmap.scaled(80, 80, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation).copy(0, 0, 200, 200));
             } else {
                 qDebug() << "Не удалось загрузить картинку из данных!";
             }
@@ -131,8 +129,8 @@ void TrackButton::loadCover(const QString& url, QLabel *label) {
 QString TrackButton::getTrackName(){
     return trackData.name;
 }
-int TrackButton::getTrackId(){
-    return trackData.id;
+QString *TrackButton::getAuthorUsertag(){
+    return &trackData.authorUsertags[0];
 }
 
 track * TrackButton::getTrack(){
@@ -197,10 +195,10 @@ void MyTracksWidget::add_liked_tracks(album newTracks) {
 
         connect(trackButton, &TrackButton::trackButtonClicked, this, &MyTracksWidget::onTrackdoubleClicked);
         connect(trackButton, &TrackButton::trackNameButtonClicked, [this, trackButton]() {
-            emit trackNameButtonClicked(trackButton->getTrackId());
+            emit trackNameButtonClicked(trackButton->getTrack());
         });
         connect(trackButton, &TrackButton::trackAuthorButtonClicked, [this, trackButton]() {
-            //emit authorButtonClicked(trackButton->getTrackId());
+            emit authorButtonClicked(trackButton->getAuthorUsertag());
         });
     }
 
