@@ -1,0 +1,96 @@
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: yourmusic-db
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      retries: 5
+    environment:
+      MYSQL_ROOT_PASSWORD: YourMusic
+      MYSQL_DATABASE: yourmusic
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./docker/initdb:/docker-entrypoint-initdb.d
+
+  auth:
+    build:
+      context: ./server
+      dockerfile: src/auth/Dockerfile
+    container_name: yourmusic-auth
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure
+    ports:
+      - "8082:8082"
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASS: YourMusic
+      DB_NAME: yourmusic
+
+  catalog:
+    build:
+      context: ./server
+      dockerfile: src/catalog/Dockerfile
+    container_name: yourmusic-catalog
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure
+    ports:
+      - "8083:8083"
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASS: YourMusic
+      DB_NAME: yourmusic
+
+  streaming:
+    build:
+      context: ./server
+      dockerfile: src/streaming/Dockerfile
+    container_name: yourmusic-streaming
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: on-failure
+    ports:
+      - "8084:8084"
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASS: YourMusic
+      DB_NAME: yourmusic
+
+  api:
+    build:
+      context: ./server
+      dockerfile: src/api/Dockerfile
+    container_name: yourmusic-api
+    depends_on:
+      db:
+        condition: service_healthy
+      auth:
+        condition: service_started
+      catalog:
+        condition: service_started
+      streaming:
+        condition: service_started
+    restart: on-failure
+    ports:
+      - "8080:8080"
+    environment:
+      AUTH_HOST: auth
+      AUTH_PORT: "8082"
+      CATALOG_HOST: catalog
+      CATALOG_PORT: "8083"
+      STREAMING_HOST: streaming
+      STREAMING_PORT: "8084"
+
+volumes:
+  db_data:

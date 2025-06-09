@@ -1,0 +1,12 @@
+server/src/catalog/build/
+server/src/auth/build
+server/src/api/build
+server/src/streaming/build
+*.o
+*.obj
+*.exe
+*.dll
+*.lib
+*.pdb
+CMakeCache.txt
+CMakeFiles/
