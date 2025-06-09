@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <boost/beast/core.hpp>
 #include <boost/beast/websocket.hpp>
 #include <boost/asio/ip/tcp.hpp>
@@ -10,7 +9,6 @@
 #include <nlohmann/json.hpp>
 #include <string>
 #include <iostream>
-#include <locale>
 #include <boost/beast/http.hpp>
 #include <boost/beast/core.hpp>
 #include <boost/asio/connect.hpp>

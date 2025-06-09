@@ -36,7 +36,11 @@ private:
         try {
             net::io_context ioc;
             tcp::resolver resolver(ioc);
-            auto const results = resolver.resolve("127.0.0.1", "8082");
+            const char* authHost = std::getenv("AUTH_HOST");
+            if (!authHost) authHost = "127.0.0.1";
+            const char* authPort = std::getenv("AUTH_PORT");
+            if (!authPort) authPort = "8082";
+            auto const results = resolver.resolve(authHost, authPort);
             beast::tcp_stream stream(ioc);
             stream.connect(results);
             nlohmann::json requestBody;
@@ -49,7 +53,7 @@ private:
             std::string body = requestBody.dump();
   
             http::request<http::string_body> req{http::verb::post, endpoint, 11};
-            req.set(http::field::host, "127.0.0.1:8082");
+            req.set(http::field::host, std::string(authHost) + ":" + authPort);
             req.set(http::field::user_agent, "API-Gateway/1.0");
             req.set(http::field::content_type, "application/json");
             req.body() = body;
@@ -143,7 +147,11 @@ private:
         try {
             net::io_context ioc;
             tcp::resolver resolver(ioc);
-            auto const results = resolver.resolve("127.0.0.1", "8083");
+            const char* catHost = std::getenv("CATALOG_HOST");
+            if (!catHost) catHost = "127.0.0.1";
+            const char* catPort = std::getenv("CATALOG_PORT");
+            if (!catPort) catPort = "8083";
+            auto const results = resolver.resolve(catHost, catPort);
 
             beast::tcp_stream stream(ioc);
             stream.connect(results);
@@ -158,7 +166,7 @@ private:
             std::string body = requestBody.dump();
 
             http::request<http::string_body> httpReq{http::verb::post, endpoint, 11};
-            httpReq.set(http::field::host, "127.0.0.1:8083");
+            httpReq.set(http::field::host, std::string(catHost) + ":" + catPort);
             httpReq.set(http::field::user_agent, "API-Gateway/1.0");
             httpReq.set(http::field::content_type, "application/json");
             httpReq.body() = body;
