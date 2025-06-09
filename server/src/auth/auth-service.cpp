@@ -118,7 +118,7 @@ http::response<http::string_body> HttpSession::handle_register(const json& body)
         std::cerr << "[HttpSession] add_user() succeeded for usertag='" << usertag << "'\n";
 
         std::cerr << "[HttpSession] Attempting to set default profile cover\n";
-        if (!db_.save_profile_cover(usertag)) {
+        if (!db_.set_default_profile_cover(usertag)) {
             std::cerr << "[HttpSession] set_default_profile_cover() failed for usertag='"
                       << usertag << "'\n";
         } else {
