@@ -1,0 +1,31 @@
+services:
+  db:
+    image: mysql:8.0
+    container_name: yourmusic-db
+    environment:
+      MYSQL_ROOT_PASSWORD: YourMusic
+      MYSQL_DATABASE: yourmusic
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./docker/initdb:/docker-entrypoint-initdb.d
+  
+
+  catalog:
+    build:
+      context: ./server
+      dockerfile: src/catalog/Dockerfile
+    depends_on:
+      - db
+    ports:
+      - "8083:8083"
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASS: YourMusic
+      DB_NAME: yourmusic
+
+
+volumes:
+  db_data:
