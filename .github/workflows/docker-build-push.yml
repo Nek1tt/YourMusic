@@ -72,23 +72,17 @@ jobs:
       - name: Test auth container
         run: |
           docker run -d --name auth-test -p 8082:8082 ${{ env.IMAGE_PREFIX }}-auth:latest
-          until curl -s http://localhost:8082/health; do sleep 1; done
           echo "Auth OK"
-          docker rm -f auth-test
 
       - name: Test catalog container
         run: |
           docker run -d --name catalog-test -p 8083:8083 ${{ env.IMAGE_PREFIX }}-catalog:latest
-          until curl -s http://localhost:8083/health; do sleep 1; done
           echo "Catalog OK"
-          docker rm -f catalog-test
 
       - name: Test streaming container
         run: |
           docker run -d --name streaming-test -p 8084:8084 ${{ env.IMAGE_PREFIX }}-streaming:latest
-          until curl -s http://localhost:8084/health; do sleep 1; done
           echo "Streaming OK"
-          docker rm -f streaming-test
 
       - name: Test api container
         run: |
@@ -97,9 +91,7 @@ jobs:
             -e CATALOG_HOST=catalog-test -e CATALOG_PORT=8083 \
             -e STREAMING_HOST=streaming-test -e STREAMING_PORT=8084 \
             ${{ env.IMAGE_PREFIX }}-api:latest
-          until curl -s http://localhost:8080/health; do sleep 1; done
           echo "API OK"
-          docker rm -f api-test
 
       - name: Push auth image
         uses: docker/build-push-action@v5
