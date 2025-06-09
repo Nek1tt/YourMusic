@@ -19,7 +19,7 @@ public:
     nlohmann::json handle_seek(const nlohmann::json& j);
     nlohmann::json handle_volume(const nlohmann::json& j);
     nlohmann::json handle_auth(const nlohmann::json& request);
-
+    nlohmann::json handle_duration(const nlohmann::json& j);
     bool is_running() const;
 
 private:
