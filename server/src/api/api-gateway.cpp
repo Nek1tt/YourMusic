@@ -127,6 +127,7 @@ public:
         else if (action == "user_action") {
             endpoint = "/user_action";
         }
+
         else {
             sendErrorResponse("Unknown action: " + action);
             return;
@@ -207,13 +208,16 @@ private:
         session_.sendMessage(errorResponse.dump());
     }
 };
-    
+
 // ===================== ApiSession =====================
 
 ApiSession::ApiSession(tcp::socket&& socket)
     : ws_(std::move(socket)),
       authHandler_(nullptr),
+
       catalogHandler_(nullptr) {}
+
+
 
 void ApiSession::run() {
     ws_.async_accept([self = shared_from_this()](beast::error_code ec) {

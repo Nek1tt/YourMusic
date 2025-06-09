@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include <boost/beast/core.hpp>
 #include <boost/beast/websocket.hpp>
 #include <boost/asio/ip/tcp.hpp>
@@ -44,8 +45,10 @@ private:
     class AuthHandler;
     class CatalogHandler;
 
+
     std::unique_ptr<AuthHandler> authHandler_;
     std::unique_ptr<CatalogHandler> catalogHandler_;
+
 };
 
 // ===================== WebSocket API-сервер =====================
