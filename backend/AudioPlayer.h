@@ -21,7 +21,7 @@ public:
     void stopAudio();
     bool seekTo(double position); 
     void setVolume(float vol);
-
+    static double getAudioDuration(const char* path);
 private:
     static void audioCallback(void* userdata, Uint8* stream, int len);
 
