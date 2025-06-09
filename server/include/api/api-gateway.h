@@ -1,6 +1,4 @@
-// api-gateway.h
-#ifndef APIGATEWAY_H
-#define APIGATEWAY_H
+#pragma once
 
 #include <boost/beast/core.hpp>
 #include <boost/beast/websocket.hpp>
@@ -59,5 +57,3 @@ private:
     tcp::acceptor acceptor_;
     void doAccept();
 };
-
-#endif // APIGATEWAY_H
