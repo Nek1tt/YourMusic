@@ -2,9 +2,9 @@ name: CMake Build for All Services
 
 on:
   push:
-    branches: [ "main" , "feature/api"]
+    branches: [ "main", "feature/api" ]
   pull_request:
-    branches: [ "main" , "feature/api"]
+    branches: [ "main", "feature/api" ]
 
 env:
   BUILD_TYPE: Release
@@ -20,6 +20,24 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libboost-system-dev \
+            libboost-thread-dev \
+            libboost-filesystem-dev \
+            nlohmann-json3-dev
+
+      - name: Bootstrap vcpkg
+        run: |
+          git clone https://github.com/microsoft/vcpkg.git vcpkg
+          ./vcpkg/bootstrap-vcpkg.sh
+
+      - name: Install Boost & MySQL via vcpkg
+        run: |
+          ./vcpkg/vcpkg install boost-system boost-thread boost-filesystem boost-mysql
+
       - name: Create build directory for ${{ matrix.service }}
         run: mkdir -p server/build-${{ matrix.service }}
 
@@ -29,16 +47,16 @@ jobs:
             -B server/build-${{ matrix.service }} \
             -S server/src/${{ matrix.service }} \
             -DCMAKE_BUILD_TYPE=${{ env.BUILD_TYPE }} \
+            -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake \
             -DCMAKE_PREFIX_PATH=${{ github.workspace }}/server
 
       - name: Build ${{ matrix.service }}
-        run: |
-          cmake --build server/build-${{ matrix.service }} --config ${{ env.BUILD_TYPE }}
+        run: cmake --build server/build-${{ matrix.service }} --config ${{ env.BUILD_TYPE }}
 
-      - name: Verify artifact for ${{ matrix.service }}
-        # можно проверять, что исполняемый файл создан, например:
+      - name: Verify executable in server/build-${{ matrix.service }}
         run: |
-          if [ ! -f server/build-${{ matrix.service }}/${{ matrix.service }} ]; then
-            echo "Build artifact not found for ${{ matrix.service }}"
+          count=$(find server/build-${{ matrix.service }} -maxdepth 1 -type f -executable | wc -l)
+          if [ "$count" -eq "0" ]; then
+            echo "❌ No executables found in build-${{ matrix.service }}"
             exit 1
           fi
