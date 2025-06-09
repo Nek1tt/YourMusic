@@ -247,3 +247,32 @@ void AudioPlayer::setVolume(float vol) {
         audioData->volume = vol;
     }
 }
+
+
+double AudioPlayer::getAudioDuration(const char* path) {
+    avformat_network_init();
+
+    AVFormatContext* formatCtx = nullptr;
+
+    if (avformat_open_input(&formatCtx, path, nullptr, nullptr) != 0) {
+        std::cerr << "Ошибка открытия файла: " << path << std::endl;
+        return -1.0;
+    }
+
+    if (avformat_find_stream_info(formatCtx, nullptr) < 0) {
+        std::cerr << "Ошибка получения информации о потоке!" << std::endl;
+        avformat_close_input(&formatCtx);
+        return -1.0;
+    }
+
+    int64_t duration = formatCtx->duration;
+
+    avformat_close_input(&formatCtx);
+
+    if (duration <= 0) {
+        std::cerr << "Не удалось определить длительность файла." << std::endl;
+        return -1.0;
+    }
+
+    return static_cast<double>(duration) / AV_TIME_BASE;
+}
