@@ -174,11 +174,11 @@
 - Выводит длинну трека
 
 Логика:
-  Функция getAudioDuration открывает аудиофайл через FFmpeg, считывает его поток и возвращает длительность в секундах.
-  avformat_network_init() — инициализация сетевых компонентов FFmpeg.
-  avformat_open_input() — открытие файла и создание контекста formatCtx.
-  avformat_find_stream_info() — получение информации о потоках файла.
-  avformat_close_input() — закрытие файла и освобождение ресурсов.
+  -Функция getAudioDuration открывает аудиофайл через FFmpeg, считывает его поток и возвращает длительность в секундах.
+  -avformat_network_init() — инициализация сетевых компонентов FFmpeg.
+  -avformat_open_input() — открытие файла и создание контекста formatCtx.
+  -avformat_find_stream_info() — получение информации о потоках файла.
+  -avformat_close_input() — закрытие файла и освобождение ресурсов.
 
   
 </details>
