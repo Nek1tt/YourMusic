@@ -16,18 +16,26 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `album_likes`
+-- Table structure for table `tracks`
 --
 
-DROP TABLE IF EXISTS `album_likes`;
+DROP TABLE IF EXISTS `tracks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `album_likes` (
-  `usertag` varchar(45) NOT NULL,
-  `album_id` int NOT NULL,
-  `liked_at` datetime DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`usertag`,`album_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `tracks` (
+  `track_id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  `album_id` int DEFAULT NULL,
+  `duration_seconds` int NOT NULL,
+  `upload_date` date DEFAULT NULL,
+  `cover_blob` longblob,
+  `file_blob` longblob,
+  `description` varchar(1000) DEFAULT NULL,
+  `track_text` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`track_id`),
+  KEY `album_id` (`album_id`),
+  CONSTRAINT `tracks_ibfk_2` FOREIGN KEY (`album_id`) REFERENCES `albums` (`album_id`) ON DELETE SET NULL
+) ENGINE=InnoDB AUTO_INCREMENT=4013 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -39,4 +47,4 @@ CREATE TABLE `album_likes` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-10  0:59:56
+-- Dump completed on 2025-06-10  0:59:55

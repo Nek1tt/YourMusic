@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `yourmusic` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `yourmusic`;
 -- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
 --
 -- Host: localhost    Database: yourmusic
@@ -33,16 +31,6 @@ CREATE TABLE `album_authors` (
   CONSTRAINT `album_authors_ibfk_2` FOREIGN KEY (`usertag`) REFERENCES `users` (`usertag`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `album_authors`
---
-
-LOCK TABLES `album_authors` WRITE;
-/*!40000 ALTER TABLE `album_authors` DISABLE KEYS */;
-INSERT INTO `album_authors` VALUES (20,'frank'),(2,'goshan'),(30,'harry'),(40,'jack'),(429,'justdice'),(430,'justdice'),(431,'justdice'),(432,'justdice'),(433,'justdice'),(434,'justdice'),(435,'justdice'),(436,'justdice'),(437,'justdice'),(438,'justdice'),(50,'leo'),(60,'nick'),(1,'stas');
-/*!40000 ALTER TABLE `album_authors` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -53,4 +41,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-09  0:48:52
+-- Dump completed on 2025-06-10  0:59:55
