@@ -235,3 +235,27 @@ nlohmann::json ServerHandler::handle_auth(const nlohmann::json& request) {
     }
     return response;
 }
+
+
+
+nlohmann::json ServerHandler::handle_duration(const nlohmann::json& j) {
+    nlohmann::json response;
+
+
+    if (!j.contains("path") || !j["path"].is_string()) {
+        response["error"] = "Missing or invalid 'path' field for duration";
+        return response;
+    }
+
+    std::string path = j["path"].get<std::string>();
+
+
+    double duration = AudioPlayer::getAudioDuration(path.c_str());
+    if (duration < 0.0) {
+        response["error"] = "Failed to determine duration for file: " + path;
+        return response;
+    }
+
+    response["duration"] = duration;
+    return response;
+}
