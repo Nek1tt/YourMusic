@@ -68,9 +68,14 @@ http::response<http::string_body> HttpSession::handle_register(const json& body)
         std::string username = body.at("username").get<std::string>();
         std::string email    = body.at("email").get<std::string>();
         std::string password = body.at("password").get<std::string>();
-        std::string usertag = body.at("usertag").get<std::string>();
+        std::string usertag  = body.at("usertag").get<std::string>();
+
+        std::cerr << "[HttpSession] Register: username=" << username
+                  << ", email=" << email << ", usertag=" << usertag << "\n";
 
         if (db_.user_exists_by_usertag(usertag)) {
+            std::cerr << "[HttpSession] Register failed: usertag '" << usertag
+                      << "' already exists\n";
             json resp = {
                 {"status", "error"},
                 {"message", "Usertag already exists"}
@@ -83,6 +88,8 @@ http::response<http::string_body> HttpSession::handle_register(const json& body)
         }
 
         if (db_.user_exists_by_email(email)) {
+            std::cerr << "[HttpSession] Register failed: email '" << email
+                      << "' already exists\n";
             json resp = {
                 {"status", "error"},
                 {"message", "Email already exists"}
@@ -94,18 +101,10 @@ http::response<http::string_body> HttpSession::handle_register(const json& body)
             return r;
         }
 
-        if (db_.add_user(username, email, password, usertag)) {
-            json resp = {
-                {"status", "ok"},
-                {"message", "User registered successfully"}
-            };
-            http::response<http::string_body> r{http::status::ok, req_.version()};
-            r.set(http::field::content_type, "application/json");
-            r.body() = resp.dump();
-            r.prepare_payload();
-            return r;
-        }
-        else {
+        std::cerr << "[HttpSession] Attempting to add user to DB\n";
+        if (!db_.add_user(username, email, password, usertag)) {
+            std::cerr << "[HttpSession] add_user() returned false for usertag='" 
+                      << usertag << "'\n";
             json resp = {
                 {"status", "error"},
                 {"message", "DB insert failed"}
@@ -116,11 +115,34 @@ http::response<http::string_body> HttpSession::handle_register(const json& body)
             r.prepare_payload();
             return r;
         }
+        std::cerr << "[HttpSession] add_user() succeeded for usertag='" << usertag << "'\n";
+
+        std::cerr << "[HttpSession] Attempting to set default profile cover\n";
+        if (!db_.save_profile_cover(usertag)) {
+            std::cerr << "[HttpSession] set_default_profile_cover() failed for usertag='"
+                      << usertag << "'\n";
+        } else {
+            std::cerr << "[HttpSession] Default profile cover set for usertag='"
+                      << usertag << "'\n";
+        }
+
+        json resp = {
+            {"status", "ok"},
+            {"message", "User registered successfully"}
+        };
+        http::response<http::string_body> r{http::status::ok, req_.version()};
+        r.set(http::field::content_type, "application/json");
+        r.body() = resp.dump();
+        r.prepare_payload();
+        std::cerr << "[HttpSession] Registration flow completed for usertag='"
+                  << usertag << "'\n";
+        return r;
     }
-    catch (const std::exception&) {
+    catch (const std::exception& e) {
+        std::cerr << "[HttpSession] Exception in handle_register: " << e.what() << "\n";
         json resp = {
             {"status", "error"},
-            {"message", "Missing required fields: username, email, password"}
+            {"message", "Missing required fields or invalid JSON"}
         };
         http::response<http::string_body> r{http::status::bad_request, req_.version()};
         r.set(http::field::content_type, "application/json");
@@ -129,6 +151,7 @@ http::response<http::string_body> HttpSession::handle_register(const json& body)
         return r;
     }
 }
+
 
 http::response<http::string_body> HttpSession::handle_login(const json& body) {
     try {
