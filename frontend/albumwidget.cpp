@@ -95,13 +95,11 @@ AlbumTrackButton::AlbumTrackButton(const track &trackData, bool isLiked, QString
         QPixmap pixmap;
         if (liked) {
             pixmap.load("resources/icons/added.png");
-            liked = false;
         } else {
             pixmap.load("resources/icons/adding.png");
-            liked = true;
         }
         likeTrackButtonLabel->setPixmap(pixmap.scaled(40, 40, Qt::KeepAspectRatio, Qt::SmoothTransformation));
-        emit albumLiked();
+        emit albumTrackLiked();
     });
 
     // инициализация иконки лайка в зависимости от текущего состояния
@@ -348,8 +346,8 @@ AlbumWidget::AlbumWidget(const struct album &albumData, QVector<int> likedTracks
         connect(trackButton, &AlbumTrackButton::trackAuthorButtonClicked, [this, trackButton]() {
             emit authorButtonClicked(trackButton->getTrackAuthorUsertag());
         });
-        connect(trackButton, &AlbumTrackButton::albumLiked, [this, trackButton]() {
-            emit albumLiked(trackButton->getTrack());
+        connect(trackButton, &AlbumTrackButton::albumTrackLiked, [this, trackButton]() {
+            emit albumTrackLiked(trackButton->getTrack());
         });
 
         trackListLayout->addWidget(trackButton);
@@ -359,6 +357,9 @@ AlbumWidget::AlbumWidget(const struct album &albumData, QVector<int> likedTracks
     QWidget *descriptionWidget = new QWidget;
     if(albumData.description.isEmpty()) {
         descriptionWidget->hide();  // скрываем, если описание отсутствует
+    }
+    if(albumData.track_count<=1){
+        likeAlbumButton->hide();
     }
 
     descriptionWidget->setStyleSheet(R"(

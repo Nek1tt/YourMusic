@@ -417,7 +417,7 @@ void ProfileTab::onFollowersButtonClicked(){
     //current_query = "register";
     typeOfQuery="followersTracksButton";
     webSocket->sendMessage(message);
-    int currentViewerIdx = cuurentViewerIndex;
+    int currentViewerIdx = currentViewerIndex;
     int totalViewerIdx = currentViewers.size();
     qDebug()<<currentViewerIdx;
     qDebug()<<totalViewerIdx;
@@ -427,10 +427,10 @@ void ProfileTab::onFollowersButtonClicked(){
 
         currentViewers.removeAt(i);
     }
-    qDebug()<<cuurentViewerIndex;
+    qDebug()<<currentViewerIndex;
     qDebug()<<currentViewers.size();
     currentViewers.push_back(currentAuthorOfObjects.usertag);
-    cuurentViewerIndex++;
+    currentViewerIndex++;
 };
 
 void ProfileTab::onFollowingButtonClicked(){
@@ -450,7 +450,7 @@ void ProfileTab::onFollowingButtonClicked(){
     //current_query = "register";
     typeOfQuery="followingsTracksButton";
     webSocket->sendMessage(message);
-    int currentViewerIdx = cuurentViewerIndex;
+    int currentViewerIdx = currentViewerIndex;
     int totalViewerIdx = currentViewers.size();
     qDebug()<<currentViewerIdx;
     qDebug()<<totalViewerIdx;
@@ -458,10 +458,10 @@ void ProfileTab::onFollowingButtonClicked(){
         currentViewers.removeAt(i);
 
     }
-    qDebug()<<cuurentViewerIndex;
+    qDebug()<<currentViewerIndex;
     qDebug()<<currentViewers.size();
     currentViewers.push_back(currentAuthorOfObjects.usertag);
-    cuurentViewerIndex++;
+    currentViewerIndex++;
 
 };
 
@@ -482,14 +482,14 @@ void ProfileTab::onTracksLoadedButtonClicked(){
     //current_query = "register";
     typeOfQuery = "loadedTracksButton";
     webSocket->sendMessage(message);
-    int currentViewerIdx = cuurentViewerIndex;
+    int currentViewerIdx = currentViewerIndex;
     int totalViewerIdx = currentViewers.size();
 
     for (int i = totalViewerIdx - 1; i > currentViewerIdx; --i) {
         currentViewers.removeAt(i);
     }
     currentViewers.push_back(currentAuthorOfObjects.usertag);
-    cuurentViewerIndex++;
+    currentViewerIndex++;
 
 };
 void ProfileTab::onTracksAddedButtonClicked(){
@@ -509,14 +509,14 @@ void ProfileTab::onTracksAddedButtonClicked(){
     qDebug()<<"clicked";
     typeOfQuery = "likedTracksButton";
     webSocket->sendMessage(message);
-    int currentViewerIdx = cuurentViewerIndex;
+    int currentViewerIdx = currentViewerIndex;
     int totalViewerIdx = currentViewers.size();
 
     for (int i = totalViewerIdx - 1; i > currentViewerIdx; --i) {
         currentViewers.removeAt(i);
     }
     currentViewers.push_back(currentAuthorOfObjects.usertag);
-    cuurentViewerIndex++;
+    currentViewerIndex++;
 
 };
 
@@ -534,7 +534,7 @@ void ProfileTab::onAuthorButtonClicked(QString *authorUsertag){
     typeOfQuery="userButton";
     webSocket->sendMessage(message);
 
-    int currentViewerIdx = cuurentViewerIndex;
+    int currentViewerIdx = currentViewerIndex;
     int totalViewerIdx = currentViewers.size();
 
     for (int i = totalViewerIdx - 1; i > currentViewerIdx; --i) {
@@ -543,10 +543,7 @@ void ProfileTab::onAuthorButtonClicked(QString *authorUsertag){
     }
     currentAuthorOfObjects.usertag = *authorUsertag;
     currentViewers.push_back(currentAuthorOfObjects.usertag);
-    cuurentViewerIndex++;
-
-    // QVector<UserInfo> users = loadUsersFromJson("resources/jsons/users.json");
-    // onUserButtonClicked(users[1]);
+    currentViewerIndex++;
 }
 
 void ProfileTab::onAlbumByTrack(track *trackData){
@@ -570,7 +567,7 @@ void ProfileTab::onAlbumByTrack(track *trackData){
         QVector<int> likedTracks;
         likedTracks.push_back(trackData->id);
         onAlbumClicked(a, likedTracks);
-        int currentViewerIdx = cuurentViewerIndex;
+        int currentViewerIdx = currentViewerIndex;
         int totalViewerIdx = currentViewers.size();
 
         for (int i = totalViewerIdx - 1; i > currentViewerIdx; --i) {
@@ -579,7 +576,7 @@ void ProfileTab::onAlbumByTrack(track *trackData){
         }
 
         currentViewers.push_back(currentAuthorOfObjects.usertag);
-        cuurentViewerIndex++;
+        currentViewerIndex++;
 
     }else{
         QJsonObject payload;
@@ -600,7 +597,7 @@ void ProfileTab::onAlbumByTrack(track *trackData){
         typeOfQuery = "albumButton";
 
         webSocket->sendMessage(message);
-        int currentViewerIdx = cuurentViewerIndex;
+        int currentViewerIdx = currentViewerIndex;
         int totalViewerIdx = currentViewers.size();
 
         for (int i = totalViewerIdx - 1; i > currentViewerIdx; --i) {
@@ -609,7 +606,7 @@ void ProfileTab::onAlbumByTrack(track *trackData){
         }
 
         currentViewers.push_back(currentAuthorOfObjects.usertag);
-        cuurentViewerIndex++;
+        currentViewerIndex++;
 
     }
 }
@@ -618,7 +615,7 @@ void ProfileTab::onAlbumById(album albumData){
     if(albumData.id==0){
         QVector<int> likedTracks;
         onAlbumClicked(albumData, likedTracks);
-        int currentViewerIdx = cuurentViewerIndex;
+        int currentViewerIdx = currentViewerIndex;
         int totalViewerIdx = currentViewers.size();
 
         for (int i = totalViewerIdx - 1; i > currentViewerIdx; --i) {
@@ -627,7 +624,7 @@ void ProfileTab::onAlbumById(album albumData){
         }
 
         currentViewers.push_back(currentAuthorOfObjects.usertag);
-        cuurentViewerIndex++;
+        currentViewerIndex++;
 
     }else{
         QJsonObject payload;
@@ -647,7 +644,7 @@ void ProfileTab::onAlbumById(album albumData){
         typeOfQuery = "albumButton";
 
         webSocket->sendMessage(message);
-        int currentViewerIdx = cuurentViewerIndex;
+        int currentViewerIdx = currentViewerIndex;
         int totalViewerIdx = currentViewers.size();
 
         for (int i = totalViewerIdx - 1; i > currentViewerIdx; --i) {
@@ -656,7 +653,7 @@ void ProfileTab::onAlbumById(album albumData){
         }
 
         currentViewers.push_back(currentAuthorOfObjects.usertag);
-        cuurentViewerIndex++;
+        currentViewerIndex++;
 
     }
 }
@@ -717,9 +714,6 @@ void ProfileTab::onUserButtonClicked(UserInfo *userData, QVector <album> *albums
     connect(userProfileWidget, &ProfileWidget::trackNameButtonClicked, this, &ProfileTab::onAlbumByTrack);
 
     connect(userProfileWidget, &ProfileWidget::authorButtonClicked, this, &ProfileTab::onAuthorButtonClicked);
-
-    //connect(albumwidgetTab, &AlbumWidget::trackButtonClicked, this, &ProfileTab::onTrackdoubleClicked);
-
     innerStacked->addWidget(userProfileWidget);
     innerStacked->setCurrentWidget(userProfileWidget);
     scrollArea->verticalScrollBar()->setValue(0);
@@ -751,6 +745,7 @@ void ProfileTab::onAlbumClicked(album albumData, QVector<int> likedTracks){
     connect(albumwidgetTab, &AlbumWidget::trackNameButtonClicked, this, &ProfileTab::onAlbumByTrack);
     connect(albumwidgetTab, &AlbumWidget::authorButtonClickedByTrackId, this, &ProfileTab::onAuthorButtonClicked);
     connect(albumwidgetTab, &AlbumWidget::authorButtonClicked, this, &ProfileTab::onAuthorButtonClicked);
+    connect(albumwidgetTab, &AlbumWidget::albumTrackLiked, this, &ProfileTab::on_TrackLikeButton);
 
     innerStacked->addWidget(albumwidgetTab);
     innerStacked->setCurrentWidget(albumwidgetTab);
@@ -759,6 +754,26 @@ void ProfileTab::onAlbumClicked(album albumData, QVector<int> likedTracks){
     //albumwidgetTab->setStyleSheet("border: 1px solid red");
 
     emit onAlbomClickedSignal();
+}
+
+void ProfileTab::on_TrackLikeButton(track *trackData){
+    QJsonObject payload;
+    payload["endpoint"] = "/catalog";
+    payload["action"] = "user_action";
+    QJsonObject subObj;
+    subObj.insert("usertag", *mainUsertag);
+    subObj.insert("album_id", trackData->id);
+
+    payload["params"] = subObj;
+    payload["subaction"] = "like_track";
+
+    QJsonDocument doc(payload);
+    QString message = QString::fromUtf8(doc.toJson());
+    qDebug()<<message;
+    qDebug()<<"clicked";
+    typeOfQuery = "albumButton";
+
+    webSocket->sendMessage(message);
 }
 
 void ProfileTab::onAlbumListClicked(QVector<album> albumList){
@@ -775,7 +790,7 @@ void ProfileTab::onAlbumListClicked(QVector<album> albumList){
         }
     }
 
-    int currentViewerIdx = cuurentViewerIndex;
+    int currentViewerIdx = currentViewerIndex;
     int totalViewerIdx = currentViewers.size();
 
     for (int i = totalViewerIdx - 1; i > currentViewerIdx; --i) {
@@ -784,7 +799,7 @@ void ProfileTab::onAlbumListClicked(QVector<album> albumList){
     }
 
     currentViewers.push_back(currentAuthorOfObjects.usertag);
-    cuurentViewerIndex++;
+    currentViewerIndex++;
 
     //AlbumWidget *albumwidget = new AlbumWidget(albumData);
     //connect(albumwidget, &AlbumWidget::trackButtonClicked, this, &ProfileWidget::onTrackdoubleClicked);

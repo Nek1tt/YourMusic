@@ -1,12 +1,12 @@
-#include <QScreen> //for Qscreen *screen = QApplication::primaryScreen();
+// Стандартные заголовочные файлы Qt
 #include <QApplication>
 #include <QMainWindow>
-#include <QString> // Для использования QString
+#include <QScreen>
+#include <QString>
 #include <QWidget>
 #include <QLabel>
 #include <QPixmap>
 #include <QGridLayout>
-#include <QBoxLayout>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
@@ -18,55 +18,51 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 #include <QNetworkRequest>
-#include <QPixmap>
-#include <QLabel>
 #include <QBuffer>
-// #include <QWebSocket>
 #include <QMessageBox>
 #include <QDir>
+#include <QDebug>    // Для отладки
+
+// Стандартные библиотеки
 #include <fstream>
 #include <vector>
-//#include <QDebug>  // <--- добавь это
 
-
+// Ваши заголовочные файлы
 #include "myalbumswidget.h"
 #include "setstyle.h"
 
+// =============== AlbumButton ====================
 
 AlbumButton::AlbumButton(const struct album &albumData, QWidget *parent)
-    : QPushButton(parent), albumData(albumData) {
-
-    // Настроим макет кнопки
+    : QPushButton(parent), albumData(albumData)
+{
+    // Макет кнопки
     QVBoxLayout *layout = new QVBoxLayout(this);
 
-    // Создаем метку для обложки
+    // Обложка альбома
     QLabel *coverLabel = new QLabel(this);
     loadCover(albumData.coverpath, coverLabel);
-    //setRoundedImage(coverLabel, albumData.coverpath, 150, 15);
-    layout->addWidget(coverLabel);  // Добавляем обложку в макет
+    layout->addWidget(coverLabel);
 
-    // Создаем метки для названия и автора
+    // Кнопка с названием альбома
     QPushButton *nameButton = new QPushButton(albumData.name, this);
     connect(nameButton, &QPushButton::clicked, [this]() {
         emit albumNameButtonClicked();
     });
-
     nameButton->setFixedHeight(16);
     set_button_style(nameButton, 11);
-    //nameLabel->setStyleSheet("font-weight: bold; font-size: 11px; font-family: 'Tahoma';");
-    //nameLabel->setAlignment(Qt::AlignLeft);
     layout->addWidget(nameButton);
 
+    // Кнопка с именем автора
     QPushButton *authorButton = new QPushButton(albumData.authorUsername, this);
     connect(authorButton, &QPushButton::clicked, [this]() {
         emit authorButtonClicked();
     });
     authorButton->setFixedHeight(15);
     set_button_style(authorButton, 10, "#828282");
-    //authorLabel->setStyleSheet("color: #828282; font-weight: bold; font-size: 10px; font-family: 'Tahoma';");
-    //authorLabel->setAlignment(Qt::AlignLeft);
     layout->addWidget(authorButton);
 
+    // Оформление всей кнопки
     setLayout(layout);
     setFixedSize(170, 210);
     this->setStyleSheet(
@@ -80,11 +76,11 @@ AlbumButton::AlbumButton(const struct album &albumData, QWidget *parent)
         "    outline: none;"
         "}"
         );
-
-    // Устанавливаем размер кнопки
 }
 
-void AlbumButton::loadCover(const QString& url, QLabel *label) {
+// Загрузка обложки альбома по URL
+void AlbumButton::loadCover(const QString& url, QLabel *label)
+{
     QNetworkAccessManager *manager = new QNetworkAccessManager(this);
 
     connect(manager, &QNetworkAccessManager::finished, this, [label, manager](QNetworkReply *reply) {
@@ -107,25 +103,34 @@ void AlbumButton::loadCover(const QString& url, QLabel *label) {
     manager->get(request);
 }
 
-
-QString AlbumButton::getAlbumName(){
+// Геттеры для albumData
+QString AlbumButton::getAlbumName()
+{
     return albumData.name;
 }
 
-album AlbumButton::getAlbum(){
+album AlbumButton::getAlbum()
+{
     return albumData;
 }
 
-QString AlbumButton::getAuthorUsertag(){
+QString AlbumButton::getAuthorUsertag()
+{
     return albumData.authorUsertag;
 }
 
+// =============== MyAlbumsWidget ====================
 
-MyAlbumsWidget::MyAlbumsWidget(QString widgetName, QWidget *parent) : QWidget(parent)
+MyAlbumsWidget::MyAlbumsWidget(QString widgetName, QWidget *parent)
+    : QWidget(parent)
 {
+    // Основной вертикальный макет
     MyAlbumsLayout = new QVBoxLayout(this);
+
+    // Верхняя кнопка (заголовок виджета)
     QWidget *myAlbumButtonWidget = new QWidget();
     QVBoxLayout *myAlbumButtonLayout = new QVBoxLayout(myAlbumButtonWidget);
+
     QPushButton *myAlbumButton = new QPushButton(widgetName);
     myAlbumButton->setStyleSheet(
         "QPushButton {"
@@ -133,117 +138,117 @@ MyAlbumsWidget::MyAlbumsWidget(QString widgetName, QWidget *parent) : QWidget(pa
         "font-size: 32px;"
         "text-align: left;"
         "font-family: 'Tahoma';"
-        "    background: none;"                  // Убираем фон
-        "    border: none;"                      // Убираем рамку
-        //"    border: 2px solid blue;"  // рамка 2px
-        "    text-decoration: none;"             // Убираем подчеркивание по умолчанию
+        "background: none;"
+        "border: none;"
+        "text-decoration: none;"
         "}"
         "QPushButton:hover {"
-        "    text-decoration: underline;"        // Подчеркиваем текст при наведении
+        "text-decoration: underline;"
         "}"
         );
+
+    // Сигнал при нажатии на кнопку заголовка
     connect(myAlbumButton, &QPushButton::clicked, [this]() {
         emit myAlbumsButtonClicked(getAlbum());
     });
-    //myAlbumButton->setFixedSize(200, 40);
+
     myAlbumButtonLayout->addWidget(myAlbumButton);
     MyAlbumsLayout->addWidget(myAlbumButtonWidget);
 
-
-    albums = new QWidget();  // виджет для прокрутки
-    scrollAreaAlbums = new QScrollArea(this);  // прокручиваемая область
+    // Прокручиваемая область с альбомами
+    albums = new QWidget();
+    scrollAreaAlbums = new QScrollArea(this);
     setFixedHeight(330);
 
-    // Создаем горизонтальный layout
     albumsLayout = new QHBoxLayout(albums);
 }
 
-QVector<album> MyAlbumsWidget::getAlbum(){
+// Геттер для текущего списка альбомов
+QVector<album> MyAlbumsWidget::getAlbum()
+{
     return albums_vector;
 }
 
-void MyAlbumsWidget::add_albums(QVector<album> newAlbumList) {
+// Добавление альбомов в виджет
+void MyAlbumsWidget::add_albums(QVector<album> newAlbumList)
+{
+    // Очищаем предыдущие элементы
     clearLayout(albumsLayout);
+
     albums_vector = newAlbumList;
-    if(newAlbumList.isEmpty()){
-        //this->hide();
-    }else{
-         this->show();
+
+    // Прячем или показываем блок в зависимости от наличия альбомов
+    if (newAlbumList.isEmpty()) {
+        // this->hide();
+    } else {
+        this->show();
     }
 
-    // connect(albumButton, &QPushButton::clicked, this, [this, albumButton]() {
-    //     emit albumClicked(albumButton->getAlbumName());
-    // });
-    // if(!newAlbumList.isEmpty()){
-    //     qDebug()<<newAlbumList[0].name;
-    //     qDebug()<<newAlbumList[0].author;
-
-    //     qDebug()<<newAlbumList[0].author_id;
-    //     qDebug()<<newAlbumList[0].coverpath;
-
-    //     qDebug()<<newAlbumList[0].id;
-    //     qDebug()<<newAlbumList[0].track_count;
-    // }
-
-
-    // Добавляем элементы в layout
+    // Добавляем кнопки для каждого альбома
     for (auto& album : albums_vector) {
-        // Создаем кнопки для каждого альбома
         AlbumButton *albumButton = new AlbumButton(album);
         albumsLayout->addWidget(albumButton);
 
         connect(albumButton, &QPushButton::clicked, [this, albumButton]() {
             emit albumButtonClicked(albumButton->getAlbum());
         });
+
         connect(albumButton, &AlbumButton::albumNameButtonClicked, [this, albumButton]() {
             emit albumButtonClicked(albumButton->getAlbum());
         });
+
         connect(albumButton, &AlbumButton::authorButtonClicked, [this, albumButton]() {
             QString tempUsertag = albumButton->getAuthorUsertag();
             emit authorButtonClicked(&tempUsertag);
         });
     }
 
-    // Добавляем отступ в конец, чтобы при нехватке элементов они не сжимались
+    // Добавляем stretch в конец
     albumsLayout->addStretch();
 
-    // Обновляем размер родительского виджета
+    // Обновляем виджет
     albums->setLayout(albumsLayout);
     albums->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    albums->setMinimumWidth(albums_vector.size() * 180);  // Примерная ширина всех плейлистов
+    albums->setMinimumWidth(albums_vector.size() * 180);
     albums->setMinimumHeight(230);
 
     scrollAreaAlbums->setWidget(albums);
     scrollAreaAlbums->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     scrollAreaAlbums->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    // Удостоверимся, что `scrollAreaPLaylists` добавлен в layout только один раз
+    // Добавляем scrollAreaAlbums в основной layout только 1 раз
     if (MyAlbumsLayout->count() == 1) {
         MyAlbumsLayout->addWidget(scrollAreaAlbums);
     }
 
-    scrollAreaAlbums->update();  // Принудительное обновление прокрутки
+    scrollAreaAlbums->update();
 }
 
-
-void MyAlbumsWidget::clearLayout(QLayout *layout) {
+// Очистка layout (удаление всех виджетов)
+void MyAlbumsWidget::clearLayout(QLayout *layout)
+{
     if (layout == nullptr) return;
 
     QLayoutItem *item;
     while ((item = layout->takeAt(0)) != nullptr) {
         if (item->widget()) {
-            delete item->widget(); // Удаляем виджет
+            delete item->widget();
         }
-        delete item; // Удаляем сам элемент
+        delete item;
     }
 }
 
-void MyAlbumsWidget::resizeAlbums(int width) {
-    this->setFixedWidth(width*0.9);
+// Изменение ширины виджета альбомов
+void MyAlbumsWidget::resizeAlbums(int width)
+{
+    this->setFixedWidth(width * 0.9);
 }
 
+// =============== Загрузка альбомов из JSON ====================
 
-QVector<album> loadAlbumsFromJson(const QString &filePath) {
+// Загрузка списка альбомов
+QVector<album> loadAlbumsFromJson(const QString &filePath)
+{
     QFile file(filePath);
     QVector<album> albums;
 
@@ -254,8 +259,10 @@ QVector<album> loadAlbumsFromJson(const QString &filePath) {
 
     QByteArray data = file.readAll();
     file.close();
+
     QJsonParseError parseError;
     QJsonDocument doc = QJsonDocument::fromJson(data, &parseError);
+
     if (parseError.error != QJsonParseError::NoError) {
         qWarning() << "JSON parse error:" << parseError.errorString();
         return albums;
@@ -269,8 +276,8 @@ QVector<album> loadAlbumsFromJson(const QString &filePath) {
         albumdata.id = root["id"].toInt();
         albumdata.name = root["title"].toString();
         albumdata.coverpath = root["cover_path"].toString();
-        albumdata.authorUsername = "nurshat";
-        albumdata.authorUsertag = "1";
+        albumdata.authorUsername = "nurshat";  // Пример
+        albumdata.authorUsertag = "1";         // Пример
         albumdata.track_count = root["track_count"].toInt();
 
         QJsonArray trackArray = root["tracks"].toArray();
@@ -292,7 +299,9 @@ QVector<album> loadAlbumsFromJson(const QString &filePath) {
     return albums;
 }
 
-album loadSingleAlbumFromJson(const QString &filePath) {
+// Загрузка одного альбома (single album)
+album loadSingleAlbumFromJson(const QString &filePath)
+{
     QFile file(filePath);
     album albumdata;
 
@@ -306,6 +315,7 @@ album loadSingleAlbumFromJson(const QString &filePath) {
 
     QJsonParseError parseError;
     QJsonDocument doc = QJsonDocument::fromJson(data, &parseError);
+
     if (parseError.error != QJsonParseError::NoError) {
         qWarning() << "JSON parse error:" << parseError.errorString();
         return albumdata;
@@ -314,7 +324,7 @@ album loadSingleAlbumFromJson(const QString &filePath) {
     QJsonObject root = doc.object();
     QJsonArray trackArray = root["tracks"].toArray();
 
-    // Пример: создаём альбом вручную (можешь заменить на реальные данные)
+    // Заполняем альбом (примерные данные)
     albumdata.id = 0;
     albumdata.name = "Mixed Tracks Album";
     albumdata.coverpath = "resources/imgs/ava.png";
@@ -326,13 +336,12 @@ album loadSingleAlbumFromJson(const QString &filePath) {
         QJsonObject trackObj = trackValue.toObject();
         track trackdata;
         trackdata.id = trackObj["id"].toInt();
-        trackdata.album_id = trackObj["albumId"].toInt(); // по сути всегда 0
+        trackdata.album_id = trackObj["albumId"].toInt();
         trackdata.name = trackObj["title"].toString();
         trackdata.duration_s = trackObj["durationMs"].toInt();
         trackdata.coverpath = trackObj["coverPath"].toString();
         trackdata.authors.push_back(trackObj["author"].toString());
         albumdata.tracks.append(trackdata);
     }
-
     return albumdata;
 }

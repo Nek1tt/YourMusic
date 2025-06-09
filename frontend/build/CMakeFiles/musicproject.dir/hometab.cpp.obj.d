@@ -389,9 +389,18 @@ CMakeFiles/musicproject.dir/hometab.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qlayoutitem.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qboxlayout.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qgridlayout.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QHBoxLayout \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollArea \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QVector \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qvector.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qstring.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QLayout \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qlayout.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qrect.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\mytrackswidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\hometab.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/QScreen \
@@ -401,7 +410,6 @@ CMakeFiles/musicproject.dir/hometab.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qobject.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qrect.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QSize \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qsize.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QSizeF \
@@ -424,7 +432,6 @@ CMakeFiles/musicproject.dir/hometab.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QGridLayout \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qgridlayout.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QBoxLayout \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/QHBoxLayout \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QMessageBox \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qmessagebox.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qdialog.h \
@@ -513,7 +520,6 @@ CMakeFiles/musicproject.dir/hometab.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QSharedDataPointer \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qshareddata.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qstring.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QVariant \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qvariant.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/q26numeric.h \
@@ -539,7 +545,6 @@ CMakeFiles/musicproject.dir/hometab.cpp.obj: \
  C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qtwebsocketsexports.h \
  C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qwebsocketprotocol.h \
  C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsocketprotocol.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\albumwidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\userslistwidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/QResizeEvent \
@@ -550,8 +555,6 @@ CMakeFiles/musicproject.dir/hometab.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qpointingdevice.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qinputdevice.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qscreen.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/QVector \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qvector.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\albomlistwidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollBar \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollbar.h \

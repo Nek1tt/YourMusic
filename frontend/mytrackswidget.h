@@ -63,9 +63,6 @@ signals:
     void mytracksButtonClicked(const album albumData);
 };
 
-
-// void write_track(track &track);
-// void read_tracks(std::vector<track> &tracks, std::string track_path);
 QVector<track> readFromJson(const QString &filepath);
 
 #endif // MYTRACKSWIDGET_H

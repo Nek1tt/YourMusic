@@ -488,6 +488,13 @@ CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\myalbumswidget.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QVector \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qvector.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qstring.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QLayout \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qlayout.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\websocketclient.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
  C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/QWebSocket \
@@ -506,7 +513,6 @@ CMakeFiles/musicproject.dir/rightbarwidget.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QSharedDataPointer \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qshareddata.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qstring.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QVariant \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qvariant.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/q26numeric.h \

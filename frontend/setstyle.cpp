@@ -27,17 +27,17 @@ void set_button_style(QPushButton *button, int fontsize, QString color, QString 
 void set_border_button_style(QPushButton *button, int fontsize, QString color, QString padb){
     button->setStyleSheet(
         "QPushButton {"
-        "    text-align: center;"  // Центрируем текст
+        "    text-align: center;"
         "    font-weight: bold;"
         "font-size: " + QString::number(fontsize) + "px;"
         "    font-family: 'Tahoma';"
-        "    background-color: #333333;"  // Темно-серый фон
-        "    border: 1px solid white;"     // Белая рамка 1px
-        "    border-radius: 4px;"          // Скругленные углы радиусом 4px
-        "    text-decoration: none;"       // Убираем подчеркивание по умолчанию
+        "    background-color: #333333;"
+        "    border: 1px solid white;"
+        "    border-radius: 4px;"
+        "    text-decoration: none;"
         "}"
         "QPushButton:hover {"
-        "    border: 2px solid white;"      // Увеличенная рамка до 2px при наведении
+        "    border: 2px solid white;"
         "}"
         );
 }
@@ -54,15 +54,9 @@ void setRoundedImage(QLabel* label, const QString& imagePath, int size, qreal ra
         qWarning() << "Не удалось загрузить картинку:" << imagePath;
         return;
     }
-
-    // Масштабируем с сохранением пропорций
     QPixmap scaledPixmap = originalPixmap.scaled(size, size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
-    // Создаём новый пустой прозрачный QPixmap
     QPixmap roundedPixmap(size, size);
     roundedPixmap.fill(Qt::transparent);
-
-    // Готовим Painter
     QPainter painter(&roundedPixmap);
     painter.setRenderHint(QPainter::Antialiasing, true);
 
@@ -70,10 +64,8 @@ void setRoundedImage(QLabel* label, const QString& imagePath, int size, qreal ra
     path.addRoundedRect(QRectF(0, 0, size, size), radius, radius);
     painter.setClipPath(path);
 
-    // Отрисовываем исходную картинку
     painter.drawPixmap(0, 0, scaledPixmap);
 
-    // Устанавливаем готовую картинку в label
     label->setPixmap(roundedPixmap);
     label->setFixedSize(size, size);
     label->setAlignment(Qt::AlignHCenter);

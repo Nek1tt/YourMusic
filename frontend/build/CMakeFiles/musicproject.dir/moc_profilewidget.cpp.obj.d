@@ -389,9 +389,18 @@ CMakeFiles/musicproject.dir/moc_profilewidget.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qlayoutitem.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qboxlayout.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qgridlayout.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QHBoxLayout \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QScrollArea \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qscrollarea.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QVector \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qvector.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qstring.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QLayout \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qlayout.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qrect.h \
  C:/Users/Lenovo/upprpo/YourMusic/frontend/mytrackswidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QList \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qlist.h \

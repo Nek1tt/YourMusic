@@ -1,16 +1,10 @@
-#include <QScreen> //for Qscreen *screen = QApplication::primaryScreen();
-#include <QApplication>
-#include <QMainWindow>
 #include <QString> // Для использования QString
 #include <QWidget>
 #include <QLabel>
 #include <QPixmap>
-#include <QGridLayout>
-#include <QBoxLayout>
 #include <QVBoxLayout>
 #include <QHBoxLayout>
 #include <QPushButton>
-#include <QScrollArea>
 #include <QJsonParseError>
 #include <QJsonDocument>
 #include <QJsonArray>
@@ -22,71 +16,80 @@
 #include <QPixmap>
 #include <QLabel>
 #include <QBuffer>
-// #include <QWebSocket>
 #include <QMessageBox>
 #include <QDir>
 #include <fstream>
 #include <vector>
 #include <string>
-//#include <QDebug>  // <--- добавь это
 
 
 
 #include "mytrackswidget.h"
 #include "setstyle.h"
 
+// === TrackButton constructor ===
+
 TrackButton::TrackButton(const struct track &trackData, QWidget *parent)
-    :QPushButton(parent), trackData(trackData)
+    : QPushButton(parent), trackData(trackData)
 {
+    // Основной горизонтальный layout для кнопки
     QHBoxLayout *layout = new QHBoxLayout(this);
+
+    // === COVER ===
     QLabel *coverLabel = new QLabel(this);
     loadCover(trackData.coverpath, coverLabel);
-    //coverLabel->setFixedWidth(80);
-    //QPixmap coverPixmap(trackData.coverpath);
-    //coverLabel->setPixmap(coverPixmap.scaled(70, 70, Qt::KeepAspectRatio));
-    layout->addWidget(coverLabel, 0, Qt::AlignLeft);  // Добавляем обложку в макет
+    layout->addWidget(coverLabel, 0, Qt::AlignLeft);
+
+    // === NAME & AUTHOR ===
     QWidget *name_and_author_widget = new QWidget();
     QVBoxLayout *name_and_author = new QVBoxLayout(name_and_author_widget);
+
+    // --- Name button ---
     QPushButton *nameButton = new QPushButton(trackData.name);
     connect(nameButton, &QPushButton::clicked, [this]() {
         emit trackNameButtonClicked();
     });
-    //nameButton->setFixedHeight(16);
+
     QFontMetrics fm(nameButton->font());
     int textWidth = fm.horizontalAdvance(trackData.name);
-    nameButton->setFixedWidth(textWidth + 25); // +10 — небольшой отступ по краям
-    //nameButton->setStyleSheet("font-weight: bold; font-size: 14px; font-family: 'Tahoma'; text-align: left;");
+    nameButton->setFixedWidth(textWidth + 25); // отступ +25
     set_button_style(nameButton, 14, "white");
-    //nameButton->setAlignment(Qt::AlignLeft);
 
+    // --- Author button ---
     QPushButton *authorButton = new QPushButton(trackData.authors[0]);
     connect(authorButton, &QPushButton::clicked, [this]() {
         emit trackAuthorButtonClicked();
     });
+
     authorButton->setFixedHeight(16);
-    //int widthOfAuthor = trackData.author.size()*7;
+
     QFontMetrics fm_au(authorButton->font());
     int textWidth_au = fm_au.horizontalAdvance(trackData.authors[0]);
-    authorButton->setFixedWidth(textWidth_au + 20); // +10 — небольшой отступ по краям
+    authorButton->setFixedWidth(textWidth_au + 20); // отступ +20
 
     set_button_style(authorButton, 12, "#828282");
-    //authorButton->setStyleSheet("color: #828282; font-weight: bold; font-size: 12px; font-family: 'Tahoma';");
-    //authorButton->setAlignment(Qt::AlignLeft);
 
+    // Добавляем кнопки в вертикальный layout
     name_and_author->addWidget(nameButton);
     name_and_author->addWidget(authorButton);
+
     layout->addWidget(name_and_author_widget, 1, Qt::AlignLeft);
 
+    // === DURATION ===
     int minutes = trackData.duration_s / 60;
-    int seconds = trackData.duration_s  % 60;
+    int seconds = trackData.duration_s % 60;
     QString duration = QString("%1:%2").arg(minutes).arg(seconds, 2, 10, QChar('0'));
 
     QLabel *durationLabel = new QLabel(duration);
     durationLabel->setFixedHeight(20);
-    durationLabel->setStyleSheet("color: #828282; font-weight: bold; font-size: 12px; font-family: 'Tahoma';");
+    durationLabel->setStyleSheet(
+        "color: #828282; font-weight: bold; font-size: 12px; font-family: 'Tahoma';"
+        );
     durationLabel->setAlignment(Qt::AlignRight);
+
     layout->addWidget(durationLabel);
 
+    // === FINAL SETTINGS ===
     setLayout(layout);
     setFixedSize(170, 90);
 
@@ -101,23 +104,30 @@ TrackButton::TrackButton(const struct track &trackData, QWidget *parent)
         "    outline: none;"
         "}"
         );
-
 }
-void TrackButton::loadCover(const QString& url, QLabel *label) {
+
+// === loadCover method ===
+
+void TrackButton::loadCover(const QString &url, QLabel *label) {
     QNetworkAccessManager *manager = new QNetworkAccessManager(this);
 
     connect(manager, &QNetworkAccessManager::finished, this, [label, manager](QNetworkReply *reply) {
         if (reply->error() == QNetworkReply::NoError) {
             QByteArray data = reply->readAll();
             QPixmap pixmap;
+
             if (pixmap.loadFromData(data)) {
-                label->setPixmap(pixmap.scaled(80, 80, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation).copy(0, 0, 200, 200));
+                label->setPixmap(
+                    pixmap.scaled(80, 80, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation)
+                        .copy(0, 0, 200, 200)
+                    );
             } else {
                 qDebug() << "Не удалось загрузить картинку из данных!";
             }
         } else {
             qDebug() << "Ошибка загрузки:" << reply->errorString();
         }
+
         reply->deleteLater();
         manager->deleteLater();
     });
@@ -125,6 +135,7 @@ void TrackButton::loadCover(const QString& url, QLabel *label) {
     QNetworkRequest request(url);
     manager->get(request);
 }
+
 
 QString TrackButton::getTrackName(){
     return trackData.name;
@@ -159,7 +170,6 @@ MyTracksWidget::MyTracksWidget(QString widgetName, QWidget *parent)  :QWidget(pa
         emit mytracksButtonClicked(getAlbum());
     });
     set_button_style(myTracksButton, 32, "white", "left");
-    //myTracksButton->setFixedSize(300, 40);
 
     myTracksButtonLayout->addWidget(myTracksButton);
     MyTracksLayout->addWidget(myTracksButtonWidget);
@@ -226,11 +236,9 @@ void MyTracksWidget::clearLayout(QLayout *layout) {
     }
 }
 
-//добавить отступ между рядами в tracks и соответсвенно выровнять все красиво
 void MyTracksWidget::resize_tracks(int width) {
     tracks->setFixedWidth(width * 0.8);
 
-    // Проходим по всем TrackButton в векторе и изменяем их размер
     for (TrackButton* trackButton : trackButtons) {
         if (trackButton) {
             trackButton->resize_trackbutton(width * 0.8);  // Изменяем размер

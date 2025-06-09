@@ -524,6 +524,20 @@ CMakeFiles/musicproject.dir/musicmain.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonarray.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QJsonObject \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qjsonobject.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkAccessManager \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkaccessmanager.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QSslPreSharedKeyAuthenticator \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qsslpresharedkeyauthenticator.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QMetaType \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qmetatype.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkReply \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/qnetworkreply.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QIODevice \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qiodevice.h \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkAccessManager \
+ C:/Qt/6.8.2/mingw_64/include/QtNetwork/QNetworkRequest \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QBuffer \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qbuffer.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\musicmain.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QSplitter \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qsplitter.h \
@@ -540,6 +554,12 @@ CMakeFiles/musicproject.dir/musicmain.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qpen.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qtextoption.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\myalbumswidget.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QVector \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qvector.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QLayout \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qlayout.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\userProfileWidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\profilewidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\mytrackswidget.h \
@@ -551,7 +571,6 @@ CMakeFiles/musicproject.dir/musicmain.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtextedit.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\websocketclient.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QObject \
- C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\rightbarwidget.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QTabWidget \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qtabwidget.h \

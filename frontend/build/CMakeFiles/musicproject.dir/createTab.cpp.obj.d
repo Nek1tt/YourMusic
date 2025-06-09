@@ -486,6 +486,13 @@ CMakeFiles/musicproject.dir/createTab.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qpushbutton.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractbutton.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\myalbumswidget.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QVector \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qvector.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qstring.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QLayout \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qlayout.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\userProfileWidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\profilewidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\mytrackswidget.h \
@@ -513,7 +520,6 @@ CMakeFiles/musicproject.dir/createTab.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QSharedDataPointer \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qshareddata.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
- C:/Qt/6.8.2/mingw_64/include/QtCore/qstring.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/QVariant \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qvariant.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/q26numeric.h \
@@ -538,5 +544,4 @@ CMakeFiles/musicproject.dir/createTab.cpp.obj: \
  C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsockets_global.h \
  C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qtwebsocketsexports.h \
  C:/Users/Lenovo/upprpo/qtwebsockets/build/include/QtWebSockets/qwebsocketprotocol.h \
- C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsocketprotocol.h \
- C:/Qt/6.8.2/mingw_64/include/QtCore/QString
+ C:/Users/Lenovo/upprpo/qtwebsockets/src/websockets/qwebsocketprotocol.h

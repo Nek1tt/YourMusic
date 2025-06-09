@@ -8,7 +8,6 @@ ProfileWidget::ProfileWidget(QWidget *parent)
     likedtrackwidget(new MyTracksWidget("My tracks", this)),
     loadedtrackwidget(new MyTracksWidget("My loaded tracks", this))
 {
-    // Внутренний виджет, который будет содержать всё содержимое
     QWidget *contentWidget = new QWidget;
     QVBoxLayout *mainLayout = new QVBoxLayout(contentWidget);
     mainLayout->setContentsMargins(10, 10, 10, 10);
@@ -18,7 +17,6 @@ ProfileWidget::ProfileWidget(QWidget *parent)
     mainLayout->addWidget(likedtrackwidget);
     mainLayout->addWidget(loadedtrackwidget);
 
-    // Оборачиваем всё в scrollArea
     QScrollArea *scrollArea = new QScrollArea(this);
     scrollArea->setWidget(contentWidget);
     scrollArea->setWidgetResizable(true);
@@ -29,7 +27,6 @@ ProfileWidget::ProfileWidget(QWidget *parent)
     outerLayout->setContentsMargins(0, 0, 0, 0);
     outerLayout->addWidget(scrollArea);
 
-    // Подключаем сигналы
     connect(albumwidget, &MyAlbumsWidget::albumButtonClicked, this, &ProfileWidget::onAlbumClicked);
     connect(albumwidget, &MyAlbumsWidget::myAlbumsButtonClicked, this, &ProfileWidget::onAlbumListClicked);
     connect(albumwidget, &MyAlbumsWidget::authorButtonClicked, this, &ProfileWidget::onAuthorButtonClicked);

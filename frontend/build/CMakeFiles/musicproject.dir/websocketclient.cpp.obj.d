@@ -430,4 +430,6 @@ CMakeFiles/musicproject.dir/websocketclient.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qsizepolicy.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qcursor.h \
  C:/Qt/6.8.2/mingw_64/include/QtGui/qbitmap.h \
- C:/Qt/6.8.2/mingw_64/include/QtWidgets/qdialogbuttonbox.h
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qdialogbuttonbox.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QDebug \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qdebug.h

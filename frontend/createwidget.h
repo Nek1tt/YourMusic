@@ -1,3 +1,6 @@
+#ifndef CREATEWIDGET_H
+#define CREATEWIDGET_H
+
 #include <QWidget>
 #include <QLabel>
 #include <QLineEdit>
@@ -9,23 +12,27 @@
 #include <QTextEdit>
 #include "websocketclient.h"
 
-#ifndef CREATEWIDGET_H
-#define CREATEWIDGET_H
-
 class TrackWidget : public QWidget {
     Q_OBJECT
+
 public:
     explicit TrackWidget(QString fileName, int index, QWidget *parent = nullptr);
+
     void addAuthor(const QString &name);
-    QLineEdit *getTitleEdit();
-    QVector<QString> *getAuthors();
+
+    QLineEdit* getTitleEdit();
+    QVector<QString>* getAuthors();
+
     int getIndex();
     void setIndex(int newIndex);
+
     void setAddButtonStyle(QString color);
     void resetLineEditStyle(QLineEdit *lineEdit);
+
     bool eventFilter(QObject *obj, QEvent *event) override;
+
     QString getfilename();
-    QTextEdit *getTracLyricsEdit();
+    QTextEdit* getTracLyricsEdit();
 
 private:
     QString fileName;
@@ -36,14 +43,14 @@ private:
     QLineEdit *titleEdit;
     QLabel *numberLabel;
     QPushButton *addAuthorButton;
+
 signals:
     void removeButtonClicked();
 };
 
-
-class CreateWidget : public QWidget
-{
+class CreateWidget : public QWidget {
     Q_OBJECT
+
 public:
     explicit CreateWidget(QString *usertag, WebSocketClient *webSocketStas, QWidget *parent = nullptr);
 
@@ -55,6 +62,7 @@ private slots:
     void on_upload_clicked();
     void resetLineEditStyle(QLineEdit *lineEdit);
     void onTextMessageReceived(const QString &type, const QJsonObject &data);
+
 private:
     QLabel *imageLabel;
     QString *usertag;
@@ -68,14 +76,15 @@ private:
     QWidget *trackContainer;
     QPushButton *addTrackBtn;
     int trackIndex = 0;
+
     QVector<TrackWidget*> trackWidgets;
     QVector<QVector<QString>*> authors;
     QVector<QLineEdit*> titles;
     QVector<QPushButton*> addAuthorButtons;
     QVector<QLabel*> numberLabels;
+
     WebSocketClient *webSocketStas;
     QString fileCoverName;
-
 };
 
 #endif // CREATEWIDGET_H

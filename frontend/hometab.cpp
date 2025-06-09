@@ -6,52 +6,67 @@
 
 #include <QScrollBar>
 
-
 HomeTab::HomeTab(QString *usertag, UserInfo currentAuthor, WebSocketClient *webSocket, QWidget *parent)
-:   AbstractTab(parent),
+    : AbstractTab(parent),
     mainUsertag(usertag),
     webSocket(webSocket)
 {
+    // Создаем основной стек виджетов для переключения между экранами
     innerStacked = new QStackedWidget();
-    mainWidget = new HomeWidget();
     currentAuthorOfObjects = currentAuthor;
+    // Основной виджет домашней вкладки, отображающий контент пользователя
+    mainWidget = new HomeWidget();
 
-
+    // Подключаем сигналы от mainWidget к слотам HomeTab для обработки взаимодействия пользователя
     connect(mainWidget, &HomeWidget::albumClicked, this, &HomeTab::onAlbumById);
     connect(mainWidget, &HomeWidget::albumListClicked, this, &HomeTab::onAlbumListClicked);
     connect(mainWidget, &HomeWidget::trackDoubleClicked, this, &HomeTab::onTrackdoubleClicked);
     connect(mainWidget, &HomeWidget::trackNameButtonClicked, this, &HomeTab::onAlbumByTrack);
-
     connect(mainWidget, &HomeWidget::authorButtonClicked, this, &HomeTab::onAuthorButtonClicked);
 
+    // Создаем контейнер для прокрутки (скролл) и помещаем туда основной виджет
     scrollWidget = new QWidget();
     mainLayout = new QVBoxLayout(scrollWidget);
-    mainLayout->setContentsMargins(0, 0, 0, 0);
+    mainLayout->setContentsMargins(0, 0, 0, 0);  // Без отступов
     mainLayout->addWidget(mainWidget);
 
+    // Настраиваем область прокрутки для основного содержимого
     scrollArea = new QScrollArea(this);
     scrollArea->setWidget(scrollWidget);
-    scrollArea->setWidgetResizable(true);
-    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    scrollArea->setWidgetResizable(true);  // Позволяет изменять размер содержимого вместе с областью прокрутки
+    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);  // Отключаем горизонтальный скролл
+    scrollArea->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);     // Вертикальный скролл появляется по необходимости
 
-    // Добавляем scrollArea как главный экран в стек
+    // Добавляем scrollArea в стек виджетов — это главный экран вкладки
     innerStacked->addWidget(scrollArea);
-    //mainWidget->setStyleSheet("QWidget { border: 1px solid red; }");
 
-    // Размещаем стек в основной вкладке
+    // Размещаем стек виджетов в основном вертикальном лэйауте вкладки
     QVBoxLayout *tabLayout = new QVBoxLayout(this);
     tabLayout->setContentsMargins(0, 0, 0, 0);
     tabLayout->addWidget(innerStacked);
+
+    // Подключаем сигнал получения сообщений от WebSocket к обработчику в HomeTab
     connect(webSocket, &WebSocketClient::messageReceived,
             this, &HomeTab::onTextMessageReceived);
 }
 
-void HomeTab::homeButtonClicked(UserInfo userData,QVector<album> *newAlbums, QVector<album> *recAlbums, QVector<album> *randomAlbums){
+
+// Метод для обновления содержимого домашней вкладки при клике на домашнюю кнопку
+void HomeTab::homeButtonClicked(UserInfo userData,
+                                QVector<album> *newAlbums,
+                                QVector<album> *recAlbums,
+                                QVector<album> *randomAlbums)
+{
+    // Передаем данные об альбомах в главный виджет для отображения
     mainWidget->homeButtonClicked(newAlbums, recAlbums, randomAlbums);
+
+    // Обновляем текущего автора (пользователя)
     currentAuthorOfObjects = userData;
+
+    // Добавляем пользователя в список текущих зрителей (пользователей, просматривающих контент)
     currentViewers.push_back(currentAuthorOfObjects.usertag);
 }
+
 
 
 void HomeTab::onTextMessageReceived(const QString &type, const QJsonObject &data) {
@@ -361,131 +376,149 @@ void HomeTab::onTextMessageReceived(const QString &type, const QJsonObject &data
             onUserButtonClicked(viewUserInfo, likedAlbums, loadedTracks, likedTracks);
 
             typeOfQuery="None";
+        }else if(type == "catalog_response" && typeOfQuery=="trackLike"){
+            qDebug()<<data;
+            typeOfQuery="None";
         }
 
     }
 }
 
-
-void HomeTab::onFollowersButtonClicked(){
+// Обработка нажатия кнопки "Followers"
+void HomeTab::onFollowersButtonClicked() {
+    // Формируем JSON-запрос с нужными параметрами
     QJsonObject payload;
-    payload["endpoint"] = "/catalog";
-    payload["action"] = "user_action";
+    payload["endpoint"] = "/catalog";         // Указываем endpoint API
+    payload["action"] = "user_action";        // Тип действия
     QJsonObject subObj;
-
-    subObj.insert("usertag", currentAuthorOfObjects.usertag);
-
+    subObj.insert("usertag", currentAuthorOfObjects.usertag);  // Добавляем параметр usertag
     payload["params"] = subObj;
-    payload["subaction"] = "followers";
+    payload["subaction"] = "followers";       // Конкретное поддействие
 
+    // Преобразуем JSON в строку для отправки
     QJsonDocument doc(payload);
     QString message = QString::fromUtf8(doc.toJson());
-    qDebug()<<message;
-    //current_query = "register";
-    typeOfQuery="followersTracksButton";
-    webSocket->sendMessage(message);
-    int currentViewerIdx = cuurentViewerIndex;
-    int totalViewerIdx = currentViewers.size();
-    qDebug()<<currentViewerIdx;
-    qDebug()<<totalViewerIdx;
-    for (int i = totalViewerIdx - 1; i > currentViewerIdx; --i) {
-        qDebug()<<i;
-        qDebug()<<currentViewers[i];
+    qDebug() << message;
 
+    // Устанавливаем тип текущего запроса (для дальнейшей обработки)
+    typeOfQuery = "followersTracksButton";
+
+    // Отправляем сообщение через WebSocket
+    webSocket->sendMessage(message);
+
+    // Работа с вектором текущих зрителей
+    int currentViewerIdx = currentViewerIndex;   // Текущий индекс зрителя
+    int totalViewerIdx = currentViewers.size();  // Общее количество зрителей
+
+    qDebug() << currentViewerIdx;
+    qDebug() << totalViewerIdx;
+
+    // Удаляем всех зрителей, стоящих после текущего индекса
+    for (int i = totalViewerIdx - 1; i > currentViewerIdx; --i) {
+        qDebug() << i << currentViewers[i];
         currentViewers.removeAt(i);
     }
-    qDebug()<<cuurentViewerIndex;
-    qDebug()<<currentViewers.size();
-    currentViewers.push_back(currentAuthorOfObjects.usertag);
-    cuurentViewerIndex++;
-};
 
-void HomeTab::onFollowingButtonClicked(){
+    qDebug() << currentViewerIndex;
+    qDebug() << currentViewers.size();
+
+    // Добавляем нового зрителя (usertag автора)
+    currentViewers.push_back(currentAuthorOfObjects.usertag);
+
+    // Увеличиваем индекс текущего зрителя
+    currentViewerIndex++;
+}
+
+// Обработка нажатия кнопки "Following"
+void HomeTab::onFollowingButtonClicked() {
     QJsonObject payload;
     payload["endpoint"] = "/catalog";
     payload["action"] = "user_action";
     QJsonObject subObj;
-
     subObj.insert("usertag", currentAuthorOfObjects.usertag);
-
     payload["params"] = subObj;
     payload["subaction"] = "following";
 
     QJsonDocument doc(payload);
     QString message = QString::fromUtf8(doc.toJson());
-    qDebug()<<message;
-    //current_query = "register";
-    typeOfQuery="followingsTracksButton";
+    qDebug() << message;
+
+    typeOfQuery = "followingsTracksButton";
     webSocket->sendMessage(message);
-    int currentViewerIdx = cuurentViewerIndex;
+
+    int currentViewerIdx = currentViewerIndex;
     int totalViewerIdx = currentViewers.size();
-    qDebug()<<currentViewerIdx;
-    qDebug()<<totalViewerIdx;
+
+    qDebug() << currentViewerIdx;
+    qDebug() << totalViewerIdx;
+
     for (int i = totalViewerIdx - 1; i > currentViewerIdx; --i) {
         currentViewers.removeAt(i);
-
     }
-    qDebug()<<cuurentViewerIndex;
-    qDebug()<<currentViewers.size();
+
+    qDebug() << currentViewerIndex;
+    qDebug() << currentViewers.size();
+
     currentViewers.push_back(currentAuthorOfObjects.usertag);
-    cuurentViewerIndex++;
+    currentViewerIndex++;
+}
 
-};
-
-void HomeTab::onTracksLoadedButtonClicked(){
+// Обработка нажатия кнопки "My Loaded Tracks"
+void HomeTab::onTracksLoadedButtonClicked() {
     QJsonObject payload;
     payload["endpoint"] = "/catalog";
     payload["action"] = "user_action";
     QJsonObject subObj;
-
     subObj.insert("usertag", currentAuthorOfObjects.usertag);
-
     payload["params"] = subObj;
     payload["subaction"] = "my_loaded_tracks";
 
     QJsonDocument doc(payload);
     QString message = QString::fromUtf8(doc.toJson());
-    qDebug()<<message;
-    //current_query = "register";
+    qDebug() << message;
+
     typeOfQuery = "loadedTracksButton";
     webSocket->sendMessage(message);
-    int currentViewerIdx = cuurentViewerIndex;
+
+    int currentViewerIdx = currentViewerIndex;
     int totalViewerIdx = currentViewers.size();
 
     for (int i = totalViewerIdx - 1; i > currentViewerIdx; --i) {
         currentViewers.removeAt(i);
     }
-    currentViewers.push_back(currentAuthorOfObjects.usertag);
-    cuurentViewerIndex++;
 
-};
-void HomeTab::onTracksAddedButtonClicked(){
+    currentViewers.push_back(currentAuthorOfObjects.usertag);
+    currentViewerIndex++;
+}
+
+// Обработка нажатия кнопки "My Added Tracks"
+void HomeTab::onTracksAddedButtonClicked() {
     QJsonObject payload;
     payload["endpoint"] = "/catalog";
     payload["action"] = "user_action";
     QJsonObject subObj;
     subObj.insert("usertag", currentAuthorOfObjects.usertag);
-
     payload["params"] = subObj;
     payload["subaction"] = "my_tracks";
 
     QJsonDocument doc(payload);
     QString message = QString::fromUtf8(doc.toJson());
-    qDebug()<<message;
-    //current_query = "register";
-    qDebug()<<"clicked";
+    qDebug() << message;
+    qDebug() << "clicked";
+
     typeOfQuery = "likedTracksButton";
     webSocket->sendMessage(message);
-    int currentViewerIdx = cuurentViewerIndex;
+
+    int currentViewerIdx = currentViewerIndex;
     int totalViewerIdx = currentViewers.size();
 
     for (int i = totalViewerIdx - 1; i > currentViewerIdx; --i) {
         currentViewers.removeAt(i);
     }
-    currentViewers.push_back(currentAuthorOfObjects.usertag);
-    cuurentViewerIndex++;
 
-};
+    currentViewers.push_back(currentAuthorOfObjects.usertag);
+    currentViewerIndex++;
+}
 
 void HomeTab::onAuthorButtonClicked(QString *authorUsertag){
     QJsonObject payload;
@@ -501,7 +534,7 @@ void HomeTab::onAuthorButtonClicked(QString *authorUsertag){
     typeOfQuery="userButton";
     webSocket->sendMessage(message);
 
-    int currentViewerIdx = cuurentViewerIndex;
+    int currentViewerIdx = currentViewerIndex;
     int totalViewerIdx = currentViewers.size();
 
     for (int i = totalViewerIdx - 1; i > currentViewerIdx; --i) {
@@ -510,7 +543,7 @@ void HomeTab::onAuthorButtonClicked(QString *authorUsertag){
     }
     currentAuthorOfObjects.usertag = *authorUsertag;
     currentViewers.push_back(currentAuthorOfObjects.usertag);
-    cuurentViewerIndex++;
+    currentViewerIndex++;
 
     // QVector<UserInfo> users = loadUsersFromJson("resources/jsons/users.json");
     // onUserButtonClicked(users[1]);
@@ -537,7 +570,7 @@ void HomeTab::onAlbumByTrack(track *trackData){
         QVector<int> likedTracks;
         likedTracks.push_back(trackData->id);
         onAlbumClicked(a, likedTracks);
-        int currentViewerIdx = cuurentViewerIndex;
+        int currentViewerIdx = currentViewerIndex;
         int totalViewerIdx = currentViewers.size();
 
         for (int i = totalViewerIdx - 1; i > currentViewerIdx; --i) {
@@ -546,7 +579,7 @@ void HomeTab::onAlbumByTrack(track *trackData){
         }
 
         currentViewers.push_back(currentAuthorOfObjects.usertag);
-        cuurentViewerIndex++;
+        currentViewerIndex++;
 
     }else{
         QJsonObject payload;
@@ -567,7 +600,7 @@ void HomeTab::onAlbumByTrack(track *trackData){
         typeOfQuery = "albumButton";
 
         webSocket->sendMessage(message);
-        int currentViewerIdx = cuurentViewerIndex;
+        int currentViewerIdx = currentViewerIndex;
         int totalViewerIdx = currentViewers.size();
 
         for (int i = totalViewerIdx - 1; i > currentViewerIdx; --i) {
@@ -576,7 +609,7 @@ void HomeTab::onAlbumByTrack(track *trackData){
         }
 
         currentViewers.push_back(currentAuthorOfObjects.usertag);
-        cuurentViewerIndex++;
+        currentViewerIndex++;
 
     }
 }
@@ -656,7 +689,7 @@ void HomeTab::onAlbumById(album albumData){
     if(albumData.id==0){
         QVector<int> likedTracks;
         onAlbumClicked(albumData, likedTracks);
-        int currentViewerIdx = cuurentViewerIndex;
+        int currentViewerIdx = currentViewerIndex;
         int totalViewerIdx = currentViewers.size();
 
         for (int i = totalViewerIdx - 1; i > currentViewerIdx; --i) {
@@ -665,7 +698,7 @@ void HomeTab::onAlbumById(album albumData){
         }
 
         currentViewers.push_back(currentAuthorOfObjects.usertag);
-        cuurentViewerIndex++;
+        currentViewerIndex++;
 
     }else{
         QJsonObject payload;
@@ -685,7 +718,7 @@ void HomeTab::onAlbumById(album albumData){
         typeOfQuery = "albumButton";
 
         webSocket->sendMessage(message);
-        int currentViewerIdx = cuurentViewerIndex;
+        int currentViewerIdx = currentViewerIndex;
         int totalViewerIdx = currentViewers.size();
 
         for (int i = totalViewerIdx - 1; i > currentViewerIdx; --i) {
@@ -694,7 +727,7 @@ void HomeTab::onAlbumById(album albumData){
         }
 
         currentViewers.push_back(currentAuthorOfObjects.usertag);
-        cuurentViewerIndex++;
+        currentViewerIndex++;
 
     }
 }
@@ -720,6 +753,8 @@ void HomeTab::onAlbumClicked(album albumData, QVector<int> likedTracks){
     connect(albumwidgetTab, &AlbumWidget::trackNameButtonClicked, this, &HomeTab::onAlbumByTrack);
     connect(albumwidgetTab, &AlbumWidget::authorButtonClickedByTrackId, this, &HomeTab::onAuthorButtonClicked);
     connect(albumwidgetTab, &AlbumWidget::authorButtonClicked, this, &HomeTab::onAuthorButtonClicked);
+    connect(albumwidgetTab, &AlbumWidget::albumTrackLiked, this, &HomeTab::on_TrackLikeButton);
+
 
     innerStacked->addWidget(albumwidgetTab);
     innerStacked->setCurrentWidget(albumwidgetTab);
@@ -728,6 +763,26 @@ void HomeTab::onAlbumClicked(album albumData, QVector<int> likedTracks){
     //albumwidgetTab->setStyleSheet("border: 1px solid red");
 
     emit onAlbomClickedSignal();
+}
+
+void HomeTab::on_TrackLikeButton(track *trackData){
+    QJsonObject payload;
+    payload["endpoint"] = "/catalog";
+    payload["action"] = "user_action";
+    QJsonObject subObj;
+    subObj.insert("usertag", *mainUsertag);
+    subObj.insert("track_id", trackData->id);
+
+    payload["params"] = subObj;
+    payload["subaction"] = "like_track";
+
+    QJsonDocument doc(payload);
+    QString message = QString::fromUtf8(doc.toJson());
+    qDebug()<<message;
+    qDebug()<<"clicked";
+    typeOfQuery = "trackLike";
+
+    webSocket->sendMessage(message);
 }
 
 void HomeTab::onAlbumListClicked(QVector<album> albumList){
@@ -744,7 +799,7 @@ void HomeTab::onAlbumListClicked(QVector<album> albumList){
         }
     }
 
-    int currentViewerIdx = cuurentViewerIndex;
+    int currentViewerIdx = currentViewerIndex;
     int totalViewerIdx = currentViewers.size();
 
     for (int i = totalViewerIdx - 1; i > currentViewerIdx; --i) {
@@ -753,7 +808,7 @@ void HomeTab::onAlbumListClicked(QVector<album> albumList){
     }
 
     currentViewers.push_back(currentAuthorOfObjects.usertag);
-    cuurentViewerIndex++;
+    currentViewerIndex++;
 
     //AlbumWidget *albumwidget = new AlbumWidget(albumData);
     //connect(albumwidget, &AlbumWidget::trackButtonClicked, this, &ProfileWidget::onTrackdoubleClicked);
@@ -774,7 +829,6 @@ void HomeTab::onAlbumListClicked(QVector<album> albumList){
 
     emit onAlbomClickedSignal();
 }
-// остановились на том что addbutton не работает класса albomlist нужно продебажить лишь а так все заебись
 
 void HomeTab::onTrackdoubleClicked(track *trackData){
     emit onTrackDoubleClickedignal(trackData);
@@ -793,7 +847,7 @@ int AbstractTab::getTotalIndex()  {
 void AbstractTab::setCurrentIndex(int currentIndex){
     qDebug()<<currentViewers;
     currentAuthorOfObjects.usertag = currentViewers[currentIndex];
-    cuurentViewerIndex = currentIndex;
+    currentViewerIndex = currentIndex;
 
     innerStacked->setCurrentIndex(currentIndex);
 }

@@ -21,7 +21,7 @@
 #include "userProfileWidget.h"
 #include "setstyle.h"
 
-
+//виджет для отображения информации о пользователе
 UserProfileWidget::UserProfileWidget(QWidget *parent) // класс для информации о профиле
     : QWidget(parent)      //пользователя. хранится ава, имя, тег, информация о подписчиках и тдд
 {
@@ -114,26 +114,8 @@ UserProfileWidget::UserProfileWidget(QWidget *parent) // класс для ин�
     ProfileLayout->addLayout(ProfileInfoLayout);
     this->setMinimumWidth(670);
     this->setMaximumWidth(1000);
-
-    // followersLabel = new QLabel(this);
-    // layout->addWidget(followersLabel);
 }
-
 void UserProfileWidget::setUserProfile(const UserInfo &user) {
-    // QPixmap avatarPixmap(user.avatarPath);
-    // QPixmap scaledPixmap = avatarPixmap.scaled(200, 200, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    // // Создаем круглую маску
-    // QPixmap roundedPixmap(scaledPixmap.size());
-    // roundedPixmap.fill(Qt::transparent); // Прозрачный фон
-
-    // QPainter painter(&roundedPixmap);
-    // painter.setRenderHint(QPainter::Antialiasing);
-    // QPainterPath path;
-    // path.addRoundedRect(roundedPixmap.rect(), 20, 20); // Закругление по радиусу (100 – круг)
-    // painter.setClipPath(path);
-    // painter.drawPixmap(0, 0, scaledPixmap);
-
-    // avatarLabel->setPixmap(roundedPixmap); //добавляем в слой авы саму аву
     loadCover(user.avatarPath, avatarLabel);
     usernameLabel->setText(user.username);
     usertagLabel->setText(user.usertag);
@@ -143,7 +125,7 @@ void UserProfileWidget::setUserProfile(const UserInfo &user) {
     tracksAddedNumLabel->setText(QString::number(user.tracksAddednum));
 }// функция, что заполняет информацией и авой профиль.
 
-
+//функция загружает картинку по URL
 void UserProfileWidget::loadCover(const QString& url, QLabel *label) {
     QNetworkAccessManager *manager = new QNetworkAccessManager(this);
 
@@ -167,6 +149,7 @@ void UserProfileWidget::loadCover(const QString& url, QLabel *label) {
     manager->get(request);
 }
 
+//функция по идее не нужна больше но боюсь она понадобится скоро...'
 QVector<UserInfo> loadUsersFromJson(const QString &filePath) {
     QFile file(filePath);
     QVector<UserInfo> users;

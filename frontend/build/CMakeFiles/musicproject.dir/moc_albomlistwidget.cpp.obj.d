@@ -395,4 +395,11 @@ CMakeFiles/musicproject.dir/moc_albomlistwidget.cpp.obj: \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qabstractbutton.h \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/QVBoxLayout \
  C:/Qt/6.8.2/mingw_64/include/QtWidgets/qboxlayout.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QHBoxLayout \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QString \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qstring.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QLayout \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qlayout.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qrect.h \
  C:/Qt/6.8.2/mingw_64/include/QtCore/qtmochelpers.h

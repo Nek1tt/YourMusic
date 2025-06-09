@@ -19,6 +19,10 @@
 #include <QJsonDocument>
 #include <QJsonArray>
 #include <QJsonObject>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
+#include <QNetworkRequest>
+#include <QBuffer>
 
 
 #include "musicmain.h"
@@ -555,7 +559,6 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
 
 MusicMain::~MusicMain()
 {
-    // delete ui;
 }
 
 void MusicMain::toggle_buttons(QPushButton* pushedButton){ // changes the button from which we switched to a new tab to white. and
@@ -739,30 +742,40 @@ void MusicMain::on_albumButton_clicked(){
 
 
 void MusicMain::on_TrackButton_clicked(track *trackData){
-    rightbarwidget->setNewCurrentTrack(*trackData);
+    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+    QString urlStr = QString("http://84.237.53.143:8084/stream/%1?user=%2&author=%3")
+                         .arg(trackData->id)
+                         .arg(mainUsertag)
+                         .arg(trackData->authorUsertags[0]);
+    QNetworkRequest request(urlStr);
+
+    // отправляем GET-запрос
+    QNetworkReply *reply = manager->get(request);
+
+    // когда ответ готов:
+    connect(reply, &QNetworkReply::finished, this, [=]() {
+        // читаем заголовки
+        QVariant subscribed = reply->rawHeader("X-Subscribed");
+        qDebug() << "X-Subscribed:" << subscribed.toString();
+
+        // сохраняем файл
+        if (reply->error() == QNetworkReply::NoError) {
+            QByteArray data = reply->readAll();
+            QFile file("resources/music/current.mp3");
+            if (file.open(QIODevice::WriteOnly)) {
+                file.write(data);
+                file.close();
+                qDebug() << "Файл сохранён.";
+                rightbarwidget->setNewCurrentTrack(*trackData);
+                rightbarwidget->on_PlayAndLoad_clicked();
+            } else {
+                qDebug() << "Не удалось открыть файл для записи.";
+            }
+        } else {
+            qDebug() << "Ошибка при скачивании:" << reply->errorString();
+        }
+        reply->deleteLater();
+    });
 }
 
 
-// void MusicMain::on_toserver_clicked()
-// {
-//     if (webSocket->state() == QAbstractSocket::ConnectedState) {
-//         // Отправляем сообщение на сервер
-//         webSocket->sendTextMessage(R"({"command": "play_track", "track_id": 1})");
-//     } else {
-//         QMessageBox::warning(this, "Ошибка", "Нет подключения к серверу");
-//     }
-// }
-
-// void MusicMain::onConnected() {
-//     QMessageBox::information(this, "Успех", "Подключение к серверу установлено");
-// }
-
-// void MusicMain::onDisconnected() {
-//     QMessageBox::warning(this, "Ошибка", "Соединение с сервером разорвано");
-// }
-
-// void MusicMain::onTextMessageReceived(const QString &message) {
-//     qDebug()<<message;
-//     QMessageBox::information(this, "Ответ от сервера", message);
-
-// }

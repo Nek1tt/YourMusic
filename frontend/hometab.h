@@ -42,7 +42,7 @@ protected:
     QWidget *scrollWidget;
     QVBoxLayout *mainLayout;
     QScrollArea *scrollArea;
-    int cuurentViewerIndex = 0;
+    int currentViewerIndex = 0;
     UserInfo currentAuthorOfObjects;
     QVector<QString> currentViewers;
     QString typeOfQuery="None";
@@ -78,6 +78,8 @@ public:
     void onTracksLoadedButtonClicked();
     void onTracksAddedButtonClicked();
     void onAlbumById(album albumData);
+    void on_TrackLikeButton(track *trackData);
+
 
 private:    
     HomeWidget *mainWidget;
@@ -130,6 +132,7 @@ public:
     void onAuthorButtonClicked(QString *authorUsertag);
     void onAlbumByTrack(track *TrackData);
     void onAlbumById(album albumData);
+    void on_TrackLikeButton(track *trackData);
 
     int get_widgetWidth();
     void onTrackdoubleClicked(track *trackData);

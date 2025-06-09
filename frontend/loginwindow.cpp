@@ -26,8 +26,8 @@ LoginWindow::LoginWindow(WebSocketClient *webSocket, QWidget *parent)
     photoLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
     photoLabel->setAlignment(Qt::AlignCenter);
 
-    QPixmap pixmap("resources/photo/photo.jpg");
-    photoLabel->setPixmap(pixmap.scaled(this->width() / 2, this->height(),
+    QPixmap pixmap("resources/photo/2.png");
+    photoLabel->setPixmap(pixmap.scaled(this->width()/1.5, this->height(),
                                         Qt::KeepAspectRatioByExpanding,
                                         Qt::SmoothTransformation));
     mainLayout->addWidget(photoLabel, 1);
@@ -65,7 +65,7 @@ LoginWindow::LoginWindow(WebSocketClient *webSocket, QWidget *parent)
     tabs = new QTabWidget();
     tabs->setStyleSheet(R"(
     QTabWidget::pane {
-        background-color: #222;  /* Цвет панели (где содержимое) */
+        background-color: #222;
         border: none;
     }
 
@@ -186,11 +186,6 @@ LoginWindow::LoginWindow(WebSocketClient *webSocket, QWidget *parent)
     tabs->setCurrentWidget(registerTab);
 
     toggle_buttons();
-    // webSocket = new QWebSocket();
-    // connect(webSocket, &QWebSocket::connected, this, &LoginWindow::onConnected);
-    // connect(webSocket, &QWebSocket::disconnected, this, &LoginWindow::onDisconnected);
-    // connect(webSocket, &QWebSocket::textMessageReceived, this, &LoginWindow::onTextMessageReceived);
-    // webSocket->open(QUrl("ws://84.237.53.143:8080"));
     connect(webSocket, &WebSocketClient::messageReceived,
             this, &LoginWindow::onTextMessageReceived);
 }
@@ -202,13 +197,6 @@ QString *LoginWindow::getUsertag(){
     return &userTag;
 }
 
-// void LoginWindow::onConnected() {
-//     QMessageBox::information(this, "Успех", "Подключение к серверу установлено");
-// }
-
-// void LoginWindow::onDisconnected() {
-//     QMessageBox::warning(this, "Ошибка", "Соединение с сервером разорвано");
-// }
 
 void LoginWindow::onTextMessageReceived(const QString &type, const QJsonObject &dataObj) {
     qDebug()<<type;

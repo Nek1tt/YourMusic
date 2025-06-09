@@ -44,7 +44,7 @@ static constexpr auto qt_meta_stringdata_ZN16AlbumTrackButtonE = QtMocHelpers::s
     "trackData",
     "trackNameButtonClicked",
     "trackAuthorButtonClicked",
-    "albumLiked"
+    "albumTrackLiked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -94,7 +94,7 @@ Q_CONSTINIT const QMetaObject AlbumTrackButton::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'trackAuthorButtonClicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'albumLiked'
+        // method 'albumTrackLiked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -108,7 +108,7 @@ void AlbumTrackButton::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         case 0: _t->trackButtonClicked((*reinterpret_cast< std::add_pointer_t<track*>>(_a[1]))); break;
         case 1: _t->trackNameButtonClicked(); break;
         case 2: _t->trackAuthorButtonClicked(); break;
-        case 3: _t->albumLiked(); break;
+        case 3: _t->albumTrackLiked(); break;
         default: ;
         }
     }
@@ -137,7 +137,7 @@ void AlbumTrackButton::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int
         }
         {
             using _q_method_type = void (AlbumTrackButton::*)();
-            if (_q_method_type _q_method = &AlbumTrackButton::albumLiked; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
+            if (_q_method_type _q_method = &AlbumTrackButton::albumTrackLiked; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
                 *result = 3;
                 return;
             }
@@ -196,7 +196,7 @@ void AlbumTrackButton::trackAuthorButtonClicked()
 }
 
 // SIGNAL 3
-void AlbumTrackButton::albumLiked()
+void AlbumTrackButton::albumTrackLiked()
 {
     QMetaObject::activate(this, &staticMetaObject, 3, nullptr);
 }
@@ -217,7 +217,7 @@ static constexpr auto qt_meta_stringdata_ZN11AlbumWidgetE = QtMocHelpers::string
     "QString*",
     "trackUsertag",
     "authorButtonClicked",
-    "albumLiked"
+    "albumTrackLiked"
 );
 #else  // !QT_MOC_HAS_STRINGDATA
 #error "qtmochelpers.h not found or too old."
@@ -274,7 +274,7 @@ Q_CONSTINIT const QMetaObject AlbumWidget::staticMetaObject = { {
         // method 'authorButtonClicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<QString *, std::false_type>,
-        // method 'albumLiked'
+        // method 'albumTrackLiked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<track *, std::false_type>
     >,
@@ -290,7 +290,7 @@ void AlbumWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 1: _t->trackNameButtonClicked((*reinterpret_cast< std::add_pointer_t<track*>>(_a[1]))); break;
         case 2: _t->authorButtonClickedByTrackId((*reinterpret_cast< std::add_pointer_t<QString*>>(_a[1]))); break;
         case 3: _t->authorButtonClicked((*reinterpret_cast< std::add_pointer_t<QString*>>(_a[1]))); break;
-        case 4: _t->albumLiked((*reinterpret_cast< std::add_pointer_t<track*>>(_a[1]))); break;
+        case 4: _t->albumTrackLiked((*reinterpret_cast< std::add_pointer_t<track*>>(_a[1]))); break;
         default: ;
         }
     }
@@ -326,7 +326,7 @@ void AlbumWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         }
         {
             using _q_method_type = void (AlbumWidget::*)(track * );
-            if (_q_method_type _q_method = &AlbumWidget::albumLiked; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
+            if (_q_method_type _q_method = &AlbumWidget::albumTrackLiked; *reinterpret_cast<_q_method_type *>(_a[1]) == _q_method) {
                 *result = 4;
                 return;
             }
@@ -394,7 +394,7 @@ void AlbumWidget::authorButtonClicked(QString * _t1)
 }
 
 // SIGNAL 4
-void AlbumWidget::albumLiked(track * _t1)
+void AlbumWidget::albumTrackLiked(track * _t1)
 {
     void *_a[] = { nullptr, const_cast<void*>(reinterpret_cast<const void*>(std::addressof(_t1))) };
     QMetaObject::activate(this, &staticMetaObject, 4, _a);

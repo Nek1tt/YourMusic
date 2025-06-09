@@ -24,7 +24,6 @@ public:
     void onAuthorButtonClicked(QString *authorUsertag);
     void onTrackNameButtonClicked(track *TrackData);
 
-
 signals:
     void albumClicked(album albumData);
     void albumListClicked(QVector<album> albumList);

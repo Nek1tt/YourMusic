@@ -28,7 +28,7 @@ signals:
     void trackButtonClicked(track *trackData);
     void trackNameButtonClicked();
     void trackAuthorButtonClicked();
-    void albumLiked();
+    void albumTrackLiked();
 
 private:
     track trackData;
@@ -52,7 +52,7 @@ signals:
     void trackNameButtonClicked(track *trackData);
     void authorButtonClickedByTrackId(QString *trackUsertag);
     void authorButtonClicked(QString *trackUsertag);
-    void albumLiked(track *trackData);
+    void albumTrackLiked(track *trackData);
 
 private:
     album albumData;

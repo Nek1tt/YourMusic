@@ -2,18 +2,17 @@
 
 #include "userslistwidget.h"
 
+
+//кнопка в виде полльзователя в списке пользователей, при нажатии на нее открывается профиль этого пользователя за счет его usertag
 UserButton::UserButton(UserInfo userData)
     :userData(userData)
 {
     QHBoxLayout *trackLayout = new QHBoxLayout(this);
     trackLayout->setAlignment(Qt::AlignLeft);
-    trackLayout->setContentsMargins(0, 0, 0, 0);  // ← Вот это убирает смещение
+    trackLayout->setContentsMargins(0, 0, 0, 0);
     QLabel *coverLabel = new QLabel(this);
     setRoundedImage(coverLabel, userData.avatarPath, 45, 15);
-    //coverLabel->setFixedWidth(80);
-    //QPixmap coverPixmap(trackData.coverpath);
-    //coverLabel->setPixmap(coverPixmap.scaled(70, 70, Qt::KeepAspectRatio));
-    trackLayout->addWidget(coverLabel);  // Добавляем обложку в макет
+    trackLayout->addWidget(coverLabel);
 
     QVBoxLayout *name_and_author = new QVBoxLayout();
     QLabel *nameLabel = new QLabel(userData.username);
@@ -38,7 +37,7 @@ UserButton::UserButton(UserInfo userData)
     durationLabel->setFixedHeight(14);
     durationLabel->setFixedWidth(50);
     durationLabel->setStyleSheet("color: #828282; font-weight: bold; font-size: 12px; font-family: 'Tahoma';");
-    trackLayout->addStretch(); // добавляет растяжку перед durationLabel
+    trackLayout->addStretch();
     trackLayout->addWidget(durationLabel);
 
     //this->setStyleSheet("border: 1px solid red");
@@ -61,12 +60,13 @@ UserButton::UserButton(UserInfo userData)
 
 }
 
+//функция для получения usertag для отправки сигнала нажатия на юзера
 QString *UserButton::getUsertag(){
     return &userData.usertag;
 };
 
 
-
+//конструктор получает список юзертегов и делает из него виджет со списком
 UsersListWidget::UsersListWidget(QVector<UserInfo> users)
     : users(users)
 {
@@ -74,7 +74,6 @@ UsersListWidget::UsersListWidget(QVector<UserInfo> users)
     scrollArea->setWidgetResizable(true);
     //setStyleSheet("border: 1px solid red");
     centerWrapper = new QWidget();
-    //centerWrapper-> setStyleSheet("border: 1px solid green");
     QVBoxLayout *centerLayout = new QVBoxLayout(centerWrapper);
     centerLayout->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
 
@@ -95,12 +94,10 @@ UsersListWidget::UsersListWidget(QVector<UserInfo> users)
         "QPushButton:hover {"
         "text-decoration: underline;");
     albumsLayout->addWidget(albumsLabel);
-    //centerLayout->addWidget(albumsWidget);
     containerWidget = new QWidget();
 
     trackListLayout = new QGridLayout(containerWidget);
     trackListLayout->addWidget(albumsWidget, 0, 0);
-    //trackListLayout->setSpacing(10);
     trackListLayout->setContentsMargins(0,0,0,0);
 
     containerWidget->setLayout(trackListLayout);
@@ -114,7 +111,7 @@ UsersListWidget::UsersListWidget(QVector<UserInfo> users)
 
     buildGrid();
 }
-
+//функция строит сетку из юзеров
 void UsersListWidget::buildGrid()
 {
     int columns = 1;
@@ -124,9 +121,6 @@ void UsersListWidget::buildGrid()
         connect(userButton, &QPushButton::clicked, [this, userButton]() {
             emit userButtonClicked(userButton->getUsertag());
         });
-        //button->setMinimumSize(100, 100);
-        //buttons.push_back(button);
-
         int row = i / columns+1;
         int col = i % columns;
         trackListLayout->addWidget(userButton, row, col);

@@ -520,4 +520,9 @@ CMakeFiles/musicproject.dir/albumwidget.cpp.obj: \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\albumwidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\mytrackswidget.h \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\myalbumswidget.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QVector \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/qvector.h \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/QLayout \
+ C:/Qt/6.8.2/mingw_64/include/QtWidgets/qlayout.h \
+ C:/Qt/6.8.2/mingw_64/include/QtCore/QRect \
  C:\Users\Lenovo\upprpo\YourMusic\frontend\setstyle.h
