@@ -1,0 +1,15 @@
+the_entrance_in_city noizeee imgs/covers/cover1.png 
+the_entrance_in_city noizeee imgs/covers/cover1.png 
+call_me anacondaz imgs/covers/cover0.png 
+call_me anacondaz imgs/covers/cover0.png 
+the_beauty_and_uglyness oxxy imgs/covers/cover2.png 
+the_beauty_and_uglyness oxxy imgs/covers/cover2.png 
+the_entrance_in_city noizeee imgs/covers/cover1.png 
+the_beauty_and_uglyness oxxy imgs/covers/cover2.png 
+call_me anacondaz imgs/covers/cover0.png 
+call_me anacondaz imgs/covers/cover0.png 
+call_me anacondaz imgs/covers/cover0.png 
+call_me anacondaz imgs/covers/cover0.png 
+call_me anacondaz imgs/covers/cover0.png 
+call_me anacondaz imgs/covers/cover0.png 
+the_beauty_and_uglyness oxxy imgs/covers/cover2.png 

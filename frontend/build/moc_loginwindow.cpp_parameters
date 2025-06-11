@@ -1,0 +1,4 @@
+-DWIN32
+-o
+C:/Users/Lenovo/upprpo/YourMusic/frontend/build/moc_loginwindow.cpp
+C:/Users/Lenovo/upprpo/YourMusic/frontend/loginwindow.h

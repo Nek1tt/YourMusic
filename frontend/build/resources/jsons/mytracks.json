@@ -1,0 +1,76 @@
+{
+  "tracks": [
+    {
+      "id": 1,
+      "title": "Lost in the Echo",
+      "durationMs": 210000,
+      "coverPath": "resources/imgs/covers/cover1.png",
+      "author": "Linkin Park",
+      "albumId": 0
+    },
+    {
+      "id": 2,
+      "title": "Numb",
+      "durationMs": 185000,
+      "coverPath": "resources/imgs/covers/cover0.png",
+      "author": "Linkin Park",
+      "albumId": 0
+    },
+    {
+      "id": 3,
+      "title": "In the End",
+      "durationMs": 217000,
+      "coverPath": "resources/imgs/covers/cover3.png",
+      "author": "Linkin Park",
+      "albumId": 0
+    },
+    {
+      "id": 4,
+      "title": "Believer",
+      "durationMs": 204000,
+      "coverPath": "resources/imgs/covers/cover4.png",
+      "author": "Imagine Dragons",
+      "albumId": 0
+    },
+    {
+      "id": 5,
+      "title": "Radioactive",
+      "durationMs": 186000,
+      "coverPath": "resources/imgs/covers/cover2.png",
+      "author": "Imagine Dragons",
+      "albumId": 0
+    },
+    {
+      "id": 6,
+      "title": "Thunder",
+      "durationMs": 177000,
+      "coverPath": "resources/imgs/covers/cover4.png",
+      "author": "Imagine Dragons",
+      "albumId": 0
+    },
+    {
+      "id": 7,
+      "title": "Shape of You",
+      "durationMs": 233000,
+      "coverPath": "resources/imgs/covers/cover2.png",
+      "author": "Ed Sheeran",
+      "albumId": 0
+    },
+    {
+      "id": 8,
+      "title": "Perfect",
+      "durationMs": 263000,
+      "coverPath": "resources/imgs/covers/cover4.png",
+      "author": "Ed Sheeran",
+      "albumId": 0
+    },
+    {
+      "id": 9,
+      "title": "Photograph",
+      "durationMs": 258000,
+      "coverPath": "resources/imgs/covers/cover3.png",
+      "author": "Ed Sheeran",
+      "albumId": 0
+    }
+  ]
+}

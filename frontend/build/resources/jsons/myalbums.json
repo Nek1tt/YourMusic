@@ -1,0 +1,176 @@
+[
+    {
+      "id": 1,
+      "title": "Ненаход",
+      "cover_path": "resources/imgs/covers/cover0.png",
+      "author": "DK",
+      "track_count": 42,
+      "author_id" : 1,
+      "tracks": [
+        {
+          "id": 101,
+          "album_id": 1,
+          "title": "Тукей",
+          "duration_ms": 225000,
+          "cover_path": "resources/imgs/covers/cover0.png",
+          "author": "DK"
+        },
+        {
+          "id": 102,
+          "album_id": 1,
+          "title": "Лицемер",
+          "duration_ms": 252000,
+          "cover_path": "resources/imgs/covers/cover0.png",
+          "author": "DK"
+        },
+        {
+          "id": 103,
+          "album_id": 1,
+          "title": "Прах",
+          "duration_ms": 252000,
+          "cover_path": "resources/imgs/covers/cover0.png",
+          "author": "DK"
+        },
+        {
+          "id": 104,
+          "album_id": 1,
+          "title": "Недостоин жизни",
+          "duration_ms": 252000,
+          "cover_path": "resources/imgs/covers/cover0.png",
+          "author": "DK"
+        },
+        {
+          "id": 105,
+          "album_id": 1,
+          "title": "Golden Memories",
+          "duration_ms": 252000,
+          "cover_path": "resources/imgs/covers/cover0.png",
+          "author": "DK"
+        },
+        {
+          "id": 106,
+          "album_id": 1,
+          "title": "Golden Memories",
+          "duration_ms": 252000,
+          "cover_path": "resources/imgs/covers/cover0.png",
+          "author": "DK"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "title": "Ненаход",
+      "cover_path": "resources/imgs/covers/cover0.png",
+      "author": "DK",
+      "track_count": 42,
+      "author_id" : 1,
+      "tracks": [
+        {
+          "id": 101,
+          "album_id": 1,
+          "title": "Тукей",
+          "duration_ms": 225000,
+          "cover_path": "resources/imgs/covers/cover0.png",
+          "author": "DK"
+        },
+        {
+          "id": 102,
+          "album_id": 1,
+          "title": "Лицемер",
+          "duration_ms": 252000,
+          "cover_path": "resources/imgs/covers/cover0.png",
+          "author": "DK"
+        },
+        {
+          "id": 103,
+          "album_id": 1,
+          "title": "Прах",
+          "duration_ms": 252000,
+          "cover_path": "resources/imgs/covers/cover0.png",
+          "author": "DK"
+        },
+        {
+          "id": 104,
+          "album_id": 1,
+          "title": "Недостоин жизни",
+          "duration_ms": 252000,
+          "cover_path": "resources/imgs/covers/cover0.png",
+          "author": "DK"
+        },
+        {
+          "id": 105,
+          "album_id": 1,
+          "title": "Golden Memories",
+          "duration_ms": 252000,
+          "cover_path": "resources/imgs/covers/cover0.png",
+          "author": "DK"
+        },
+        {
+          "id": 106,
+          "album_id": 1,
+          "title": "Golden Memories",
+          "duration_ms": 252000,
+          "cover_path": "resources/imgs/covers/cover0.png",
+          "author": "DK"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "title": "Ненаход",
+      "cover_path": "resources/imgs/covers/cover0.png",
+      "author": "DK",
+      "track_count": 42,
+      "author_id" : 1,
+      "tracks": [
+        {
+          "id": 101,
+          "album_id": 1,
+          "title": "Тукей",
+          "duration_ms": 225000,
+          "cover_path": "resources/imgs/covers/cover0.png",
+          "author": "DK"
+        },
+        {
+          "id": 102,
+          "album_id": 1,
+          "title": "Лицемер",
+          "duration_ms": 252000,
+          "cover_path": "resources/imgs/covers/cover0.png",
+          "author": "DK"
+        },
+        {
+          "id": 103,
+          "album_id": 1,
+          "title": "Прах",
+          "duration_ms": 252000,
+          "cover_path": "resources/imgs/covers/cover0.png",
+          "author": "DK"
+        },
+        {
+          "id": 104,
+          "album_id": 1,
+          "title": "Недостоин жизни",
+          "duration_ms": 252000,
+          "cover_path": "resources/imgs/covers/cover0.png",
+          "author": "DK"
+        },
+        {
+          "id": 105,
+          "album_id": 1,
+          "title": "Golden Memories",
+          "duration_ms": 252000,
+          "cover_path": "resources/imgs/covers/cover0.png",
+          "author": "DK"
+        },
+        {
+          "id": 106,
+          "album_id": 1,
+          "title": "Golden Memories",
+          "duration_ms": 252000,
+          "cover_path": "resources/imgs/covers/cover0.png",
+          "author": "DK"
+        }
+      ]
+    }
+]
