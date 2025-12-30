@@ -16,6 +16,7 @@
 #include <string>
 #include <optional>
 #include <vector>
+#include <cstdlib>
 #include <iostream>
 
 namespace beast = boost::beast;

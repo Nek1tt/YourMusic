@@ -198,7 +198,7 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                 t.album_id = trackObj["album_id"].toInt();
                 t.name = trackObj["title"].toString();
                 t.duration_s = trackObj["duration_seconds"].toInt();
-                QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                QString coverUrl = QString("http://127.0.0.1:8083/track/%1").arg(t.id);
                 t.coverpath = coverUrl;
                 t.description = trackObj["description"].toString();
                 QString authorsStr = trackObj["authors"].toString();
@@ -247,7 +247,7 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                 a.name = albumObj["title"].toString();
                 a.total_duration = albumObj["total_duration"].toInt();
                 a.track_count = albumObj["track_count"].toInt();
-                QString coverUrl = QString("http://84.237.53.143:8083/album/%1").arg(a.id);
+                QString coverUrl = QString("http://127.0.0.1:8083/album/%1").arg(a.id);
                 a.coverpath = coverUrl;
 
                 // Если в альбоме есть массив tracks — парсим его
@@ -273,7 +273,7 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                     t.id = trackObj["id"].toInt();
                     t.name = trackObj["title"].toString();
                     t.upload_date = trackObj["upload_date"].toString();
-                    QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                    QString coverUrl = QString("http://127.0.0.1:8083/track/%1").arg(t.id);
                     t.coverpath = coverUrl;
                     a.tracks.append(t);
                 }
@@ -289,7 +289,7 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                 t.album_id = trackObj["album_id"].toInt();
                 t.name = trackObj["title"].toString();
                 t.duration_s = trackObj["duration_seconds"].toInt();
-                QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                QString coverUrl = QString("http://127.0.0.1:8083/track/%1").arg(t.id);
                 t.coverpath = coverUrl;
                 QString authorsStr = trackObj["authors"].toString();
                 QStringList authorList = authorsStr.split(",", Qt::SkipEmptyParts);
@@ -327,7 +327,7 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                 a.name = albumObj["title"].toString();
                 a.total_duration = albumObj["total_duration"].toInt();
                 a.track_count = albumObj["track_count"].toInt();
-                QString coverUrl = QString("http://84.237.53.143:8083/album/%1").arg(a.id);
+                QString coverUrl = QString("http://127.0.0.1:8083/album/%1").arg(a.id);
                 a.coverpath = coverUrl;
                 // Если в альбоме есть массив tracks — парсим его
                 QJsonArray tracksArray = albumObj["tracks"].toArray();
@@ -352,7 +352,7 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                     t.id = trackObj["id"].toInt();
                     t.name = trackObj["title"].toString();
                     t.upload_date = trackObj["upload_date"].toString();
-                    QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                    QString coverUrl = QString("http://127.0.0.1:8083/track/%1").arg(t.id);
                     t.coverpath = coverUrl;
                     a.tracks.append(t);
                 }
@@ -368,7 +368,7 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                 t.album_id = trackObj["album_id"].toInt();
                 t.name = trackObj["title"].toString();
                 t.duration_s = trackObj["duration_seconds"].toInt();
-                QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                QString coverUrl = QString("http://127.0.0.1:8083/track/%1").arg(t.id);
                 t.coverpath = coverUrl;
                 QString authorsStr = trackObj["authors"].toString();
                 QStringList authorList = authorsStr.split(",", Qt::SkipEmptyParts);
@@ -415,7 +415,7 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
             QJsonObject user = data.value("user_info").toObject();
             mainUserInfo->username = user["username"].toString();
             mainUserInfo->usertag = user["usertag"].toString();
-            QString coverUrl = QString("http://84.237.53.143:8083/profile/%1").arg(mainUserInfo->usertag);
+            QString coverUrl = QString("http://127.0.0.1:8083/profile/%1").arg(mainUserInfo->usertag);
             mainUserInfo->avatarPath = coverUrl;
             mainUserInfo->followersnum = user["followersnum"].toInt();
             mainUserInfo->followingnum = user["followingnum"].toInt();
@@ -428,7 +428,7 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
             likedTracks->name = "Liked Tracks";
             likedTracks->total_duration = 0;
             likedTracks->track_count = 0;
-            coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(4007);
+            coverUrl = QString("http://127.0.0.1:8083/track/%1").arg(4007);
             likedTracks->coverpath = coverUrl;
 
             loadedTracks = new album;
@@ -438,7 +438,7 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
             loadedTracks->name = "Loaded Tracks";
             loadedTracks->total_duration = 0;
             loadedTracks->track_count = 0;
-            coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(4006);
+            coverUrl = QString("http://127.0.0.1:8083/track/%1").arg(4006);
             loadedTracks->coverpath = coverUrl;
 
 
@@ -456,7 +456,7 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                 a.name = albumObj["title"].toString();
                 a.total_duration = albumObj["total_duration"].toInt();
                 a.track_count = albumObj["track_count"].toInt();
-                QString coverUrl = QString("http://84.237.53.143:8083/album/%1").arg(a.id);
+                QString coverUrl = QString("http://127.0.0.1:8083/album/%1").arg(a.id);
                 a.coverpath = coverUrl;
 
                 // Если в альбоме есть массив tracks — парсим его
@@ -482,7 +482,7 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                     t.id = trackObj["id"].toInt();
                     t.name = trackObj["title"].toString();
                     t.upload_date = trackObj["upload_date"].toString();
-                    QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                    QString coverUrl = QString("http://127.0.0.1:8083/track/%1").arg(t.id);
                     t.coverpath = coverUrl;
                     a.tracks.append(t);
                 }
@@ -510,7 +510,7 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                 t.id = trackObj["id"].toInt();
                 t.name = trackObj["title"].toString();
                 t.upload_date = trackObj["upload_date"].toString();
-                QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                QString coverUrl = QString("http://127.0.0.1:8083/track/%1").arg(t.id);
                 t.coverpath = coverUrl;
                 likedTracks->tracks.append(t);
                 likedTracks->total_duration += t.duration_s;
@@ -538,7 +538,7 @@ void MusicMain::onTextMessageReceived(const QString &type, const QJsonObject &da
                 t.id = trackObj["id"].toInt();
                 t.name = trackObj["title"].toString();
                 t.upload_date = trackObj["upload_date"].toString();
-                QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                QString coverUrl = QString("http://127.0.0.1:8083/track/%1").arg(t.id);
                 t.coverpath = coverUrl;
                 loadedTracks->tracks.append(t);
                 loadedTracks->total_duration += t.duration_s;
@@ -743,7 +743,7 @@ void MusicMain::on_albumButton_clicked(){
 
 void MusicMain::on_TrackButton_clicked(track *trackData){
     QNetworkAccessManager *manager = new QNetworkAccessManager(this);
-    QString urlStr = QString("http://84.237.53.143:8084/stream/%1?user=%2&author=%3")
+    QString urlStr = QString("http://127.0.0.1:8084/stream/%1?user=%2&author=%3")
                          .arg(trackData->id)
                          .arg(mainUsertag)
                          .arg(trackData->authorUsertags[0]);

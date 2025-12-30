@@ -1412,10 +1412,21 @@ bool DB::set_default_profile_cover(const std::string& usertag) const
         return false;
     }
 
-    const std::string filename = "../../../../common/base_profile.jpg";
+    std::string filename;
+    const char* env_path = std::getenv("BASE_PROFILE_PATH");
+
+    if (env_path) {
+        filename = env_path;
+    }
+    else {
+        filename = "../../../common/base_profile.jpg";
+    }
+
+
     if (!std::filesystem::exists(filename)) {
         std::cerr << "[DB] File not found at: " << filename << "\n";
-    } else {
+    }
+    else {
         std::cerr << "[DB] File exists: " << filename << "\n";
     }
 

@@ -34,10 +34,10 @@ int main(int argc, char *argv[])
     }
 
     // Создаем WebSocket клиент для сервера
-    WebSocketClient *wsclient = new WebSocketClient("ws://84.237.53.143:8080");
+    WebSocketClient *wsclient = new WebSocketClient("ws://127.0.0.1:8080");
 
     // Второй WebSocket клиент (видимо для локального взаимодействия)
-    WebSocketClient *stasWeb = new WebSocketClient("ws://127.0.0.1:8080");
+    WebSocketClient *stasWeb = new WebSocketClient("ws://127.0.0.1:8085");
 
     // Создаем окно логина и показываем его модально
     LoginWindow login(wsclient);

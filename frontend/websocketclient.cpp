@@ -67,5 +67,5 @@ void WebSocketClient::onDisconnected()
     // QMessageBox::warning(nullptr, "Ошибка", "Соединение с сервером разорвано");
 
     // Попытка переподключения
-    m_socket.open(QUrl("ws://84.237.53.143:8080"));
+    m_socket.open(QUrl("ws://127.0.0.1:8080"));
 }

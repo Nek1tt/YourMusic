@@ -17,9 +17,9 @@ int main(int argc, char* argv[])
     try 
     {
         boost::asio::io_context ioc{1};
-        tcp::acceptor acceptor{ioc, {boost::asio::ip::make_address("127.0.0.1"), 8080}};
+        tcp::acceptor acceptor{ioc, {boost::asio::ip::make_address("127.0.0.1"), 8085}};
 
-        std::cout << "WebSocket ServerHandler listening on ws://127.0.0.1:8080\n";
+        std::cout << "WebSocket ServerHandler listening on ws://127.0.0.1:8085\n";
 
         while (true) 
         {

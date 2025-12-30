@@ -96,7 +96,7 @@ void ProfileTab::onTextMessageReceived(const QString &type, const QJsonObject &d
             album a;
             a.id = 0;
             a.name = "Liked Tracks";
-            a.coverpath = "http://84.237.53.143:8083/track/3021";
+            a.coverpath = "http://127.0.0.1:8083/track/3021";
             a.authorUsername = currentAuthorOfObjects.username;
             a.authorUsertag = currentAuthorOfObjects.usertag;
             a.track_count = tracksArray.size();
@@ -111,7 +111,7 @@ void ProfileTab::onTextMessageReceived(const QString &type, const QJsonObject &d
                 t.album_id = a.id;  // можно присвоить album.id
                 t.name = trackObj["title"].toString();
                 t.duration_s = trackObj["duration_seconds"].toInt();
-                QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                QString coverUrl = QString("http://127.0.0.1:8083/track/%1").arg(t.id);
                 t.coverpath = coverUrl;
                 QString authorsStr = trackObj["authors"].toString();
                 QStringList authorList = authorsStr.split(",", Qt::SkipEmptyParts);
@@ -141,7 +141,7 @@ void ProfileTab::onTextMessageReceived(const QString &type, const QJsonObject &d
             album a;
             a.id = 0;
             a.name = "Loaded Tracks";
-            a.coverpath = "http://84.237.53.143:8083/track/3021";
+            a.coverpath = "http://127.0.0.1:8083/track/3021";
             a.authorUsername = currentAuthorOfObjects.username;
             a.authorUsertag = currentAuthorOfObjects.usertag;
             a.track_count = tracksArray.size();
@@ -156,7 +156,7 @@ void ProfileTab::onTextMessageReceived(const QString &type, const QJsonObject &d
                 t.album_id = a.id;  // можно присвоить album.id
                 t.name = trackObj["title"].toString();
                 t.duration_s = trackObj["duration_seconds"].toInt();
-                QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                QString coverUrl = QString("http://127.0.0.1:8083/track/%1").arg(t.id);
                 t.coverpath = coverUrl;
                 QString authorsStr = trackObj["authors"].toString();
                 QStringList authorList = authorsStr.split(",", Qt::SkipEmptyParts);
@@ -227,7 +227,7 @@ void ProfileTab::onTextMessageReceived(const QString &type, const QJsonObject &d
 
             a.id = albumObj["id"].toInt();
             a.name = albumObj["title"].toString();
-            a.coverpath = QString("http://84.237.53.143:8083/album/%1").arg(a.id);  // пример, берем первую liked_track как обложку
+            a.coverpath = QString("http://127.0.0.1:8083/album/%1").arg(a.id);  // пример, берем первую liked_track как обложку
             a.authorUsername = albumObj["authors"].toString();
             a.authorUsertag = albumObj["author_usertag"].toString();
             qDebug()<<"            qDebug()<<a.authorUsertag;";
@@ -251,7 +251,7 @@ void ProfileTab::onTextMessageReceived(const QString &type, const QJsonObject &d
                 t.album_id = trackObj["album_id"].toInt();
                 t.name = trackObj["title"].toString();
                 t.duration_s = trackObj["duration_seconds"].toInt();
-                QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                QString coverUrl = QString("http://127.0.0.1:8083/track/%1").arg(t.id);
                 t.coverpath = coverUrl;
                 QString authorsStr = trackObj["authors"].toString();
                 QStringList authorList = authorsStr.split(",", Qt::SkipEmptyParts);
@@ -282,7 +282,7 @@ void ProfileTab::onTextMessageReceived(const QString &type, const QJsonObject &d
             QJsonObject user = data.value("user_info").toObject();
             viewUserInfo->username = user["username"].toString();
             viewUserInfo->usertag = user["usertag"].toString();
-            QString coverUrl = QString("http://84.237.53.143:8083/profile/%1").arg(viewUserInfo->usertag);
+            QString coverUrl = QString("http://127.0.0.1:8083/profile/%1").arg(viewUserInfo->usertag);
             viewUserInfo->avatarPath = coverUrl;
             viewUserInfo->followersnum = user["followersnum"].toInt();
             viewUserInfo->followingnum = user["followingnum"].toInt();
@@ -305,7 +305,7 @@ void ProfileTab::onTextMessageReceived(const QString &type, const QJsonObject &d
                 a.name = albumObj["title"].toString();
                 a.total_duration = albumObj["total_duration"].toInt();
                 a.track_count = albumObj["track_count"].toInt();
-                QString coverUrl = QString("http://84.237.53.143:8083/album/%1").arg(a.id);
+                QString coverUrl = QString("http://127.0.0.1:8083/album/%1").arg(a.id);
                 a.coverpath = coverUrl;
 
                 // Если в альбоме есть массив tracks — парсим его
@@ -331,7 +331,7 @@ void ProfileTab::onTextMessageReceived(const QString &type, const QJsonObject &d
                     t.id = trackObj["id"].toInt();
                     t.name = trackObj["title"].toString();
                     t.upload_date = trackObj["upload_date"].toString();
-                    QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                    QString coverUrl = QString("http://127.0.0.1:8083/track/%1").arg(t.id);
                     t.coverpath = coverUrl;
                     a.tracks.append(t);
                 }
@@ -359,7 +359,7 @@ void ProfileTab::onTextMessageReceived(const QString &type, const QJsonObject &d
                 t.id = trackObj["id"].toInt();
                 t.name = trackObj["title"].toString();
                 t.upload_date = trackObj["upload_date"].toString();
-                QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                QString coverUrl = QString("http://127.0.0.1:8083/track/%1").arg(t.id);
                 t.coverpath = coverUrl;
                 likedTracks->tracks.append(t);
             }
@@ -385,7 +385,7 @@ void ProfileTab::onTextMessageReceived(const QString &type, const QJsonObject &d
                 t.id = trackObj["id"].toInt();
                 t.name = trackObj["title"].toString();
                 t.upload_date = trackObj["upload_date"].toString();
-                QString coverUrl = QString("http://84.237.53.143:8083/track/%1").arg(t.id);
+                QString coverUrl = QString("http://127.0.0.1:8083/track/%1").arg(t.id);
                 t.coverpath = coverUrl;
                 loadedTracks->tracks.append(t);
             }
@@ -551,7 +551,7 @@ void ProfileTab::onAlbumByTrack(track *trackData){
         album a;
         a.id = 0;
         a.name = trackData->name;
-        a.coverpath = QString("http://84.237.53.143:8083/track/%1").arg(trackData->id);  // пример, берем первую liked_track как обложку
+        a.coverpath = QString("http://127.0.0.1:8083/track/%1").arg(trackData->id);  // пример, берем первую liked_track как обложку
         qDebug()<<"ssd";
         a.authorUsername = trackData->authors[0];
         qDebug()<<"ssd";
