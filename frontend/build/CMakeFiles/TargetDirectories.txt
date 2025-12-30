@@ -1,7 +1,0 @@
-C:/Users/Lenovo/upprpo/YourMusic/frontend/build/CMakeFiles/musicproject.dir
-C:/Users/Lenovo/upprpo/YourMusic/frontend/build/CMakeFiles/edit_cache.dir
-C:/Users/Lenovo/upprpo/YourMusic/frontend/build/CMakeFiles/rebuild_cache.dir
-C:/Users/Lenovo/upprpo/YourMusic/frontend/build/CMakeFiles/list_install_components.dir
-C:/Users/Lenovo/upprpo/YourMusic/frontend/build/CMakeFiles/install.dir
-C:/Users/Lenovo/upprpo/YourMusic/frontend/build/CMakeFiles/install/local.dir
-C:/Users/Lenovo/upprpo/YourMusic/frontend/build/CMakeFiles/install/strip.dir

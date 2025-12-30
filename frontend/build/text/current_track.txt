@@ -1,1 +1,0 @@
-the_entrance_in_city noizeee imgs/covers/cover1.png 12 32
