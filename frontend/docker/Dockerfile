@@ -1,21 +1,25 @@
-FROM debian:bullseye
+FROM debian:bookworm
 
 RUN apt-get update && apt-get install -y \
     cmake \
-    qtbase5-dev \
-    qtdeclarative5-dev \
     g++ \
     make \
     git \
-    x11-apps \
-    libgl1-mesa-dev \
-    && apt-get clean
-
+    qt6-base-dev \
+    qt6-declarative-dev \
+    libqt6websockets6-dev \
+    libgl-dev \
+    libvulkan-dev \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
-COPY ../ /app
+COPY frontend/ /app/frontend/
 
-RUN mkdir -p build && cd build && cmake .. && cmake --build .
+WORKDIR /app/frontend
+
+RUN mkdir -p build && cd build && \
+    cmake -DCMAKE_BUILD_TYPE=Release .. && \
+    cmake --build . --parallel 4
 
 CMD ["./build/musicproject"]
