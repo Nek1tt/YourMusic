@@ -2,9 +2,9 @@ name: Build Frontend Docker
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main", "master" ]
+    branches: [ "main" ]
 
 jobs:
   build-frontend:
@@ -23,4 +23,4 @@ jobs:
         context: .
         file: frontend/docker/Dockerfile
         push: false
-        tags: musicproject-frontend:latest
+        tags: yourmusic-frontend:latest
