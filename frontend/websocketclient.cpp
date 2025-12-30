@@ -1,4 +1,4 @@
-#include "WebSocketClient.h"
+#include "websocketclient.h"
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QMessageBox>
