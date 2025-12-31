@@ -72,7 +72,7 @@ YourMusic — это комплексный музыкальный сервис,
 
 4. **Скачайте клиентское приложение**
    
-   Перейдите на страницу [GitHub Releases](https://github.com/yourusername/YourMusic/releases) и скачайте последнюю версию для Windows
+   Перейдите на страницу [GitHub Releases](https://github.com/Nek1tt/YourMusic/releases) и скачайте последнюю версию для Windows
 
 5. **Запустите клиентское приложение**
    
