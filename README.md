@@ -1,5 +1,7 @@
 # YourMusic
 
+![YourMusic](./YourMusic.png)
+
 > 🎵 Музыкальный стриминговый сервис с возможностью загрузки и прослушивания треков
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
